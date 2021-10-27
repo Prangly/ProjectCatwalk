@@ -1,6 +1,6 @@
 import React from 'react';
 // import ProductDetail from '../ProductDetail/ProductDetail.jsx';
-// import QandA from '../QuestionsAnsAnswers/QuestionsAndAnswers.jsx';
+// import QandA from '../QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 // import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 // import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 
