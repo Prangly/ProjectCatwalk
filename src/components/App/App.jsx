@@ -17,8 +17,8 @@ class App extends React.Component {
       <div id="app">
         <h1>Hello from App</h1>
         <ProductDetail />
-        <RatAndRev />
         <QandA/>
+        <RatAndRev />
       </div>
     );
   }
