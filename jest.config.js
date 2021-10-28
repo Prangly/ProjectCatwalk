@@ -173,6 +173,8 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
+    ".+\\.(css|styl|less|sass|scss)$":
+      "<rootDir>/node_modules/jest-css-modules-transform",
     "^.+\\.(js|jsx)$": "babel-jest",
   },
 
