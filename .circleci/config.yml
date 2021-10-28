@@ -9,5 +9,6 @@ jobs:
     working_directory: ~/
 
     steps:
+      - checkout
       - run: npm install
       - run: npm test
