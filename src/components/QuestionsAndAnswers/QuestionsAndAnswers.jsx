@@ -1,8 +1,11 @@
 import React from 'react';
+import styles from './styles.css';
 
-const QuestionsAndAnswers = function() {
+const QuestionsAndAnswers = () => {
   return(
-    <h1>Questions and Answers</h1>
+    <div id={styles.qAndA}>
+      <h1>Questions and Answers</h1>
+    </div>
   )
 }
 
