@@ -3,7 +3,7 @@ import styles from './styles.css'
 const ProductDetail = () => {
 
   return(
-    <div id={styles.productDetail}>
+    <div data-testid='productDetail' id={styles.productDetail}>
       <h1>Product Detail</h1>
     </div>
   )
