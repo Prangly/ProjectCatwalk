@@ -1,12 +1,10 @@
 import React from 'react';
-import styles from './styles.css'
-const ProductDetail = () => {
+import styles from './styles.css';
 
-  return(
-    <div data-testid='productDetail' id={styles.productDetail}>
-      <h1>Product Detail</h1>
-    </div>
-  )
-}
+const ProductDetail = () => (
+  <div data-testid="productDetail" id={styles.productDetail}>
+    <h1>Product Detail</h1>
+  </div>
+);
 
 export default ProductDetail;
