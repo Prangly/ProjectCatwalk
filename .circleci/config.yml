@@ -10,4 +10,4 @@ jobs:
 
     steps:
       - run: npm install
-      - run: npm jest
+      - run: npm test
