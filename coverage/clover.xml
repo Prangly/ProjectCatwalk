@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1635478885195" clover="3.2.0">
-  <project timestamp="1635478885195" name="All files">
-    <metrics statements="113" coveredstatements="113" conditionals="17" coveredconditionals="17" methods="13" coveredmethods="13" elements="143" coveredelements="143" complexity="0" loc="113" ncloc="113" packages="8" files="12" classes="12"/>
+<coverage generated="1635541198946" clover="3.2.0">
+  <project timestamp="1635541198946" name="All files">
+    <metrics statements="151" coveredstatements="151" conditionals="20" coveredconditionals="20" methods="16" coveredmethods="16" elements="187" coveredelements="187" complexity="0" loc="151" ncloc="151" packages="11" files="15" classes="15"/>
     <package name="App">
       <metrics statements="28" coveredstatements="28" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
       <file name="App.jsx" path="/Users/abefroman/Documents/HRSF138/FrontEndCapstone/ProjectCatwalk/src/components/App/App.jsx">
@@ -154,25 +154,81 @@
       </file>
     </package>
     <package name="RelatedItemsAndOutfitCreation">
-      <metrics statements="13" coveredstatements="13" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <metrics statements="17" coveredstatements="17" conditionals="3" coveredconditionals="3" methods="2" coveredmethods="2"/>
       <file name="RelatedItemsAndOutfitCreation.jsx" path="/Users/abefroman/Documents/HRSF138/FrontEndCapstone/ProjectCatwalk/src/components/RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx">
-        <metrics statements="10" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="14" coveredstatements="14" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
       </file>
       <file name="styles.css" path="/Users/abefroman/Documents/HRSF138/FrontEndCapstone/ProjectCatwalk/src/components/RelatedItemsAndOutfitCreation/styles.css">
         <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="cond" truecount="2" falsecount="0"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="RelatedItemsAndOutfitCreation.Card">
+      <metrics statements="10" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="Card.jsx" path="/Users/abefroman/Documents/HRSF138/FrontEndCapstone/ProjectCatwalk/src/components/RelatedItemsAndOutfitCreation/Card/Card.jsx">
+        <metrics statements="10" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="stmt"/>
+        <line num="7" count="6" type="stmt"/>
+        <line num="8" count="6" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="10" count="6" type="stmt"/>
+      </file>
+    </package>
+    <package name="RelatedItemsAndOutfitCreation.Outfit">
+      <metrics statements="12" coveredstatements="12" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="Outfit.jsx" path="/Users/abefroman/Documents/HRSF138/FrontEndCapstone/ProjectCatwalk/src/components/RelatedItemsAndOutfitCreation/Outfit/Outfit.jsx">
+        <metrics statements="12" coveredstatements="12" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="RelatedItemsAndOutfitCreation.RelatedItems">
+      <metrics statements="12" coveredstatements="12" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="RelatedItems.jsx" path="/Users/abefroman/Documents/HRSF138/FrontEndCapstone/ProjectCatwalk/src/components/RelatedItemsAndOutfitCreation/RelatedItems/RelatedItems.jsx">
+        <metrics statements="12" coveredstatements="12" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
       </file>
     </package>
   </project>
