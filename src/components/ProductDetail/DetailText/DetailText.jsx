@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductFeature from './ProductFeature/ProductFeature';
+import styles from './styles.css';
 
 export default function DetailText({ product }) {
   const features = product.features.map(
@@ -9,12 +10,14 @@ export default function DetailText({ product }) {
   );
 
   return (
-    <div data-testid="detailText">
-      <div id="productSlogan">
-        {product.slogan}
-      </div>
-      <div id="productDescription">
-        {product.description}
+    <div id={styles.detailTextContainer} data-testid="detailText">
+      <div id="productDetailText">
+        <div id="productSlogan">
+          {product.slogan}
+        </div>
+        <div id="productDescription">
+          {product.description}
+        </div>
       </div>
       <div id="productFeatures">
         {features}
@@ -35,4 +38,5 @@ DetailText.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+
 };
