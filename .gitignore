@@ -1,5 +1,9 @@
 node_modules
 config.js
 dist/bundle.js
+<<<<<<< HEAD
+coverage-final.json
+=======
 coverage
 .vscode
+>>>>>>> main
