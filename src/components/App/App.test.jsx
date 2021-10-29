@@ -3,7 +3,7 @@
 import React from 'react';
 
 import {
-  render, fireEvent, waitFor, screen,
+  render, screen,
 } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
