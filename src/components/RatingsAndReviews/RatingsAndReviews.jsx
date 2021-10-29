@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './styles.css';
+import WriteAReview from './WriteAReview/WriteAReview';
 
 const RatAndRev = () => (
-  <div id={styles.ratingsAndReviews}>
-    <h1>Ratings and Reviews</h1>
+  <div data-testid="ratAndRev" id={styles.ratingsAndReviews}>
+    <h1>Ratings and Reviews Parent Component</h1>
+    <WriteAReview />
   </div>
 );
 

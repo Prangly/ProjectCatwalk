@@ -1,5 +1,6 @@
 node_modules
 config.js
 dist/bundle.js
+coverage-final.json
 coverage
 .vscode
