@@ -1,0 +1,11 @@
+.styleIcon {
+  object-fit: cover;
+  height: 3em;
+  width: 3em;
+  overflow:hidden;
+  border-radius: 50%;
+}
+
+.styleIcon:hover {
+  opacity: 0.5
+}
