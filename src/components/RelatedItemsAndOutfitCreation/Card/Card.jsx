@@ -3,7 +3,7 @@ import styles from '../styles.css';
 
 export default function Card() {
   return (
-    <div data-testid="outfit" id={styles.outfit}>
+    <div data-testid="card" id={styles.card}>
       Card
     </div>
   );
