@@ -1,17 +1,16 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import React from 'react';
-
 import {
   render, fireEvent, waitFor, screen,
 } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
-import ProductDetail from './ProductDetail';
+import QuestionsAndAnswers from './QuestionsAndAnswers';
 
-describe('Product Detail tests', () => {
+describe('QuestionsAndAnswers test', () => {
   it('should recognize react testing library methods', () => {
-    render(<ProductDetail />);
-    expect(screen.getByTestId('productDetail')).toBeInTheDocument();
+    render(<QuestionsAndAnswers />);
+    expect(screen.getByText('Questions and Answers'));
   });
 });
