@@ -4,7 +4,7 @@ import RelatedItems from './RelatedItems/RelatedItems';
 import Outfit from './Outfit/Outfit';
 
 const RandOC = () => (
-  <div data-testid="rAndOC" id={styles.relatedItems}>
+  <div data-testid="rAndOC" id={styles.rAndOC}>
     <h1>Related Items and Outfit Creation</h1>
     <RelatedItems />
     <Outfit />
