@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
-export default function ImageCarousel({ product }) {
-  const sampleStyle = product.results[0];
+export default function ImageCarousel({ productStyles, currentStyle }) {
+  const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => result.url);
   const [currentImage, setCurrentImage] = useState(0);
@@ -29,9 +29,10 @@ export default function ImageCarousel({ product }) {
 }
 
 ImageCarousel.propTypes = {
-  product: PropTypes.shape({
+  productStyles: PropTypes.shape({
     product_id: PropTypes.string,
     results: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  currentStyle: PropTypes.number.isRequired,
 
 };
