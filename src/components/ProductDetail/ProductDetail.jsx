@@ -11,7 +11,7 @@ const currentProduct = SampleProduct;
 const ProductDetail = () => (
   <div data-testid="productDetail" id={styles.productDetail}>
     <div id={styles.upperContainer}>
-      <ImageCarousel id={styles.imageCarousel} product={currentProduct} />
+      <ImageCarousel id={styles.imageCarousel} product={sampleStyles} />
       <StylesAndSizes
         id={styles.stylesAndSizes}
         productStyles={sampleStyles}
