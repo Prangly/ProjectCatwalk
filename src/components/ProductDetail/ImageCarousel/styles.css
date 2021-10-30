@@ -1,0 +1,9 @@
+#imageCarousel {
+flex-grow: 2;
+/* width: 66% */
+}
+
+.bigImage {
+  object-fit: cover;
+  height: 10em;
+}

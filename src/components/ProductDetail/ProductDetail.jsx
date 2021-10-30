@@ -10,9 +10,15 @@ const currentProduct = SampleProduct;
 
 const ProductDetail = () => (
   <div data-testid="productDetail" id={styles.productDetail}>
-    <ImageCarousel id={styles.imageCarousel} product={currentProduct} />
+    <div id={styles.upperContainer}>
+      <ImageCarousel id={styles.imageCarousel} product={sampleStyles} />
+      <StylesAndSizes
+        id={styles.stylesAndSizes}
+        productStyles={sampleStyles}
+        name={SampleProduct.name}
+      />
+    </div>
     <DetailText id={styles.detailText} product={currentProduct} />
-    <StylesAndSizes id={styles.stylesAndSizes} product={sampleStyles} />
   </div>
 
 );
