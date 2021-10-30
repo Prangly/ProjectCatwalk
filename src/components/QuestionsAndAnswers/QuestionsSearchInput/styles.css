@@ -1,0 +1,10 @@
+.searchInput {
+  height: 50px;
+  width: 500px;
+
+}
+
+.searchInput ::placeholder {
+  font-weight: bolder;
+  font-size: large;
+}

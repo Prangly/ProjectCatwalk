@@ -11,6 +11,6 @@ import QuestionsAndAnswers from './QuestionsAndAnswers';
 describe('QuestionsAndAnswers test', () => {
   it('should recognize react testing library methods', () => {
     render(<QuestionsAndAnswers />);
-    expect(screen.getByText('Questions and Answers'));
+    expect(screen.getByText('Questions and Answers')).toBeInTheDocument();
   });
 });
