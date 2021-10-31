@@ -16,8 +16,8 @@ export default function StylesAndSizes({ productStyles, name, setCurrentStyle })
   ));
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
-      <h1>{name}</h1>
-      <div id={styles.styles}>
+      <h1 data-testid="productName" id={styles.productName}>{name}</h1>
+      <div id={styles.styleIconContainer} data-testid="styleIconContainer">
         {styleIcons}
       </div>
     </div>

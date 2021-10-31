@@ -26,7 +26,7 @@ const ProductDetail = () => {
           setCurrentStyle={setCurrentStyle}
         />
       </div>
-      <DetailText id={styles.detailText} product={currentProduct} />
+      <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />
     </div>
   );
 };

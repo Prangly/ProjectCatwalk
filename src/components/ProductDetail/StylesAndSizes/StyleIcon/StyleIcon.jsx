@@ -4,16 +4,23 @@ import styles from './styles.css';
 
 export default function StyleIcon({ style, setCurrentStyle, i }) {
   return (
-    <img
+    <button
+      type="button"
       onClick={() => {
-        setCurrentStyle(i)
+        setCurrentStyle(i);
       }}
       onKeyDown={() => {
-        setCurrentStyle(i)
+        setCurrentStyle(i);
       }}
       data-testid="styleIcon"
       alt={style.name}
-      src={style.photos[0].thumbnail_url}
+      style={{
+        background: `url(${style.photos[0].thumbnail_url})`,
+        backgroundSize: '150%',
+        backgroundPosition: 'center',
+        objectFit: 'contain',
+        border: 'none',
+      }}
       className={styles.styleIcon}
     />
   );
