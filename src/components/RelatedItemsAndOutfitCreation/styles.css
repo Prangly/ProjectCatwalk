@@ -1,3 +1,17 @@
 #relatedItems {
   border: 1px solid black;
 }
+
+.relatedItems {
+  display: inline;
+}
+
+.card {
+  display: inline;
+}
+
+.cardImage {
+  height: 2em;
+  height: 15%;
+  width: 15%;
+}

@@ -9,7 +9,7 @@ const cards = [
     name: 'RI1 Name',
     price: 'RI1 Price',
     starRating: 'RI1 Star Rating',
-    image: 'RI1 Image'
+    image: 'RI1 Image',
   },
   {
     id: '002',
@@ -17,18 +17,16 @@ const cards = [
     name: 'RI2 Name',
     price: 'RI2 Price',
     starRating: 'RI2 Star Rating',
-    image: 'RI2 Image'
-  }
+    image: 'RI2 Image',
+  },
 ];
 
 function RelatedItems() {
-
+  console.log(`The cards array has ${cards.length} elements`);
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
       Related Items
-      {cards.map((card) =>
-        <Card key={card.id.toString()} card={card}/>
-      )}
+      {cards.map((card) => <Card key={card.id.toString()} card={card} />)}
     </ul>
   );
 }
