@@ -2,11 +2,35 @@ import React from 'react';
 import styles from '../styles.css';
 import Card from '../Card/Card';
 
-export default function RelatedItems() {
+const cards = [
+  {
+    id: '001',
+    category: 'RI1 Category',
+    name: 'RI1 Name',
+    price: 'RI1 Price',
+    starRating: 'RI1 Star Rating',
+    image: 'RI1 Image'
+  },
+  {
+    id: '002',
+    category: 'RI2 Category',
+    name: 'RI2 Name',
+    price: 'RI2 Price',
+    starRating: 'RI2 Star Rating',
+    image: 'RI2 Image'
+  }
+];
+
+function RelatedItems() {
+
   return (
-    <div data-testid="relatedItems" id={styles.relatedItems}>
+    <ul data-testid="relatedItems" id={styles.relatedItems}>
       Related Items
-      <Card />
-    </div>
+      {cards.map((card) =>
+        <Card key={card.id.toString()} card={card}/>
+      )}
+    </ul>
   );
 }
+
+export default RelatedItems;
