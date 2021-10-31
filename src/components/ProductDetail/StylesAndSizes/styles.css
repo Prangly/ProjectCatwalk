@@ -19,3 +19,8 @@
 #productName {
   color:rgba(10, 10, 10, 0.9);
 }
+
+#price {
+  display: flex;
+  flex-direction: row;
+}

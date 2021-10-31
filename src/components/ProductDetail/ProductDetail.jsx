@@ -23,6 +23,7 @@ const ProductDetail = () => {
           id={styles.stylesAndSizes}
           productStyles={sampleStyles}
           name={SampleProduct.name}
+          currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
         />
       </div>
