@@ -7,14 +7,14 @@ import Modal from 'react-modal';
 import styles from '../styles.css';
 
 Modal.setAppElement('#root');
-function Card(props) {
+function Card({ card, action }) {
   // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div data-testid="card" className={styles.card}>
       <h4>Card</h4>
       <button onClick={() => setModalIsOpen(true)}>
-        {props.action}
+        {action}
       </button>
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
         <h3>Comparison Table</h3>
@@ -27,15 +27,15 @@ function Card(props) {
           </button>
         </div>
       </Modal>
-      <h4>{props.card.category}</h4>
-      <h4>{props.card.name}</h4>
+      <h4>{card.category}</h4>
+      <h4>{card.name}</h4>
       <h4>
         $
         {' '}
-        {props.card.default_price}
+        {card.default_price}
       </h4>
-      <h4>{props.card.starRating}</h4>
-      <img className={styles.cardImage} src={props.card.image} alt="" />
+      <h4>{card.starRating}</h4>
+      <img className={styles.cardImage} src={card.image} alt="" />
     </div>
   );
 }
