@@ -9,3 +9,11 @@
 .styleIcon:hover {
   opacity: 0.5
 }
+
+
+.iconButton {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+}

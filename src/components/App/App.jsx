@@ -6,6 +6,7 @@ import ProductDetail from '../ProductDetail/ProductDetail.jsx';
 import QandA from '../QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
+import Navbar from '../Navbar/Navbar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <div id="app">
-        <h1>Hello from App</h1>
+        <Navbar />
         <ProductDetail />
         <RandOC />
         <QandA />

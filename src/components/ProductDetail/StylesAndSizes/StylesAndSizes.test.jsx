@@ -6,7 +6,7 @@ import {
 
 import '@testing-library/jest-dom';
 import StylesAndSizes from './StylesAndSizes';
-import sampleStyles from '../SampleData/SampleStyles';
+import sampleStyles from '../../../SampleData/SampleStyles';
 
 describe('Styles and Sizes tests', () => {
   it('should render style icons', () => {
