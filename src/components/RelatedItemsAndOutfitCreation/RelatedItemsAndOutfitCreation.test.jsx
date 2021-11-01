@@ -6,6 +6,9 @@ import {
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import RandOC from './RelatedItemsAndOutfitCreation';
+import RelatedItems from './RelatedItems/RelatedItems';
+import Outfit from './Outfit/Outfit';
+import Card from './Card/Card';
 
 describe('RelatedItemsAndOutfitCreation test', () => {
   it('should recognize react testing library methods', () => {
@@ -14,10 +17,14 @@ describe('RelatedItemsAndOutfitCreation test', () => {
   });
   it('should identify "relatedItems" component by data test ID', () => {
     render(<RandOC />);
-    expect(screen.getByTestId('relatedItems')).toBeInTheDocument();
+    expect(screen.getAllByTestId('relatedItems')[0]).toBeInTheDocument();
   });
   it('should render an "outfit" component', () => {
     render(<RandOC />);
-    expect(screen.getByText('Outfit')).toBeInTheDocument();
+    expect(screen.getAllByTestId('outfit')[0]).toBeInTheDocument();
+  });
+  it('should render "card" components', () => {
+    render(<RandOC />);
+    expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   });
 });

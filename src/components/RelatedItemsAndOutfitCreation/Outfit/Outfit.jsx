@@ -2,11 +2,33 @@ import React from 'react';
 import styles from '../styles.css';
 import Card from '../Card/Card';
 
-export default function Outfit() {
+const cards = [
+  {
+    id: '61577',
+    category: 'Pants',
+    name: 'Morning Joggers',
+    default_price: '40.00',
+    starRating: 'Outfit 1 Star Rating',
+    image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+  },
+  {
+    id: '61578',
+    category: 'Pants',
+    name: "Slacker's Slacks",
+    default_price: '65.00',
+    starRating: 'Outfit 2 Star Rating',
+    image: 'https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+  },
+];
+const cardList = cards.map((card) => <Card key={card.id} card={card} />);
+
+function Outfit() {
   return (
-    <div data-testid="outfit" id={styles.outfit}>
+    <ul data-testid="outfit" id={styles.outfit}>
       Outfit
-      <Card />
-    </div>
+      {cardList}
+    </ul>
   );
 }
+
+export default Outfit;
