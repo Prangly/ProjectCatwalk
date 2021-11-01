@@ -20,7 +20,8 @@ const cards = [
     image: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
   },
 ];
-const cardList = cards.map((card) => <Card key={card.id} card={card} />);
+const action = 'Compare';
+const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
 
 function RelatedItems() {
   return (

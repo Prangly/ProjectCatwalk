@@ -27,4 +27,5 @@ describe('RelatedItemsAndOutfitCreation test', () => {
     render(<RandOC />);
     expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   });
+  
 });
