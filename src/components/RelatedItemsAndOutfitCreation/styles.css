@@ -1,14 +1,12 @@
-#relatedItems {
+#relatedItems, #outfit {
+  display: flex;
+  flex-direction: row;
   border: 1px solid black;
 }
 
-#outfit {
-  border: 1px solid black;
-}
-
-.relatedItems {
+/* .relatedItems {
   display: inline;
-}
+} */
 
 #card {
   display: inline;
@@ -20,3 +18,4 @@
   height: 15%;
   width: 15%;
 }
+
