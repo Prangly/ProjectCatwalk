@@ -9,7 +9,7 @@ import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
 
 const App = () => {
-  const [currentProductID, setCurrentProductID] = useState('61575');
+  const [currentProductID, setCurrentProductID] = useState('61577');
 
   return (
     <div id="app">

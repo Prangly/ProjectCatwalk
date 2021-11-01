@@ -7,7 +7,6 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => result.url);
   const [currentImage, setCurrentImage] = useState(0);
-
   const onIncrement = (direction) => {
     if (direction === 'up' && currentImage < urls.length - 1) {
       setCurrentImage(currentImage + 1);

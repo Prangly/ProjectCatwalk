@@ -7,7 +7,6 @@ export default function StylesAndSizes({
   productStyles, name, setCurrentStyle, currentStyle,
 }) {
   const { results } = productStyles;
-  console.log(results)
   const price = results[currentStyle].original_price;
   const salePrice = results[currentStyle].sale_price;
   const saleStyle = salePrice
