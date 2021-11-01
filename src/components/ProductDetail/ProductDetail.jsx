@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './styles.css';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
 import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
@@ -8,27 +8,20 @@ import sampleStyles from '../../SampleData/SampleStyles';
 
 const currentProduct = SampleProduct;
 
-const ProductDetail = () => {
-  const [currentStyle, setCurrentStyle] = useState(0);
-
-  return (
-    <div data-testid="productDetail" id={styles.productDetail}>
-      <div id={styles.upperContainer}>
-        <ImageCarousel
-          id={styles.imageCarousel}
-          productStyles={sampleStyles}
-          currentStyle={currentStyle}
-        />
-        <StylesAndSizes
-          id={styles.stylesAndSizes}
-          productStyles={sampleStyles}
-          name={SampleProduct.name}
-          setCurrentStyle={setCurrentStyle}
-        />
-      </div>
-      <DetailText id={styles.detailText} product={currentProduct} />
+const ProductDetail = () => (
+  <div data-testid="productDetail" id={styles.productDetail}>
+    <div id={styles.upperContainer}>
+      <ImageCarousel id={styles.imageCarousel} productStyles={sampleStyles} currentStyle={0} />
+      <StylesAndSizes
+        id={styles.stylesAndSizes}
+        productStyles={sampleStyles}
+        name={SampleProduct.name}
+        currentStyle={0}
+      />
     </div>
-  );
-};
+    <DetailText id={styles.detailText} product={currentProduct} />
+  </div>
+
+);
 
 export default ProductDetail;

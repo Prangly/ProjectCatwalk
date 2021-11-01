@@ -16,7 +16,7 @@ describe('App tests', () => {
 
   it('should recognize react testing library methods', () => {
     render(<App />);
-    expect(screen.getByText('Catwalk')).toBeInTheDocument();
+    expect(screen.getByText('Hello from App')).toBeInTheDocument();
     expect(screen.queryByText('Hello World')).not.toBeInTheDocument();
   });
 });

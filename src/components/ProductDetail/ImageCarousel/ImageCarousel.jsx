@@ -17,12 +17,38 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
   };
 
   return (
-    <div id={styles.imageCarousel} data-testid="imageCarousel">
-      <button type="button" onClick={() => onIncrement('down')} onKeyDown={() => onIncrement('down')} id={styles.leftBar} className={styles.scrollBar}> &lt;</button>
+    <div
+      id={styles.imageCarousel}
+      data-testid="imageCarousel"
+    >
+      <button
+        data-testid="prevImageButton"
+        type="button"
+        onClick={() => onIncrement('down')}
+        onKeyDown={() => onIncrement('down')}
+        id={styles.leftBar}
+        className={styles.scrollBar}
+      >
+        &lt;
+      </button>
 
-      <img className={styles.bigImage} alt={name} src={urls[currentImage]} />
+      <img
+        data-testid="carouselImage"
+        className={styles.bigImage}
+        alt={name}
+        src={urls[currentImage]}
+      />
 
-      <button type="button" onClick={() => onIncrement('up')} onKeyDown={() => onIncrement('up')} id={styles.rightBar} className={styles.scrollBar}> &gt; </button>
+      <button
+        data-testid="nextImageButton"
+        type="button"
+        onClick={() => onIncrement('up')}
+        onKeyDown={() => onIncrement('up')}
+        id={styles.rightBar}
+        className={styles.scrollBar}
+      >
+        &gt;
+      </button>
 
     </div>
   );
