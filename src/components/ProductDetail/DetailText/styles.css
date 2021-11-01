@@ -1,0 +1,4 @@
+#detailTextContainer {
+  display: flex;
+  flex-direction: row;
+}

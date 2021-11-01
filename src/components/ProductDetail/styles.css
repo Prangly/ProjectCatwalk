@@ -1,3 +1,15 @@
 #productDetail {
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#upperContainer {
+  display:flex;
+  flex-direction: row;
+}
+
+#productDetail > div {
+  border: 1px solid black;
 }
