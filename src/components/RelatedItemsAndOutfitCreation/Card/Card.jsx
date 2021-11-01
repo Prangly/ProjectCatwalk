@@ -3,17 +3,31 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Modal from 'react-modal';
 import styles from '../styles.css';
 
+Modal.setAppElement('#root');
 function Card({ card }) {
   const [action, takeAction] = useState();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
     <div data-testid="card" className={styles.card}>
       <h4>Card</h4>
-      <button onClick={() => takeAction()}>
+      <button onClick={() => setModalIsOpen(true)}>
         Action
       </button>
+      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+        <h3>Comparison Table</h3>
+        <h4>Product Detail for One Item</h4>
+        <h4>Product Detail for the Other Item</h4>
+        <h4>Characteristics to Compare</h4>
+        <div>
+          <button onClick={() => setModalIsOpen(false)}>
+            Close
+          </button>
+        </div>
+      </Modal>
       <h4>{card.category}</h4>
       <h4>{card.name}</h4>
       <h4>
