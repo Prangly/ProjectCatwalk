@@ -10,7 +10,7 @@ import sampleStyles from '../../../SampleData/SampleStyles';
 
 describe('Styles and Sizes tests', () => {
   it('should render style icons', () => {
-    render(<StylesAndSizes productStyles={sampleStyles} />);
+    render(<StylesAndSizes productStyles={sampleStyles} currentStyle={0} />);
     expect(screen.getAllByTestId('styleIcon')[0]).toBeInTheDocument();
   });
 });

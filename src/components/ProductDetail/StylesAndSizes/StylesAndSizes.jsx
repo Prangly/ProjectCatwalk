@@ -7,6 +7,7 @@ export default function StylesAndSizes({
   productStyles, name, setCurrentStyle, currentStyle,
 }) {
   const { results } = productStyles;
+  console.log(results)
   const price = results[currentStyle].original_price;
   const salePrice = results[currentStyle].sale_price;
   const saleStyle = salePrice
@@ -55,5 +56,5 @@ StylesAndSizes.propTypes = {
   }).isRequired,
   name: PropTypes.string.isRequired,
   setCurrentStyle: PropTypes.func.isRequired,
-  currentStyle: PropTypes.string.isRequired,
+  currentStyle: PropTypes.number.isRequired,
 };
