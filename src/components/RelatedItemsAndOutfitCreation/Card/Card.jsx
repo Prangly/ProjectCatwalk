@@ -10,6 +10,7 @@ function Card({ card }) {
 
   return (
     <div data-testid="card" className={styles.card}>
+      <h4>Card</h4>
       <button onClick={() => takeAction()}>
         Action
       </button>
