@@ -4,29 +4,29 @@ import Card from '../Card/Card';
 
 const cards = [
   {
-    id: '001',
-    category: 'RI1 Category',
-    name: 'RI1 Name',
-    price: 'RI1 Price',
+    id: '61575',
+    category: 'Jackets',
+    name: 'Camo Onesie',
+    default_price: '140.00',
     starRating: 'RI1 Star Rating',
-    image: 'RI1 Image',
+    image: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
   },
   {
-    id: '002',
-    category: 'RI2 Category',
-    name: 'RI2 Name',
-    price: 'RI2 Price',
+    id: '61576',
+    category: 'Accessories',
+    name: 'Bright Future Sunglasses',
+    default_price: '69.00',
     starRating: 'RI2 Star Rating',
-    image: 'RI2 Image',
+    image: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
   },
 ];
+const cardList = cards.map((card) => <Card key={card.id} card={card} />);
 
 function RelatedItems() {
-  console.log(`The cards array has ${cards.length} elements`);
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
       Related Items
-      {cards.map((card) => <Card key={card.id.toString()} card={card} />)}
+      {cardList}
     </ul>
   );
 }

@@ -2,12 +2,17 @@
   border: 1px solid black;
 }
 
+#outfit {
+  border: 1px solid black;
+}
+
 .relatedItems {
   display: inline;
 }
 
-.card {
+#card {
   display: inline;
+  border: 1px solid black;
 }
 
 .cardImage {
