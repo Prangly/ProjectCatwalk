@@ -2,9 +2,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import {
-  render, screen,
+  render, screen, fireEvent,
 } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
+import Modal from 'react-modal';
 import RandOC from './RelatedItemsAndOutfitCreation';
 import RelatedItems from './RelatedItems/RelatedItems';
 import Outfit from './Outfit/Outfit';
@@ -27,24 +29,9 @@ describe('RelatedItemsAndOutfitCreation test', () => {
     render(<RandOC />);
     expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   });
-  // it('should open a modal window', () => {
-  //   render(<RandOC />);
-  //   const handleClose = jest.fn();
-  //   const {getByText} = render(
-  //     <Modal onClose={handleClose}>
-  //       <div>test</div>
-  //     </Modal>,
-  //   );
-  //   // Assert
-  //   expect(getByText('test')).toBeTruthy()
-
-    // Act
-    // fireEvent.click(getByText(/close/i))
-
-
-
-    // fireEvent.click(getByText())
-    // expect()
-  // })
-
+  it('should open the modal window', () => {
+    render(<RandOC />);
+    userEvent.click(screen.getAllByText('Compare')[0]);
+    expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
+  });
 });

@@ -15,7 +15,7 @@ function Card({ card, action }) {
       <button onClick={() => setModalIsOpen(true)}>
         {action}
       </button>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+      <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
         <h3>Comparison Table</h3>
         <h4>Product Detail for One Item</h4>
         <h4>Product Detail for the Other Item</h4>
