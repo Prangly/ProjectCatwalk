@@ -12,7 +12,7 @@ function Card({ card, action }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div data-testid="card" className={styles.card}>
-      <h4>Card</h4>
+      {/* <h4>Card</h4> */}
       <button onClick={() => setModalIsOpen(true)}>
         {action}
       </button>
