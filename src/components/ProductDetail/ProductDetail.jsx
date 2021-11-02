@@ -7,13 +7,14 @@ import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
 import DetailText from './DetailText/DetailText';
 // import SampleProduct from '../../SampleData/SampleProduct';
 import sampleStyles from '../../SampleData/SampleStyles';
-
+import ExpandedView from './ImageCarousel/ExpandedView';
 // const currentProduct = SampleProduct;
 const stylesURL = 'http://127.0.0.1:3000/styles/';
 
 const ProductDetail = ({ currentProduct }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
+  const [expanded, setExpanded] = useState(false);
   const { id, name } = currentProduct;
   const stylesAPI = (currentProductID) => {
     axios.get(stylesURL + currentProductID)
@@ -25,6 +26,19 @@ const ProductDetail = ({ currentProduct }) => {
   useEffect(() => {
     stylesAPI(id);
   }, [currentProduct]);
+
+
+  const expandedView = expanded
+    ? (
+      <ExpandedView
+        id={styles.imageCarousel}
+        productStyles={productStyles}
+        currentStyle={currentStyle}
+        setExpanded={setExpanded}
+
+      />
+    ) : '';
+
   return (
     <div data-testid="productDetail" id={styles.productDetail}>
       <div id={styles.upperContainer}>
@@ -32,6 +46,7 @@ const ProductDetail = ({ currentProduct }) => {
           id={styles.imageCarousel}
           productStyles={productStyles}
           currentStyle={currentStyle}
+          setExpanded={setExpanded}
         />
         <StylesAndSizes
           id={styles.stylesAndSizes}
@@ -42,6 +57,7 @@ const ProductDetail = ({ currentProduct }) => {
         />
       </div>
       <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />
+      {expandedView}
     </div>
   );
 };
