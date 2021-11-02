@@ -51,7 +51,6 @@ app.get('/qa/questions/:id', (req, res) => {
 
 app.get('/qa/questions/:id/answers', (req, res) => {
   const { id } = req.params;
-  console.log('answers',req.params);
   const answersURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;
   axios.get(answersURL, { headers })
     .then(({ data }) => res.send(data))

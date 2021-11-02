@@ -7,13 +7,11 @@ import Answers from '../Answers/Answers';
 
 const Questions = ({ question }) => {
   const apiURL = `http://127.0.0.1:3000/qa/questions/${question.question_id}/answers`;
-
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
 
   const getAnswers = () => {
     axios.get(apiURL)
       .then(({ data }) => {
-        // console.log(data);
         setCurrentQuestionAnswers(data.results);
       });
   };
@@ -22,25 +20,29 @@ const Questions = ({ question }) => {
     getAnswers();
   }, [question]);
   return (
-    <div>
-      <div>
+    <div className={styles.questionsAndAnswers}>
+      <div className={styles.question}>
         Q:
+        {'  '}
         {question.question_body}
-        <span>
+        {'  '}
+        <span className={styles.buttons}>
           Helpful?
-          {' '}
-          <span onClick={()=>console.log('Need to update the counter for question helpfulness!')}>
+          {'  '}
+          <span className={styles.underline} onClick={()=>console.log('Need to update the counter for question helpfulness!')}>
             Yes
           </span>
-          {' '}
+          {'  ('}
+          {question.question_helpfulness}
+          {')  '}
           |
-          {' '}
-          <span onClick={()=> console.log('Need to render a modal pop up for adding an answer!')}>
+          {'  '}
+          <span className={styles.underline} onClick={()=> console.log('Need to render a modal pop up for adding an answer!')}>
             Add Answer
           </span>
         </span>
       </div>
-      <div>
+      <div className={styles.answers}>
         {currentQuestionAnswers.map((answer) => <Answers answer={answer} />)}
       </div>
     </div>
