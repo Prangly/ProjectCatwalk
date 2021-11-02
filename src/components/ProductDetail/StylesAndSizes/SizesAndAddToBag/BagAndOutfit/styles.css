@@ -1,9 +1,0 @@
-#bagAndOutfit {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#addToBag, #addToOutfit {
-  border: 1px solid black;
-}

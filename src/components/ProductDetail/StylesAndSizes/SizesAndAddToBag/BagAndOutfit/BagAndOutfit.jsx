@@ -1,7 +1,7 @@
 import React from 'react';
 import AddToBag from './AddToBag';
 import AddToOutfit from './AddToOutfit';
-import styles from './styles.css';
+import styles from '../styles.css';
 
 function BagAndOutfit() {
   return (
