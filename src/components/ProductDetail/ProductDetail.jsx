@@ -14,7 +14,7 @@ const stylesURL = 'http://127.0.0.1:3000/styles/';
 const ProductDetail = ({ currentProduct }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
-  const { id } = currentProduct;
+  const { id, name } = currentProduct;
   const stylesAPI = (currentProductID) => {
     axios.get(stylesURL + currentProductID)
       .then((data) => {
@@ -36,7 +36,7 @@ const ProductDetail = ({ currentProduct }) => {
         <StylesAndSizes
           id={styles.stylesAndSizes}
           productStyles={productStyles}
-          name={SampleProduct.name}
+          name={name}
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
         />
