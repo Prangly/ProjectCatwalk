@@ -1,0 +1,29 @@
+#bagAndOutfit, #sizesAndQuantity {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#addToBag, #addToOutfit, #sizes, #quantity {
+  border: 1px solid black;
+  margin: 1em;
+  height: 2em;
+}
+
+
+#addToBag {
+  flex-grow: 4;
+}
+
+#addToOutfit {
+flex-grow: 1;
+/* width: 100%; */
+}
+
+#sizes {
+  flex-grow: 3;
+}
+
+#quantity {
+  flex-grow: 2;
+}

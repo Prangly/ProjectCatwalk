@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
+import SizesAndAddToBag from './SizesAndAddToBag/SizesAndAddToBag';
 
 export default function StylesAndSizes({
   productStyles, name, setCurrentStyle, currentStyle,
@@ -9,6 +10,7 @@ export default function StylesAndSizes({
   const { results } = productStyles;
   const price = results[currentStyle].original_price;
   const salePrice = results[currentStyle].sale_price;
+  const styleName = results[currentStyle].name;
   const saleStyle = salePrice
     ? {
       textDecoration: 'line-through red',
@@ -24,6 +26,7 @@ export default function StylesAndSizes({
       key={style.style_id}
       style={style}
       i={i}
+      currentStyle={currentStyle}
     />
   ));
 
@@ -39,11 +42,16 @@ export default function StylesAndSizes({
         >
           {price}
         </span>
-        <span data-testid="salePrice" id={styles.salePrice}>{salePrice}</span>
+        <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
       </div>
-      <div id={styles.styleIconContainer} data-testid="styleIconContainer">
-        {styleIcons}
+
+      <div data-testid="styleContainer">
+        {`Style --> ${styleName}`}
+        <div id={styles.styleIconContainer} data-testid="styleIconContainer">
+          {styleIcons}
+        </div>
       </div>
+      <SizesAndAddToBag />
     </div>
   );
 }

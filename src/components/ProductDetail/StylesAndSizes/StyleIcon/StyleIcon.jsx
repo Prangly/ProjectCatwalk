@@ -2,27 +2,40 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
-export default function StyleIcon({ style, setCurrentStyle, i }) {
+const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
+
+export default function StyleIcon({
+  style, setCurrentStyle, i, currentStyle,
+}) {
+  const src = style.photos[0].thumbnail_url || imageNotFound;
+  const currentStyleBorder = i === currentStyle ? '3px solid rgba(0,0,0,0.5)' : 'none';
+  const alt = style.photos[0].thumbnail_url ? style.name : 'Image Not Found';
   return (
-    <button
-      type="button"
-      onClick={() => {
-        setCurrentStyle(i);
-      }}
-      onKeyDown={() => {
-        setCurrentStyle(i);
-      }}
-      data-testid="styleIcon"
-      alt={style.name}
-      style={{
-        background: `url(${style.photos[0].thumbnail_url})`,
-        backgroundSize: '150%',
-        backgroundPosition: 'center',
-        objectFit: 'contain',
-        border: 'none',
-      }}
-      className={styles.styleIcon}
-    />
+    <div className={styles.styleIconContainer}>
+      <button
+        type="button"
+        onClick={() => {
+          setCurrentStyle(i);
+        }}
+        onKeyDown={() => {
+          setCurrentStyle(i);
+        }}
+        data-testid="styleIcon"
+        alt={alt}
+        style={{
+          boxSizing: 'border-box',
+          background: `url(${src})`,
+          backgroundSize: '150%',
+          backgroundPosition: 'center',
+          objectFit: 'contain',
+          border: currentStyleBorder,
+        }}
+        className={styles.styleIcon}
+      />
+      <span className={styles.tooltip}>
+        {style.name}
+      </span>
+    </div>
   );
 }
 
@@ -37,4 +50,5 @@ StyleIcon.propTypes = {
   }).isRequired,
   setCurrentStyle: PropTypes.func.isRequired,
   i: PropTypes.number.isRequired,
+  currentStyle: PropTypes.number.isRequired,
 };
