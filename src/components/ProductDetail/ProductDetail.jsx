@@ -25,7 +25,6 @@ const ProductDetail = ({ currentProduct }) => {
   useEffect(() => {
     stylesAPI(id);
   }, [currentProduct]);
-
   return (
     <div data-testid="productDetail" id={styles.productDetail}>
       <div id={styles.upperContainer}>
