@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
+import ThumbnailGallery from './ThumbnailGallery/ThumbnailGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ImageCarousel({ productStyles, currentStyle }) {
@@ -48,6 +49,7 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
       >
         &gt;
       </button>
+      <ThumbnailGallery urls={urls} />
 
     </div>
   );
