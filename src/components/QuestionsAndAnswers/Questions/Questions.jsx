@@ -8,7 +8,6 @@ import Answers from '../Answers/Answers';
 const Questions = ({ question }) => {
   const apiURL = `http://127.0.0.1:3000/qa/questions/${question.question_id}/answers`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
-
   const getAnswers = () => {
     axios.get(apiURL)
       .then(({ data }) => {
@@ -46,7 +45,7 @@ const Questions = ({ question }) => {
         {currentQuestionAnswers.map((answer) => <Answers answer={answer} />)}
       </div>
     </div>
-  )
+  );
 };
 
 Questions.propTypes = {

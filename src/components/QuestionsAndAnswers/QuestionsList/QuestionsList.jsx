@@ -14,15 +14,16 @@ const QuestionsList = ({ currentProduct }) => {
         setCurrentProductQuestions(data.results);
       });
   };
+  const [moreQuestions, setDisplayMoreQuestions] = useState(true);
   useEffect(() => {
     getQuestions(currentProduct.id);
   }, [currentProduct]);
 
   return (
     <div>
-      {currentProductQuestions.map((question) => (
-        <Questions question={question} />
-      ))}
+      {moreQuestions
+        ? currentProductQuestions.map((question) => <Questions question={question} />)
+      : currentProductQuestions.filter(question=> currentProductQuestions.indexOf(question) < 4).map((question) => <Questions question={question} /> )}
     </div>
   );
 };
