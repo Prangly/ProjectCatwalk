@@ -7,7 +7,6 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => result.url);
   const [currentImage, setCurrentImage] = useState(0);
-
   const onIncrement = (direction) => {
     if (direction === 'up' && currentImage < urls.length - 1) {
       setCurrentImage(currentImage + 1);
@@ -18,11 +17,35 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
 
   return (
     <div id={styles.imageCarousel} data-testid="imageCarousel">
-      <button type="button" onClick={() => onIncrement('down')} onKeyDown={() => onIncrement('down')} id={styles.leftBar} className={styles.scrollBar}> &lt;</button>
+      <button
+        type="button"
+        onClick={() => onIncrement('down')}
+        onKeyDown={() => onIncrement('down')}
+        id={styles.leftBar}
+        className={styles.scrollBar}
+        data-testid="prevImageButton"
+      >
+        &lt;
+      </button>
 
-      <img className={styles.bigImage} alt={name} src={urls[currentImage]} />
+      <img
+        data-testid="carouselImage"
+        className={styles.bigImage}
+        alt={name}
+        src={urls[currentImage]}
+      />
 
-      <button type="button" onClick={() => onIncrement('up')} onKeyDown={() => onIncrement('up')} id={styles.rightBar} className={styles.scrollBar}> &gt; </button>
+      <button
+        type="button"
+        onClick={() => onIncrement('up')}
+        onKeyDown={() => onIncrement('up')}
+        id={styles.rightBar}
+        className={styles.scrollBar}
+        data-testid="nextImageButton"
+
+      >
+        &gt;
+      </button>
 
     </div>
   );
