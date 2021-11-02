@@ -15,6 +15,8 @@ const ProductDetail = ({ currentProduct }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
   const [expanded, setExpanded] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
+
   const { id, name } = currentProduct;
   const stylesAPI = (currentProductID) => {
     axios.get(stylesURL + currentProductID)
@@ -35,6 +37,8 @@ const ProductDetail = ({ currentProduct }) => {
         productStyles={productStyles}
         currentStyle={currentStyle}
         setExpanded={setExpanded}
+        currentImage={currentImage}
+        setCurrentImage={setCurrentImage}
 
       />
     ) : '';
@@ -47,6 +51,8 @@ const ProductDetail = ({ currentProduct }) => {
           productStyles={productStyles}
           currentStyle={currentStyle}
           setExpanded={setExpanded}
+          currentImage={currentImage}
+          setCurrentImage={setCurrentImage}
         />
         <StylesAndSizes
           id={styles.stylesAndSizes}
