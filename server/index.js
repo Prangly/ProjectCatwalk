@@ -40,3 +40,20 @@ app.get('/products/:id', (req, res) => {
     .then((data) => res.send(data.data))
     .catch(() => res.status(401).end()); /// handle this better
 });
+
+app.get('/qa/questions/:id', (req, res) => {
+  const { id } = req.params;
+  const productQuestionsURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=${id}`;
+  axios.get(productQuestionsURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(401).end());
+});
+
+app.get('/qa/questions/:id/answers', (req, res) => {
+  const { id } = req.params;
+  console.log('answers',req.params);
+  const answersURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;
+  axios.get(answersURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(404).end());
+});
