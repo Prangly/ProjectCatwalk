@@ -14,7 +14,7 @@ function ThumbnailGallery({ urls, currentImage }) {
   };
 
   const thumbnails = urls.map((url, i) =>
-    <Thumbnail url={url} i={i} currentImage={currentImage} />);
+    <Thumbnail url={url} i={i} key={url} currentImage={currentImage} />);
   return (
     <div data-testid="thumbnailGallery" id={styles.thumbnailGallery}>
       <div
