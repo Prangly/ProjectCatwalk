@@ -7,17 +7,17 @@ import QandA from '../QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
+import sampleProduct from '../../SampleData/SampleProduct.js';
 
 const App = () => {
-  const [currentProductID, setCurrentProductID] = useState('61577');
-
+  const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   return (
     <div id="app">
       <Navbar />
-      <ProductDetail currentProductID={currentProductID} />
-      <RandOC currentProductID={currentProductID} setCurrentProductID={setCurrentProductID} />
-      <QandA currentProductID={currentProductID} />
-      <RatAndRev currentProductID={currentProductID} />
+      <ProductDetail currentProduct={currentProduct} />
+      <RandOC currentProduct={currentProduct} setCurrentProduct={setCurrentProduct} />
+      <QandA currentProduct={currentProduct} />
+      <RatAndRev currentProduct={currentProduct} />
     </div>
   );
 };

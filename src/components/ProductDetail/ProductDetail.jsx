@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
@@ -7,24 +8,24 @@ import DetailText from './DetailText/DetailText';
 import SampleProduct from '../../SampleData/SampleProduct';
 import sampleStyles from '../../SampleData/SampleStyles';
 
-const currentProduct = SampleProduct;
+// const currentProduct = SampleProduct;
 const stylesURL = 'http://127.0.0.1:3000/styles/';
 
-const ProductDetail = ({ currentProductID }) => {
+const ProductDetail = ({ currentProduct }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
-  console.log(currentProductID)
-  const stylesAPI = (id) => {
-    axios.get(stylesURL + id)
+  console.log(currentProduct);
+  const { id } = currentProduct;
+  const stylesAPI = (currentProductID) => {
+    axios.get(stylesURL + currentProductID)
       .then((data) => {
-        console.log('response', data.data);
         setProductStyles(data.data);
       });
   };
 
   useEffect(() => {
-    stylesAPI(currentProductID);
-  }, [currentProductID]);
+    stylesAPI(id);
+  }, [currentProduct]);
 
   return (
     <div data-testid="productDetail" id={styles.productDetail}>
@@ -45,6 +46,20 @@ const ProductDetail = ({ currentProductID }) => {
       <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />
     </div>
   );
+};
+
+ProductDetail.propTypes = {
+  currentProduct: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    slogan: PropTypes.string,
+    description: PropTypes.string,
+    category: PropTypes.string,
+    default_price: PropTypes.string,
+    created_at: PropTypes.string,
+    updated_at: PropTypes.string,
+    features: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
 };
 
 export default ProductDetail;
