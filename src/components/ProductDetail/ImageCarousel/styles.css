@@ -98,6 +98,10 @@ top: 0px
 }
 
 #scrollingGallery {
+  position: absolute;
+  transition: left 500ms;
+  transform: translate(0, 50%);
+  bottom: 50%;
   width: 100%;
   display:flex;
   flex-direction: row;
