@@ -8,7 +8,7 @@ import '@testing-library/jest-dom';
 import RatAndRev from './RatingsAndReviews';
 
 describe('Ratings and Reviews tests', () => {
-  it('shoudl recognize react testing library methods', () => {
+  it('should recognize react testing library methods', () => {
     render(<RatAndRev />);
     expect(screen.getByTestId('ratAndRev'))
       .toBeInTheDocument();
@@ -17,6 +17,12 @@ describe('Ratings and Reviews tests', () => {
   it('should contain a "writeAReview" component', () => {
     render(<RatAndRev />);
     expect(screen.getByTestId('writeAReview'))
+      .toBeInTheDocument();
+  });
+
+  it('should contain a "reviewsList" component', () => {
+    render(<RatAndRev />);
+    expect(screen.getByTestId('reviewsList'))
       .toBeInTheDocument();
   });
 });
