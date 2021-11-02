@@ -18,6 +18,9 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
   };
 
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
+  const leftVis = currentImage === 0 ? 'hidden' : 'visible';
+  const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+
   return (
     <div id={styles.imageCarousel} data-testid="imageCarousel">
       <button
@@ -27,6 +30,9 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
         id={styles.leftBar}
         className={styles.scrollBar}
         data-testid="prevImageButton"
+        style={{
+          visibility: leftVis,
+        }}
       >
         &lt;
       </button>
@@ -45,6 +51,9 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
         id={styles.rightBar}
         className={styles.scrollBar}
         data-testid="nextImageButton"
+        style={{
+          visibility: rightVis,
+        }}
 
       >
         &gt;
