@@ -21,6 +21,7 @@ export default function ExpandedView({ productStyles, currentStyle, setExpanded,
   const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
 
   return (
+
     <div id={styles.expandedView} data-testid="expandedCarousel">
 
 

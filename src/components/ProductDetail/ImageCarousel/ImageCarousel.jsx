@@ -5,7 +5,7 @@ import ThumbnailGallery from './ThumbnailGallery/ThumbnailGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ImageCarousel({
-  productStyles, currentStyle, setExpanded, setCurrentImage, currentImage
+  productStyles, currentStyle, setExpanded, setCurrentImage, currentImage,
 }) {
   const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
