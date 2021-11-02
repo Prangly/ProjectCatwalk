@@ -7,7 +7,7 @@ import {
 import '@testing-library/jest-dom';
 import ImageCarousel from './ImageCarousel';
 import sampleStyles from '../../../SampleData/SampleStyles';
-import sampleStylesNoURL from '../../../SampleData/SampleStylesNoURL';
+import sampleStylesNoURL from '../../../SampleData/sampleStylesNoURL';
 
 describe('Image Carousel tests', () => {
   it('should render an image', () => {

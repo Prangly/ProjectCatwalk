@@ -25,24 +25,3 @@
   flex-direction: row;
 }
 
-#bagAndOutfit {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#addToBag, #addToOutfit {
-  border: 1px solid black;
-  margin: 1em;
-  height: 2em;
-}
-
-
-#addToBag {
-  flex-grow: 5;
-}
-
-#addToOutfit {
-flex-grow: 2;
-/* width: 100%; */
-}

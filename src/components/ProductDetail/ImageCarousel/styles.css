@@ -56,3 +56,84 @@ top: 0px
   top: 0px;
   z-index: -1;
 }
+
+#thumbnailGallery {
+  display: flex;
+  flex-direction: row;
+  width: 76%;
+  height: 10%;
+  /* border: 1px solid rgba(255,255,255,0.5); */
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  overflow: hidden;
+}
+
+#scrollButtonLeft{
+  left:0;
+}
+#scrollButtonRight{
+  right:0;
+}
+
+.scrollButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.5em;
+  height: 110%;
+  width:1em;
+  position: absolute;
+  bottom:49%;
+  transform: translate(0%,50%);
+  border: none;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.scrollButton:hover {
+  opacity: 0.3;
+}
+
+#scrollingGallery {
+  position: absolute;
+  transition: left 500ms;
+  transform: translate(0, 50%);
+  bottom: 50%;
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbnailImage {
+  height: 2em;
+  width: 2em;
+  border: none;
+  border-radius: 5px;
+  /* background-size:100% */
+}
+
+
+.thumbnailContainer {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* position: relative; */
+}
+
+.thumbnailImage {
+  box-shadow: 0px 0px 3px white;
+  transition: box-shadow 100ms;
+  cursor: pointer;
+
+}
+.thumbnailImage:hover {
+  box-shadow: 0px 0px 3px 1px white;
+}
