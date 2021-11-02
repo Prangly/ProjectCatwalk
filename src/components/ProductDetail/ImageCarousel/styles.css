@@ -3,7 +3,7 @@ flex-grow: 2;
 /* width: 66% */
 position: relative;
 max-width: 23vw;
-height: 60vh;
+height: 70vh;
 }
 
 .bigImage {
@@ -18,7 +18,7 @@ height: 60vh;
 }
 
 .scrollBar {
-  height:60vh;
+  height:70vh;
   background-color: grey;
   width: 10%;
   z-index: 2;

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
+const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ImageCarousel({ productStyles, currentStyle }) {
   const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
-  const urls = sampleStyle.photos.map((result) => result.url);
+  const urls = sampleStyle.photos.map((result) => (result.url ? result.url : imageNotFound));
   const [currentImage, setCurrentImage] = useState(0);
   const onIncrement = (direction) => {
     if (direction === 'up' && currentImage < urls.length - 1) {
@@ -15,6 +16,7 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
     }
   };
 
+  const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
   return (
     <div id={styles.imageCarousel} data-testid="imageCarousel">
       <button
@@ -31,7 +33,7 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
       <img
         data-testid="carouselImage"
         className={styles.bigImage}
-        alt={name}
+        alt={alt}
         src={urls[currentImage]}
       />
 
