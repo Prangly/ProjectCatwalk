@@ -5,18 +5,21 @@ import styles from './styles.css';
 import QuestionsSearchInput from './QuestionsSearchInput/QuestionsSearchInput';
 import QuestionsList from './QuestionsList/QuestionsList';
 
+var displayQuestionNumber = 4; //initial # of questions to load
+
 const QuestionsAndAnswers = ({ currentProduct }) => {
   const apiURL = 'http://127.0.0.1:3000/qa/questions/';
   const [currentProductQuestions, setCurrentProductQuestions] = useState([]);
-  const getQuestions = (id, number = 4) => {
+  const getQuestions = (id, number = displayQuestionNumber) => {
     axios.get(`${apiURL}${id}/${number}`)
       .then(({ data }) => {
         setCurrentProductQuestions(data.results);
       });
   };
   useEffect(() => {
-    getQuestions(currentProduct.id,);
+    getQuestions(currentProduct.id);
   }, [currentProduct]);
+
 
   const [moreQuestions, setDisplayMoreQuestions] = useState(false);
 
@@ -25,7 +28,13 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput />
       <QuestionsList currentProductQuestions={currentProductQuestions} moreQuestions={moreQuestions} />
-      <input type="button" value="More Answered Questions" onClick={() => setDisplayMoreQuestions(true)} />
+      <input
+        type="button"
+        value="More Answered Questions"
+        onClick={() => {
+          displayQuestionNumber += 4;
+          console.log(displayQuestionNumber);
+          setDisplayMoreQuestions(getQuestions(currentProduct.id,displayQuestionNumber))}} />
     </div>
   );
 };
