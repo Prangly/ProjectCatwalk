@@ -5,3 +5,22 @@
   padding: 1em;
   justify-content: space-between;
 }
+
+#styleIconContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+  padding: 0.5em;
+}
+
+#productName {
+  color:rgba(10, 10, 10, 0.9);
+}
+
+#price {
+  display: flex;
+  flex-direction: row;
+}

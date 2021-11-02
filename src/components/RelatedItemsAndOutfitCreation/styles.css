@@ -1,3 +1,22 @@
 #relatedItems {
   border: 1px solid black;
 }
+
+#outfit {
+  border: 1px solid black;
+}
+
+.relatedItems {
+  display: inline;
+}
+
+#card {
+  display: inline;
+  border: 1px solid black;
+}
+
+.cardImage {
+  height: 2em;
+  height: 15%;
+  width: 15%;
+}

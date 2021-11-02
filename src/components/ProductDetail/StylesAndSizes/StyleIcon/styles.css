@@ -2,14 +2,19 @@
   object-fit: cover;
   height: 3em;
   width: 3em;
-  overflow:hidden;
+  overflow: hidden;
   border-radius: 50%;
+  box-shadow:  1px 1px 3px rgba(0, 0, 0, 0.5);
+
 }
 
 .styleIcon:hover {
   opacity: 0.5
 }
 
+.styleIcon:active {
+box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
 
 .iconButton {
   object-fit: cover;
