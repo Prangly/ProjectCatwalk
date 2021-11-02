@@ -11,15 +11,16 @@ export default function DetailText({ product }) {
 
   return (
     <div id={styles.detailTextContainer} data-testid="detailText">
-      <div id="productDetailText">
-        <div id="productSlogan">
+      <div id={styles.productDetailText}>
+        <div id={styles.productSlogan}>
           {product.slogan}
         </div>
-        <div id="productDescription">
+        <div id={styles.productDescription}>
           {product.description}
         </div>
       </div>
-      <div id="productFeatures">
+
+      <div id={styles.productFeatures}>
         {features}
       </div>
     </div>
