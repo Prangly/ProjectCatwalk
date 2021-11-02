@@ -6,13 +6,12 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styles from '../styles.css';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 function Card({ card, action }) {
   // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
     <div data-testid="card" className={styles.card}>
-      {/* <h4>Card</h4> */}
       <button onClick={() => setModalIsOpen(true)}>
         {action}
       </button>

@@ -27,5 +27,24 @@ describe('RelatedItemsAndOutfitCreation test', () => {
     render(<RandOC />);
     expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   });
-  
+  // it('should open a modal window', () => {
+  //   render(<RandOC />);
+  //   const handleClose = jest.fn();
+  //   const {getByText} = render(
+  //     <Modal onClose={handleClose}>
+  //       <div>test</div>
+  //     </Modal>,
+  //   );
+  //   // Assert
+  //   expect(getByText('test')).toBeTruthy()
+
+    // Act
+    // fireEvent.click(getByText(/close/i))
+
+
+
+    // fireEvent.click(getByText())
+    // expect()
+  // })
+
 });
