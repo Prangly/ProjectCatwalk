@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import Thumbnail from './Thumbnail';
 
-function ThumbnailGallery({ urls, currentImage }) {
+function ThumbnailGallery({ urls, currentImage, setCurrentImage }) {
   const [scroll, setScroll] = useState(25);
   const onScroll = (direction) => {
     if (direction === 'right' && scroll >= 0) {
@@ -13,8 +13,15 @@ function ThumbnailGallery({ urls, currentImage }) {
     }
   };
 
-  const thumbnails = urls.map((url, i) =>
-    <Thumbnail url={url} i={i} key={url} currentImage={currentImage} />);
+  const thumbnails = urls.map((url, i) => (
+    <Thumbnail
+      url={url}
+      i={i}
+      key={url}
+      currentImage={currentImage}
+      setCurrentImage={setCurrentImage}
+    />
+  ));
   return (
     <div data-testid="thumbnailGallery" id={styles.thumbnailGallery}>
       <div
@@ -56,4 +63,5 @@ export default ThumbnailGallery;
 ThumbnailGallery.propTypes = {
   urls: PropTypes.arrayOf(PropTypes.string).isRequired,
   currentImage: PropTypes.number.isRequired,
+  setCurrentImage: PropTypes.func.isRequired,
 };

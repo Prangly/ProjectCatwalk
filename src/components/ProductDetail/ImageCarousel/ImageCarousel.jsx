@@ -49,7 +49,7 @@ export default function ImageCarousel({ productStyles, currentStyle }) {
       >
         &gt;
       </button>
-      <ThumbnailGallery urls={urls} currentImage={currentImage} />
+      <ThumbnailGallery urls={urls} currentImage={currentImage} setCurrentImage={setCurrentImage} />
 
     </div>
   );
