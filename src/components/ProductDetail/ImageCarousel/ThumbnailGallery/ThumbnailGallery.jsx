@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import Thumbnail from './Thumbnail';
@@ -12,6 +12,15 @@ function ThumbnailGallery({ urls, currentImage, setCurrentImage }) {
       setScroll(scroll + 50);
     }
   };
+
+  useEffect(() => {
+    if (currentImage <= 3) {
+      setScroll(25);
+    }
+    if (currentImage > 3) {
+      setScroll(-25);
+    }
+  }, [currentImage]);
 
   const thumbnails = urls.map((url, i) => (
     <Thumbnail

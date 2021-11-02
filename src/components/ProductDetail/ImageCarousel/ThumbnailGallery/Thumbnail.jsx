@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
 
-function Thumbnail({ url, i, currentImage, setCurrentImage }) {
+function Thumbnail({
+  url, i, currentImage, setCurrentImage
+}) {
   const selectedBorder = i === currentImage
     ? '2px solid white' : 'none';
 
