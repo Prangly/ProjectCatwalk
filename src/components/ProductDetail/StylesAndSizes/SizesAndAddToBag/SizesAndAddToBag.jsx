@@ -1,12 +1,12 @@
 import React from 'react';
-import AddToBag from './AddToBag/AddToBag';
+import BagAndOutfit from './BagAndOutfit/BagAndOutfit';
 import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
 
 function SizesAndAddToBag() {
   return (
     <div data-testid="sizesAndAddToBag">
       <SizesAndQuantity />
-      <AddToBag />
+      <BagAndOutfit />
     </div>
   );
 }
