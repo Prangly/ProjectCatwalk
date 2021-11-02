@@ -14,7 +14,6 @@ const stylesURL = 'http://127.0.0.1:3000/styles/';
 const ProductDetail = ({ currentProduct }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
-  console.log(currentProduct);
   const { id } = currentProduct;
   const stylesAPI = (currentProductID) => {
     axios.get(stylesURL + currentProductID)
