@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
+const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
+
 export default function StyleIcon({
   style, setCurrentStyle, i, currentStyle,
 }) {
+  const src = style.photos[0].thumbnail_url || imageNotFound;
   const currentStyleBorder = i === currentStyle ? '3px solid rgba(0,0,0,0.5)' : 'none';
+  const alt = style.photos[0].thumbnail_url ? style.name : 'Image Not Found';
   return (
     <div className={styles.styleIconContainer}>
       <button
@@ -17,10 +21,10 @@ export default function StyleIcon({
           setCurrentStyle(i);
         }}
         data-testid="styleIcon"
-        alt={style.name}
+        alt={alt}
         style={{
           boxSizing: 'border-box',
-          background: `url(${style.photos[0].thumbnail_url})`,
+          background: `url(${src})`,
           backgroundSize: '150%',
           backgroundPosition: 'center',
           objectFit: 'contain',
