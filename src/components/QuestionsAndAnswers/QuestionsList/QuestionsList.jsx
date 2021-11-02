@@ -14,7 +14,7 @@ const QuestionsList = ({ currentProduct }) => {
         setCurrentProductQuestions(data.results);
       });
   };
-  const [moreQuestions, setDisplayMoreQuestions] = useState(true);
+  const [moreQuestions, setDisplayMoreQuestions] = useState(false);
   useEffect(() => {
     getQuestions(currentProduct.id);
   }, [currentProduct]);
