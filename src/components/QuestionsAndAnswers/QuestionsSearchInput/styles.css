@@ -8,3 +8,7 @@
   font-weight: bolder;
   font-size: large;
 }
+
+.searchButton {
+  height: 55px;
+}
