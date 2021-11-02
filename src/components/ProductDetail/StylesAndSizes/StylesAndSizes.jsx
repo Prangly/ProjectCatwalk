@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
 import SizesAndAddToBag from './SizesAndAddToBag/SizesAndAddToBag';
+import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
 
 export default function StylesAndSizes({
   productStyles, name, setCurrentStyle, currentStyle,
@@ -33,8 +34,8 @@ export default function StylesAndSizes({
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
       <h1 data-testid="productName" id={styles.productName}>{name}</h1>
+      <StarRating />
       <div id={styles.price}>
-
         <span
           data-testid="productPrice"
           id={styles.productPrice}

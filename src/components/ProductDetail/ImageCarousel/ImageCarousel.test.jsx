@@ -33,7 +33,7 @@ describe('Image Carousel tests', () => {
     fireEvent.click(button)
     await waitFor(() => expect(image.src).toContain('1534'))
     expect(image.src).toContain('1534')
-    // expect(image.src).not.toContain('1501')
+    expect(image.src).not.toContain('1501')
   });
 
   it('should render a placeholder image when url is not found', async () => {
