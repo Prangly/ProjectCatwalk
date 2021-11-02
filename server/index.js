@@ -40,3 +40,11 @@ app.get('/products/:id', (req, res) => {
     .then((data) => res.send(data.data))
     .catch(() => res.status(401).end()); /// handle this better
 });
+
+app.get('/reviews?product_id=:id', (req, res) => {
+  const { id } = req.params;
+  const reviewsURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}`;
+  axios.get(reviewsURL, { headers })
+    .then((data) => res.send(data.data))
+    .catch(() => res.status(404).end());
+});
