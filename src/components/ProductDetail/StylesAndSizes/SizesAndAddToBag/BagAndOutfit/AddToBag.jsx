@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../styles.css';
 
 function AddToBag({
-  currentSize, currentQuantity, productID, styleID,
+  currentSize, currentQuantity, productID, styleID, purchasePrice,
 }) {
   return (
     <div data-testid="addToBag" id={styles.addToBag}>
@@ -12,7 +12,7 @@ function AddToBag({
         id={styles.addToBagButton}
         onClick={() => {
           console.log({
-            currentSize, currentQuantity, productID, styleID,
+            currentSize, currentQuantity, productID, styleID, purchasePrice,
           });
         }}
       >
@@ -29,4 +29,6 @@ AddToBag.propTypes = {
   currentQuantity: PropTypes.number.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
+  purchasePrice: PropTypes.string.isRequired,
+
 };

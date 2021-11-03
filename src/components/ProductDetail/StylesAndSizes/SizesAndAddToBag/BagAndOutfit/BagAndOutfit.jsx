@@ -5,7 +5,7 @@ import AddToOutfit from './AddToOutfit';
 import styles from '../styles.css';
 
 function BagAndOutfit({
-  currentSize, currentQuantity, productID, styleID,
+  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, imgURL,
 }) {
   return (
     <div data-testid="bagAndOutfit" id={styles.bagAndOutfit}>
@@ -14,12 +14,15 @@ function BagAndOutfit({
         styleID={styleID}
         currentSize={currentSize}
         currentQuantity={currentQuantity}
+        purchasePrice={purchasePrice}
       />
       <AddToOutfit
         productID={productID}
         styleID={styleID}
         currentSize={currentSize}
         currentQuantity={currentQuantity}
+        addToOutfit={addToOutfit}
+        imgURL={imgURL}
       />
     </div>
   );
@@ -32,4 +35,7 @@ BagAndOutfit.propTypes = {
   currentQuantity: PropTypes.number.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
+  purchasePrice: PropTypes.string.isRequired,
+  addToOutfit: PropTypes.func.isRequired,
+  imgURL: PropTypes.string.isRequired,
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
@@ -6,6 +6,7 @@ const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation
 export default function ExpandedView({
   productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
 }) {
+  const [zoomed, setZoomed] = useState(false);
   const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => (result.url ? result.url : imageNotFound));
@@ -20,7 +21,27 @@ export default function ExpandedView({
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
   const leftVis = currentImage === 0 ? 'hidden' : 'visible';
   const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+  const zoomStyle = zoomed
+    ? {
+      transform: 'scale(2)',
+    }
+    : {
+      left: '0%',
+      top: '0%',
+      transform: 'scale(1)',
+    };
 
+  const toggleZoomed = () => {
+    setZoomed(!zoomed);
+  };
+
+  const onMouseMove = (e) => {
+    if (zoomed) {
+      const image = document.getElementById('movingImage');
+      image.style.left = `${-10 - e.screenX / 12}%`;
+      image.style.top = `${-120 - e.screenY / 5}%`;
+    }
+  };
   return (
 
     <div id={styles.expandedView} data-testid="expandedCarousel">
@@ -38,13 +59,20 @@ export default function ExpandedView({
       >
         &lt;
       </button>
+      <div id={styles.viewPort} data-testid="viewPort">
+        <img
+          data-testid="expandedCarouselImage"
+          className={styles.expandedCarouselImage}
+          id="movingImage"
+          alt={alt}
+          src={urls[currentImage]}
+          onClick={toggleZoomed}
+          onKeyDown={toggleZoomed}
+          style={zoomStyle}
+          onMouseMove={onMouseMove}
+        />
 
-      <img
-        data-testid="expandedCarouselImage"
-        className={styles.expandedCarouselImage}
-        alt={alt}
-        src={urls[currentImage]}
-      />
+      </div>
 
       <button
         type="button"
@@ -69,6 +97,7 @@ export default function ExpandedView({
         x
       </button>
     </div>
+
   );
 }
 
