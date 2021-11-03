@@ -6,7 +6,7 @@ import sampleProduct from '../../../SampleData/SampleProduct.js';
 
 const productURL = 'http://127.0.0.1:3000/products/';
 
-const cards =[
+const cards = [
 
   {
     id: '61575',
@@ -39,31 +39,27 @@ function RelatedItems({ currentProduct }) {
   // console.log('Related items from line 39: ', relatedItems);
 
   const relatedAPI = (id) => {
-    axios.get(`${productURL + id  }/related`)
+    axios.get(`${productURL + id}/related`)
       .then((data) => {
-        console.log('Related items ids retrieved from api, Line 44: ', data);
-      //   setCurrentProduct(data.data);
-      console.log('Array of related items just id numbers: ', data.data);
-      console.log('Array of related items objects: ', data.data.map((item) => {
-        productAPI(item);
-      }
-      )
-      );
-      }
-      )
-
-    .then(setRelatedItems(data.data.map((item) => {
-      productAPI(item);
-    }))
-  };
-
+        // console.log('Related items ids retrieved from api, Line 44: ', data);
+        console.log('Array of related items just id numbers: ', data.data);
+        const relItems = data.data.map((item) => {
+          productAPI(item);
+        });
+      })
+      .then(console.log('relItems: ', relatedItems))
+    };
+  //     .then(setRelatedItems(data.data.map((item) => {
+  //       productAPI(item);
+  //     })));
+  // };
 
   // const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const productAPI = (id) => {
     axios.get(productURL + id)
       .then((data) => {
         console.log('Related items objects retrieved from api: ', data)
-          .then(console.log('Hello from state'));
+          // .then(console.log(''));
       //   setCurrentProduct(data.data);
       });
   };
@@ -72,8 +68,8 @@ function RelatedItems({ currentProduct }) {
     relatedAPI(currentProductID);
   }, [currentProductID]);
 
-  console.log('Product API: ', productAPI);
-  console.log('Related Items Objects from state, Line 71: ', relatedItems);
+  // console.log('Product API: ', productAPI);
+  console.log('Related Items Objects from state, Line 70: ', relatedItems);
   console.log('Hello from state');
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
