@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
-import ThumbnailGallery from './ThumbnailGallery/ThumbnailGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
-export default function ImageCarousel({
-  productStyles, currentStyle, setExpanded, setCurrentImage, currentImage,
+export default function ExpandedView({
+  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
 }) {
   const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
@@ -23,14 +22,16 @@ export default function ImageCarousel({
   const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
 
   return (
-    <div id={styles.imageCarousel} data-testid="imageCarousel">
+
+    <div id={styles.expandedView} data-testid="expandedCarousel">
+
       <button
         type="button"
         onClick={() => onIncrement('down')}
         onKeyDown={() => onIncrement('down')}
-        id={styles.leftBar}
-        className={styles.scrollBar}
-        data-testid="prevImageButton"
+        id={styles.expandedLeftBar}
+        className={styles.expandedScrollBar}
+        data-testid="expandedPrevImageButton"
         style={{
           visibility: leftVis,
         }}
@@ -39,21 +40,19 @@ export default function ImageCarousel({
       </button>
 
       <img
-        data-testid="carouselImage"
-        className={styles.bigImage}
+        data-testid="expandedCarouselImage"
+        className={styles.expandedCarouselImage}
         alt={alt}
         src={urls[currentImage]}
-        onClick={() => setExpanded(true)}
-        onKeyDown={() => setExpanded(true)}
       />
 
       <button
         type="button"
         onClick={() => onIncrement('up')}
         onKeyDown={() => onIncrement('up')}
-        id={styles.rightBar}
-        className={styles.scrollBar}
-        data-testid="nextImageButton"
+        id={styles.expandedRightBar}
+        className={styles.expandedScrollBar}
+        data-testid="expandedNextImageButton"
         style={{
           visibility: rightVis,
         }}
@@ -61,13 +60,19 @@ export default function ImageCarousel({
       >
         &gt;
       </button>
-      <ThumbnailGallery urls={urls} currentImage={currentImage} setCurrentImage={setCurrentImage} />
-
+      <button
+        type="button"
+        id={styles.closeExpandedView}
+        data-testid="closeExpandedView"
+        onClick={() => setExpanded(false)}
+      >
+        x
+      </button>
     </div>
   );
 }
 
-ImageCarousel.propTypes = {
+ExpandedView.propTypes = {
   productStyles: PropTypes.shape({
     product_id: PropTypes.string,
     results: PropTypes.arrayOf(PropTypes.object),

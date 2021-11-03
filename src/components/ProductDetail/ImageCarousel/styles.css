@@ -15,14 +15,20 @@ height: 70vh;
   cursor:zoom-in;
   overflow: hidden;
   max-width: 100%;
+  z-index: -1;
+
 }
 
 .scrollBar {
-  height:70vh;
-  background-color: grey;
   width: 10%;
-  z-index: 2;
   opacity: 0.5;
+
+}
+
+.scrollBar, .expandedScrollBar {
+  height:100%;
+  background-color: grey;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +37,11 @@ height: 70vh;
   transition: background-color 100ms, color 100ms;
 }
 
-.scrollBar:hover {
+.expandedScrollBar {
+  width: 15%;
+  opacity: 1;
+}
+.scrollBar:hover, .expandedScrollBar:hover{
   background-color: lightgray;
   cursor: pointer;
   color: black;
@@ -136,4 +146,43 @@ top: 0px
 }
 .thumbnailImage:hover {
   box-shadow: 0px 0px 3px 1px white;
+}
+
+#expandedView {
+  position: absolute;
+  border: none;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.8);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  /* width: 110%; */
+  height: 120%;
+  z-index:2;
+  box-shadow: 0px 0px 1500px 180px rgba(0, 0, 0, 1);
+  cursor: cell;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+#closeExpandedView {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  opacity: 0.5;
+  border: none;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+#closeExpandedView:hover {
+  opacity: 0.7;
+}
+
+.expandedCarouselImage {
+object-fit: cover;
+height: 100%;
+max-width: 100%;
 }
