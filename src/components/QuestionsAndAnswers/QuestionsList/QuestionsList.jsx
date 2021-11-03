@@ -5,15 +5,9 @@ import styles from './styles.css';
 // import SampleData from '../SampleData/SampleQuestions';
 import Questions from '../Questions/Questions';
 
-const QuestionsList = ({ currentProductQuestions, moreQuestions }) => (
+const QuestionsList = ({ currentProductQuestions }) => (
   <div>
-    {
-    // moreQuestions
-    //   ?
-      currentProductQuestions.map((question) => <Questions question={question} />)
-    // : currentProductQuestions.filter(question=>
-    // currentProductQuestions.indexOf(question) < 4).map((question) => <Questions question={question} /> )
-    }
+    {currentProductQuestions.map((question) => <Questions question={question} />)}
   </div>
 );
 
