@@ -5,7 +5,7 @@ import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
 
 // MIGHT THIS ONLY NEED SKUS AND NAME?
 function SizesAndAddToBag({
-  currentStyleName, skus, productID, styleID,
+  currentStyleName, skus, productID, styleID, purchasePrice,
 }) {
   const [currentSize, setCurrentSize] = useState('size');
   const [currentQuantity, setCurrentQuantity] = useState('quantity');
@@ -25,6 +25,7 @@ function SizesAndAddToBag({
         currentSize={currentSize}
         currentQuantity={currentQuantity}
         currentStyleName={currentStyleName}
+        purchasePrice={purchasePrice}
       />
     </div>
   );
@@ -37,4 +38,5 @@ SizesAndAddToBag.propTypes = {
   skus: PropTypes.arrayOf(PropTypes.object).isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
+  purchasePrice: PropTypes.string.isRequired,
 };

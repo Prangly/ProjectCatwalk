@@ -14,6 +14,7 @@ const StylesAndSizes = ({
   const price = currentStyleDetails.original_price;
   const salePrice = currentStyleDetails.sale_price;
   const styleName = currentStyleDetails.name;
+  const purchasePrice = salePrice || price;
   const { skus } = currentStyleDetails;
   const saleStyle = salePrice
     ? {
@@ -60,6 +61,7 @@ const StylesAndSizes = ({
         productID={productID}
         currentStyleName={styleName}
         skus={skus}
+        purchasePrice={purchasePrice}
       />
     </div>
   );

@@ -19,7 +19,7 @@ function Thumbnail({
         style={{
           background: `url(${url})`,
           boxSizing: 'border-box',
-          backgroundSize: '2em auto',
+          backgroundSize: '3.8em auto',
           backgroundPosition: 'center',
           objectFit: 'contain',
           border: selectedBorder,

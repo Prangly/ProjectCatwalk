@@ -6,7 +6,7 @@ const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation
 export default function ExpandedView({
   productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
 }) {
-  const [zoomed, setZoomed] = useState(false)
+  const [zoomed, setZoomed] = useState(false);
   const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => (result.url ? result.url : imageNotFound));
@@ -27,7 +27,7 @@ export default function ExpandedView({
     }
     : {
       left: '0%',
-      top: '-30%',
+      top: '0%',
       transform: 'scale(1)',
     };
 
@@ -38,7 +38,6 @@ export default function ExpandedView({
   const onMouseMove = (e) => {
     if (zoomed) {
       const image = document.getElementById('movingImage');
-      // console.log(e.screenX, e.screenY);
       image.style.left = `${-10 - e.screenX / 12}%`;
       image.style.top = `${-120 - e.screenY / 5}%`;
     }

@@ -7,12 +7,16 @@ function Quantity({
 }) {
   let totalQuantity;
   let disabledStyle;
+  let text;
   if (currentSize === 'size') {
     totalQuantity = 'Quantity';
     disabledStyle = true;
+    text = '-';
   } else {
     totalQuantity = skusArray.filter((sku) => sku.size === currentSize)[0].quantity;
+    totalQuantity = Math.min(totalQuantity, 15);
     disabledStyle = false;
+    text = 'Quantity';
   }
   const options = [];
   for (let i = 1; i <= totalQuantity; i += 1) {
@@ -32,7 +36,7 @@ function Quantity({
         onChange={onSelectChange}
 
       >
-        <option value="quantity">Quantity</option>
+        <option value="quantity">{text}</option>
         {options}
       </select>
     </div>
