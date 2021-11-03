@@ -1,0 +1,15 @@
+#answer {
+  font-weight: bold;
+}
+
+#answersAuthor {
+  margin-top: 5px;
+  margin-left: 22px;
+  margin-bottom: 5px;
+  font-size: x-small;
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
