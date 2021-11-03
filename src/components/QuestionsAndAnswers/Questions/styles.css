@@ -1,0 +1,23 @@
+.questionsAndAnswers {
+  margin-top: 20px;
+}
+
+.question {
+  font-weight: bold;
+}
+.answers {
+  margin-top: 10px;
+  /* margin-left: 10px; */
+}
+
+.buttons {
+  display: flex;
+  justify-content: right;
+  font-size: x-small;
+  /* margin-right: 10px; */
+}
+
+.underline {
+  text-decoration: underline;
+  cursor: pointer;
+}
