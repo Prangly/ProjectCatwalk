@@ -8,6 +8,7 @@ import styles from '../styles.css';
 
 // Modal.setAppElement('#root');
 function Card({ card, action }) {
+  console.log(card);
   // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
@@ -33,7 +34,7 @@ function Card({ card, action }) {
         {' '}
         {card.default_price}
       </h4>
-      <h4>{card.starRating}</h4>
+      {/* <h4>{card.starRating}</h4> */}
       <img className={styles.cardImage} src={card.image} alt="" />
     </div>
   );
