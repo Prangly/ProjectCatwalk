@@ -8,7 +8,7 @@ export default function StyleIcon({
   style, setCurrentStyle, i, currentStyle,
 }) {
   const src = style.photos[0].thumbnail_url || imageNotFound;
-  const currentStyleBorder = i === currentStyle ? '3px solid rgba(0,0,0,0.5)' : 'none';
+  const currentStyleShadow = i === currentStyle ? '1px 1px 5px 2px rgba(0, 0, 0, 0.5)' : '1px 1px 3px rgba(0, 0, 0, 0.5)';
   const alt = style.photos[0].thumbnail_url ? style.name : 'Image Not Found';
   return (
     <div className={styles.styleIconContainer}>
@@ -28,7 +28,7 @@ export default function StyleIcon({
           backgroundSize: '150%',
           backgroundPosition: 'center',
           objectFit: 'contain',
-          border: currentStyleBorder,
+          boxShadow: currentStyleShadow,
         }}
         className={styles.styleIcon}
       />

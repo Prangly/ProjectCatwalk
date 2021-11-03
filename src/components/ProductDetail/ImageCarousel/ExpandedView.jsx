@@ -19,17 +19,25 @@ export default function ExpandedView({
   };
 
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
-  const leftVis = currentImage === 0 ? 'hidden' : 'visible';
-  const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+  let leftVis = currentImage === 0 ? 'hidden' : 'visible';
+  let rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+  let xVis = 'visible';
   const zoomStyle = zoomed
     ? {
       transform: 'scale(2)',
+      zIndex: '3',
     }
     : {
       left: '0%',
       top: '0%',
       transform: 'scale(1)',
+
     };
+  if (zoomed) {
+    leftVis = 'hidden';
+    rightVis = 'hidden';
+    xVis = 'hidden';
+  }
 
   const toggleZoomed = () => {
     setZoomed(!zoomed);
@@ -93,6 +101,7 @@ export default function ExpandedView({
         id={styles.closeExpandedView}
         data-testid="closeExpandedView"
         onClick={() => setExpanded(false)}
+        style={{ visibility: xVis }}
       >
         x
       </button>

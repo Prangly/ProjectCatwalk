@@ -3,10 +3,13 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  /* height: 100% */
 }
 
 
 #upperContainer {
+  /* height: 70vh; */
+  height:100%;
   display:flex;
   flex-direction: row;
   border-right: 1px solid black;
