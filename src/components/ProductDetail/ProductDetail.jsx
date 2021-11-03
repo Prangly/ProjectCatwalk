@@ -11,7 +11,7 @@ import ExpandedView from './ImageCarousel/ExpandedView';
 // const currentProduct = SampleProduct;
 const stylesURL = 'http://127.0.0.1:3000/styles/';
 
-const ProductDetail = ({ currentProduct }) => {
+const ProductDetail = ({ currentProduct, addToOutfit }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
   const [expanded, setExpanded] = useState(false);
@@ -65,6 +65,7 @@ const ProductDetail = ({ currentProduct }) => {
           name={name}
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
+          addToOutfit={addToOutfit}
         />
       </div>
       <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />
@@ -85,6 +86,7 @@ ProductDetail.propTypes = {
     updated_at: PropTypes.string,
     features: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
+  addToOutfit: PropTypes.func.isRequired,
 };
 
 export default ProductDetail;

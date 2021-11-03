@@ -6,7 +6,7 @@ import SizesAndAddToBag from './SizesAndAddToBag/SizesAndAddToBag';
 import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
 
 const StylesAndSizes = ({
-  productStyles, name, setCurrentStyle, currentStyle,
+  productStyles, name, setCurrentStyle, currentStyle, addToOutfit,
 }) => {
   const { results, product_id: productID } = productStyles;
   const currentStyleDetails = results[currentStyle];
@@ -15,6 +15,7 @@ const StylesAndSizes = ({
   const salePrice = currentStyleDetails.sale_price;
   const styleName = currentStyleDetails.name;
   const purchasePrice = salePrice || price;
+  const imgURL = currentStyleDetails.photos[0].url;
   const { skus } = currentStyleDetails;
   const saleStyle = salePrice
     ? {
@@ -34,7 +35,6 @@ const StylesAndSizes = ({
       currentStyle={currentStyle}
     />
   ));
-
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
       <h1 data-testid="productName" id={styles.productName}>{name}</h1>
@@ -62,6 +62,8 @@ const StylesAndSizes = ({
         currentStyleName={styleName}
         skus={skus}
         purchasePrice={purchasePrice}
+        imgURL={imgURL}
+        addToOutfit={addToOutfit}
       />
     </div>
   );
@@ -77,4 +79,6 @@ StylesAndSizes.propTypes = {
   name: PropTypes.string.isRequired,
   setCurrentStyle: PropTypes.func.isRequired,
   currentStyle: PropTypes.number.isRequired,
+  addToOutfit: PropTypes.func.isRequired,
+
 };
