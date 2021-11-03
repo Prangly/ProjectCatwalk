@@ -5,13 +5,16 @@ import styles from './styles.css';
 import SizesAndAddToBag from './SizesAndAddToBag/SizesAndAddToBag';
 import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
 
-export default function StylesAndSizes({
+const StylesAndSizes = ({
   productStyles, name, setCurrentStyle, currentStyle,
-}) {
-  const { results } = productStyles;
-  const price = results[currentStyle].original_price;
-  const salePrice = results[currentStyle].sale_price;
-  const styleName = results[currentStyle].name;
+}) => {
+  const { results, product_id: productID } = productStyles;
+  const currentStyleDetails = results[currentStyle];
+  const { style_id: styleID } = currentStyleDetails;
+  const price = currentStyleDetails.original_price;
+  const salePrice = currentStyleDetails.sale_price;
+  const styleName = currentStyleDetails.name;
+  const { skus } = currentStyleDetails;
   const saleStyle = salePrice
     ? {
       textDecoration: 'line-through red',
@@ -52,10 +55,17 @@ export default function StylesAndSizes({
           {styleIcons}
         </div>
       </div>
-      <SizesAndAddToBag />
+      <SizesAndAddToBag
+        styleID={styleID}
+        productID={productID}
+        currentStyleName={styleName}
+        skus={skus}
+      />
     </div>
   );
-}
+};
+
+export default StylesAndSizes;
 
 StylesAndSizes.propTypes = {
   productStyles: PropTypes.shape({

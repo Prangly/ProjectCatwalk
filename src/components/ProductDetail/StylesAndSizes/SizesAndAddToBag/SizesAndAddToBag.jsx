@@ -1,14 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import BagAndOutfit from './BagAndOutfit/BagAndOutfit';
 import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
-import styles from './styles.css'
-function SizesAndAddToBag() {
+
+// MIGHT THIS ONLY NEED SKUS AND NAME?
+function SizesAndAddToBag({
+  currentStyleName, skus, productID, styleID,
+}) {
+  const [currentSize, setCurrentSize] = useState('size');
+  const [currentQuantity, setCurrentQuantity] = useState('quantity');
   return (
     <div data-testid="sizesAndAddToBag">
-      <SizesAndQuantity />
-      <BagAndOutfit />
+      <SizesAndQuantity
+        currentSize={currentSize}
+        setCurrentSize={setCurrentSize}
+        currentStyleName={currentStyleName}
+        skus={skus}
+        currentQuantity={currentQuantity}
+        setCurrentQuantity={setCurrentQuantity}
+      />
+      <BagAndOutfit
+        productID={productID}
+        styleID={styleID}
+        currentSize={currentSize}
+        currentQuantity={currentQuantity}
+        currentStyleName={currentStyleName}
+      />
     </div>
   );
 }
 
 export default SizesAndAddToBag;
+
+SizesAndAddToBag.propTypes = {
+  currentStyleName: PropTypes.string.isRequired,
+  skus: PropTypes.arrayOf(PropTypes.object).isRequired,
+  productID: PropTypes.string.isRequired,
+  styleID: PropTypes.number.isRequired,
+};

@@ -1,13 +1,20 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from '../styles.css';
 
-function AddToBag() {
+function AddToBag({
+  currentSize, currentQuantity, productID, styleID,
+}) {
   return (
     <div data-testid="addToBag" id={styles.addToBag}>
       <button
         type="button"
         id={styles.addToBagButton}
-        onClick={() => { console.log('bag') }}
+        onClick={() => {
+          console.log({
+            currentSize, currentQuantity, productID, styleID,
+          });
+        }}
       >
         Add To Bag
       </button>
@@ -16,3 +23,10 @@ function AddToBag() {
 }
 
 export default AddToBag;
+
+AddToBag.propTypes = {
+  currentSize: PropTypes.string.isRequired,
+  currentQuantity: PropTypes.number.isRequired,
+  productID: PropTypes.string.isRequired,
+  styleID: PropTypes.number.isRequired,
+};

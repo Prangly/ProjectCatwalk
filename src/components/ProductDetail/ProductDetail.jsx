@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
-import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
 import DetailText from './DetailText/DetailText';
+import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
 // import SampleProduct from '../../SampleData/SampleProduct';
 import sampleStyles from '../../SampleData/SampleStyles';
 import ExpandedView from './ImageCarousel/ExpandedView';
@@ -18,17 +18,22 @@ const ProductDetail = ({ currentProduct }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { id, name } = currentProduct;
-  const stylesAPI = (currentProductID) => {
-    axios.get(stylesURL + currentProductID)
+
+  const stylesAPI = (currentProductID, source) => {
+    axios.get(stylesURL + currentProductID, { cancelToken: source.token })
       .then((data) => {
         setProductStyles(data.data);
       });
   };
 
   useEffect(() => {
-    stylesAPI(id);
-  }, [currentProduct]);
+    const cancelToken = axios.CancelToken;
+    const source = cancelToken.source();
 
+    stylesAPI(id, source);
+
+    // return () => source.cancel('Styles Request Canceled')
+  }, [currentProduct]);
 
   const expandedView = expanded
     ? (

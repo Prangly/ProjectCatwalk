@@ -44,6 +44,7 @@ flex-grow: 1;
   border: none;
   background: #212a2f;
   color: whitesmoke;
+  box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
 }
 
 #addToBagButton:hover{
@@ -52,6 +53,15 @@ flex-grow: 1;
 }
 #addToOutfitButton:hover {
   background: #3a3f41;
+}
 
+#addToBagButton:active{
+  background: #3a3e3f;
+  box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
+
+}
+#addToOutfitButton:active {
+  background: #3a3e3f;
+  box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
 
 }
