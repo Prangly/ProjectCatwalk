@@ -8,14 +8,14 @@ import QuestionsList from './QuestionsList/QuestionsList';
 const QuestionsAndAnswers = ({ currentProduct }) => {
   const apiURL = 'http://127.0.0.1:3000/qa/questions/';
   const [currentProductQuestions, setCurrentProductQuestions] = useState([]);
-  const getQuestions = (id, number = 4) => {
+  const getQuestions = (id, number) => {
     axios.get(`${apiURL}${id}/${number}`)
       .then(({ data }) => {
         setCurrentProductQuestions(data.results);
       });
   };
   useEffect(() => {
-    getQuestions(currentProduct.id);
+    getQuestions(currentProduct.id, 100);
   }, [currentProduct]);
 
   const [loadOrCollapse, setLoadOrCollapse] = useState(false);
@@ -24,9 +24,9 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
     <div id={styles.qAndA}>
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput />
-      <QuestionsList currentProductQuestions={currentProductQuestions} />
-      {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { console.log('I am at collapse'); setLoadOrCollapse(false); getQuestions(currentProduct.id, 100); }} />
-        : <input type="button" value="More Answered Questions" onClick={() => { console.log('I am at more answered questions'); setLoadOrCollapse(true); console.log(loadOrCollapse); getQuestions(currentProduct.id, 100); }} />}
+      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions : currentProductQuestions.filter(question => currentProductQuestions.indexOf(question) < 4) } />
+      {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { console.log('I am at collapse'); setLoadOrCollapse(false); }} />
+        : <input type="button" value="More Answered Questions" onClick={() => { console.log('I am at more answered questions'); setLoadOrCollapse(true); console.log(loadOrCollapse); }} />}
     </div>
   );
 };
