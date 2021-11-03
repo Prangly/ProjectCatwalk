@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddToBag from './AddToBag';
+import AddToBag from './AddToCart';
 import AddToOutfit from './AddToOutfit';
 import styles from '../styles.css';
 
-function BagAndOutfit({
+function CartAndOutfit({
   currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, imgURL,
 }) {
   return (
@@ -28,9 +28,9 @@ function BagAndOutfit({
   );
 }
 
-export default BagAndOutfit;
+export default CartAndOutfit;
 
-BagAndOutfit.propTypes = {
+CartAndOutfit.propTypes = {
   currentSize: PropTypes.string.isRequired,
   currentQuantity: PropTypes.number.isRequired,
   productID: PropTypes.string.isRequired,

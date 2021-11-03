@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
-import SizesAndAddToBag from './SizesAndAddToBag/SizesAndAddToBag';
+import SizesAndAddToBag from './SizesAndAddToCart/SizesAndAddToCart';
+
 import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
 
 const StylesAndSizes = ({

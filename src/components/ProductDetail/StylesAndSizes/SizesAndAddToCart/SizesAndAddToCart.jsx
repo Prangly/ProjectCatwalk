@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import BagAndOutfit from './BagAndOutfit/BagAndOutfit';
+import BagAndOutfit from './CartAndOutfit/BagAndOutfit';
 import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
 
 // MIGHT THIS ONLY NEED SKUS AND NAME?
