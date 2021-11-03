@@ -6,7 +6,7 @@ import QuestionsSearchInput from './QuestionsSearchInput/QuestionsSearchInput';
 import QuestionsList from './QuestionsList/QuestionsList';
 
 const QuestionsAndAnswers = ({ currentProduct }) => {
-  const apiURL = 'http://127.0.0.1:3000/qa/questions/';
+  const apiURL = 'http://127.0.0.1:3000/questions/';
   const [currentProductQuestions, setCurrentProductQuestions] = useState([]);
   const getQuestions = (id, number) => {
     axios.get(`${apiURL}${id}/${number}`)
@@ -25,8 +25,8 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput />
       <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions : currentProductQuestions.filter(question => currentProductQuestions.indexOf(question) < 4) } />
-      {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { console.log('I am at collapse'); setLoadOrCollapse(false); }} />
-        : <input type="button" value="More Answered Questions" onClick={() => { console.log('I am at more answered questions'); setLoadOrCollapse(true); console.log(loadOrCollapse); }} />}
+      {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { console.log('I am at collapsed list'); setLoadOrCollapse(false); console.log(loadOrCollapse); }} />
+        : <input type="button" value="More Answered Questions" onClick={() => { console.log('I am at all questions list'); setLoadOrCollapse(true); console.log(loadOrCollapse); }} />}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import SampleAnswers from '../SampleData/SampleAnswers';
 import Answers from '../Answers/Answers';
 
 const Questions = ({ question }) => {
-  const apiURL = `http://127.0.0.1:3000/qa/questions/${question.question_id}/answers`;
+  const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
     axios.get(apiURL)
