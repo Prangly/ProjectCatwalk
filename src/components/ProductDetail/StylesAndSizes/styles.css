@@ -4,8 +4,6 @@
   flex-grow: 1;
   padding: 1em;
   justify-content: space-between;
-<<<<<<< HEAD
-=======
 }
 
 #styleIconContainer {
@@ -47,5 +45,4 @@
 #addToOutfit {
 flex-grow: 2;
 /* width: 100%; */
->>>>>>> main
 }

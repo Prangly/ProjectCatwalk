@@ -23,7 +23,8 @@ const cards = [
 const action = 'Compare';
 const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
 
-function RelatedItems() {
+function RelatedItems({ currentProduct }) {
+  console.log(currentProduct);
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
       Related Items
