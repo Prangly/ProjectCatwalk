@@ -13,7 +13,7 @@ import sampleProduct from '../../SampleData/SampleProduct.js';
 const productURL = 'http://127.0.0.1:3000/products/';
 
 const App = () => {
-  const [currentProductID, setCurrentProductID] = useState('61577');
+  const [currentProductID, setCurrentProductID] = useState('61575');
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const productAPI = (id) => {
     axios.get(productURL + id)
