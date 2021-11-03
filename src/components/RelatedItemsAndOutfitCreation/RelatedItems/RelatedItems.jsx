@@ -6,9 +6,7 @@ import sampleProduct from '../../../SampleData/SampleProduct.js';
 
 const productURL = 'http://127.0.0.1:3000/products/';
 
-const cards =
-
-[
+const cards =[
 
   {
     id: '61575',
@@ -28,43 +26,50 @@ const cards =
   },
 ];
 
-
-
 function RelatedItems({ currentProduct }) {
-
   const action = 'Compare';
   const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
 
-  console.log('Current product ID: ', currentProduct.id);
+  console.log('Current product ID, Line 33: ', currentProduct.id);
 
   const [currentProductID, setCurrentProductID] = useState(currentProduct.id);
-  // const [currentProduct, setCurrentProduct] = useState(sampleProduct);
+  const [relatedItems, setRelatedItems] = useState([]);
+
+  // console.log('Current product ID from line 38: ', currentProductID);
+  // console.log('Related items from line 39: ', relatedItems);
+
   const relatedAPI = (id) => {
-    axios.get(productURL + id + '/related')
+    axios.get(`${productURL + id  }/related`)
       .then((data) => {
-        console.log('Related items ids retrieved from api: ', data);
+        console.log('Related items ids retrieved from api, Line 44: ', data);
       //   setCurrentProduct(data.data);
-      setRelatedItems(data.data);
+      console.log('Array of related items just id numbers: ', data.data);
+      console.log('Array of related items objects: ', data.data.map((item) => {
+        productAPI(item);
       });
+    setRelatedItems(data.data.map((item) => {
+      productAPI(item);
+    },));
   };
 
-  const [relatedItems, setRelatedItems] = useState([]);
+
   // const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const productAPI = (id) => {
     axios.get(productURL + id)
       .then((data) => {
-        console.log('Related items objects retrieved from api: ', data);
+        console.log('Related items objects retrieved from api: ', data)
+          .then(console.log('Hello from state'));
       //   setCurrentProduct(data.data);
       });
   };
-
 
   useEffect(() => {
     relatedAPI(currentProductID);
   }, [currentProductID]);
 
-  // console.log('Product API: ', productAPI);
-
+  console.log('Product API: ', productAPI);
+  console.log('Related Items Objects from state, Line 71: ', relatedItems);
+  console.log('Hello from state');
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
       Related Items
