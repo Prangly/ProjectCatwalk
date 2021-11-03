@@ -9,11 +9,6 @@
 }
 
 .styleIcon:hover {
-<<<<<<< HEAD
-  opacity: 0.5
-}
-
-=======
   opacity: 0.5;
   cursor:pointer;
 
@@ -22,16 +17,12 @@
 .styleIcon:active {
 box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
->>>>>>> main
 
 .iconButton {
   object-fit: cover;
   border-radius: 50%;
   height: 3em;
   width: 3em;
-<<<<<<< HEAD
-}
-=======
 }
 
 .styleIconContainer {
@@ -59,4 +50,3 @@ box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
 .styleIconContainer:hover .tooltip{
   visibility: visible;
 }
->>>>>>> main

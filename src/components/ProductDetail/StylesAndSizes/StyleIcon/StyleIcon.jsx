@@ -2,22 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
-<<<<<<< HEAD
-export default function StyleIcon({ style, setCurrentStyle, i }) {
-  return (
-    <img
-      onClick={() => {
-        setCurrentStyle(i)
-      }}
-      onKeyDown={() => {
-        setCurrentStyle(i)
-      }}
-      data-testid="styleIcon"
-      alt={style.name}
-      src={style.photos[0].thumbnail_url}
-      className={styles.styleIcon}
-    />
-=======
 export default function StyleIcon({
   style, setCurrentStyle, i, currentStyle,
 }) {
@@ -48,7 +32,6 @@ export default function StyleIcon({
         {style.name}
       </span>
     </div>
->>>>>>> main
   );
 }
 
@@ -63,8 +46,5 @@ StyleIcon.propTypes = {
   }).isRequired,
   setCurrentStyle: PropTypes.func.isRequired,
   i: PropTypes.number.isRequired,
-<<<<<<< HEAD
-=======
   currentStyle: PropTypes.number.isRequired,
->>>>>>> main
 };
