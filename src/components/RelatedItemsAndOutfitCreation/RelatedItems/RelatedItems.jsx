@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from '../styles.css';
 import Card from '../Card/Card';
+import sampleProduct from '../../../SampleData/SampleProduct.js';
+
+const productURL = 'http://127.0.0.1:3000/products/';
 
 const cards = [
+
   {
     id: '61575',
     category: 'Jackets',
@@ -25,7 +30,21 @@ const cardList = cards.map((card) => <Card key={card.id} card={card} action={act
 
 function RelatedItems({ currentProduct }) {
   console.log(currentProduct.id);
-  
+
+  const [currentProductID, setCurrentProductID] = useState(currentProduct.id);
+  // const [currentProduct, setCurrentProduct] = useState(sampleProduct);
+  const productAPI = (id) => {
+    axios.get(productURL + id + '/related')
+      .then((data) => {
+        console.log('Related items retrieved from api: ', data.data);
+      //   setCurrentProduct(data.data);
+      });
+  };
+  useEffect(() => {
+    productAPI(currentProductID);
+  }, [currentProductID]);
+
+  // console.log('Product API: ', productAPI);
 
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
