@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
-import SampleAnswers from '../SampleData/SampleAnswers';
 import Answers from '../Answers/Answers';
 
 const Questions = ({ question }) => {
@@ -28,17 +27,17 @@ const Questions = ({ question }) => {
         <span className={styles.buttons}>
           Helpful?
           {'  '}
-          <span className={styles.underline} onClick={()=>console.log('Need to update the counter for question helpfulness!')}>
+          {/* <span className={styles.underline} onClick={() => console.log('Need to update the counter for question helpfulness!')}> */}
             Yes
-          </span>
+          {/* </span> */}
           {'  ('}
           {question.question_helpfulness}
           {')  '}
           |
           {'  '}
-          <span className={styles.underline} onClick={()=> console.log('Need to render a modal pop up for adding an answer!')}>
+          {/* <span className={styles.underline} onClick={() => console.log('Need to render a modal pop up for adding an answer!')}> */}
             Add Answer
-          </span>
+          {/* </span> */}
         </span>
       </div>
       <div className={styles.answers}>
