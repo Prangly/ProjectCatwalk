@@ -185,13 +185,16 @@ top: 0px
 
 .expandedCarouselImage {
 object-fit: cover;
+position: absolute;
 /* height: 100%; */
 width: 100%;
 z-index: inherit;
 }
 
 #viewPort {
+  position:relative;
   height: 100%;
+  width: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: row;

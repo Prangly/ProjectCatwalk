@@ -21,11 +21,28 @@ export default function ExpandedView({
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
   const leftVis = currentImage === 0 ? 'hidden' : 'visible';
   const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
-  const zoomStyle = zoomed ? { transform: 'scale(2)' } : { transform: 'scale(1)' }
+  const zoomStyle = zoomed
+    ? {
+      transform: 'scale(2)',
+    }
+    : {
+      left: '0%',
+      top: '-30%',
+      transform: 'scale(1)',
+    };
+
   const toggleZoomed = () => {
     setZoomed(!zoomed);
-    console.log(zoomed)
-  }
+  };
+
+  const onMouseMove = (e) => {
+    if (zoomed) {
+      const image = document.getElementById('movingImage');
+      // console.log(e.screenX, e.screenY);
+      image.style.left = `${-10 - e.screenX / 12}%`;
+      image.style.top = `${-120 - e.screenY / 5}%`;
+    }
+  };
   return (
 
     <div id={styles.expandedView} data-testid="expandedCarousel">
@@ -47,11 +64,13 @@ export default function ExpandedView({
         <img
           data-testid="expandedCarouselImage"
           className={styles.expandedCarouselImage}
+          id="movingImage"
           alt={alt}
           src={urls[currentImage]}
           onClick={toggleZoomed}
           onKeyDown={toggleZoomed}
           style={zoomStyle}
+          onMouseMove={onMouseMove}
         />
 
       </div>
