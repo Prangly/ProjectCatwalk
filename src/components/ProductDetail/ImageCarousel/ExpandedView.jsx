@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
-import ThumbnailGallery from './ThumbnailGallery/ThumbnailGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
-export default function ImageCarousel({
-  productStyles, currentStyle, setExpanded, setCurrentImage, currentImage,
+export default function ExpandedView({
+  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
 }) {
+  const [zoomed, setZoomed] = useState(false);
   const sampleStyle = productStyles.results[currentStyle];
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => (result.url ? result.url : imageNotFound));
@@ -21,39 +21,66 @@ export default function ImageCarousel({
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
   const leftVis = currentImage === 0 ? 'hidden' : 'visible';
   const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+  const zoomStyle = zoomed
+    ? {
+      transform: 'scale(2)',
+    }
+    : {
+      left: '0%',
+      top: '0%',
+      transform: 'scale(1)',
+    };
 
+  const toggleZoomed = () => {
+    setZoomed(!zoomed);
+  };
+
+  const onMouseMove = (e) => {
+    if (zoomed) {
+      const image = document.getElementById('movingImage');
+      image.style.left = `${-10 - e.screenX / 12}%`;
+      image.style.top = `${-120 - e.screenY / 5}%`;
+    }
+  };
   return (
-    <div id={styles.imageCarousel} data-testid="imageCarousel">
+
+    <div id={styles.expandedView} data-testid="expandedCarousel">
+
       <button
         type="button"
         onClick={() => onIncrement('down')}
         onKeyDown={() => onIncrement('down')}
-        id={styles.leftBar}
-        className={styles.scrollBar}
-        data-testid="prevImageButton"
+        id={styles.expandedLeftBar}
+        className={styles.expandedScrollBar}
+        data-testid="expandedPrevImageButton"
         style={{
           visibility: leftVis,
         }}
       >
         &lt;
       </button>
+      <div id={styles.viewPort} data-testid="viewPort">
+        <img
+          data-testid="expandedCarouselImage"
+          className={styles.expandedCarouselImage}
+          id="movingImage"
+          alt={alt}
+          src={urls[currentImage]}
+          onClick={toggleZoomed}
+          onKeyDown={toggleZoomed}
+          style={zoomStyle}
+          onMouseMove={onMouseMove}
+        />
 
-      <img
-        data-testid="carouselImage"
-        className={styles.bigImage}
-        alt={alt}
-        src={urls[currentImage]}
-        onClick={() => setExpanded(true)}
-        onKeyDown={() => setExpanded(true)}
-      />
+      </div>
 
       <button
         type="button"
         onClick={() => onIncrement('up')}
         onKeyDown={() => onIncrement('up')}
-        id={styles.rightBar}
-        className={styles.scrollBar}
-        data-testid="nextImageButton"
+        id={styles.expandedRightBar}
+        className={styles.expandedScrollBar}
+        data-testid="expandedNextImageButton"
         style={{
           visibility: rightVis,
         }}
@@ -61,13 +88,20 @@ export default function ImageCarousel({
       >
         &gt;
       </button>
-      <ThumbnailGallery urls={urls} currentImage={currentImage} setCurrentImage={setCurrentImage} />
-
+      <button
+        type="button"
+        id={styles.closeExpandedView}
+        data-testid="closeExpandedView"
+        onClick={() => setExpanded(false)}
+      >
+        x
+      </button>
     </div>
+
   );
 }
 
-ImageCarousel.propTypes = {
+ExpandedView.propTypes = {
   productStyles: PropTypes.shape({
     product_id: PropTypes.string,
     results: PropTypes.arrayOf(PropTypes.object),
