@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -24,9 +25,9 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
     <div id={styles.qAndA}>
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput />
-      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions : currentProductQuestions.filter(question => currentProductQuestions.indexOf(question) < 4) } />
-      {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { console.log('I am at collapse'); setLoadOrCollapse(false); }} />
-        : <input type="button" value="More Answered Questions" onClick={() => { console.log('I am at more answered questions'); setLoadOrCollapse(true); console.log(loadOrCollapse); }} />}
+      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions : currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4)} />
+      {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(false); }} />
+        : <input type="button" value="More Answered Questions" onClick={() => { setLoadOrCollapse(true); }} />}
     </div>
   );
 };

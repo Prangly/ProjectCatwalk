@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import styles from './styles.css';
 // import SampleData from '../SampleData/SampleQuestions';
 import Questions from '../Questions/Questions';
 
@@ -12,10 +10,9 @@ const QuestionsList = ({ currentProductQuestions }) => (
 );
 
 QuestionsList.propTypes = {
-  // currentProduct: PropTypes.shape({
-  //   id: PropTypes.number,
-  // }).isRequired,
-  moreQuestions: PropTypes.bool.isRequired,
+  currentProductQuestions: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
 };
 
 export default QuestionsList;
