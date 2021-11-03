@@ -46,10 +46,15 @@ function RelatedItems({ currentProduct }) {
       console.log('Array of related items just id numbers: ', data.data);
       console.log('Array of related items objects: ', data.data.map((item) => {
         productAPI(item);
-      });
-    setRelatedItems(data.data.map((item) => {
+      }
+      )
+      );
+      }
+      )
+
+    .then(setRelatedItems(data.data.map((item) => {
       productAPI(item);
-    },));
+    }))
   };
 
 
