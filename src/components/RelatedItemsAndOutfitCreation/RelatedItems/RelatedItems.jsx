@@ -6,7 +6,9 @@ import sampleProduct from '../../../SampleData/SampleProduct.js';
 
 const productURL = 'http://127.0.0.1:3000/products/';
 
-const cards = [
+const cards =
+
+[
 
   {
     id: '61575',
@@ -25,23 +27,40 @@ const cards = [
     image: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
   },
 ];
-const action = 'Compare';
-const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
+
+
 
 function RelatedItems({ currentProduct }) {
-  console.log(currentProduct.id);
+
+  const action = 'Compare';
+  const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
+
+  console.log('Current product ID: ', currentProduct.id);
 
   const [currentProductID, setCurrentProductID] = useState(currentProduct.id);
   // const [currentProduct, setCurrentProduct] = useState(sampleProduct);
-  const productAPI = (id) => {
+  const relatedAPI = (id) => {
     axios.get(productURL + id + '/related')
       .then((data) => {
-        console.log('Related items retrieved from api: ', data.data);
+        console.log('Related items ids retrieved from api: ', data);
+      //   setCurrentProduct(data.data);
+      setRelatedItems(data.data);
+      });
+  };
+
+  const [relatedItems, setRelatedItems] = useState([]);
+  // const [currentProduct, setCurrentProduct] = useState(sampleProduct);
+  const productAPI = (id) => {
+    axios.get(productURL + id)
+      .then((data) => {
+        console.log('Related items objects retrieved from api: ', data);
       //   setCurrentProduct(data.data);
       });
   };
+
+
   useEffect(() => {
-    productAPI(currentProductID);
+    relatedAPI(currentProductID);
   }, [currentProductID]);
 
   // console.log('Product API: ', productAPI);
