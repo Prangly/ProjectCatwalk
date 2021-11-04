@@ -45,14 +45,15 @@ export default function ExpandedView({
 
   const onMouseMove = (e) => {
     if (zoomed) {
-      const image = document.getElementById('movingImage');
-      image.style.left = `${-10 - e.screenX / 12}%`;
-      image.style.top = `${-120 - e.screenY / 5}%`;
+      const image = document.getElementById('expandedCarouselImage');
+
+      image.style.left = `${-120 - e.screenX / 12}%`;
+      image.style.top = `${100 - e.screenY / 5}%`;
     }
   };
   return (
 
-    <div id={styles.expandedView} data-testid="expandedCarousel">
+    <div id={styles.expandedView} data-testid="expandedView">
 
       <button
         type="button"
@@ -71,7 +72,7 @@ export default function ExpandedView({
         <img
           data-testid="expandedCarouselImage"
           className={styles.expandedCarouselImage}
-          id="movingImage"
+          id="expandedCarouselImage"
           alt={alt}
           src={urls[currentImage]}
           onClick={toggleZoomed}

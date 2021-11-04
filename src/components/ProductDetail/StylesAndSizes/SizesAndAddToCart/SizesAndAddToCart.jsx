@@ -4,7 +4,7 @@ import BagAndOutfit from './CartAndOutfit/BagAndOutfit';
 import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
 
 // MIGHT THIS ONLY NEED SKUS AND NAME?
-function SizesAndAddToBag({
+function SizesAndAddToCart({
   currentStyleName, skus, productID, styleID, purchasePrice, addToOutfit, imgURL,
 }) {
   const [currentSize, setCurrentSize] = useState('size');
@@ -33,9 +33,9 @@ function SizesAndAddToBag({
   );
 }
 
-export default SizesAndAddToBag;
+export default SizesAndAddToCart;
 
-SizesAndAddToBag.propTypes = {
+SizesAndAddToCart.propTypes = {
   currentStyleName: PropTypes.string.isRequired,
   skus: PropTypes.arrayOf(PropTypes.object).isRequired,
   productID: PropTypes.string.isRequired,
