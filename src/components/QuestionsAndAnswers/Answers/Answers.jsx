@@ -21,11 +21,13 @@ const Answers = ({ answer }) => {
   return (
     <div>
       <div>
-        A:
-        {' '}
+        <span id={styles.answer}>
+          A:
+        </span>
+        {'  '}
         {answer.body}
       </div>
-      <div>
+      <div id={styles.answersAuthor}>
         by
         {' '}
         {answer.answerer_name}
@@ -43,15 +45,15 @@ const Answers = ({ answer }) => {
         <span>
           Helpful?
           {' '}
-          <span onClick={() => console.log('Need to update the counter for answer helpfulness!')}>
+          <span className={styles.underline} onClick={() => console.log('Need to update the counter for answer helpfulness!')}>
             Yes
           </span>
-          {' '}
+          {' ('}
           {answer.helpfulness}
-          {' '}
+          {') '}
           |
           {' '}
-          <span onClick={()=> console.log('Need to add an event listener to report the answer!')}>
+          <span className={styles.underline} onClick={()=> console.log('Need to add an event listener to report the answer!')}>
             Report
           </span>
         </span>
