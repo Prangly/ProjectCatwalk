@@ -16,13 +16,13 @@ describe('Ratings and Reviews tests', () => {
   });
 
   it('should contain a "writeAReview" component', () => {
-    render(<RatAndRev />);
+    render(<RatAndRev currentProduct={SampleReviews.results[0]} />);
     expect(screen.getByTestId('writeAReview'))
       .toBeInTheDocument();
   });
 
   it('should contain a "reviewsList" component', () => {
-    render(<RatAndRev reviews={SampleReviews} />);
+    render(<RatAndRev currentProduct={SampleReviews.results[0]} />);
     expect(screen.getByTestId('reviewsList'))
       .toBeInTheDocument();
   });
