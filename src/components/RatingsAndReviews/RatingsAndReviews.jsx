@@ -7,6 +7,7 @@ import SampleReviews from '../../SampleData/SampleReviews';
 import ReviewsList from './ReviewsList/ReviewsList';
 
 const RatAndRev = ({ currentProduct }) => {
+  console.log(currentProduct);
   const reviewURL = 'http://127.0.0.1:3000/reviews';
   const [currentRevs, setCurrentRev] = useState([]);
   const getReviews = (id, number) => {
@@ -16,6 +17,7 @@ const RatAndRev = ({ currentProduct }) => {
       });
   };
   useEffect(() => {
+    console.log('current product id', currentProduct.id);
     getReviews(currentProduct.id, 2);
   }, [currentProduct]);
 
