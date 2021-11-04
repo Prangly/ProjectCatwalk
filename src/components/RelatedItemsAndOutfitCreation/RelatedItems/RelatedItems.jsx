@@ -38,16 +38,17 @@ function RelatedItems({ currentProduct }) {
 
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
-      .then((data) => {
-        console.log('Array of IDs returned from relatedAPI call: ', data.data);
-        const workingList =
-        (data.data.map((relatedItemID) => {
+      .then(
+        (data) => {
+          console.log('Array of IDs returned from relatedAPI call: ', data.data);
+          const workingList =        Promise.all(data.data.map((relatedItemID) => {
           productAPI(relatedItemID);
           console.log('Working List, mapped using productAPI: ', workingList);
-        }
-        ));
-      })
-      };
+        },),);
+        },
+
+      );
+  };
 
   const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} />);
 
