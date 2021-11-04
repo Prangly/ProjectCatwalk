@@ -28,29 +28,29 @@ const productURL = 'http://127.0.0.1:3000/products/';
 
 function RelatedItems({ currentProduct }) {
   const action = 'Compare';
-  let workingList = [];
+  // let workingList = [];
 
   const [relatedItems, setRelatedItems] = useState([]);
 
   const productAPI = (id) => {
-    axios.get(productURL + id)
-      .then((data) => {
-        workingList.push(data.data);
-      });
+    axios.get(productURL + id);
   };
 
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
       .then((data) => {
-        data.data.map((relatedItemID) => {
+        const workingList =
+        (data.data.map((relatedItemID) => {
           productAPI(relatedItemID);
-        });
+        }
+        ));
       })
-      .then(() => {
-        console.log('workingList: ', workingList);
-        setRelatedItems(workingList);
-      });
-  };
+      };
+      // .then(() => {
+      //   console.log('workingList: ', workingList);
+      //   setRelatedItems(workingList);
+      //   console.log('relatedItems: ', relatledItems);
+      // });
 
   const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} />);
 
