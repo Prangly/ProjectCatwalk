@@ -8,7 +8,7 @@ import ReviewsList from './ReviewsList/ReviewsList';
 
 const RatAndRev = ({ currentProduct }) => {
   const reviewURL = 'http://127.0.0.1:3000/reviews';
-  const [currentRev, setCurrentRev] = useState([]);
+  const [currentRevs, setCurrentRev] = useState([]);
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
@@ -23,7 +23,7 @@ const RatAndRev = ({ currentProduct }) => {
     <div data-testid="ratAndRev" id={styles.ratingsAndReviews}>
       <h1>Ratings and Reviews</h1>
       <ReviewsList
-        currentRev={currentRev}
+        currentRevs={currentRevs}
         reviews={SampleReviews}
       />
       <WriteAReview />
