@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 
 function Thumbnail({
-  url, i, currentImage, setCurrentImage
+  url, i, currentImage, setCurrentImage,
 }) {
   const selectedBorder = i === currentImage
     ? '2px solid white' : 'none';
@@ -19,7 +19,7 @@ function Thumbnail({
         style={{
           background: `url(${url})`,
           boxSizing: 'border-box',
-          backgroundSize: '2em auto',
+          backgroundSize: '3.8em auto',
           backgroundPosition: 'center',
           objectFit: 'contain',
           border: selectedBorder,

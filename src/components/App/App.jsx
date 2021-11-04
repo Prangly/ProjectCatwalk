@@ -13,8 +13,19 @@ import sampleProduct from '../../SampleData/SampleProduct.js';
 const productURL = 'http://127.0.0.1:3000/products/';
 
 const App = () => {
-  const [currentProductID, setCurrentProductID] = useState('61575');
+  const [currentProductID, setCurrentProductID] = useState('61576');
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
+  const [currentOutfit, setCurrentOutfit] = useState([]);
+
+  const addToOutfit = (product) => {
+    if (!currentOutfit.includes(product)) {
+      const newOutfit = [...currentOutfit];
+      newOutfit.push(product);
+      setCurrentOutfit(newOutfit);
+    }
+    console.log(currentOutfit);
+  };
+
   const productAPI = (id) => {
     axios.get(productURL + id)
       .then((data) => {
@@ -28,7 +39,7 @@ const App = () => {
   return (
     <div id="app">
       <Navbar />
-      <ProductDetail currentProduct={currentProduct} />
+      <ProductDetail addToOutfit={addToOutfit} currentProduct={currentProduct} />
       <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
       <QandA currentProduct={currentProduct} />
       <RatAndRev currentProduct={currentProduct} />
