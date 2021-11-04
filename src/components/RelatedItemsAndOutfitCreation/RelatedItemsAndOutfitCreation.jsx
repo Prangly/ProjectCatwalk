@@ -8,7 +8,7 @@ const RandOC = ({ currentProduct }) => (
   <div data-testid="rAndOC" id={styles.rAndOC}>
     <h1>Related Items and Outfit Creation</h1>
     <RelatedItems currentProduct={currentProduct} />
-    <Outfit />
+    {/* <Outfit /> */}
   </div>
 );
 

@@ -32,7 +32,7 @@ function RelatedItems({ currentProduct }) {
 
   const [currentProductID, setCurrentProductID] = useState(currentProduct.id);
   const [relatedItems, setRelatedItems] = useState(starterCards);
-  const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} />);
+
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
       .then((data) => {
@@ -51,6 +51,7 @@ function RelatedItems({ currentProduct }) {
         workingList.push(data.data);
       })
   };
+  const cardList = starterCards.map((card) => <Card key={card.id} card={card} action={action} />);
 
   useEffect(() => {
     relatedAPI(currentProductID);
