@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import styles from './styles.css';
 import WriteAReview from './WriteAReview/WriteAReview';
 import SampleReviews from '../../SampleData/SampleReviews';
@@ -11,11 +12,13 @@ const RatAndRev = ({ currentProduct }) => {
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
+        console.log('data from backend', data);
         setCurrentRev(data.results);
       });
   };
   useEffect(() => {
     getReviews(currentProduct.id, 2);
+    console.log('currentRevs', currentRevs);
   }, [currentProduct]);
 
   return (
@@ -23,7 +26,7 @@ const RatAndRev = ({ currentProduct }) => {
       <h1>Ratings and Reviews</h1>
       <ReviewsList
         currentRevs={currentRevs}
-        reviews={SampleReviews}
+        reviews={currentRevs}
       />
       <WriteAReview />
     </div>
