@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -18,7 +19,7 @@ const Questions = ({ question }) => {
     getAnswers();
   }, [question]);
 
-  const [loadOrCollapse, setLoadOrCollapse] = useState(false);
+  const [loadOrCollapse, setLoadOrCollapse] = useState(true);
 
   return (
     <div className={styles.questionsAndAnswers}>
@@ -44,9 +45,11 @@ const Questions = ({ question }) => {
         </span>
       </div>
       <div className={styles.answers}>
-        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers : currentQuestionAnswers.filter((answer)=> currentQuestionAnswers.indexOf(answer) < 2)} />
-        {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(false); }} />
-        : <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(true); }} />}
+        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
+        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="MoreAnswers" onClick={() => { setLoadOrCollapse(false); }} />
+          : null}
+        {loadOrCollapse ? null
+          : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
       </div>
     </div>
   );

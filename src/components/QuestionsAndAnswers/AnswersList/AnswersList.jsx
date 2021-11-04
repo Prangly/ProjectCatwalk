@@ -7,6 +7,6 @@ const AnswersList = ({ answers }) => (
   <div>
     {answers.map((answer) => <Answers answer={answer} />)}
   </div>
-)
+);
 
 export default AnswersList;
