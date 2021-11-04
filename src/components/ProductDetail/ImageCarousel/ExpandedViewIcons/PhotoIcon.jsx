@@ -8,7 +8,7 @@ function PhotoIcon({
   const selectedShadow = i === currentImage
     ? '0px 0px 5px rgba(255,255,255, 0.7) ' : '';
   const selectedOpacity = i === currentImage
-    ? '1 ' : '0.5';
+    ? '1 ' : '';
 
   return (
     <button
@@ -30,7 +30,6 @@ function PhotoIcon({
 export default PhotoIcon;
 
 PhotoIcon.propTypes = {
-  url: PropTypes.string.isRequired,
   i: PropTypes.number.isRequired,
   currentImage: PropTypes.number.isRequired,
   setCurrentImage: PropTypes.func.isRequired,

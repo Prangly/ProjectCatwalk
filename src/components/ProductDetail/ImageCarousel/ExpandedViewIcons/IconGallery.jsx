@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
-import PropTypes, { checkPropTypes } from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import PhotoIcon from './PhotoIcon';
 
-function IconGallery({ urls, currentImage, setCurrentImage, iconVis }) {
-  const [scroll, setScroll] = useState(25);
-  const onScroll = (direction) => {
-    if (direction === 'right' && scroll >= 0) {
-      setScroll(scroll - 50);
-    } else if (direction === 'left' && scroll < 25) {
-      setScroll(scroll + 50);
-    }
-  };
-
-
+function IconGallery({
+  urls, currentImage, setCurrentImage, iconVis,
+}) {
   const icons = urls.map((url, i) => (
     <PhotoIcon
       i={i}
@@ -28,9 +20,7 @@ function IconGallery({ urls, currentImage, setCurrentImage, iconVis }) {
       id={styles.iconGallery}
       style={{ visibility: iconVis }}
     >
-
       {icons}
-
     </div>
 
   );
