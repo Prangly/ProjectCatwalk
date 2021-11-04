@@ -8,9 +8,13 @@ import styles from '../styles.css';
 
 // Modal.setAppElement('#root');
 function Card({ card, action }) {
-  console.log('Card in card: ', card);
+  // console.log('Card in card: ', card);
   // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [productSelected, selectProduct] = useState();
+
+  if (productSelected) {console.log(productSelected)}
+
   return (
     <div data-testid="card" className={styles.card}>
       <button onClick={() => setModalIsOpen(true)}>
@@ -35,7 +39,7 @@ function Card({ card, action }) {
         {card.default_price}
       </h4>
       {/* <h4>{card.starRating}</h4> */}
-      <img className={styles.cardImage} src={card.image} alt="" />
+      <img onClick={() => selectProduct(card.id)} className={styles.cardImage} src={card.image} alt="" />
     </div>
   );
 }
