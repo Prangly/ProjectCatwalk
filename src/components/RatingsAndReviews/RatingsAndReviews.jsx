@@ -12,13 +12,11 @@ const RatAndRev = ({ currentProduct }) => {
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
-        console.log('data from backend', data);
         setCurrentRev(data.results);
       });
   };
   useEffect(() => {
     getReviews(currentProduct.id, 2);
-    console.log('currentRevs', currentRevs);
   }, [currentProduct]);
 
   return (
