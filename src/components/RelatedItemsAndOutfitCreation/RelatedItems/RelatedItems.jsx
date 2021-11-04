@@ -28,7 +28,6 @@ const productURL = 'http://127.0.0.1:3000/products/';
 
 function RelatedItems({ currentProduct }) {
   const action = 'Compare';
-  // let workingList = [];
 
   const [relatedItems, setRelatedItems] = useState([]);
 
@@ -39,18 +38,16 @@ function RelatedItems({ currentProduct }) {
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
       .then((data) => {
-        const workingList =
-        (data.data.map((relatedItemID) => {
+        setRelatedItems(data.data);
+        console.log(relatedItems);
+        // Following code cannot handle the async mapping to
+        // convert the array of IDs to an array of product objects
+        const workingList = data.data.map((relatedItemID) => {
           productAPI(relatedItemID);
-        }
-        ));
-      })
-      };
-      // .then(() => {
-      //   console.log('workingList: ', workingList);
-      //   setRelatedItems(workingList);
-      //   console.log('relatedItems: ', relatledItems);
-      // });
+          // console.log('Working list: ', workingList);
+        });
+      });
+    }
 
   const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} />);
 
