@@ -6,56 +6,57 @@ import sampleProduct from '../../../SampleData/SampleProduct.js';
 
 const productURL = 'http://127.0.0.1:3000/products/';
 
-const starterCards = [
+// const starterCards = [
 
-  {
-    id: '61575',
-    category: 'Jackets',
-    name: 'Camo Onesie',
-    default_price: '140.00',
-    starRating: 'RI1 Star Rating',
-    image: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-  },
-  {
-    id: '61576',
-    category: 'Accessories',
-    name: 'Bright Future Sunglasses',
-    default_price: '69.00',
-    starRating: 'RI2 Star Rating',
-    image: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
-  },
-];
+//   {
+//     id: '61575',
+//     category: 'Jackets',
+//     name: 'Camo Onesie',
+//     default_price: '140.00',
+//     starRating: 'RI1 Star Rating',
+//     image: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+//   },
+//   {
+//     id: '61576',
+//     category: 'Accessories',
+//     name: 'Bright Future Sunglasses',
+//     default_price: '69.00',
+//     starRating: 'RI2 Star Rating',
+//     image: 'https://images.unsplash.com/photo-1544441892-794166f1e3be?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80',
+//   },
+// ];
 
 function RelatedItems({ currentProduct }) {
   const action = 'Compare';
-  var workingList = [];
+  const workingList = [];
 
-  const [currentProductID, setCurrentProductID] = useState(currentProduct.id);
-  const [relatedItems, setRelatedItems] = useState(starterCards);
-
-  const relatedAPI = (id) => {
-    axios.get(`${productURL + id}/related`)
-      .then((data) => {
-        data.data.map((item) => {
-          productAPI(item);
-        }
-        );
-      })
-      .then(setRelatedItems(workingList));
-    };
+  const [relatedItems, setRelatedItems] = useState([]);
 
   const productAPI = (id) => {
     axios.get(productURL + id)
       .then((data) => {
-        // console.log('Data from productAPI: ', data.data);
         workingList.push(data.data);
-      })
+      });
   };
-  const cardList = starterCards.map((card) => <Card key={card.id} card={card} action={action} />);
+
+  const relatedAPI = (id) => {
+    axios.get(`${productURL + id}/related`)
+      .then((data) => {
+        data.data.map((relatedItemID) => {
+          productAPI(relatedItemID);
+        });
+      })
+      .then(() => {
+        console.log('workingList: ', workingList);
+        setRelatedItems(workingList);
+      });
+  };
+
+  const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} />);
 
   useEffect(() => {
-    relatedAPI(currentProductID);
-  }, [currentProductID]);
+    relatedAPI(currentProduct.id);
+  }, [currentProduct.id]);
 
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>

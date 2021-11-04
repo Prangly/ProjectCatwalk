@@ -7,8 +7,8 @@ import Modal from 'react-modal';
 import styles from '../styles.css';
 
 // Modal.setAppElement('#root');
-function Card({ card, action, workingList }) {
-  console.log(card);
+function Card({ card, action }) {
+  console.log('Card in card: ', card);
   // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   return (
