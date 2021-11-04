@@ -1,11 +1,12 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
-import Answers from '../Answers/Answers';
+import AnswersList from '../AnswersList/AnswersList';
 
 const Questions = ({ question }) => {
-  const apiURL = `http://127.0.0.1:3000/qa/questions/${question.question_id}/answers`;
+  const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
     axios.get(apiURL)
@@ -17,6 +18,9 @@ const Questions = ({ question }) => {
   useEffect(() => {
     getAnswers();
   }, [question]);
+
+  const [loadOrCollapse, setLoadOrCollapse] = useState(true);
+
   return (
     <div className={styles.questionsAndAnswers}>
       <div className={styles.question}>
@@ -41,7 +45,11 @@ const Questions = ({ question }) => {
         </span>
       </div>
       <div className={styles.answers}>
-        {currentQuestionAnswers.map((answer) => <Answers answer={answer} />)}
+        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
+        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="MoreAnswers" onClick={() => { setLoadOrCollapse(false); }} />
+          : null}
+        {loadOrCollapse ? null
+          : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
       </div>
     </div>
   );
