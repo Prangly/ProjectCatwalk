@@ -5,14 +5,24 @@ import WriteAReview from './WriteAReview/WriteAReview';
 import SampleReviews from '../../SampleData/SampleReviews';
 import ReviewsList from './ReviewsList/ReviewsList';
 
-const RatAndRev = () => {
-  const [currentRev, setCurrentRev] = useState(0);
+const RatAndRev = ({ currentProduct }) => {
+  const reviewURL = 'http://127.0.0.1:3000/reviews';
+  const [currentRevs, setCurrentRev] = useState([]);
+  const getReviews = (id, number) => {
+    axios.get(`${reviewURL}/${id}/${number}`)
+      .then(({ data }) => {
+        setCurrentRev(data.results);
+      });
+  };
+  useEffect(() => {
+    getReviews(currentProduct.id, 2);
+  }, [currentProduct]);
 
   return (
     <div data-testid="ratAndRev" id={styles.ratingsAndReviews}>
       <h1>Ratings and Reviews</h1>
       <ReviewsList
-        currentRev={currentRev}
+        currentRevs={currentRevs}
         reviews={SampleReviews}
       />
       <WriteAReview />
