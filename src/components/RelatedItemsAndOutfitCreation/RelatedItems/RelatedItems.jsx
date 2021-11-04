@@ -28,7 +28,7 @@ const productURL = 'http://127.0.0.1:3000/products/';
 
 function RelatedItems({ currentProduct }) {
   const action = 'Compare';
-  const workingList = [];
+  let workingList = [];
 
   const [relatedItems, setRelatedItems] = useState([]);
 
