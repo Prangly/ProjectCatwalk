@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
+import IconGallery from './ExpandedViewIcons/IconGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ExpandedView({
-  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
+  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage
 }) {
   const [zoomed, setZoomed] = useState(false);
   const sampleStyle = productStyles.results[currentStyle];
@@ -22,6 +23,7 @@ export default function ExpandedView({
   let leftVis = currentImage === 0 ? 'hidden' : 'visible';
   let rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
   let xVis = 'visible';
+  let iconVis = 'visible';
   const zoomStyle = zoomed
     ? {
       transform: 'scale(2)',
@@ -37,6 +39,7 @@ export default function ExpandedView({
     leftVis = 'hidden';
     rightVis = 'hidden';
     xVis = 'hidden';
+    iconVis = 'hidden';
   }
 
   const toggleZoomed = () => {
@@ -48,7 +51,7 @@ export default function ExpandedView({
       const image = document.getElementById('expandedCarouselImage');
 
       image.style.left = `${-120 - e.screenX / 12}%`;
-      image.style.top = `${100 - e.screenY / 5}%`;
+      image.style.top = `${100 - e.screenY / 8}%`;
     }
   };
   return (
@@ -106,6 +109,12 @@ export default function ExpandedView({
       >
         x
       </button>
+      <IconGallery
+        urls={urls}
+        currentImage={currentImage}
+        setCurrentImage={setCurrentImage}
+        iconVis={iconVis}
+      />
     </div>
 
   );
