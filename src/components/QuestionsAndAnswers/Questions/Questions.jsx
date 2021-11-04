@@ -6,7 +6,7 @@ import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
 import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
-const Questions = ({ question }) => {
+const Questions = ({ question, currentProductName }) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
@@ -21,7 +21,7 @@ const Questions = ({ question }) => {
   }, [question]);
 
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
-
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className={styles.questionsAndAnswers}>
       <div className={styles.question}>
@@ -40,11 +40,11 @@ const Questions = ({ question }) => {
           {')  '}
           |
           {'  '}
-          <span className={styles.underline} onClick={() => console.log('Need to render a modal pop up for adding an answer!')}>
+          <span className={styles.underline} onClick={() => setOpenModal(true)}>
             Add Answer
+            <QuestionsAndAnswersModal openModal={openModal} currentProductName={currentProductName} questionBody={question.question_body} />
           </span>
         </span>
-        <QuestionsAndAnswersModal />
       </div>
       <div className={styles.answers}>
         <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
