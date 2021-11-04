@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
-import Answers from '../Answers/Answers';
+import AnswersList from '../AnswersList/AnswersList';
 
 const Questions = ({ question }) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
@@ -17,6 +17,9 @@ const Questions = ({ question }) => {
   useEffect(() => {
     getAnswers();
   }, [question]);
+
+  const [loadOrCollapse, setLoadOrCollapse] = useState(false);
+
   return (
     <div className={styles.questionsAndAnswers}>
       <div className={styles.question}>
@@ -27,21 +30,23 @@ const Questions = ({ question }) => {
         <span className={styles.buttons}>
           Helpful?
           {'  '}
-          {/* <span className={styles.underline} onClick={() => console.log('Need to update the counter for question helpfulness!')}> */}
+          <span className={styles.underline} onClick={() => console.log('Need to update the counter for question helpfulness!')}>
             Yes
-          {/* </span> */}
+          </span>
           {'  ('}
           {question.question_helpfulness}
           {')  '}
           |
           {'  '}
-          {/* <span className={styles.underline} onClick={() => console.log('Need to render a modal pop up for adding an answer!')}> */}
+          <span className={styles.underline} onClick={() => console.log('Need to render a modal pop up for adding an answer!')}>
             Add Answer
-          {/* </span> */}
+          </span>
         </span>
       </div>
       <div className={styles.answers}>
-        {currentQuestionAnswers.map((answer) => <Answers answer={answer} />)}
+        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers : currentQuestionAnswers.filter((answer)=> currentQuestionAnswers.indexOf(answer) < 2)} />
+        {loadOrCollapse ? <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(false); }} />
+        : <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(true); }} />}
       </div>
     </div>
   );
