@@ -20,7 +20,8 @@ const cards = [
     image: 'https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
   },
 ];
-const cardList = cards.map((card) => <Card key={card.id} card={card} />);
+const action = 'Delete';
+const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
 
 function Outfit() {
   return (
