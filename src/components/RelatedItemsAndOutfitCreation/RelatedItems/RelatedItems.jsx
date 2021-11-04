@@ -9,7 +9,7 @@ const productURL = 'http://127.0.0.1:3000/products/';
 const starterCards = [
 
   {
-    id: '61575',
+    id: '61581',
     category: 'Jackets',
     name: 'Camo Onesie',
     default_price: '140.00',
@@ -17,7 +17,7 @@ const starterCards = [
     image: 'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
   },
   {
-    id: '61576',
+    id: '61583',
     category: 'Accessories',
     name: 'Bright Future Sunglasses',
     default_price: '69.00',
@@ -26,7 +26,7 @@ const starterCards = [
   },
 ];
 
-function RelatedItems({ currentProduct }) {
+function RelatedItems({ currentProduct, setCurrentProductID }) {
   const action = 'Compare';
   // let workingList = [];
 
@@ -50,7 +50,7 @@ function RelatedItems({ currentProduct }) {
       );
   };
 
-  const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} />);
+  const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID}/>);
 
   useEffect(() => {
     relatedAPI(currentProduct.id);

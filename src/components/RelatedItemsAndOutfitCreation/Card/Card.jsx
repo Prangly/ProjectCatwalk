@@ -7,13 +7,16 @@ import Modal from 'react-modal';
 import styles from '../styles.css';
 
 // Modal.setAppElement('#root');
-function Card({ card, action }) {
+function Card({ card, action, setCurrentProductID }) {
   // console.log('Card in card: ', card);
   // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
-  if (productSelected) {console.log(productSelected)}
+  if (productSelected) {
+    // console.log(productSelected)
+    setCurrentProductID(productSelected);
+  }
 
   return (
     <div data-testid="card" className={styles.card}>
