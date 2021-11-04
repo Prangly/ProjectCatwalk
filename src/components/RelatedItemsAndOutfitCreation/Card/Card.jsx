@@ -16,6 +16,7 @@ function Card({ card, action, setCurrentProductID }) {
   if (productSelected) {
     // console.log(productSelected)
     setCurrentProductID(productSelected);
+    selectProduct(false);
   }
 
   return (
