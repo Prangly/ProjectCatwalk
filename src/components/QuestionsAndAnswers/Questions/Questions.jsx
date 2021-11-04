@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Modal from 'react-modal';
 import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
 import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
@@ -44,7 +43,7 @@ const Questions = ({ question, currentProductName }) => {
           <span className={styles.underline} onClick={() => setOpenModal(true)}>
             Add Answer
           </span>
-          <QuestionsAndAnswersModal type={'answer'} openModal={openModal} currentProductName={currentProductName} questionBody={question.question_body} setOpenModal={setOpenModal}/>
+          <QuestionsAndAnswersModal type={'answer'} openModal={openModal} currentProductName={currentProductName} questionBody={question.question_body} setOpenModal={setOpenModal} />
         </span>
       </div>
       <div className={styles.answers}>

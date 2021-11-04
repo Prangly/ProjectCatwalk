@@ -12,7 +12,11 @@ const QuestionsAndAnswersModal = ({ type, openModal, currentProductName, questio
         <h1>Submit your Answer</h1>
         <h2> Product: {currentProductName} </h2>
         <h2> Question: {questionBody} </h2>
-      </div>: null}
+      </div>:
+      <div>
+        <h1>Submit your Question</h1>
+        <h2> Product: {currentProductName} </h2>
+      </div>}
       <input type="button" value="close" onClick={() => setOpenModal(false)} />
     </Modal>
   )
