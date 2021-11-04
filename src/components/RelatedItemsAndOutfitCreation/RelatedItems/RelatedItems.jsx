@@ -26,7 +26,7 @@ const cardList = cards.map((card) => <Card key={card.id} card={card} action={act
 function RelatedItems() {
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
-      Related Items
+      Relate Items
       {cardList}
     </ul>
   );
