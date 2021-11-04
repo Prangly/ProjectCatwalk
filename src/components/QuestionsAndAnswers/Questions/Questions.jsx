@@ -4,6 +4,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
+import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
 const Questions = ({ question }) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
@@ -43,6 +44,7 @@ const Questions = ({ question }) => {
             Add Answer
           </span>
         </span>
+        <QuestionsAndAnswersModal />
       </div>
       <div className={styles.answers}>
         <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
