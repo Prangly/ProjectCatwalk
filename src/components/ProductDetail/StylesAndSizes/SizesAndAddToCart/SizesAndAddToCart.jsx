@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import BagAndOutfit from './CartAndOutfit/BagAndOutfit';
 import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
+import styles from './styles.css';
 
 // MIGHT THIS ONLY NEED SKUS AND NAME?
 function SizesAndAddToCart({
@@ -10,7 +11,7 @@ function SizesAndAddToCart({
   const [currentSize, setCurrentSize] = useState('size');
   const [currentQuantity, setCurrentQuantity] = useState('quantity');
   return (
-    <div data-testid="sizesAndAddToCart">
+    <div data-testid="sizesAndAddToCart" id={styles.sizesAndAddToCart}>
       <SizesAndQuantity
         currentSize={currentSize}
         setCurrentSize={setCurrentSize}

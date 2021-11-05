@@ -1,13 +1,20 @@
+#sizesAndAddToCart {
+  height: 30%;
+}
+
 #bagAndOutfit, #sizesAndQuantity {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 50%;
 }
 
 #addToCart, #addToOutfit, #sizes, #quantity {
   /* border: 1px solid black; */
   margin: 1em;
   height: 2em;
+  height: 50%;
+
 }
 
 
@@ -19,6 +26,7 @@
 flex-grow: 1;
 /* width: 100%; */
 }
+
 
 #sizes {
   flex-grow: 3;

@@ -39,20 +39,23 @@ const StylesAndSizes = ({
   ));
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
-      <h1 data-testid="productName" id={styles.productName}>{name}</h1>
-      <StarRating />
-      <div id={styles.price}>
-        <span
-          data-testid="productPrice"
-          id={styles.productPrice}
-          style={saleStyle}
-        >
-          {price}
-        </span>
-        <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+      <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
+        <h1 data-testid="productName" id={styles.productName}>{name}</h1>
+
+        <StarRating />
+        <div id={styles.price}>
+          <span
+            data-testid="productPrice"
+            id={styles.productPrice}
+            style={saleStyle}
+          >
+            {price}
+          </span>
+          <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+        </div>
       </div>
 
-      <div data-testid="styleContainer">
+      <div data-testid="styleContainer" id={styles.styleContainer}>
         {`Style --> ${styleName}`}
         <div id={styles.styleIconContainer} data-testid="styleIconContainer">
           {styleIcons}

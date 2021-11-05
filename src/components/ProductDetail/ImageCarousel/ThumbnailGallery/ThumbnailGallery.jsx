@@ -14,10 +14,10 @@ function ThumbnailGallery({ urls, currentImage, setCurrentImage }) {
   };
 
   useEffect(() => {
-    if (currentImage <= 3) {
+    if (currentImage < 3) {
       setScroll(25);
     }
-    if (currentImage > 3) {
+    if (currentImage >= 3) {
       setScroll(-25);
     }
   }, [currentImage]);
