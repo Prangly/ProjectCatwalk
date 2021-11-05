@@ -21,10 +21,10 @@ describe('RelatedItemsAndOutfitCreation test', () => {
     render(<RandOC />);
     expect(screen.getAllByTestId('relatedItems')[0]).toBeInTheDocument();
   });
-  it('should render an "outfit" component', () => {
-    render(<RandOC />);
-    expect(screen.getAllByTestId('outfit')[0]).toBeInTheDocument();
-  });
+  // it('should render an "outfit" component', () => {
+  //   render(<RandOC />);
+  //   expect(screen.getAllByTestId('outfit')[0]).toBeInTheDocument();
+  // });
   it('should render "card" components', () => {
     render(<RandOC />);
     expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
