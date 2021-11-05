@@ -43,7 +43,7 @@ const Questions = ({ question, currentProductName }) => {
           <span className={styles.underline} onClick={() => setOpenModal(true)}>
             Add Answer
           </span>
-          <QuestionsAndAnswersModal type={'answer'} openModal={openModal} currentProductName={currentProductName} questionBody={question.question_body} setOpenModal={setOpenModal} />
+          <QuestionsAndAnswersModal type={'answer'} openModal={openModal} currentProductName={currentProductName} questionId={question.question_id} questionBody={question.question_body} setOpenModal={setOpenModal} />
         </span>
       </div>
       <div className={styles.answers}>

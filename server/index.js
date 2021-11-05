@@ -56,3 +56,16 @@ app.get('/answers/:id/:number', (req, res) => {
     .then(({ data }) => res.send(data))
     .catch(() => res.status(404).end());
 });
+
+app.post('/postAnswer/:id', (req, res) => {
+  const { id } = req.params;
+  const addAnswersURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;
+  axios({
+    method: 'post',
+    url: addAnswersURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});
