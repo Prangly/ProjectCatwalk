@@ -12,6 +12,8 @@ const QuestionsAndAnswersModal = ({ type, openModal, currentProductName, questio
         <h1>Submit your Answer</h1>
         <h2> Product: {currentProductName} </h2>
         <h2> Question: {questionBody} </h2>
+        <h3> Your Answer: </h3>
+        <textarea cols="100" rows="10" maxlength="1000"></textarea>
       </div>:
       <div>
         <h1>Submit your Question</h1>
