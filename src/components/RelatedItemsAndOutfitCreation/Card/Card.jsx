@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable import/extensions */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
@@ -8,8 +11,13 @@ import Modal from 'react-modal';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 const productURL = 'http://127.0.0.1:3000/';
-const sampleStyles = {results: [{photos: [{url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-}]}]};
+const sampleStyles = {
+  results: [{
+    photos: [{
+      url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+    }],
+  }],
+};
 
 // Modal.setAppElement('#root');
 function Card({ card, action, setCurrentProductID }) {
@@ -42,12 +50,14 @@ function Card({ card, action, setCurrentProductID }) {
 
   useEffect(() => {
     if (typeof card === 'number') {
-    productAPI(card); }
+      productAPI(card);
+    }
   }, [card]);
 
   useEffect(() => {
     if (typeof card === 'number') {
-    stylesAPI(card); }
+      stylesAPI(card);
+    }
   }, [card]);
 
   return (

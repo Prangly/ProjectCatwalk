@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import Card from '../Card/Card';
-import sampleProduct from '../../../SampleData/SampleProduct.js';
 
 const productURL = 'http://127.0.0.1:3000/products/';
-
 const starterCards = [
-
   {
     id: '61581',
     category: 'Jackets',
@@ -26,28 +24,18 @@ const starterCards = [
   },
 ];
 
-const dummyIDs = [61588, 61590];
-
 function RelatedItems({ currentProduct, setCurrentProductID }) {
   const action = 'Compare';
-  // let workingList = [];
 
   const [relatedItems, setRelatedItems] = useState(starterCards);
 
-  // const productAPI = (id) => {
-  //   axios.get(`${productURL + id}/related`);
-  // };
-
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
-    .then((data) => {
-
-// console.log("It would be awesome if this was an array of numbers: ", data.data);
-setRelatedItems(data.data);
-
-  });
+      .then((data) => {
+        setRelatedItems(data.data);
+      });
   };
-
+  // eslint-disable-next-line max-len
   const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
 
   useEffect(() => {
@@ -61,5 +49,12 @@ setRelatedItems(data.data);
     </ul>
   );
 }
+
+RelatedItems.propTypes = {
+  currentProduct: PropTypes.shape({
+    id: PropTypes.string,
+  }).isRequired,
+  setCurrentProductID: PropTypes.isRequired,
+};
 
 export default RelatedItems;
