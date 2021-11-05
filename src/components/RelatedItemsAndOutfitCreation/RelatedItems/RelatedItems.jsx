@@ -40,12 +40,12 @@ function RelatedItems({ currentProduct }) {
             return productAPI(relatedItemID);
           });
           Promise.all(products)
-       .then(
+        .then(
           (data) => {
             console.log(data)
           }
-        );
-        },
+        )
+      },
       );
   };
 
