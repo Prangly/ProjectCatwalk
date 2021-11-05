@@ -37,7 +37,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   };
 
   const relatedAPI = (id) => {
-    axios.get(`${productURL + id}/related`)
+    axios.get(productURL + id)
       .then(
         (data) => {
           // console.log('Array of IDs returned from relatedAPI call: ', data.data);

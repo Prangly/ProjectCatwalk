@@ -1,10 +1,13 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styles from '../styles.css';
+
+const productURL = 'http://127.0.0.1:3000/';
 
 // Modal.setAppElement('#root');
 function Card({ card, action, setCurrentProductID }) {
@@ -13,11 +16,38 @@ function Card({ card, action, setCurrentProductID }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
+  const [relatedProduct, setRelatedProduct] = useState();
+  const [relatedStyles, setRelatedStyles] = useState();
+
+  const dummyProduct = '61575';
+
   if (productSelected) {
     // console.log(productSelected)
     setCurrentProductID(productSelected);
     selectProduct(false);
   }
+
+  const stylesAPI = (id) => {
+    axios.get(productURL + "styles/" + id)
+      .then((data) => {
+        setRelatedStyles(data);
+        console.log('Data retrieved from stylesAPI: ', data);
+        console.log('relatedStyles state variable: ', relatedStyles);
+      });
+  };
+
+  const productAPI = (id) => {
+    axios.get(productURL + "products/" + id)
+      .then((data) => {
+        setRelatedProduct(data);
+        console.log('relatedProduct: ', relatedProduct);
+    })
+  };
+
+  useEffect(() => {
+    productAPI(dummyProduct);
+    stylesAPI(dummyProduct);
+  }, [card]);
 
   return (
     <div data-testid="card" className={styles.card}>
