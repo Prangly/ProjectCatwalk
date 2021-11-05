@@ -11,8 +11,8 @@ const ReviewsList = ({ reviews }) => {
     <div>
       <StarRating />
       <ul data-testid="reviewsList">
-      {reviewList}
-    </ul>
+        {reviewList}
+      </ul>
     </div>
   );
 };

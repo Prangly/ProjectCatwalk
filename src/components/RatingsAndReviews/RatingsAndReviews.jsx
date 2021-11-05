@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import styles from './styles.css';
 import WriteAReview from './WriteAReview/WriteAReview';
 import SampleReviews from '../../SampleData/SampleReviews';
 import ReviewsList from './ReviewsList/ReviewsList';
 
 const RatAndRev = ({ currentProduct }) => {
+  console.log(currentProduct);
   const reviewURL = 'http://127.0.0.1:3000/reviews';
   const [currentRevs, setCurrentRev] = useState([]);
   const getReviews = (id, number) => {
@@ -15,6 +17,7 @@ const RatAndRev = ({ currentProduct }) => {
       });
   };
   useEffect(() => {
+    console.log('current product id', currentProduct.id);
     getReviews(currentProduct.id, 2);
   }, [currentProduct]);
 
