@@ -5,7 +5,7 @@ import styles from './styles.css';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
 import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
 import DetailText from './DetailText/DetailText';
-import SampleProduct from '../../SampleData/SampleProduct';
+// import SampleProduct from '../../SampleData/SampleProduct';
 import sampleStyles from '../../SampleData/SampleStyles';
 
 // const currentProduct = SampleProduct;
