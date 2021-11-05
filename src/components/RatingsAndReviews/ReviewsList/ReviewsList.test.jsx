@@ -9,7 +9,7 @@ import SampleReviews from '../../../SampleData/SampleReviews';
 
 describe('Reveiws List tests', () => {
   it('should recognize react testing library methods', () => {
-    render(<ReviewsList reviews={SampleReviews} />);
+    render(<ReviewsList reviews={SampleReviews.results} />);
     expect(screen.getByTestId('reviewsList'))
       .toBeInTheDocument();
   });
