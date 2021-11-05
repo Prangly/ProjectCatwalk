@@ -34,7 +34,7 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
         : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
       <div id={styles.addAQuestion}>
         <input type="button" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
-        <QuestionsAndAnswersModal type={'question'} openModal={openQuestionsModal} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} />
+        <QuestionsAndAnswersModal type={'question'} openModal={openQuestionsModal} currentProductId={currentProduct.id} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} />
       </div>
     </div>
   );

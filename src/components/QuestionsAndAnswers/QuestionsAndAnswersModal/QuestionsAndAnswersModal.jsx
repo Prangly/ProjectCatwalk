@@ -6,20 +6,30 @@ import axios from 'axios';
 import styles from './styles.css';
 
 const QuestionsAndAnswersModal = ({
-  type, openModal, currentProductName, questionId, questionBody, setOpenModal,
+  type, openModal, currentProductName, questionId, questionBody, setOpenModal, currentProductId
 }) => {
   const [answerBodyInfo, setAnswerBodyInfo] = useState('');
   const [answerNicknameInfo, setAnswerNickNameInfo] = useState('');
   const [answerEmailInfo, setAnswerEmailInfo] = useState('');
   const answerInfo = { body: answerBodyInfo, name: answerNicknameInfo, email: answerEmailInfo, photos: [] };
 
-  const [questionInfo, setQuestionInfo] = useState({ question: '', nickname: '', email: ''});
-
   const postAnswer = () => {
     axios.post(`/postAnswer/${questionId}`, answerInfo)
       .then(() => console.log('I have added the answer on the api'))
       .catch(() => console.log('I have not added the answer on the api'));
   };
+
+  const [questionBodyInfo, setQuestionBodyInfo] = useState('');
+  const [questionNicknameInfo, setQuestionNicknameInfo] = useState('');
+  const [questionEmailInfo, setQuestionEmailInfo] = useState('');
+  const questionInfo = { body: questionBodyInfo, name: questionNicknameInfo, email: questionEmailInfo, product_id: currentProductId};
+
+  const postQuestion = () => {
+    axios.post('/postQuestion', questionInfo)
+      .then(() => console.log('I have added a question on the api'))
+      .catch(() => console.log('I have not added the question on the api'));
+  };
+
   return (
     <Modal isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
       <input className={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
@@ -72,16 +82,16 @@ const QuestionsAndAnswersModal = ({
               {' '}
             </h2>
             <h3>Your Questions</h3>
-            <textarea type="text" cols="100" rows="10" maxLength="1000" required />
+            <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={() => setQuestionBodyInfo(event.target.value)}/>
             <h3> What is your nickname: </h3>
-            <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required />
+            <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={() => setQuestionNicknameInfo(event.target.value)}/>
             <br />
             For privary reasons, do not use your full name or email address.
             <h3> Your email: </h3>
-            <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required />
+            <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={() => setQuestionEmailInfo(event.target.value)}/>
             <br />
             For authentication reasons,you will not be emailed.
-            <button className={styles.submit} type="button">
+            <button className={styles.submit} type="button" onClick={() => postQuestion()}>
               Submit
             </button>
           </div>
