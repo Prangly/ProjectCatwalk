@@ -2,14 +2,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Review from './Review';
+import StarRating from '../StarRating/StarRating';
 
 const ReviewsList = ({ reviews }) => {
   const reviewList = reviews.results.map((review) => <Review key={review.review_id} review={review} />);
 
   return (
-    <ul data-testid="reviewsList">
+    <div>
+      <StarRating />
+      <ul data-testid="reviewsList">
       {reviewList}
     </ul>
+    </div>
   );
 };
 
