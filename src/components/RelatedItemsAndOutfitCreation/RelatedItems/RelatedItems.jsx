@@ -42,7 +42,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
     axios.get(`${productURL + id}/related`)
     .then((data) => {
 
-console.log("It would be awesome if this was an array of numbers: ", data.data);
+// console.log("It would be awesome if this was an array of numbers: ", data.data);
 setRelatedItems(data.data);
 
   });

@@ -19,7 +19,7 @@ function Card({ card, action, setCurrentProductID }) {
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
 
-  const dummyProduct = card;
+  // const dummyProduct = card;
 
   if (productSelected) {
     setCurrentProductID(productSelected);
@@ -30,8 +30,6 @@ function Card({ card, action, setCurrentProductID }) {
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
         setRelatedStyles(data.data);
-        // console.log('Data from stylesAPI: ', data.data.results[0].photos[0].url);
-        // console.log('relatedStyles state variable: ', relatedStyles);
       });
   };
 
@@ -39,17 +37,17 @@ function Card({ card, action, setCurrentProductID }) {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
         setRelatedProduct(data.data);
-        // console.log('Data from productAPI: ', data.data);
-        // console.log('relatedProduct: ', relatedProduct);
       });
   };
 
   useEffect(() => {
-    productAPI(dummyProduct);
+    if (typeof card === 'number') {
+    productAPI(card); }
   }, [card]);
 
   useEffect(() => {
-    stylesAPI(dummyProduct);
+    if (typeof card === 'number') {
+    stylesAPI(card); }
   }, [card]);
 
   return (
