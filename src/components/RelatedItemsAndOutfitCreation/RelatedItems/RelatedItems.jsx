@@ -33,18 +33,20 @@ function RelatedItems({ currentProduct }) {
   const [relatedItems, setRelatedItems] = useState([]);
 
   const productAPI = (id) => {
-    axios.get(productURL + id);
+    return axios.get(productURL + id);
+
   };
 
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
       .then(
         (data) => {
-          console.log('Array of IDs returned from relatedAPI call: ', data.data);
-          const workingList =        Promise.all(data.data.map((relatedItemID) => {
-          productAPI(relatedItemID);
-          console.log('Working List, mapped using productAPI: ', workingList);
-        },),);
+          Promise.all(data.data.map((relatedItemID) => {
+          return productAPI(relatedItemID);
+        },),).then(
+
+          (data) => {console.log(data)}
+        );
         },
 
       );
