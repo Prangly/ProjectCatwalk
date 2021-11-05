@@ -56,10 +56,14 @@ const StylesAndSizes = ({
       </div>
 
       <div data-testid="styleContainer" id={styles.styleContainer}>
-        {`Style --> ${styleName}`}
+        <div data-testid="styleLine1" className={styles.styleLine} />
+        <span data-testid="styleName" id={styles.styleName}>
+          {`Style: ${styleName}`}
+        </span>
         <div id={styles.styleIconContainer} data-testid="styleIconContainer">
           {styleIcons}
         </div>
+        {/* <div data-testid="styleLine2" className={styles.styleLine} /> */}
       </div>
       <SizesAndAddToCart
         styleID={styleID}
