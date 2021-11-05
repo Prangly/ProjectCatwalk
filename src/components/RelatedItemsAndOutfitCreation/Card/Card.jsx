@@ -28,7 +28,7 @@ function Card({ card, action }) {
         </div>
       </Modal>
       <h4>{card.category}</h4>
-      <h4>{card.name}</h4>
+      <h4>{card.data.name}</h4>
       <h4>
         $
         {' '}

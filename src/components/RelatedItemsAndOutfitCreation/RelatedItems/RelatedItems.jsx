@@ -28,27 +28,24 @@ const productURL = 'http://127.0.0.1:3000/products/';
 
 function RelatedItems({ currentProduct }) {
   const action = 'Compare';
-  // let workingList = [];
-
   const [relatedItems, setRelatedItems] = useState([]);
-
   const productAPI = (id) => {
     return axios.get(productURL + id);
-
   };
 
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
-      .then(
-        (data) => {
-          Promise.all(data.data.map((relatedItemID) => {
-          return productAPI(relatedItemID);
-        },),).then(
-
-          (data) => {console.log(data)}
+      .then((data) => {
+          const products =  data.data.map((relatedItemID) => {
+            return productAPI(relatedItemID);
+          });
+          Promise.all(products)
+       .then(
+          (data) => {
+            console.log(data)
+          }
         );
         },
-
       );
   };
 
