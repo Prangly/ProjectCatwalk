@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddToBag from './AddToCart';
+import AddToCart from './AddToCart';
 import AddToOutfit from './AddToOutfit';
 import styles from '../styles.css';
 
@@ -9,7 +9,7 @@ function CartAndOutfit({
 }) {
   return (
     <div data-testid="bagAndOutfit" id={styles.bagAndOutfit}>
-      <AddToBag
+      <AddToCart
         productID={productID}
         styleID={styleID}
         currentSize={currentSize}

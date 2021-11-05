@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import WriteAReview from './WriteAReview/WriteAReview';

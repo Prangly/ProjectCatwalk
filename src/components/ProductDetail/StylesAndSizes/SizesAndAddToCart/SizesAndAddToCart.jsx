@@ -10,7 +10,7 @@ function SizesAndAddToCart({
   const [currentSize, setCurrentSize] = useState('size');
   const [currentQuantity, setCurrentQuantity] = useState('quantity');
   return (
-    <div data-testid="sizesAndAddToBag">
+    <div data-testid="sizesAndAddToCart">
       <SizesAndQuantity
         currentSize={currentSize}
         setCurrentSize={setCurrentSize}

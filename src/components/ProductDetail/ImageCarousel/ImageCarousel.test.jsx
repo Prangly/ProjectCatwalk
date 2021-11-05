@@ -29,7 +29,6 @@ describe('Image Carousel tests', () => {
 
     const image = screen.getByTestId('carouselImage')
     const button = screen.getByTestId('nextImageButton');
-    console.log(button)
     fireEvent.click(button)
     await waitFor(() => expect(image.src).toContain('1534'))
     expect(image.src).toContain('1534')

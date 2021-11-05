@@ -13,7 +13,7 @@ import sampleProduct from '../../SampleData/SampleProduct.js';
 const productURL = 'http://127.0.0.1:3000/products/';
 
 const App = () => {
-  const [currentProductID, setCurrentProductID] = useState('61576');
+  const [currentProductID, setCurrentProductID] = useState('61575');
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const [currentOutfit, setCurrentOutfit] = useState([]);
 
@@ -23,7 +23,6 @@ const App = () => {
       newOutfit.push(product);
       setCurrentOutfit(newOutfit);
     }
-    console.log(currentOutfit);
   };
 
   const productAPI = (id) => {
