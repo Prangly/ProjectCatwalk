@@ -57,6 +57,14 @@ app.get('/answers/:id/:number', (req, res) => {
     .catch(() => res.status(404).end());
 });
 
+app.get('/reviews/:id/:number', (req, res) => {
+  const { id, number } = req.params;
+  const reviewsURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}&count=${number}`;
+  axios.get(reviewsURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(404).end());
+});
+
 app.post('/postAnswer/:id', (req, res) => {
   const { id } = req.params;
   const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;

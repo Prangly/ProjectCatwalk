@@ -66,6 +66,7 @@ const QuestionsAndAnswersModal = ({
             <button id={styles.addPhotos} type="button">
               Upload Photos
             </button>
+            <br />
             <button className={styles.submit} type="button" onClick={() => postAnswer()}>
               Submit
             </button>
@@ -91,6 +92,7 @@ const QuestionsAndAnswersModal = ({
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={() => setQuestionEmailInfo(event.target.value)}/>
             <br />
             For authentication reasons,you will not be emailed.
+            <br />
             <button className={styles.submit} type="button" onClick={() => postQuestion()}>
               Submit
             </button>
