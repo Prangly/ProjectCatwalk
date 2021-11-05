@@ -6,46 +6,49 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styles from '../styles.css';
-
+import sampleProduct from '../../../SampleData/SampleProduct.js';
 const productURL = 'http://127.0.0.1:3000/';
+const sampleStyles = {results: [{photos: [{url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
+}]}]};
 
 // Modal.setAppElement('#root');
 function Card({ card, action, setCurrentProductID }) {
-  // console.log('Card in card: ', card);
-  // const [action, takeAction] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
-  const [relatedProduct, setRelatedProduct] = useState();
-  const [relatedStyles, setRelatedStyles] = useState();
+  const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
+  const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
 
-  const dummyProduct = '61575';
+  const dummyProduct = card;
 
   if (productSelected) {
-    // console.log(productSelected)
     setCurrentProductID(productSelected);
     selectProduct(false);
   }
 
   const stylesAPI = (id) => {
-    axios.get(productURL + "styles/" + id)
+    axios.get(`${productURL}styles/${id}`)
       .then((data) => {
-        setRelatedStyles(data);
-        console.log('Data retrieved from stylesAPI: ', data);
-        console.log('relatedStyles state variable: ', relatedStyles);
+        setRelatedStyles(data.data);
+        console.log('Data from stylesAPI: ', data.data.results[0].photos[0].url);
+        // console.log('relatedStyles state variable: ', relatedStyles);
       });
   };
 
   const productAPI = (id) => {
-    axios.get(productURL + "products/" + id)
+    axios.get(`${productURL}products/${id}`)
       .then((data) => {
-        setRelatedProduct(data);
-        console.log('relatedProduct: ', relatedProduct);
-    })
+        setRelatedProduct(data.data);
+        // console.log('Data from productAPI: ', data.data);
+        // console.log('relatedProduct: ', relatedProduct);
+      });
   };
 
   useEffect(() => {
     productAPI(dummyProduct);
+  }, [card]);
+
+  useEffect(() => {
     stylesAPI(dummyProduct);
   }, [card]);
 
@@ -65,15 +68,15 @@ function Card({ card, action, setCurrentProductID }) {
           </button>
         </div>
       </Modal>
-      <h4>{card.category}</h4>
-      <h4>{card.name}</h4>
+      <h4>{relatedProduct.category}</h4>
+      <h4>{relatedProduct.name}</h4>
       <h4>
         $
         {' '}
-        {card.default_price}
+        {relatedProduct.default_price}
       </h4>
       {/* <h4>{card.starRating}</h4> */}
-      <img onClick={() => selectProduct(card.id)} className={styles.cardImage} src={card.image} alt="" />
+      <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
     </div>
   );
 }
