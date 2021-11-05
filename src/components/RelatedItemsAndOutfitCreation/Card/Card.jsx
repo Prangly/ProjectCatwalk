@@ -30,7 +30,7 @@ function Card({ card, action, setCurrentProductID }) {
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
         setRelatedStyles(data.data);
-        console.log('Data from stylesAPI: ', data.data.results[0].photos[0].url);
+        // console.log('Data from stylesAPI: ', data.data.results[0].photos[0].url);
         // console.log('relatedStyles state variable: ', relatedStyles);
       });
   };
