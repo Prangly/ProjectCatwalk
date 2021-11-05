@@ -26,7 +26,7 @@ const RatAndRev = ({ currentProduct }) => {
       <h1>Ratings and Reviews</h1>
       <ReviewsList
         currentRevs={currentRevs}
-        reviews={SampleReviews}
+        reviews={currentRevs}
       />
       <WriteAReview />
     </div>
