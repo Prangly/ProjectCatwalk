@@ -48,7 +48,7 @@ const Questions = ({ question, currentProductName }) => {
       </div>
       <div className={styles.answers}>
         <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
-        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="MoreAnswers" onClick={() => { setLoadOrCollapse(false); }} />
+        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
           : null}
         {loadOrCollapse ? null
           : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}

@@ -1,0 +1,14 @@
+.close {
+  position: relative;
+  float: right;
+  cursor: pointer;
+}
+
+#addPhotos {
+  cursor: pointer;
+}
+
+.submit {
+  cursor: pointer;
+  margin-top: 30px;
+}

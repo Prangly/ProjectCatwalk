@@ -32,7 +32,7 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
         : null}
       {loadOrCollapse ? null
         : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
-      <div>
+      <div id={styles.addAQuestion}>
         <input type="button" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
         <QuestionsAndAnswersModal type={'question'} openModal={openQuestionsModal} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} />
       </div>
