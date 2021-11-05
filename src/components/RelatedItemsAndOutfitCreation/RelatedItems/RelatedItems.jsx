@@ -33,7 +33,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   const [relatedItems, setRelatedItems] = useState(starterCards);
 
   const productAPI = (id) => {
-    axios.get(productURL + id);
+    axios.get(`${productURL + id}/related`);
   };
 
   const relatedAPI = (id) => {
