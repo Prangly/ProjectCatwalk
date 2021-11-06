@@ -6,11 +6,7 @@ import {
 
 import '@testing-library/jest-dom';
 import DetailText from './DetailText';
-<<<<<<< HEAD
-import sampleProduct from '../../../SampleData/SampleProduct'
-=======
 import sampleProduct from '../../../SampleData/SampleProduct';
->>>>>>> main
 
 describe('Detail Text tests', () => {
   it('should render the product slogan on the page', () => {

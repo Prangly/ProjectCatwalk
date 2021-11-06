@@ -11,14 +11,15 @@ import RandOC from './RelatedItemsAndOutfitCreation';
 import RelatedItems from './RelatedItems/RelatedItems';
 import Outfit from './Outfit/Outfit';
 import Card from './Card/Card';
+import products from './SampleData/products';
 
 describe('RelatedItemsAndOutfitCreation test', () => {
   it('should recognize react testing library methods', () => {
-    render(<RandOC />);
+    render(<RandOC currentProduct={products[0]}/>);
     expect(screen.getByText('Related Items and Outfit Creation'));
   });
   it('should identify "relatedItems" component by data test ID', () => {
-    render(<RandOC />);
+    render(<RandOC currentProduct={products[0]}/>);
     expect(screen.getAllByTestId('relatedItems')[0]).toBeInTheDocument();
   });
   // it('should render an "outfit" component', () => {
@@ -26,11 +27,11 @@ describe('RelatedItemsAndOutfitCreation test', () => {
   //   expect(screen.getAllByTestId('outfit')[0]).toBeInTheDocument();
   // });
   it('should render "card" components', () => {
-    render(<RandOC />);
+    render(<RandOC currentProduct={products[0]}/>);
     expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   });
   it('should open the modal window', () => {
-    render(<RandOC />);
+    render(<RandOC currentProduct={products[0]}/>);
     userEvent.click(screen.getAllByText('Compare')[0]);
     expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   });
