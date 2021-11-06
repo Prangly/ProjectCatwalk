@@ -6,7 +6,7 @@ import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
 import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
-const Questions = ({ question, currentProductName }) => {
+const Questions = ({ question, currentProductName, setHelpfulness }) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
@@ -20,6 +20,14 @@ const Questions = ({ question, currentProductName }) => {
     getAnswers();
   }, [question]);
 
+
+  const updateQuestionHelpfulness = () => {
+    axios.put(`/updateQuestionHelpfulness/${question.question_id}`)
+      .then(() => useEffect(() => {getAnswers()}))
+      .catch(() => console.log('I was not able to update the helpfulness counter.'));
+    setHelpfulness(true);
+  };
+
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   return (
@@ -32,7 +40,7 @@ const Questions = ({ question, currentProductName }) => {
         <span className={styles.buttons}>
           Helpful?
           {'  '}
-          <span className={styles.underline} onClick={() => console.log('Need to update the counter for question helpfulness!')}>
+          <span className={styles.underline} onClick={() => updateQuestionHelpfulness()}>
             Yes
           </span>
           {'  ('}

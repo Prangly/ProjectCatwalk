@@ -23,11 +23,16 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
   const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
 
+  const [helpfulness, setHelpfulness] = useState(false);
+
+  useEffect(() => {
+    getQuestions(currentProduct.id, 100);
+  }, [helpfulness]);
   return (
     <div id={styles.qAndA}>
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput />
-      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} currentProductName={currentProduct.name} />
+      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} currentProductName={currentProduct.name} setHelpfulness={setHelpfulness}/>
       {loadOrCollapse && currentProductQuestions.length > 4 ? <input type="button" value="More Answered Questions" onClick={() => { setLoadOrCollapse(false); }} />
         : null}
       {loadOrCollapse ? null

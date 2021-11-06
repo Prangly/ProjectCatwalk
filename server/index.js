@@ -89,3 +89,11 @@ app.post('/postQuestion/', (req, res) => {
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(400));
 });
+
+app.put('/updateQuestionHelpfulness/:id', (req, res) => {
+  const { id } = req.params;
+  const updateQuestionHelpfulnessURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/helpful`;
+  axios.put(updateQuestionHelpfulnessURL, {}, { headers })
+    .then(()=> res.sendStatus(204))
+    .catch(()=> res.sendStatus(404));
+})
