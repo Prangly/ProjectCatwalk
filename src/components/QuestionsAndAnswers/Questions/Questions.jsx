@@ -7,7 +7,7 @@ import AnswersList from '../AnswersList/AnswersList';
 import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
 const Questions = ({
-  question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose,
+  question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose, setReportAnswer,
 }) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
@@ -55,7 +55,7 @@ const Questions = ({
         </span>
       </div>
       <div className={styles.answers}>
-        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} setAnswerHelpfulness={setAnswerHelpfulness} />
+        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />
         {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
           : null}
         {loadOrCollapse ? null
@@ -75,6 +75,7 @@ Questions.propTypes = {
   setQuestionHelpfulness: PropTypes.func.isRequired,
   setAnswerHelpfulness: PropTypes.func.isRequired,
   setModalClose: PropTypes.func.isRequired,
+  setReportAnswer: PropTypes.func.isRequired,
 };
 
 export default Questions;
