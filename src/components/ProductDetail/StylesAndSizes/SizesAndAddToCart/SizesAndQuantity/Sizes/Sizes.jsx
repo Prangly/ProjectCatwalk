@@ -9,7 +9,12 @@ function Sizes({ skusArray, setCurrentSize, currentSize }) {
     }
     return undefined;
   });
-
+  let defaultOption = <option value="size">Size</option>;
+  let disabledStyle = false;
+  if (!options.length) {
+    defaultOption = <option value="outOfStock">Out Of Stock</option>;
+    disabledStyle = true;
+  }
   const onSelectChange = (e) => {
     setCurrentSize(e.target.value);
   };
@@ -17,12 +22,13 @@ function Sizes({ skusArray, setCurrentSize, currentSize }) {
   return (
     <div data-testid="sizes" id={styles.sizes}>
       <select
+        disabled={disabledStyle}
         aria-label="sizes"
         value={currentSize}
         id={styles.sizeSelect}
         onChange={onSelectChange}
       >
-        <option value="size">Size</option>
+        {defaultOption}
         {options}
       </select>
     </div>
