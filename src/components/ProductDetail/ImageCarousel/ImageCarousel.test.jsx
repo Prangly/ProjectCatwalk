@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "babel-polyfill";
 import {
   render, screen, fireEvent, waitFor
@@ -8,12 +8,20 @@ import '@testing-library/jest-dom';
 import ImageCarousel from './ImageCarousel';
 import sampleStyles from '../../../SampleData/SampleStyles';
 import sampleStylesNoURL from '../../../SampleData/sampleStylesNoURL';
-import SampleProduct from '../../../SampleData/SampleProduct';
+import sampleProduct from '../../../SampleData/SampleProduct';
 import ProductDetail from '../ProductDetail';
+import ProductContext from '../../../ProductContext';
 
+const contextRender = (ui) => {
+  return render(<ProductContext.Provider value={{
+    currentProduct: sampleProduct
+  }}>
+    {ui}
+  </ProductContext.Provider>)
+}
 describe('Image Carousel tests', () => {
   it('should render an image', () => {
-    render(<ImageCarousel
+    contextRender(<ImageCarousel
       productStyles={sampleStyles}
       currentStyle={0}
       currentImage={0}
@@ -25,7 +33,7 @@ describe('Image Carousel tests', () => {
   });
 
   it('should change the image on button click', async () => {
-    render(<ProductDetail currentProduct={SampleProduct} />)
+    contextRender(<ProductDetail />)
 
     const image = screen.getByTestId('carouselImage')
     const button = screen.getByTestId('nextImageButton');

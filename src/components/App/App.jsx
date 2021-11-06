@@ -10,7 +10,6 @@ import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
 import sampleProduct from '../../SampleData/SampleProduct.js';
 import ProductContext from '../../ProductContext.jsx';
-
 const productURL = 'http://127.0.0.1:3000/products/';
 
 const App = () => {
@@ -44,7 +43,7 @@ const App = () => {
         setCurrentProductID,
       }}
       >
-        <ProductDetail addToOutfit={addToOutfit} currentProduct={currentProduct} />
+        <ProductDetail addToOutfit={addToOutfit} />
         <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
         <QandA currentProduct={currentProduct} />
         <RatAndRev currentProduct={currentProduct} />

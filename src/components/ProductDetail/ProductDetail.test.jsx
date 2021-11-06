@@ -10,9 +10,19 @@ import '@testing-library/jest-dom';
 import ProductDetail from './ProductDetail';
 import sampleProduct from '../../SampleData/SampleProduct'
 import { act } from 'react-dom/test-utils';
+import ProductContext
+  from '../../ProductContext';
+const contextRender = (ui) => {
+  return render(<ProductContext.Provider value={{
+    currentProduct: sampleProduct
+  }}>
+    {ui}
+  </ProductContext.Provider>)
+}
+
 describe('Product Detail tests', () => {
   it('should recognize react testing library methods', async () => {
-    render(<ProductDetail
+    contextRender(<ProductDetail
       addToOutfit={() => { }}
       currentProduct={sampleProduct} />);
     await expect(screen.getByTestId('productDetail')).toBeInTheDocument();
@@ -20,7 +30,7 @@ describe('Product Detail tests', () => {
   });
 
   it('should contain an "imageCarousel" component', async () => {
-    render(<ProductDetail
+    contextRender(<ProductDetail
       addToOutfit={() => { }}
       currentProduct={sampleProduct} />);
     await expect(screen.getByTestId('imageCarousel')).toBeInTheDocument();
@@ -28,7 +38,7 @@ describe('Product Detail tests', () => {
   });
 
   it('should contain a "stylesAndSizes" component', async () => {
-    render(<ProductDetail
+    contextRender(<ProductDetail
       addToOutfit={() => { }}
       currentProduct={sampleProduct} />);
     await expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument();
@@ -36,7 +46,7 @@ describe('Product Detail tests', () => {
   });
 
   it('should have a "detailText" component', async () => {
-    render(<ProductDetail
+    contextRender(<ProductDetail
       addToOutfit={() => { }}
       currentProduct={sampleProduct} />);
     await expect(screen.getByTestId('detailText')).toBeInTheDocument();
@@ -44,7 +54,7 @@ describe('Product Detail tests', () => {
   });
 
   it('should change the style on icon click', async () => {
-    render(<ProductDetail
+    contextRender(<ProductDetail
       addToOutfit={() => { }}
       currentProduct={sampleProduct}
     />);
