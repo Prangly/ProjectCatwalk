@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
+import ReviewStarRating from '../StarRating/ReviewStarRating';
 
 const Review = ({ review }) => (
   <span data-testid="review" id={styles.review}>
-    {review.rating}
+    <ReviewStarRating rating={review.rating} />
     {review.date}
     {review.summary}
     {review.body}
