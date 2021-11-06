@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import styles from './styles.css';
 
-const Answers = ({ answer }) => {
+const Answers = ({ answer, setAnswerHelpfulness }) => {
   const months = {
     '01': 'January',
     '02': 'February',
@@ -16,6 +17,11 @@ const Answers = ({ answer }) => {
     10: 'October',
     11: 'November',
     12: 'December',
+  };
+
+  const updateAnswerHelpfulness = () => {
+    axios.put(`/updateAnswerHelpfulness/${answer.answer_id}`)
+      .then(() => setAnswerHelpfulness((answerHelpfulness) => answerHelpfulness + 1));
   };
 
   return (
@@ -42,21 +48,17 @@ const Answers = ({ answer }) => {
         {' '}
         |
         {' '}
-        <span>
-          Helpful?
-          {' '}
-          <span className={styles.underline} onClick={() => console.log('Need to update the counter for answer helpfulness!')}>
-            Yes
-          </span>
-          {' ('}
-          {answer.helpfulness}
-          {') '}
-          |
-          {' '}
-          <span className={styles.underline} onClick={()=> console.log('Need to add an event listener to report the answer!')}>
-            Report
-          </span>
-        </span>
+        Helpful?
+        <button type="button" className={styles.button} onClick={() => updateAnswerHelpfulness()}>
+          Yes
+        </button>
+        {' ('}
+        {answer.helpfulness}
+        {') '}
+        |
+        <button type="button" className={styles.button} onClick={() => console.log('Need to add an event listener to report the answer!')}>
+          Report
+        </button>
       </div>
     </div>
   );
@@ -64,11 +66,13 @@ const Answers = ({ answer }) => {
 
 Answers.propTypes = {
   answer: PropTypes.shape({
+    answer_id: PropTypes.number,
     body: PropTypes.string,
     date: PropTypes.string,
     answerer_name: PropTypes.string,
     helpfulness: PropTypes.number,
   }).isRequired,
+  setAnswerHelpfulness: PropTypes.func.isRequired,
 };
 
 export default Answers;
