@@ -5,6 +5,7 @@ import axios from 'axios';
 import styles from './styles.css';
 import QuestionsSearchInput from './QuestionsSearchInput/QuestionsSearchInput';
 import QuestionsList from './QuestionsList/QuestionsList';
+import QuestionsAndAnswersModal from './QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
 const QuestionsAndAnswers = ({ currentProduct }) => {
   const apiURL = 'http://127.0.0.1:3000/questions/';
@@ -20,16 +21,21 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   }, [currentProduct]);
 
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
+  const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
 
   return (
     <div id={styles.qAndA}>
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput />
-      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} />
+      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} currentProductName={currentProduct.name} />
       {loadOrCollapse && currentProductQuestions.length > 4 ? <input type="button" value="More Answered Questions" onClick={() => { setLoadOrCollapse(false); }} />
         : null}
       {loadOrCollapse ? null
         : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
+      <div id={styles.addAQuestion}>
+        <input type="button" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
+        <QuestionsAndAnswersModal type={'question'} openModal={openQuestionsModal} currentProductId={currentProduct.id} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} />
+      </div>
     </div>
   );
 };
