@@ -29,5 +29,5 @@ SizesAndQuantity.propTypes = {
   currentQuantity: PropTypes.string.isRequired,
   setCurrentQuantity: PropTypes.func.isRequired,
   setCurrentSize: PropTypes.func.isRequired,
-  skus: PropTypes.arrayOf(PropTypes.object).isRequired,
+  skus: PropTypes.shape({}).isRequired,
 };

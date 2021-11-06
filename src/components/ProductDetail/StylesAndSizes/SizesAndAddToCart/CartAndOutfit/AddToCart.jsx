@@ -26,7 +26,7 @@ export default AddToCart;
 
 AddToCart.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
+  currentQuantity: PropTypes.string.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
   purchasePrice: PropTypes.string.isRequired,

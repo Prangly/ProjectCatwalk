@@ -17,11 +17,11 @@ function CartAndOutfit({
         purchasePrice={purchasePrice}
       />
       <AddToOutfit
+        addToOutfit={addToOutfit}
         productID={productID}
         styleID={styleID}
         currentSize={currentSize}
         currentQuantity={currentQuantity}
-        addToOutfit={addToOutfit}
         imgURL={imgURL}
       />
     </div>
@@ -32,7 +32,7 @@ export default CartAndOutfit;
 
 CartAndOutfit.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
+  currentQuantity: PropTypes.string.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
   purchasePrice: PropTypes.string.isRequired,

@@ -7,7 +7,6 @@ import SampleReviews from '../../SampleData/SampleReviews';
 import ReviewsList from './ReviewsList/ReviewsList';
 
 const RatAndRev = ({ currentProduct }) => {
-  console.log(currentProduct);
   const reviewURL = 'http://127.0.0.1:3000/reviews';
   const [currentRevs, setCurrentRev] = useState([]);
   const getReviews = (id, number) => {

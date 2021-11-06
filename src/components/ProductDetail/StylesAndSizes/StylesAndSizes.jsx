@@ -17,7 +17,7 @@ const StylesAndSizes = ({
   const salePrice = currentStyleDetails.sale_price;
   const styleName = currentStyleDetails.name;
   const purchasePrice = salePrice || price;
-  const imgURL = currentStyleDetails.photos[0].url;
+  const imgURL = currentStyleDetails.photos[0].url || '';
   const { skus } = currentStyleDetails;
   const saleStyle = salePrice
     ? {
