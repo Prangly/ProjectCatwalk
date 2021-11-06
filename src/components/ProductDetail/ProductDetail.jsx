@@ -13,7 +13,7 @@ import ProductContext from '../../ProductContext';
 // const currentProduct = SampleProduct;
 const stylesURL = 'http://127.0.0.1:3000/styles/';
 
-const ProductDetail = ({ addToOutfit, prod }) => {
+const ProductDetail = ({ addToOutfit }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
   const [productStyles, setProductStyles] = useState(sampleStyles);
   const [expanded, setExpanded] = useState(false);

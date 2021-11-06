@@ -4,7 +4,6 @@ import ProductFeature from './ProductFeature/ProductFeature';
 import styles from './styles.css';
 
 export default function DetailText({ product }) {
-  console.log(product)
   const features = product.features.map(
     // eslint-disable-next-line comma-dangle
     (feature) => <ProductFeature key={feature.feature} feature={feature} />

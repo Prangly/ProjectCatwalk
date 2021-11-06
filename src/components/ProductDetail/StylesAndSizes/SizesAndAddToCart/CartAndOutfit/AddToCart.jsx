@@ -18,7 +18,7 @@ function AddToCart({
       >
         Add To Cart
       </button>
-    </ div>
+    </div>
   );
 }
 

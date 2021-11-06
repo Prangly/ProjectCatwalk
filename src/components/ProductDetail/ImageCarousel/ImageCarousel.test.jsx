@@ -3,7 +3,6 @@ import "babel-polyfill";
 import {
   render, screen, fireEvent, waitFor
 } from '@testing-library/react';
-
 import '@testing-library/jest-dom';
 import ImageCarousel from './ImageCarousel';
 import sampleStyles from '../../../SampleData/SampleStyles';
@@ -19,6 +18,7 @@ const contextRender = (ui) => {
     {ui}
   </ProductContext.Provider>)
 }
+
 describe('Image Carousel tests', () => {
   it('should render an image', () => {
     contextRender(<ImageCarousel
