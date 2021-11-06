@@ -9,7 +9,7 @@ function Sizes({ skusArray, setCurrentSize, currentSize }) {
     }
     return undefined;
   });
-  let defaultOption = <option value="size">Size</option>;
+  let defaultOption = <option value="size">Select Size</option>;
   let disabledStyle = false;
   if (!options.length) {
     defaultOption = <option value="outOfStock">Out Of Stock</option>;
