@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 
 const Review = ({ review }) => (
-  <div data-testid="review" id={styles.review}>
+  <span data-testid="review" id={styles.review}>
     {review.rating}
     {review.date}
     {review.summary}
@@ -12,7 +12,7 @@ const Review = ({ review }) => (
     {review.reviewer_name}
     {review.response}
     {review.helpfulness}
-  </div>
+  </span>
 );
 
 Review.propTypes = {
