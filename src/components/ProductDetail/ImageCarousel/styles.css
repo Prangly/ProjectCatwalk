@@ -159,7 +159,7 @@ top: 0px
   width: 100%;
   height: 120%;
   z-index:2;
-  box-shadow: 0px 0px 1500px 180px rgba(0, 0, 0, 1);
+  box-shadow: 0px 0px 1000px 150px  rgba(0, 0, 0, 0.5);
   cursor: cell;
   display: flex;
   flex-direction: row;
@@ -213,4 +213,26 @@ z-index: inherit;
 #expandedRightBar{
   right:0;
 }
+
+#iconGallery {
+  position:absolute;
+  bottom: 1em;
+  height: 2em;
+}
+
+.photoIcon {
+  opacity: 0.5;
+  margin: 0.5em;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  height: 1em;
+  width: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.3)
+}
+
+.photoIcon:hover {
+  opacity: 0.8;
+}
+
 

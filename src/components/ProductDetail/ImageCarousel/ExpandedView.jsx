@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
+import IconGallery from './ExpandedViewIcons/IconGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ExpandedView({
-  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
+  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage
 }) {
   const [zoomed, setZoomed] = useState(false);
   const sampleStyle = productStyles.results[currentStyle];
@@ -19,17 +20,27 @@ export default function ExpandedView({
   };
 
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
-  const leftVis = currentImage === 0 ? 'hidden' : 'visible';
-  const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+  let leftVis = currentImage === 0 ? 'hidden' : 'visible';
+  let rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
+  let xVis = 'visible';
+  let iconVis = 'visible';
   const zoomStyle = zoomed
     ? {
       transform: 'scale(2)',
+      zIndex: '3',
     }
     : {
       left: '0%',
       top: '0%',
       transform: 'scale(1)',
+
     };
+  if (zoomed) {
+    leftVis = 'hidden';
+    rightVis = 'hidden';
+    xVis = 'hidden';
+    iconVis = 'hidden';
+  }
 
   const toggleZoomed = () => {
     setZoomed(!zoomed);
@@ -37,14 +48,15 @@ export default function ExpandedView({
 
   const onMouseMove = (e) => {
     if (zoomed) {
-      const image = document.getElementById('movingImage');
-      image.style.left = `${-10 - e.screenX / 12}%`;
-      image.style.top = `${-120 - e.screenY / 5}%`;
+      const image = document.getElementById('expandedCarouselImage');
+
+      image.style.left = `${-120 - e.screenX / 12}%`;
+      image.style.top = `${100 - e.screenY / 8}%`;
     }
   };
   return (
 
-    <div id={styles.expandedView} data-testid="expandedCarousel">
+    <div id={styles.expandedView} data-testid="expandedView">
 
       <button
         type="button"
@@ -63,7 +75,7 @@ export default function ExpandedView({
         <img
           data-testid="expandedCarouselImage"
           className={styles.expandedCarouselImage}
-          id="movingImage"
+          id="expandedCarouselImage"
           alt={alt}
           src={urls[currentImage]}
           onClick={toggleZoomed}
@@ -93,9 +105,16 @@ export default function ExpandedView({
         id={styles.closeExpandedView}
         data-testid="closeExpandedView"
         onClick={() => setExpanded(false)}
+        style={{ visibility: xVis }}
       >
         x
       </button>
+      <IconGallery
+        urls={urls}
+        currentImage={currentImage}
+        setCurrentImage={setCurrentImage}
+        iconVis={iconVis}
+      />
     </div>
 
   );

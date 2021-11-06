@@ -50,7 +50,7 @@ const ProductDetail = ({ currentProduct, addToOutfit }) => {
 
   return (
     <div data-testid="productDetail" id={styles.productDetail}>
-      <div id={styles.upperContainer}>
+      <div id={styles.upperContainer} data-testid="upperContainer">
         <ImageCarousel
           id={styles.imageCarousel}
           productStyles={productStyles}
