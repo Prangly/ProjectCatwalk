@@ -64,3 +64,28 @@ app.get('/reviews/:id/:number', (req, res) => {
     .then(({ data }) => res.send(data))
     .catch(() => res.status(404).end());
 });
+
+app.post('/postAnswer/:id', (req, res) => {
+  const { id } = req.params;
+  const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;
+  axios({
+    method: 'post',
+    url: addAnswerURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});
+
+app.post('/postQuestion/', (req, res) => {
+  const addQuestionURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/';
+  axios({
+    method: 'post',
+    url: addQuestionURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});

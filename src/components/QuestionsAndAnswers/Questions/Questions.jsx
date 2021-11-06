@@ -4,8 +4,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
+import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
-const Questions = ({ question }) => {
+const Questions = ({ question, currentProductName }) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
@@ -20,7 +21,7 @@ const Questions = ({ question }) => {
   }, [question]);
 
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
-
+  const [openModal, setOpenModal] = useState(false);
   return (
     <div className={styles.questionsAndAnswers}>
       <div className={styles.question}>
@@ -39,14 +40,15 @@ const Questions = ({ question }) => {
           {')  '}
           |
           {'  '}
-          <span className={styles.underline} onClick={() => console.log('Need to render a modal pop up for adding an answer!')}>
+          <span className={styles.underline} onClick={() => setOpenModal(true)}>
             Add Answer
           </span>
+          <QuestionsAndAnswersModal type={'answer'} openModal={openModal} currentProductName={currentProductName} questionId={question.question_id} questionBody={question.question_body} setOpenModal={setOpenModal} />
         </span>
       </div>
       <div className={styles.answers}>
         <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
-        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="MoreAnswers" onClick={() => { setLoadOrCollapse(false); }} />
+        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
           : null}
         {loadOrCollapse ? null
           : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
