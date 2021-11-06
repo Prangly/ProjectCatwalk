@@ -6,7 +6,9 @@ import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
 import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 
-const Questions = ({ question, currentProductName, setHelpfulness }) => {
+const Questions = ({
+  question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose,
+}) => {
   const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/100`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
@@ -20,16 +22,14 @@ const Questions = ({ question, currentProductName, setHelpfulness }) => {
     getAnswers();
   }, [question]);
 
-
   const updateQuestionHelpfulness = () => {
     axios.put(`/updateQuestionHelpfulness/${question.question_id}`)
-      .then(() => useEffect(() => {getAnswers()}))
-      .catch(() => console.log('I was not able to update the helpfulness counter.'));
-    setHelpfulness(true);
+      .then(() => setQuestionHelpfulness((questionHelpfulness) => questionHelpfulness + 1));
   };
 
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
   const [openModal, setOpenModal] = useState(false);
+
   return (
     <div className={styles.questionsAndAnswers}>
       <div className={styles.question}>
@@ -40,22 +40,22 @@ const Questions = ({ question, currentProductName, setHelpfulness }) => {
         <span className={styles.buttons}>
           Helpful?
           {'  '}
-          <span className={styles.underline} onClick={() => updateQuestionHelpfulness()}>
+          <button type="button" className={styles.button} onClick={() => updateQuestionHelpfulness()}>
             Yes
-          </span>
+          </button>
           {'  ('}
           {question.question_helpfulness}
           {')  '}
           |
           {'  '}
-          <span className={styles.underline} onClick={() => setOpenModal(true)}>
+          <button type="button" className={styles.button} onClick={() => setOpenModal(true)}>
             Add Answer
-          </span>
-          <QuestionsAndAnswersModal type={'answer'} openModal={openModal} currentProductName={currentProductName} questionId={question.question_id} questionBody={question.question_body} setOpenModal={setOpenModal} />
+          </button>
+          <QuestionsAndAnswersModal type="answer" openModal={openModal} currentProductName={currentProductName} questionId={question.question_id} questionBody={question.question_body} setOpenModal={setOpenModal} setModalClose={setModalClose} />
         </span>
       </div>
       <div className={styles.answers}>
-        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} />
+        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} setAnswerHelpfulness={setAnswerHelpfulness} />
         {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
           : null}
         {loadOrCollapse ? null
@@ -68,7 +68,13 @@ const Questions = ({ question, currentProductName, setHelpfulness }) => {
 Questions.propTypes = {
   question: PropTypes.shape({
     question_body: PropTypes.string,
+    question_id: PropTypes.number,
+    question_helpfulness: PropTypes.number,
   }).isRequired,
+  currentProductName: PropTypes.string.isRequired,
+  setQuestionHelpfulness: PropTypes.func.isRequired,
+  setAnswerHelpfulness: PropTypes.func.isRequired,
+  setModalClose: PropTypes.func.isRequired,
 };
 
 export default Questions;
