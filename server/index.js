@@ -41,11 +41,27 @@ app.get('/products/:id', (req, res) => {
     .catch(() => res.status(401).end()); /// handle this better
 });
 
-app.get('/reviews?product_id=:id', (req, res) => {
-  const { id } = req.params;
-  const reviewsURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}`;
+app.get('/questions/:id/:number', (req, res) => {
+  const { id, number } = req.params;
+  const productQuestionsURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions?product_id=${id}&count=${number}`;
+  axios.get(productQuestionsURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(401).end());
+});
+
+app.get('/answers/:id/:number', (req, res) => {
+  const { id, number } = req.params;
+  const answersURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers?count=${number}`;
+  axios.get(answersURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(404).end());
+});
+
+app.get('/reviews/:id/:number', (req, res) => {
+  const { id, number } = req.params;
+  const reviewsURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews?product_id=${id}&count=${number}`;
   axios.get(reviewsURL, { headers })
-    .then((data) => res.send(data.data))
+    .then(({ data }) => res.send(data))
     .catch(() => res.status(404).end());
 });
 
@@ -55,4 +71,29 @@ app.get('/products/:id/related', (req, res) => {
   axios.get(productURL, { headers })
     .then((data) => res.send(data.data))
     .catch(() => res.status(401).end()); /// handle this better
+});
+
+app.post('/postAnswer/:id', (req, res) => {
+  const { id } = req.params;
+  const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;
+  axios({
+    method: 'post',
+    url: addAnswerURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});
+
+app.post('/postQuestion/', (req, res) => {
+  const addQuestionURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/';
+  axios({
+    method: 'post',
+    url: addQuestionURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
 });
