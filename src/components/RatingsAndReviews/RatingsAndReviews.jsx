@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -30,7 +31,7 @@ const RatAndRev = ({ currentProduct }) => {
       />
       <div>
         <input type="button" value="Write A Review" onClick={() => setOpenWriteReviewModal(true)} />
-        <WriteAReview openModal={openWriteReviewModal} />
+        <WriteAReview openModal={openWriteReviewModal} setOpenModal={setOpenWriteReviewModal} currentProductId={currentProduct.id} />
       </div>
     </div>
   );
