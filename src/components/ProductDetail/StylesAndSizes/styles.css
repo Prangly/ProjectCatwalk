@@ -27,9 +27,9 @@
 #styleIconContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   /* border: 1px solid black; */
   padding: 0.5em;
 }

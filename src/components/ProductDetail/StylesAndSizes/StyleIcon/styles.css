@@ -28,6 +28,7 @@ box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .styleIconContainer {
+  margin:auto;
   display: flex;
   flex-direction: column;
   align-items: center;
