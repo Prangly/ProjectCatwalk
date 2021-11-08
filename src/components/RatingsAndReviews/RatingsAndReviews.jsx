@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 import WriteAReview from './WriteAReview/WriteAReview';
-import SampleReviews from '../../SampleData/SampleReviews';
+// import SampleReviews from '../../SampleData/SampleReviews';
 import ReviewsList from './ReviewsList/ReviewsList';
 
 const RatAndRev = ({ currentProduct }) => {
@@ -16,7 +16,6 @@ const RatAndRev = ({ currentProduct }) => {
       });
   };
   useEffect(() => {
-    console.log('current product id', currentProduct.id);
     getReviews(currentProduct.id, 2);
   }, [currentProduct]);
 

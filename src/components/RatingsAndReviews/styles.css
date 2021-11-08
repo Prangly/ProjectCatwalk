@@ -1,3 +1,34 @@
+#rating{
+
+}
+
+#date{
+
+}
+
+#summary{
+
+}
+
+#body{
+
+}
+
+#review {
+  float: right;
+  /* flex-direction: column; */
+  border: 0.5px solid #D3D3D3;
+  /* align-items: left;
+  align-content: space-between;
+  justify-content: space-around; */
+  margin: 1em;
+}
+
+#reviewslist{
+  flex-direction: column;
+}
+
 #ratingsAndReviews {
   border: 1px solid black;
 }
+

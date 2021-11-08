@@ -6,29 +6,40 @@ import axios from 'axios';
 import styles from './styles.css';
 
 const QuestionsAndAnswersModal = ({
-  type, openModal, currentProductName, questionId, questionBody, setOpenModal, currentProductId
+  type, openModal, currentProductName, questionId, questionBody, setOpenModal, currentProductId, setModalClose,
 }) => {
   const [answerBodyInfo, setAnswerBodyInfo] = useState('');
   const [answerNicknameInfo, setAnswerNickNameInfo] = useState('');
   const [answerEmailInfo, setAnswerEmailInfo] = useState('');
-  const answerInfo = { body: answerBodyInfo, name: answerNicknameInfo, email: answerEmailInfo, photos: [] };
+  const answerInfo = {
+    body: answerBodyInfo, name: answerNicknameInfo, email: answerEmailInfo, photos: [],
+  };
 
   const postAnswer = () => {
     axios.post(`/postAnswer/${questionId}`, answerInfo)
-      .then(() => console.log('I have added the answer on the api'))
-      .catch(() => console.log('I have not added the answer on the api'));
+      .then(() => setModalClose((modalClose) => modalClose + 1));
   };
 
   const [questionBodyInfo, setQuestionBodyInfo] = useState('');
   const [questionNicknameInfo, setQuestionNicknameInfo] = useState('');
   const [questionEmailInfo, setQuestionEmailInfo] = useState('');
-  const questionInfo = { body: questionBodyInfo, name: questionNicknameInfo, email: questionEmailInfo, product_id: currentProductId};
-
+  const questionInfo = {
+    body: questionBodyInfo, name: questionNicknameInfo, email: questionEmailInfo, product_id: currentProductId,
+  };
+  // const [formData, setFormData] = useState({
+  //   answer: '',
+  //   name: '',
+  // })
   const postQuestion = () => {
     axios.post('/postQuestion', questionInfo)
-      .then(() => console.log('I have added a question on the api'))
-      .catch(() => console.log('I have not added the question on the api'));
+      .then(() => setModalClose((modalClose) => modalClose + 1));
   };
+
+  // const onChange = (e) => {
+  //   let newFormData = { ...formData}
+  //   newFormData[e.target.name] = e.target.value;
+  //   setFormData(newFormData)
+  // }
 
   return (
     <Modal isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
@@ -52,13 +63,13 @@ const QuestionsAndAnswersModal = ({
               {' '}
             </h2>
             <h3> Your Answer: </h3>
-            <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={() => setAnswerBodyInfo(event.target.value)} />
+            <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setAnswerBodyInfo(event.target.value)} />
             <h3> What is your nickname: </h3>
-            <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={() => setAnswerNickNameInfo(event.target.value)} />
+            <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerNickNameInfo(event.target.value)} />
             <br />
             For privary reasons, do not use your full name or email address.
             <h3> Your email: </h3>
-            <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={() => setAnswerEmailInfo(event.target.value)} />
+            <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerEmailInfo(event.target.value)} />
             <br />
             For authentication reasons,you will not be emailed.
             <br />
@@ -83,13 +94,13 @@ const QuestionsAndAnswersModal = ({
               {' '}
             </h2>
             <h3>Your Questions</h3>
-            <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={() => setQuestionBodyInfo(event.target.value)}/>
+            <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setQuestionBodyInfo(event.target.value)} />
             <h3> What is your nickname: </h3>
-            <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={() => setQuestionNicknameInfo(event.target.value)}/>
+            <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionNicknameInfo(event.target.value)} />
             <br />
             For privary reasons, do not use your full name or email address.
             <h3> Your email: </h3>
-            <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={() => setQuestionEmailInfo(event.target.value)}/>
+            <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionEmailInfo(event.target.value)} />
             <br />
             For authentication reasons,you will not be emailed.
             <br />
@@ -101,4 +112,16 @@ const QuestionsAndAnswersModal = ({
     </Modal>
   );
 };
+
+QuestionsAndAnswersModal.propTypes = {
+  type: PropTypes.string.isRequired,
+  openModal: PropTypes.bool.isRequired,
+  currentProductName: PropTypes.bool.isRequired,
+  questionId: PropTypes.number.isRequired,
+  questionBody: PropTypes.string.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
+  currentProductId: PropTypes.number.isRequired,
+  setModalClose: PropTypes.func.isRequired,
+};
+
 export default QuestionsAndAnswersModal;

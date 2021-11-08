@@ -17,7 +17,10 @@
   /* margin-right: 10px; */
 }
 
-.underline {
+.button {
   text-decoration: underline;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-size: x-small;
 }

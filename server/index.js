@@ -65,6 +65,14 @@ app.get('/reviews/:id/:number', (req, res) => {
     .catch(() => res.status(404).end());
 });
 
+app.get('/products/:id/related', (req, res) => {
+  const { id } = req.params;
+  const productURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}/related`;
+  axios.get(productURL, { headers })
+    .then((data) => res.send(data.data))
+    .catch(() => res.status(401).end()); /// handle this better
+});
+
 app.post('/postAnswer/:id', (req, res) => {
   const { id } = req.params;
   const addAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/answers`;
@@ -88,4 +96,20 @@ app.post('/postQuestion/', (req, res) => {
   })
     .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(400));
+});
+
+app.put('/updateQuestionHelpfulness/:id', (req, res) => {
+  const { id } = req.params;
+  const updateQuestionHelpfulnessURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/questions/${id}/helpful`;
+  axios.put(updateQuestionHelpfulnessURL, {}, { headers })
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(404));
+});
+
+app.put('/updateAnswerHelpfulness/:id', (req, res) => {
+  const { id } = req.params;
+  const updateAnswerHelpfulnessURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${id}/helpful`;
+  axios.put(updateAnswerHelpfulnessURL, {}, { headers })
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(404));
 });
