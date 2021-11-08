@@ -36,21 +36,31 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
         setRelatedItems(data.data);
       });
   };
+
+  // if (starterCards) {
   // eslint-disable-next-line max-len
   const cardList = relatedItems.map((card) => <RelatedCard key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
+// } else {
+//   const cardList = [];
+// }
+;
 
   useEffect(() => {
     relatedAPI(currentProduct.id);
   }, [currentProduct.id]);
 
-console.log('relatedItems: ', relatedItems);
+// console.log('relatedItems: ', relatedItems);
 
+if (cardList) {
   return (
     <ul data-testid="relatedItems" id={styles.relatedItems}>
       Related Items
       {cardList}
     </ul>
   );
+} else {
+
+}
 }
 
 RelatedItems.propTypes = {
