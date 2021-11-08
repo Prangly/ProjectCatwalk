@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
-import Card from '../Card/Card';
+import RelatedCard from '../RelatedCard/RelatedCard';
 
 const productURL = 'http://127.0.0.1:3000/products/';
 const starterCards = [
@@ -36,7 +36,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
       });
   };
   // eslint-disable-next-line max-len
-  const cardList = relatedItems.map((card) => <Card key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
+  const cardList = relatedItems.map((card) => <RelatedCard key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
 
   useEffect(() => {
     relatedAPI(currentProduct.id);

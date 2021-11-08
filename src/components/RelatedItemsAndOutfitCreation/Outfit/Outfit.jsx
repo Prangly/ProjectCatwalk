@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles.css';
-import Card from '../Card/Card';
+import OutfitCard from '../OutfitCard/OutfitCard';
 
 const cards = [
   {
@@ -21,7 +22,7 @@ const cards = [
   },
 ];
 const action = 'Delete';
-const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
+const cardList = cards.map((card) => <OutfitCard key={card.id} card={card} action={action} />);
 
 function Outfit() {
   return (

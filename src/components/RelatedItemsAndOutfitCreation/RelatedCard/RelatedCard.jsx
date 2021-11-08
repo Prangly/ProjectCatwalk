@@ -20,7 +20,7 @@ const sampleStyles = {
 };
 
 // Modal.setAppElement('#root');
-function Card({ card, action, setCurrentProductID }) {
+function RelatedCard({ card, action, setCurrentProductID }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
@@ -89,7 +89,7 @@ function Card({ card, action, setCurrentProductID }) {
   );
 }
 
-Card.propTypes = {
+RelatedCard.propTypes = {
   card: PropTypes.shape({
     category: PropTypes.string,
     name: PropTypes.string,
@@ -100,4 +100,4 @@ Card.propTypes = {
   }).isRequired,
 };
 
-export default Card;
+export default RelatedCard;
