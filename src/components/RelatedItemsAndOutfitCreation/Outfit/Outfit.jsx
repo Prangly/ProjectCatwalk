@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import OutfitCard from '../OutfitCard/OutfitCard';
 
-const cards = [
+const productURL = 'http://127.0.0.1:3000/products/';
+const starterCards = [
   {
     id: '61577',
     category: 'Pants',
@@ -22,7 +23,14 @@ const cards = [
   },
 ];
 const action = 'Delete';
-const cardList = cards.map((card) => <OutfitCard key={card.id} card={card} action={action} />);
+
+// const [outfitItems, outfitItems] = useState(starterCards);
+
+
+
+const cardList = starterCards.map((card) => <OutfitCard key={card.id} card={card} action={action} />);
+
+
 
 function Outfit() {
   return (

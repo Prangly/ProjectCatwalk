@@ -21,7 +21,7 @@ const productURL = 'http://127.0.0.1:3000/';
 
 // Modal.setAppElement('#root');
 function OutfitCard({ card, action, setCurrentProductID }) {
-  console.log('Card object: ', card);
+  // console.log('Card object: ', card);
   // const [modalIsOpen, setModalIsOpen] = useState(false);
   // const [productSelected, selectProduct] = useState();
 

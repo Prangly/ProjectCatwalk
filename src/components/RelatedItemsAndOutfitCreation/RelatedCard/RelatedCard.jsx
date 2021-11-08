@@ -49,15 +49,15 @@ function RelatedCard({ card, action, setCurrentProductID }) {
   };
 
   useEffect(() => {
-    if (typeof card === 'number') {
+    // if (typeof card === 'number') {
       productAPI(card);
-    }
+    // }
   }, [card]);
 
   useEffect(() => {
-    if (typeof card === 'number') {
+    // if (typeof card === 'number') {
       stylesAPI(card);
-    }
+    // }
   }, [card]);
 
   return (
