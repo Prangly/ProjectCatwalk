@@ -49,10 +49,6 @@ export default function ExpandedView({
   const onMouseMove = (e) => {
     if (zoomed) {
       const image = document.getElementById('expandedCarouselImage');
-      const { width, height } = image;
-      console.log('image:', width, height);
-      console.log('mouse:', e.screenX, e.screenY)
-      console.log('screen:', screen.width, screen.height)
       image.style.left = `${-(e.screenX * 60) / screen.width}%`;
       image.style.top = `${-(e.screenY * 50) / screen.height}%`;
     }
