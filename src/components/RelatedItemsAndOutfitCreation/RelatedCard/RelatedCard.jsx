@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
+
 const productURL = 'http://127.0.0.1:3000/';
 const sampleStyles = {
   results: [{
@@ -26,8 +27,6 @@ function RelatedCard({ card, action, setCurrentProductID }) {
 
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
-
-  // const dummyProduct = card;
 
   if (productSelected) {
     setCurrentProductID(productSelected);
@@ -49,15 +48,11 @@ function RelatedCard({ card, action, setCurrentProductID }) {
   };
 
   useEffect(() => {
-    // if (typeof card === 'number') {
-      productAPI(card);
-    // }
+    productAPI(card);
   }, [card]);
 
   useEffect(() => {
-    // if (typeof card === 'number') {
-      stylesAPI(card);
-    // }
+    stylesAPI(card);
   }, [card]);
 
   return (

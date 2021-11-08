@@ -6,7 +6,7 @@ import RelatedCard from '../RelatedCard/RelatedCard';
 
 const productURL = 'http://127.0.0.1:3000/products/';
 const starterCards = [
-  61581, 61583
+  61581, 61583,
   // {
   //   id: '61581',
   //   category: 'Jackets',
