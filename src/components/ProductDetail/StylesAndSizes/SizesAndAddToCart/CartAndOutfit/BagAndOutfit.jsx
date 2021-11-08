@@ -5,7 +5,7 @@ import AddToOutfit from './AddToOutfit';
 import styles from '../styles.css';
 
 function CartAndOutfit({
-  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, imgURL,
+  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit,
 }) {
   return (
     <div data-testid="bagAndOutfit" id={styles.bagAndOutfit}>
@@ -19,10 +19,6 @@ function CartAndOutfit({
       <AddToOutfit
         addToOutfit={addToOutfit}
         productID={productID}
-        styleID={styleID}
-        currentSize={currentSize}
-        currentQuantity={currentQuantity}
-        imgURL={imgURL}
       />
     </div>
   );

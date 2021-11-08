@@ -7,8 +7,12 @@ import Quantity from './Quantity/Quantity';
 function SizesAndQuantity({
   skus, currentSize, setCurrentSize, currentQuantity, setCurrentQuantity,
 }) {
-  let skusArray = Object.keys(skus);
-  skusArray = skusArray.map((sku) => skus[sku]);
+  const skuIds = Object.keys(skus);
+  const skusArray = skuIds.map((sku) => skus[sku]);
+  skusArray.forEach((sku, i) => {
+    sku.sku_id = skuIds[i];
+  })
+
   return (
     <div data-testid="sizesAndQuantity" id={styles.sizesAndQuantity}>
       <Sizes skusArray={skusArray} currentSize={currentSize} setCurrentSize={setCurrentSize} />
