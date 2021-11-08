@@ -19,6 +19,7 @@ const App = () => {
   const [currentProductID, setCurrentProductID] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const [currentOutfit, setCurrentOutfit] = useState([]);
+  const [currentProductAvgRating, setCurrentProductAvgRating] = useState(0);
   const { id } = useParams();
 
   useEffect(() => {
@@ -62,6 +63,8 @@ const App = () => {
       <ProductContext.Provider value={{
         currentProduct,
         setCurrentProductID,
+        currentProductAvgRating,
+        setCurrentProductAvgRating,
       }}
       >
         <ProductDetail addToOutfit={addToOutfit} />

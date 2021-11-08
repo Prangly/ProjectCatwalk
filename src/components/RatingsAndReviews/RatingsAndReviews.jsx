@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 import WriteAReview from './WriteAReview/WriteAReview';
 // import SampleReviews from '../../SampleData/SampleReviews';
 import ReviewsList from './ReviewsList/ReviewsList';
+import ProductContext from '../../ProductContext';
 
 const RatAndRev = ({ currentProduct }) => {
   const reviewURL = 'http://127.0.0.1:3000/reviews';
   const [currentRevs, setCurrentRev] = useState([]);
+  const { currentProductAvgRating, setCurrentProductAvgRating } = useContext(ProductContext);
+
+  console.log('HERE IT IS', currentProductAvgRating);
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {

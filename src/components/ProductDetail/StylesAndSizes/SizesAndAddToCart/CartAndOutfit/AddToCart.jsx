@@ -8,8 +8,8 @@ function AddToCart({
   const [alertMessage, setAlertMessage] = useState('');
 
   const postToCart = (skuId, count) => {
-    console.log(skuId, count)
-  }
+    console.log(skuId, count);
+  };
   const onClick = (id, count) => {
     if (currentSize === 'size') {
       setAlertMessage('Please Select Size');
@@ -20,8 +20,6 @@ function AddToCart({
       setAlertMessage('');
     }
   };
-
-
 
   return (
     <div data-testid="addToCart" id={styles.addToCart}>
