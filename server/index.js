@@ -38,7 +38,10 @@ app.get('/products/:id', (req, res) => {
   const productURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`;
   axios.get(productURL, { headers })
     .then((data) => res.send(data.data))
-    .catch(() => res.status(401).end()); /// handle this better
+    .catch((err) => {
+      console.log(err);
+      res.status(401).end();
+    }); /// handle this better
 });
 
 app.get('/questions/:id/:number', (req, res) => {
