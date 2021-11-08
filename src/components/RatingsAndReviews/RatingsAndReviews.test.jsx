@@ -15,12 +15,6 @@ describe('Ratings and Reviews tests', () => {
       .toBeInTheDocument();
   });
 
-  it('should contain a "writeAReview" component', () => {
-    render(<RatAndRev currentProduct={SampleReviews.results[0]} />);
-    expect(screen.getByTestId('writeAReview'))
-      .toBeInTheDocument();
-  });
-
   it('should contain a "reviewsList" component', () => {
     render(<RatAndRev currentProduct={SampleReviews.results[0]} />);
     expect(screen.getByTestId('reviewsList'))
