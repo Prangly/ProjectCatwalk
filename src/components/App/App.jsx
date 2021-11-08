@@ -56,8 +56,8 @@ const App = () => {
   if (loading) { return (<h1>loading</h1>); }
   return (
     <div id="app">
-      <Link to="/61577">61577</Link>
-      <Link to="/61579"> 61579</Link>
+      {/* <Link to="/61577">61577</Link> */}
+      {/* <Link to="/61579"> 61579</Link> */}
       <Navbar />
       <ProductContext.Provider value={{
         currentProduct,
