@@ -1,24 +1,32 @@
+#sizesAndAddToCart {
+  height: 30%;
+}
+
 #bagAndOutfit, #sizesAndQuantity {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 50%;
 }
 
-#addToBag, #addToOutfit, #sizes, #quantity {
+#addToCart, #addToOutfit, #sizes, #quantity {
   /* border: 1px solid black; */
   margin: 1em;
   height: 2em;
+  height: 50%;
+
 }
 
 
-#addToBag {
+#addToCart {
   flex-grow: 4;
 }
 
 #addToOutfit {
 flex-grow: 1;
-/* width: 100%; */
+width: 10%;
 }
+
 
 #sizes {
   flex-grow: 3;
@@ -39,7 +47,10 @@ flex-grow: 1;
   height: 100%;
 }
 
-#addToBagButton, #addToOutfitButton {
+#addToOutfitButton{
+  width: 5%;
+}
+#addToCartButton, #addToOutfitButton {
   width: 100%;
   height: 100%;
   border: none;
@@ -48,7 +59,7 @@ flex-grow: 1;
   box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
 }
 
-#addToBagButton:hover{
+#addToCartButton:hover{
   background: #3a3f41;
 
 }
@@ -56,7 +67,7 @@ flex-grow: 1;
   background: #3a3f41;
 }
 
-#addToBagButton:active{
+#addToCartButton:active{
   background: #3a3e3f;
   box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
 
@@ -65,4 +76,11 @@ flex-grow: 1;
   background: #3a3e3f;
   box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
 
+}
+
+#alertMessage {
+  font-size: 0.3em;
+  color:red;
+  text-align:center;
+  width: 100%;
 }

@@ -9,11 +9,11 @@ import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreati
 import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
 import sampleProduct from '../../SampleData/SampleProduct.js';
-
+import ProductContext from '../../ProductContext.jsx';
 const productURL = 'http://127.0.0.1:3000/products/';
 
 const App = () => {
-  const [currentProductID, setCurrentProductID] = useState('61576');
+  const [currentProductID, setCurrentProductID] = useState('61575');
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const [currentOutfit, setCurrentOutfit] = useState([]);
 
@@ -23,7 +23,6 @@ const App = () => {
       newOutfit.push(product);
       setCurrentOutfit(newOutfit);
     }
-    console.log(currentOutfit);
   };
 
   const productAPI = (id) => {
@@ -39,10 +38,16 @@ const App = () => {
   return (
     <div id="app">
       <Navbar />
-      <ProductDetail addToOutfit={addToOutfit} currentProduct={currentProduct} />
-      <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
-      <QandA currentProduct={currentProduct} />
-      <RatAndRev currentProduct={currentProduct} />
+      <ProductContext.Provider value={{
+        currentProduct,
+        setCurrentProductID,
+      }}
+      >
+        <ProductDetail addToOutfit={addToOutfit} />
+        <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
+        <QandA currentProduct={currentProduct} />
+        <RatAndRev currentProduct={currentProduct} />
+      </ProductContext.Provider>
     </div>
   );
 };

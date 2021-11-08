@@ -6,6 +6,24 @@
   justify-content: space-between;
 }
 
+#styleContainer {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-around;
+  padding: 5%;
+}
+
+#styleName {
+  margin-left: 5%;
+}
+.styleLine {
+  align-self: center;
+  background: rgba(0, 0, 0, 0.5);
+  width: 90%;
+  height: 1px;
+}
 #styleIconContainer {
   display: flex;
   flex-direction: row;
@@ -25,4 +43,16 @@
   display: flex;
   flex-direction: row;
 }
+
+#nameRatingPrice{
+  margin-left: 5%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+
+
 

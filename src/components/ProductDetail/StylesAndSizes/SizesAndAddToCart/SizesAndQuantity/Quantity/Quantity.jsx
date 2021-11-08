@@ -47,7 +47,7 @@ export default Quantity;
 
 Quantity.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
+  currentQuantity: PropTypes.string.isRequired,
   setCurrentQuantity: PropTypes.func.isRequired,
   skusArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

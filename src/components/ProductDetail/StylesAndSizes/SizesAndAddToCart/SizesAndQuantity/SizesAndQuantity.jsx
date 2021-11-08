@@ -9,7 +9,6 @@ function SizesAndQuantity({
 }) {
   let skusArray = Object.keys(skus);
   skusArray = skusArray.map((sku) => skus[sku]);
-
   return (
     <div data-testid="sizesAndQuantity" id={styles.sizesAndQuantity}>
       <Sizes skusArray={skusArray} currentSize={currentSize} setCurrentSize={setCurrentSize} />
@@ -27,8 +26,8 @@ export default SizesAndQuantity;
 
 SizesAndQuantity.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
+  currentQuantity: PropTypes.string.isRequired,
   setCurrentQuantity: PropTypes.func.isRequired,
   setCurrentSize: PropTypes.func.isRequired,
-  skus: PropTypes.arrayOf(PropTypes.object).isRequired,
+  skus: PropTypes.shape({}).isRequired,
 };

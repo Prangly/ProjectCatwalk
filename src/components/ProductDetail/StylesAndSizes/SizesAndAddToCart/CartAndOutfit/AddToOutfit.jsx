@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles.css';
@@ -7,15 +7,17 @@ import styles from '../styles.css';
 function AddToOutfit({
   currentSize, currentQuantity, productID, styleID, addToOutfit, imgURL,
 }) {
+  const [alertMessage, setAlertMessage] = useState('');
   const onClick = () => {
     if (currentSize === 'size') {
-      alert('Please Select Size');
+      setAlertMessage('Please Select Size');
     } else if (currentQuantity === 'quantity') {
-      alert('Please Select Quantity');
+      setAlertMessage('Please Select Quantity');
     } else {
       addToOutfit({
         currentSize, currentQuantity, productID, styleID, imgURL,
       });
+      setAlertMessage('');
     }
   };
 
@@ -28,6 +30,7 @@ function AddToOutfit({
       >
         <FontAwesomeIcon icon={faStar} />
       </button>
+      <div data-testid="alertMessage" id={styles.alertMessage}>{alertMessage}</div>
     </div>
   );
 }
@@ -36,7 +39,7 @@ export default AddToOutfit;
 
 AddToOutfit.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
+  currentQuantity: PropTypes.string.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
   addToOutfit: PropTypes.func.isRequired,

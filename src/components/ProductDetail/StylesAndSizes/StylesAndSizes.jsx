@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
-import SizesAndAddToBag from './SizesAndAddToCart/SizesAndAddToCart';
+import SizesAndAddToCart from './SizesAndAddToCart/SizesAndAddToCart';
 
 import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
 
@@ -17,7 +17,7 @@ const StylesAndSizes = ({
   const salePrice = currentStyleDetails.sale_price;
   const styleName = currentStyleDetails.name;
   const purchasePrice = salePrice || price;
-  const imgURL = currentStyleDetails.photos[0].url;
+  const imgURL = currentStyleDetails.photos[0].url || '';
   const { skus } = currentStyleDetails;
   const saleStyle = salePrice
     ? {
@@ -39,26 +39,33 @@ const StylesAndSizes = ({
   ));
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
-      <h1 data-testid="productName" id={styles.productName}>{name}</h1>
-      <StarRating />
-      <div id={styles.price}>
-        <span
-          data-testid="productPrice"
-          id={styles.productPrice}
-          style={saleStyle}
-        >
-          {price}
-        </span>
-        <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+      <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
+        <h1 data-testid="productName" id={styles.productName}>{name}</h1>
+
+        <StarRating />
+        <div id={styles.price}>
+          <span
+            data-testid="productPrice"
+            id={styles.productPrice}
+            style={saleStyle}
+          >
+            {price}
+          </span>
+          <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+        </div>
       </div>
 
-      <div data-testid="styleContainer">
-        {`Style --> ${styleName}`}
+      <div data-testid="styleContainer" id={styles.styleContainer}>
+        <div data-testid="styleLine1" className={styles.styleLine} />
+        <span data-testid="styleName" id={styles.styleName}>
+          {`Style: ${styleName}`}
+        </span>
         <div id={styles.styleIconContainer} data-testid="styleIconContainer">
           {styleIcons}
         </div>
+        {/* <div data-testid="styleLine2" className={styles.styleLine} /> */}
       </div>
-      <SizesAndAddToBag
+      <SizesAndAddToCart
         styleID={styleID}
         productID={productID}
         currentStyleName={styleName}

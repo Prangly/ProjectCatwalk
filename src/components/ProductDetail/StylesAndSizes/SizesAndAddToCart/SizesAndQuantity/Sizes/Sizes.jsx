@@ -5,7 +5,7 @@ import styles from '../../styles.css';
 function Sizes({ skusArray, setCurrentSize, currentSize }) {
   const options = skusArray.map((sku) => {
     if (sku.quantity) {
-      return <option value={sku.size}>{sku.size}</option>;
+      return <option key={sku.size} value={sku.size}>{sku.size}</option>;
     }
     return undefined;
   });

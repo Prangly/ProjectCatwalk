@@ -6,10 +6,10 @@ function AddToCart({
   currentSize, currentQuantity, productID, styleID, purchasePrice,
 }) {
   return (
-    <div data-testid="addToCart" id={styles.addToBag}>
+    <div data-testid="addToCart" id={styles.addToCart}>
       <button
         type="button"
-        id={styles.addToBagButton}
+        id={styles.addToCartButton}
         onClick={() => {
           console.log({
             currentSize, currentQuantity, productID, styleID, purchasePrice,
@@ -26,7 +26,7 @@ export default AddToCart;
 
 AddToCart.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
+  currentQuantity: PropTypes.string.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
   purchasePrice: PropTypes.string.isRequired,
