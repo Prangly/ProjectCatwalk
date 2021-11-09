@@ -26,6 +26,11 @@ const App = () => {
     console.log(currentOutfit);
   };
 
+  const removeFromOutfit = (productToDiscard) => {
+    const revisedOutfit = currentOutfit.filter((item) => item.toString() !== productToDiscard.toString());
+    setCurrentOutfit(revisedOutfit);
+  };
+
   const productAPI = (id) => {
     axios.get(productURL + id)
       .then((data) => {
@@ -40,7 +45,8 @@ const App = () => {
     <div id="app">
       <Navbar />
       <ProductDetail addToOutfit={addToOutfit} currentProduct={currentProduct} />
-      <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
+   
+      <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} removeFromOutfit={removeFromOutfit} />
       <QandA currentProduct={currentProduct} />
       <RatAndRev currentProduct={currentProduct} />
     </div>

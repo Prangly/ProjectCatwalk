@@ -48,14 +48,19 @@ function OutfitCard({ card, action, setCurrentProductID }) {
       });
   };
 
+  // if (card) {
   useEffect(() => {
     productAPI(card);
   }, [card]);
+  // }
 
+  // if (card) {
   useEffect(() => {
     stylesAPI(card);
   }, [card]);
+  // }
 
+  // if (card) {
   return (
     <div data-testid="card" className={styles.card}>
       {/* <button onClick={() => setModalIsOpen(true)}>
@@ -72,6 +77,12 @@ function OutfitCard({ card, action, setCurrentProductID }) {
       <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="" />
     </div>
   );
+  // }
+  // return (
+  //   <div data-testid="card" className={styles.card}>
+  //     <h4>There are no items in your outfit.</h4>
+  //   </div>
+  // );
 }
 
 OutfitCard.propTypes = {
