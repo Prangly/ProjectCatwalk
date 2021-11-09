@@ -13,8 +13,7 @@ function AddToCart({
     .then((data) => {
       console.log(data);
     })
-    .catch(() => alert('There was an error...'));
-
+    .catch(() => setAlertMessage('There was an error adding to cart...'));
 
   const onClick = (id, count) => {
     if (currentSize === 'size') {
