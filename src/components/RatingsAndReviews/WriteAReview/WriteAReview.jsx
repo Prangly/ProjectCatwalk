@@ -7,9 +7,29 @@ import StarRating from '../StarRating/StarRating';
 
 const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [isRecommended, setIsRecommended] = useState(false);
+  const sampleReview = {
+    product_id: 61579,
+    rating: 2,
+    summary: 'Example small review of product',
+    recommend: true,
+    body: 'Example long review of product',
+    name: 'person',
+    email: 'email@email.com',
+    characteristics: {
+      206686: 5,
+      206687: 4,
+      206688: 3,
+      206689: 2,
+    },
+    photos: [
+      'https://i.imgur.com/xCeFAHu.jpeg',
+      'https://i.imgur.com/wl1S7do.jpeg',
+    ],
+  };
 
   const postReview = () => {
-    console.log('review to be added');
+    axios.post('/writeReview', sampleReview)
+      .then(() => console.log('review added'));
   };
 
   return (

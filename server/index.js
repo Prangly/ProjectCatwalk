@@ -118,6 +118,7 @@ app.put('/updateAnswerHelpfulness/:id', (req, res) => {
 });
 
 app.post('/writeReview/', (req, res) => {
+  console.log('got to the endpoint');
   const addReviewURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/';
   axios({
     method: 'post',
