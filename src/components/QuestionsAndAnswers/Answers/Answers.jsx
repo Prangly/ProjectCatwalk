@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 
-const Answers = ({ answer, setAnswerHelpfulness }) => {
+const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
   const months = {
     '01': 'January',
     '02': 'February',
@@ -22,6 +22,11 @@ const Answers = ({ answer, setAnswerHelpfulness }) => {
   const updateAnswerHelpfulness = () => {
     axios.put(`/updateAnswerHelpfulness/${answer.answer_id}`)
       .then(() => setAnswerHelpfulness((answerHelpfulness) => answerHelpfulness + 1));
+  };
+
+  const updateReportAnswer = () => {
+    axios.put(`updateReportAnswer/${answer.answer_id}`)
+      .then(() => setReportAnswer((reportAnswer) => reportAnswer + 1));
   };
 
   return (
@@ -56,7 +61,7 @@ const Answers = ({ answer, setAnswerHelpfulness }) => {
         {answer.helpfulness}
         {') '}
         |
-        <button type="button" className={styles.button} onClick={() => console.log('Need to add an event listener to report the answer!')}>
+        <button type="button" className={styles.button} onClick={() => updateReportAnswer()}>
           Report
         </button>
       </div>
@@ -73,6 +78,7 @@ Answers.propTypes = {
     helpfulness: PropTypes.number,
   }).isRequired,
   setAnswerHelpfulness: PropTypes.func.isRequired,
+  setReportAnswer: PropTypes.func.isRequired,
 };
 
 export default Answers;

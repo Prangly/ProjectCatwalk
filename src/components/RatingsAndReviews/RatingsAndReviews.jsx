@@ -23,6 +23,8 @@ const RatAndRev = ({ currentProduct }) => {
     getReviews(currentProduct.id, 2);
   }, [currentProduct]);
 
+  const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
+
   return (
     <div data-testid="ratAndRev" id={styles.ratingsAndReviews}>
       <h1>Ratings and Reviews</h1>
@@ -30,7 +32,10 @@ const RatAndRev = ({ currentProduct }) => {
         currentRevs={currentRevs}
         reviews={currentRevs}
       />
-      <WriteAReview />
+      <div>
+        <input type="button" value="Write A Review" onClick={() => setOpenWriteReviewModal(true)} />
+        <WriteAReview openModal={openWriteReviewModal} setOpenModal={setOpenWriteReviewModal} currentProductId={currentProduct.id} />
+      </div>
     </div>
   );
 };
