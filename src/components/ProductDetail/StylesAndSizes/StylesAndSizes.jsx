@@ -1,11 +1,12 @@
 /* eslint-disable import/no-named-as-default */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
-import SizesAndAddToBag from './SizesAndAddToCart/SizesAndAddToCart';
-
-import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
+import SizesAndAddToCart from './SizesAndAddToCart/SizesAndAddToCart';
+import ProductContext from '../../../ProductContext';
+import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import ShareProduct from './ShareProduct';
 
 const StylesAndSizes = ({
   productStyles, name, setCurrentStyle, currentStyle, addToOutfit,
@@ -17,8 +18,8 @@ const StylesAndSizes = ({
   const salePrice = currentStyleDetails.sale_price;
   const styleName = currentStyleDetails.name;
   const purchasePrice = salePrice || price;
-  const imgURL = currentStyleDetails.photos[0].url;
   const { skus } = currentStyleDetails;
+  const { currentProductAvgRating } = useContext(ProductContext);
   const saleStyle = salePrice
     ? {
       textDecoration: 'line-through red',
@@ -39,32 +40,40 @@ const StylesAndSizes = ({
   ));
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
-      <h1 data-testid="productName" id={styles.productName}>{name}</h1>
-      <StarRating />
-      <div id={styles.price}>
-        <span
-          data-testid="productPrice"
-          id={styles.productPrice}
-          style={saleStyle}
-        >
-          {price}
-        </span>
-        <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+      <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
+        <h1 data-testid="productName" id={styles.productName}>{name}</h1>
+
+        <ReviewStarRating rating={currentProductAvgRating} />
+        <ShareProduct />
+        <div id={styles.price}>
+          <span
+            data-testid="productPrice"
+            className={styles.price}
+            id={styles.productPrice}
+            style={saleStyle}
+          >
+            {price}
+          </span>
+          <div data-testid="salePrice" className={styles.price} id={styles.salePrice}>{salePrice}</div>
+        </div>
       </div>
 
-      <div data-testid="styleContainer">
-        {`Style --> ${styleName}`}
+      <div data-testid="styleContainer" id={styles.styleContainer}>
+        <div data-testid="styleLine1" className={styles.styleLine} />
         <div id={styles.styleIconContainer} data-testid="styleIconContainer">
           {styleIcons}
         </div>
+        <span data-testid="styleName" id={styles.styleName}>
+          {`Style: ${styleName}`}
+        </span>
+        {/* <div data-testid="styleLine2" className={styles.styleLine} /> */}
       </div>
-      <SizesAndAddToBag
+      <SizesAndAddToCart
         styleID={styleID}
         productID={productID}
         currentStyleName={styleName}
         skus={skus}
         purchasePrice={purchasePrice}
-        imgURL={imgURL}
         addToOutfit={addToOutfit}
       />
     </div>

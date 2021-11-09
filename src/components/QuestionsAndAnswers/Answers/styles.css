@@ -1,11 +1,17 @@
-#answer {
-  font-weight: bold;
+#answerBody {
+  margin-left: 22px;
 }
 
 #answersAuthor {
   margin-top: 5px;
   margin-left: 22px;
   margin-bottom: 5px;
+  font-size: x-small;
+}
+
+.clickedButton {
+  background: none;
+  border: none;
   font-size: x-small;
 }
 

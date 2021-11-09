@@ -5,18 +5,10 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 import styles from '../styles.css';
 
 function AddToOutfit({
-  currentSize, currentQuantity, productID, styleID, addToOutfit, imgURL,
+  productID, addToOutfit,
 }) {
   const onClick = () => {
-    if (currentSize === 'size') {
-      alert('Please Select Size');
-    } else if (currentQuantity === 'quantity') {
-      alert('Please Select Quantity');
-    } else {
-      addToOutfit({
-        currentSize, currentQuantity, productID, styleID, imgURL,
-      });
-    }
+    addToOutfit(productID);
   };
 
   return (
@@ -35,11 +27,7 @@ function AddToOutfit({
 export default AddToOutfit;
 
 AddToOutfit.propTypes = {
-  currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.number.isRequired,
   productID: PropTypes.string.isRequired,
-  styleID: PropTypes.number.isRequired,
   addToOutfit: PropTypes.func.isRequired,
-  imgURL: PropTypes.string.isRequired,
 
 };

@@ -1,28 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AddToBag from './AddToCart';
+import AddToCart from './AddToCart';
 import AddToOutfit from './AddToOutfit';
 import styles from '../styles.css';
 
 function CartAndOutfit({
-  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, imgURL,
+  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, currentSkuId,
 }) {
   return (
     <div data-testid="bagAndOutfit" id={styles.bagAndOutfit}>
-      <AddToBag
+      <AddToCart
         productID={productID}
         styleID={styleID}
         currentSize={currentSize}
         currentQuantity={currentQuantity}
         purchasePrice={purchasePrice}
+        currentSkuId={currentSkuId}
       />
       <AddToOutfit
-        productID={productID}
-        styleID={styleID}
-        currentSize={currentSize}
-        currentQuantity={currentQuantity}
         addToOutfit={addToOutfit}
-        imgURL={imgURL}
+        productID={productID}
       />
     </div>
   );
@@ -37,5 +34,5 @@ CartAndOutfit.propTypes = {
   styleID: PropTypes.number.isRequired,
   purchasePrice: PropTypes.string.isRequired,
   addToOutfit: PropTypes.func.isRequired,
-  imgURL: PropTypes.string.isRequired,
+  currentSkuId: PropTypes.string.isRequired,
 };

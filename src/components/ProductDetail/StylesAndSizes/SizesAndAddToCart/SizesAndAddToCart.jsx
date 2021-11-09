@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import BagAndOutfit from './CartAndOutfit/BagAndOutfit';
+import CartAndOutfit from './CartAndOutfit/BagAndOutfit';
 import SizesAndQuantity from './SizesAndQuantity/SizesAndQuantity';
+import styles from './styles.css';
 
 // MIGHT THIS ONLY NEED SKUS AND NAME?
 function SizesAndAddToCart({
-  currentStyleName, skus, productID, styleID, purchasePrice, addToOutfit, imgURL,
+  currentStyleName, skus, productID, styleID, purchasePrice, addToOutfit,
 }) {
   const [currentSize, setCurrentSize] = useState('size');
-  const [currentQuantity, setCurrentQuantity] = useState('quantity');
+  const [currentQuantity, setCurrentQuantity] = useState(1);
+  const [currentSkuId, setCurrentSkuId] = useState(null)
   return (
-    <div data-testid="sizesAndAddToBag">
+    <div data-testid="sizesAndAddToCart" id={styles.sizesAndAddToCart}>
       <SizesAndQuantity
         currentSize={currentSize}
         setCurrentSize={setCurrentSize}
@@ -18,8 +20,9 @@ function SizesAndAddToCart({
         skus={skus}
         currentQuantity={currentQuantity}
         setCurrentQuantity={setCurrentQuantity}
+        setCurrentSkuId={setCurrentSkuId}
       />
-      <BagAndOutfit
+      <CartAndOutfit
         productID={productID}
         styleID={styleID}
         currentSize={currentSize}
@@ -27,7 +30,7 @@ function SizesAndAddToCart({
         currentStyleName={currentStyleName}
         purchasePrice={purchasePrice}
         addToOutfit={addToOutfit}
-        imgURL={imgURL}
+        currentSkuId={currentSkuId}
       />
     </div>
   );
@@ -37,7 +40,7 @@ export default SizesAndAddToCart;
 
 SizesAndAddToCart.propTypes = {
   currentStyleName: PropTypes.string.isRequired,
-  skus: PropTypes.arrayOf(PropTypes.object).isRequired,
+  skus: PropTypes.shape({}).isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
   purchasePrice: PropTypes.string.isRequired,

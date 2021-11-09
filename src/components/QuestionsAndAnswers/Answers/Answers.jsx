@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 
-const Answers = ({ answer, setAnswerHelpfulness }) => {
+const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
   const months = {
     '01': 'January',
     '02': 'February',
@@ -19,17 +19,25 @@ const Answers = ({ answer, setAnswerHelpfulness }) => {
     12: 'December',
   };
 
+  const answerId = answer.answer_id;
+  const helpfulId = `${answerId}/helpful`;
+  const reportId = `${answerId}/reported`;
+
   const updateAnswerHelpfulness = () => {
-    axios.put(`/updateAnswerHelpfulness/${answer.answer_id}`)
+    axios.put(`/updateAnswerHelpfulness/${answerId}`)
+      .then(window.localStorage[helpfulId] = 'clicked')
       .then(() => setAnswerHelpfulness((answerHelpfulness) => answerHelpfulness + 1));
+  };
+
+  const updateReportAnswer = () => {
+    axios.put(`updateReportAnswer/${answerId}`)
+      .then(window.localStorage[reportId] = 'clicked')
+      .then(() => setReportAnswer((reportAnswer) => reportAnswer + 1));
   };
 
   return (
     <div>
-      <div>
-        <span id={styles.answer}>
-          A:
-        </span>
+      <div id={styles.answerBody}>
         {'  '}
         {answer.body}
       </div>
@@ -49,16 +57,28 @@ const Answers = ({ answer, setAnswerHelpfulness }) => {
         |
         {' '}
         Helpful?
-        <button type="button" className={styles.button} onClick={() => updateAnswerHelpfulness()}>
-          Yes
-        </button>
+        {window.localStorage[helpfulId] === 'clicked' ? (
+          <button type="button" className={styles.clickedButton}>
+            Yes
+          </button>
+        ) : (
+          <button type="button" className={styles.button} onClick={() => updateAnswerHelpfulness()}>
+            Yes
+          </button>
+        )}
         {' ('}
         {answer.helpfulness}
         {') '}
         |
-        <button type="button" className={styles.button} onClick={() => console.log('Need to add an event listener to report the answer!')}>
-          Report
-        </button>
+        {window.localStorage[reportId] === 'clicked' ? (
+          <button type="button" className={styles.clickedButton}>
+            Report
+          </button>
+        ) : (
+          <button type="button" className={styles.button} onClick={() => updateReportAnswer()}>
+            Report
+          </button>
+        ) }
       </div>
     </div>
   );
@@ -73,6 +93,7 @@ Answers.propTypes = {
     helpfulness: PropTypes.number,
   }).isRequired,
   setAnswerHelpfulness: PropTypes.func.isRequired,
+  setReportAnswer: PropTypes.func.isRequired,
 };
 
 export default Answers;

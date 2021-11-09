@@ -123,8 +123,8 @@ top: 0px
 }
 
 .thumbnailImage {
-  height: 2em;
-  width: 2em;
+  height: 5vh;
+  width: 5vh;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0px 3px white;

@@ -1,5 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App.jsx';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import App from './components/App/App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const RouteApp = () => (
+  <>
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/:id" element={<App />} />
+      </Routes>
+    </Router>
+  </>
+);
+
+ReactDOM.render(<RouteApp />, document.getElementById('root'));

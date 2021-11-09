@@ -38,7 +38,10 @@ app.get('/products/:id', (req, res) => {
   const productURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/products/${id}`;
   axios.get(productURL, { headers })
     .then((data) => res.send(data.data))
-    .catch(() => res.status(401).end()); /// handle this better
+    .catch((err) => {
+      console.log(err);
+      res.status(401).end();
+    }); /// handle this better
 });
 
 app.get('/questions/:id/:number', (req, res) => {
@@ -112,4 +115,32 @@ app.put('/updateAnswerHelpfulness/:id', (req, res) => {
   axios.put(updateAnswerHelpfulnessURL, {}, { headers })
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(404));
+});
+
+app.post('/writeReview/', (req, res) => {
+  const addReviewURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/';
+  axios({
+    method: 'post',
+    url: addReviewURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});
+
+app.put('/updateReportAnswer/:id', (req, res) => {
+  const { id } = req.params;
+  const updateReportAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${id}/report`;
+  axios.put(updateReportAnswerURL, {}, { headers })
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(404));
+});
+
+app.post('/cart/', (req, res) => {
+  const { skuId, count } = req.body;
+  const cartURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart/';
+  axios.post(cartURL, { sku_id: skuId, count }, { headers })
+    .then(() => res.status(201).send())
+    .catch((err) => res.status(err.response.status).send());
 });
