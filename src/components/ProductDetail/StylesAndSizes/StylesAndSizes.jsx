@@ -6,6 +6,7 @@ import styles from './styles.css';
 import SizesAndAddToCart from './SizesAndAddToCart/SizesAndAddToCart';
 import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import ShareProduct from './ShareProduct';
 
 const StylesAndSizes = ({
   productStyles, name, setCurrentStyle, currentStyle, addToOutfit,
@@ -43,26 +44,28 @@ const StylesAndSizes = ({
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
         <ReviewStarRating rating={currentProductAvgRating} />
+        <ShareProduct />
         <div id={styles.price}>
           <span
             data-testid="productPrice"
+            className={styles.price}
             id={styles.productPrice}
             style={saleStyle}
           >
             {price}
           </span>
-          <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+          <div data-testid="salePrice" className={styles.price} id={styles.salePrice}>{salePrice}</div>
         </div>
       </div>
 
       <div data-testid="styleContainer" id={styles.styleContainer}>
         <div data-testid="styleLine1" className={styles.styleLine} />
-        <span data-testid="styleName" id={styles.styleName}>
-          {`Style: ${styleName}`}
-        </span>
         <div id={styles.styleIconContainer} data-testid="styleIconContainer">
           {styleIcons}
         </div>
+        <span data-testid="styleName" id={styles.styleName}>
+          {`Style: ${styleName}`}
+        </span>
         {/* <div data-testid="styleLine2" className={styles.styleLine} /> */}
       </div>
       <SizesAndAddToCart
