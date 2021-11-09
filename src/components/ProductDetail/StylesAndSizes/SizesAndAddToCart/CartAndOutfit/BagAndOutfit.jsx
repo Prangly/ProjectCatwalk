@@ -5,7 +5,7 @@ import AddToOutfit from './AddToOutfit';
 import styles from '../styles.css';
 
 function CartAndOutfit({
-  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, imgURL,
+  currentSize, currentQuantity, productID, styleID, purchasePrice, addToOutfit, currentSkuId,
 }) {
   return (
     <div data-testid="bagAndOutfit" id={styles.bagAndOutfit}>
@@ -15,14 +15,11 @@ function CartAndOutfit({
         currentSize={currentSize}
         currentQuantity={currentQuantity}
         purchasePrice={purchasePrice}
+        currentSkuId={currentSkuId}
       />
       <AddToOutfit
         addToOutfit={addToOutfit}
         productID={productID}
-        styleID={styleID}
-        currentSize={currentSize}
-        currentQuantity={currentQuantity}
-        imgURL={imgURL}
       />
     </div>
   );
@@ -32,10 +29,10 @@ export default CartAndOutfit;
 
 CartAndOutfit.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.string.isRequired,
+  currentQuantity: PropTypes.number.isRequired,
   productID: PropTypes.string.isRequired,
   styleID: PropTypes.number.isRequired,
   purchasePrice: PropTypes.string.isRequired,
   addToOutfit: PropTypes.func.isRequired,
-  imgURL: PropTypes.string.isRequired,
+  currentSkuId: PropTypes.string.isRequired,
 };

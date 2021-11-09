@@ -6,10 +6,11 @@ import styles from './styles.css';
 
 // MIGHT THIS ONLY NEED SKUS AND NAME?
 function SizesAndAddToCart({
-  currentStyleName, skus, productID, styleID, purchasePrice, addToOutfit, imgURL,
+  currentStyleName, skus, productID, styleID, purchasePrice, addToOutfit,
 }) {
   const [currentSize, setCurrentSize] = useState('size');
-  const [currentQuantity, setCurrentQuantity] = useState('quantity');
+  const [currentQuantity, setCurrentQuantity] = useState(1);
+  const [currentSkuId, setCurrentSkuId] = useState(null)
   return (
     <div data-testid="sizesAndAddToCart" id={styles.sizesAndAddToCart}>
       <SizesAndQuantity
@@ -19,6 +20,7 @@ function SizesAndAddToCart({
         skus={skus}
         currentQuantity={currentQuantity}
         setCurrentQuantity={setCurrentQuantity}
+        setCurrentSkuId={setCurrentSkuId}
       />
       <CartAndOutfit
         productID={productID}
@@ -28,7 +30,7 @@ function SizesAndAddToCart({
         currentStyleName={currentStyleName}
         purchasePrice={purchasePrice}
         addToOutfit={addToOutfit}
-        imgURL={imgURL}
+        currentSkuId={currentSkuId}
       />
     </div>
   );

@@ -1,11 +1,11 @@
 /* eslint-disable import/no-named-as-default */
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
 import SizesAndAddToCart from './SizesAndAddToCart/SizesAndAddToCart';
-
-import StarRating from '../../RatingsAndReviews/StarRating/StarRating';
+import ProductContext from '../../../ProductContext';
+import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 
 const StylesAndSizes = ({
   productStyles, name, setCurrentStyle, currentStyle, addToOutfit,
@@ -17,8 +17,8 @@ const StylesAndSizes = ({
   const salePrice = currentStyleDetails.sale_price;
   const styleName = currentStyleDetails.name;
   const purchasePrice = salePrice || price;
-  const imgURL = currentStyleDetails.photos[0].url || '';
   const { skus } = currentStyleDetails;
+  const { currentProductAvgRating } = useContext(ProductContext);
   const saleStyle = salePrice
     ? {
       textDecoration: 'line-through red',
@@ -42,7 +42,7 @@ const StylesAndSizes = ({
       <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
-        <StarRating />
+        <ReviewStarRating rating={currentProductAvgRating} />
         <div id={styles.price}>
           <span
             data-testid="productPrice"
@@ -71,7 +71,6 @@ const StylesAndSizes = ({
         currentStyleName={styleName}
         skus={skus}
         purchasePrice={purchasePrice}
-        imgURL={imgURL}
         addToOutfit={addToOutfit}
       />
     </div>
