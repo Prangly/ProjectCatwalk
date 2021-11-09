@@ -21,8 +21,9 @@ function Outfit({ removeFromOutfit, currentOutfit }) {
   );
 }
 Outfit.propTypes = {
-  currentOutfit: PropTypes.isRequired,
-  removeFromOutfit: PropTypes.isRequired,
-};
+  currentOutfit: PropTypes.shape({
+  }),
+  removeFromOutfit: PropTypes.func.isRequired,
+}.isRequired;
 
 export default Outfit;

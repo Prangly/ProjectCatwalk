@@ -64,14 +64,9 @@ function OutfitCard({ card, action, removeFromOutfit }) {
 }
 
 OutfitCard.propTypes = {
-  card: PropTypes.shape({
-    category: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.string,
-    starRating: PropTypes.string,
-    image: PropTypes.string,
-    id: PropTypes.string,
-  }).isRequired,
+  card: PropTypes.string.isRequired,
+  action: PropTypes.string.isRequired,
+  removeFromOutfit: PropTypes.func.isRequired,
 };
 
 export default OutfitCard;

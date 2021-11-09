@@ -40,34 +40,40 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   // if (starterCards) {
   // eslint-disable-next-line max-len
   const cardList = relatedItems.map((card) => <RelatedCard key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
-// } else {
-//   const cardList = [];
-// }
-;
+  // } else {
+  //   const cardList = [];
+  // }
 
-  useEffect(() => {
-    relatedAPI(currentProduct.id);
-  }, [currentProduct.id]);
+  if (currentProduct) {
+    useEffect(() => {
+      relatedAPI(currentProduct.id);
+    }, [currentProduct.id]);
+  }
 
-// console.log('relatedItems: ', relatedItems);
+  // console.log('relatedItems: ', relatedItems);
 
-if (cardList) {
-  return (
-    <ul data-testid="relatedItems" id={styles.relatedItems}>
-      Related Items
-      {cardList}
-    </ul>
-  );
-} else {
-
-}
+  if (cardList) {
+    return (
+      <ul data-testid="relatedItems" id={styles.relatedItems}>
+        Related Items
+        {cardList}
+      </ul>
+    );
+  }
 }
 
 RelatedItems.propTypes = {
   currentProduct: PropTypes.shape({
     id: PropTypes.string,
-  }).isRequired,
-  setCurrentProductID: PropTypes.isRequired,
+  }),
+  setCurrentProductID: PropTypes.func,
 };
+
+RelatedItems.propTypes = {
+  currentProduct: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+  setCurrentProductID: PropTypes.func,
+}.isRequired;
 
 export default RelatedItems;
