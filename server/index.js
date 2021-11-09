@@ -144,3 +144,11 @@ app.post('/cart/', (req, res) => {
     .then(() => res.status(201).send())
     .catch((err) => res.status(err.response.status).send());
 });
+
+app.get('/meta/:id', (req, res) => {
+  const { id } = req.params;
+  const reviewsMetaURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=${id}`;
+  axios.get(reviewsMetaURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(500).end());
+});
