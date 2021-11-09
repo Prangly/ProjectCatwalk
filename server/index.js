@@ -124,3 +124,11 @@ app.put('/updateReportAnswer/:id', (req, res) => {
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(404));
 });
+
+app.post('/cart/', (req, res) => {
+  const { skuId, count } = req.body;
+  const cartURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/cart/';
+  axios.post(cartURL, { sku_id: skuId, count }, { headers })
+    .then(() => res.status(201).send())
+    .catch((err) => res.status(err.response.status).send());
+});

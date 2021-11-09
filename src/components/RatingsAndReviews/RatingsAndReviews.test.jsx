@@ -14,7 +14,7 @@ const contextRender = (ui) => render(
     currentProductAvgRating: 0,
   }}>
     {ui}
-  </ProductContext.Provider>
+  </ProductContext.Provider>,
 )
 
 describe('Ratings and Reviews tests', () => {

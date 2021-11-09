@@ -13,12 +13,11 @@ import ProductContext from '../../../ProductContext';
 const contextRender = (ui) => render(
   <ProductContext.Provider value={{
     currentProductAvgRating: 0,
-  }}>
+  }}
+  >
     {ui}
-  </ProductContext.Provider>
+  </ProductContext.Provider>,
 )
-
-
 
 describe('Styles and Sizes tests', () => {
   it('should render style icons', () => {

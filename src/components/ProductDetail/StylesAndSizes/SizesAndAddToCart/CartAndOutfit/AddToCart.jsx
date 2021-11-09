@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import axios from 'axios';
 import styles from '../styles.css';
 
+const cartUrl = 'http://127.0.0.1:3000/cart';
 function AddToCart({
   currentSize, currentQuantity, currentSkuId,
 }) {
@@ -11,13 +13,20 @@ function AddToCart({
     console.log(skuId, count);
   };
 
+  const cartAPI = (skuId, count) => {
+    axios.post(cartUrl, { skuId, count })
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   const onClick = (id, count) => {
     if (currentSize === 'size') {
       setAlertMessage('Please Select Size');
     } else if (currentQuantity === 'quantity') {
       setAlertMessage('Please Select Quantity');
     } else {
-      postToCart(id, count);
+      cartAPI(id, count);
       setAlertMessage('');
     }
   };
