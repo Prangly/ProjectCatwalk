@@ -9,6 +9,12 @@
   font-size: x-small;
 }
 
+.clickedButton {
+  background: none;
+  border: none;
+  font-size: x-small;
+}
+
 .button {
   text-decoration: underline;
   cursor: pointer;

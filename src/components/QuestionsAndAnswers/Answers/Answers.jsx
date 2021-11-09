@@ -19,13 +19,19 @@ const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
     12: 'December',
   };
 
+  const answerId = answer.answer_id;
+  const helpfulId = `${answerId}/helpful`;
+  const reportId = `${answerId}/reported`;
+
   const updateAnswerHelpfulness = () => {
-    axios.put(`/updateAnswerHelpfulness/${answer.answer_id}`)
+    axios.put(`/updateAnswerHelpfulness/${answerId}`)
+      .then(window.localStorage[helpfulId] = 'clicked')
       .then(() => setAnswerHelpfulness((answerHelpfulness) => answerHelpfulness + 1));
   };
 
   const updateReportAnswer = () => {
-    axios.put(`updateReportAnswer/${answer.answer_id}`)
+    axios.put(`updateReportAnswer/${answerId}`)
+      .then(window.localStorage[reportId] = 'clicked')
       .then(() => setReportAnswer((reportAnswer) => reportAnswer + 1));
   };
 
@@ -51,16 +57,28 @@ const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
         |
         {' '}
         Helpful?
-        <button type="button" className={styles.button} onClick={() => updateAnswerHelpfulness()}>
-          Yes
-        </button>
+        {window.localStorage[helpfulId] === 'clicked' ? (
+          <button type="button" className={styles.clickedButton}>
+            Yes
+          </button>
+        ) : (
+          <button type="button" className={styles.button} onClick={() => updateAnswerHelpfulness()}>
+            Yes
+          </button>
+        )}
         {' ('}
         {answer.helpfulness}
         {') '}
         |
-        <button type="button" className={styles.button} onClick={() => updateReportAnswer()}>
-          Report
-        </button>
+        {window.localStorage[reportId] === 'clicked' ? (
+          <button type="button" className={styles.clickedButton}>
+            Report
+          </button>
+        ) : (
+          <button type="button" className={styles.button} onClick={() => updateReportAnswer()}>
+            Report
+          </button>
+        ) }
       </div>
     </div>
   );
