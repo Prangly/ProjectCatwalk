@@ -1,6 +1,7 @@
 /* eslint-disable import/no-named-as-default */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { HashLink } from 'react-router-hash-link';
 import StyleIcon from './StyleIcon/StyleIcon';
 import styles from './styles.css';
 import SizesAndAddToCart from './SizesAndAddToCart/SizesAndAddToCart';
@@ -38,12 +39,15 @@ const StylesAndSizes = ({
       currentStyle={currentStyle}
     />
   ));
+  const numberOfReviews = 3;
+  const reviewPlural = numberOfReviews === 1 ? 'review' : 'reviews'
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
       <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
         <ReviewStarRating rating={currentProductAvgRating} />
+        <a href="#ratAndRev" id={styles.goToReviews}>{`See all ${numberOfReviews} ${reviewPlural}`}</a>
         <ShareProduct />
         <div id={styles.price}>
           <div
