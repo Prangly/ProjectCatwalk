@@ -2,6 +2,8 @@
 const { default: axios } = require('axios');
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const process = require('process');
 
 const app = express();
 const port = 3000;
@@ -17,8 +19,29 @@ const headers = {
   Authorization: API_KEY,
 };
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.get('/product/*', (req, res) => {
+  if (req.path.endsWith('bundle.js')) {
+    res.sendFile(path.join(process.cwd(), '/dist/bundle.js'), (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
+    });
+  } else if (req.path.endsWith('.css')) {
+    res.sendFile(path.join(process.cwd(), '/dist/styles.css'), (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
+    });
+  } else {
+    res.sendFile(path.join(process.cwd(), '/dist/index.html'), (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send(err);
+      }
+    });
+  }
 });
 
 app.listen(port, () => {

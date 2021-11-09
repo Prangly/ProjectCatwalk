@@ -6,7 +6,7 @@ import ProductContext from '../../../../../../ProductContext';
 function Quantity({
   skusArray, currentSize, currentQuantity, setCurrentQuantity, setCurrentSize,
 }) {
-  const { currentProduct } = useContext(ProductContext)
+  const { currentProduct } = useContext(ProductContext);
   useEffect(() => {
     setCurrentSize('size');
   }, [currentProduct]);
