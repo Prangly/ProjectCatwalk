@@ -38,10 +38,11 @@ const App = () => {
   }, [id]);
 
   const addToOutfit = (product) => {
+    console.log('Product: ', product);
     if (!currentOutfit.includes(product)) {
       const newOutfit = [...currentOutfit];
       newOutfit.push(product.productID);
-      setCurrentOutfit(newOutfit);
+      setCurrentOutfit(newOutfit, console.log('currentOutfit: ', currentOutfit));
     }
   };
 
@@ -50,6 +51,7 @@ const App = () => {
     const revisedOutfit = currentOutfit.filter((item) => item.toString() !== productToDiscard.toString());
     setCurrentOutfit(revisedOutfit);
   };
+
 
   const productAPI = (prodId) => {
     if (prodId) {

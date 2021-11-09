@@ -28,3 +28,20 @@
   border-radius: 10px;
   flex-grow: 3;
 }
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+.cardContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.actionButton {
+  position: absolute;
+  top: 5%;
+}
