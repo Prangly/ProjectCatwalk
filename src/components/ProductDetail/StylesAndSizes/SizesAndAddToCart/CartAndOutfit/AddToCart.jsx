@@ -9,16 +9,12 @@ function AddToCart({
 }) {
   const [alertMessage, setAlertMessage] = useState('');
 
-  const postToCart = (skuId, count) => {
-    console.log(skuId, count);
-  };
+  const cartAPI = (skuId, count) => axios.post(cartUrl, { skuId, count })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch(() => alert('There was an error...'));
 
-  const cartAPI = (skuId, count) => {
-    axios.post(cartUrl, { skuId, count })
-      .then((data) => {
-        console.log(data);
-      });
-  };
 
   const onClick = (id, count) => {
     if (currentSize === 'size') {
