@@ -3,13 +3,14 @@ import React, { useState } from 'react';
 import styles from '../styles.css';
 
 function AddToCart({
-  currentSize, currentQuantity,
+  currentSize, currentQuantity, currentSkuId,
 }) {
   const [alertMessage, setAlertMessage] = useState('');
 
   const postToCart = (skuId, count) => {
     console.log(skuId, count);
   };
+
   const onClick = (id, count) => {
     if (currentSize === 'size') {
       setAlertMessage('Please Select Size');
@@ -27,7 +28,7 @@ function AddToCart({
         type="button"
         id={styles.addToCartButton}
         onClick={() => {
-          onClick('555', 1);
+          onClick(currentSkuId, currentQuantity);
         }}
       >
         Add To Cart
@@ -43,4 +44,5 @@ export default AddToCart;
 AddToCart.propTypes = {
   currentSize: PropTypes.string.isRequired,
   currentQuantity: PropTypes.string.isRequired,
+  currentSkuId: PropTypes.string.isRequired,
 };

@@ -10,6 +10,7 @@ function SizesAndAddToCart({
 }) {
   const [currentSize, setCurrentSize] = useState('size');
   const [currentQuantity, setCurrentQuantity] = useState(1);
+  const [currentSkuId, setCurrentSkuId] = useState(null)
   return (
     <div data-testid="sizesAndAddToCart" id={styles.sizesAndAddToCart}>
       <SizesAndQuantity
@@ -19,6 +20,7 @@ function SizesAndAddToCart({
         skus={skus}
         currentQuantity={currentQuantity}
         setCurrentQuantity={setCurrentQuantity}
+        setCurrentSkuId={setCurrentSkuId}
       />
       <CartAndOutfit
         productID={productID}
@@ -28,7 +30,7 @@ function SizesAndAddToCart({
         currentStyleName={currentStyleName}
         purchasePrice={purchasePrice}
         addToOutfit={addToOutfit}
-
+        currentSkuId={currentSkuId}
       />
     </div>
   );

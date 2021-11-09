@@ -19,7 +19,7 @@ const App = () => {
   const [currentProductID, setCurrentProductID] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const [currentOutfit, setCurrentOutfit] = useState([]);
-  const [currentProductAvgRating, setCurrentProductAvgRating] = useState(0);
+  const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
   const { id } = useParams();
 
   useEffect(() => {
