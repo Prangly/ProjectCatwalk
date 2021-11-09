@@ -113,3 +113,15 @@ app.put('/updateAnswerHelpfulness/:id', (req, res) => {
     .then(() => res.sendStatus(204))
     .catch(() => res.sendStatus(404));
 });
+
+app.post('/writeReview/', (req, res) => {
+  const addReviewURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/';
+  axios({
+    method: 'post',
+    url: addReviewURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});
