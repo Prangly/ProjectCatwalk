@@ -1,9 +1,10 @@
 /* eslint-disable react/self-closing-comp */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating';
+import Characteristics from './Characteristics';
 
 const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [isRecommended, setIsRecommended] = useState(false);
@@ -11,6 +12,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
+  console.log('open modal', openModal);
 
   const metaURL = 'http://127.0.0.1:3000/meta';
 
@@ -54,7 +56,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
 
   useEffect(() => {
     getReviewsMeta(currentProductId);
-  }, [openModal]);
+  }, [currentProductId]);
 
   const postReview = () => {
     console.log('reviews meta characteristics object', reviewsMeta.characteristics);
@@ -81,6 +83,9 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         <span>
           <textarea type="text" placeholder="Example: Best purchase ever!" cols="100" rows="1" maxLength="250" onChange={(event) => setSummary(event.target.value)}></textarea>
         </span>
+        <br />
+        <br />
+        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} />
         <br />
         <br />
         <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>

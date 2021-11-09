@@ -34,7 +34,7 @@ const RatAndRev = ({ currentProduct }) => {
       />
       <div>
         <input type="button" value="Write A Review" onClick={() => setOpenWriteReviewModal(true)} />
-        <WriteAReview openModal={openWriteReviewModal} setOpenModal={setOpenWriteReviewModal} currentProductId={currentProduct.id}/>
+        <WriteAReview openModal={openWriteReviewModal} setOpenModal={setOpenWriteReviewModal} currentProductId={currentProduct.id} />
       </div>
     </div>
   );
