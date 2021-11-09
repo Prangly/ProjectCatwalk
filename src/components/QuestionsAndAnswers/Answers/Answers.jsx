@@ -31,10 +31,7 @@ const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
 
   return (
     <div>
-      <div>
-        <span id={styles.answer}>
-          A:
-        </span>
+      <div id={styles.answerBody}>
         {'  '}
         {answer.body}
       </div>
