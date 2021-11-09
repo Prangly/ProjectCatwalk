@@ -24,6 +24,7 @@ const Questions = ({
 
   const updateQuestionHelpfulness = () => {
     axios.put(`/updateQuestionHelpfulness/${question.question_id}`)
+      .then(window.localStorage[question.question_id] = 'clicked')
       .then(() => setQuestionHelpfulness((questionHelpfulness) => questionHelpfulness + 1));
   };
 
@@ -40,9 +41,15 @@ const Questions = ({
         <span className={styles.buttons}>
           Helpful?
           {'  '}
-          <button type="button" className={styles.button} onClick={() => updateQuestionHelpfulness()}>
-            Yes
-          </button>
+          {window.localStorage[question.question_id] === 'clicked' ? (
+            <button type="button" className={styles.clickedButton}>
+              Yes
+            </button>
+          ) : (
+            <button type="button" className={styles.button} onClick={() => updateQuestionHelpfulness()}>
+              Yes
+            </button>
+          )}
           {'  ('}
           {question.question_helpfulness}
           {')  '}

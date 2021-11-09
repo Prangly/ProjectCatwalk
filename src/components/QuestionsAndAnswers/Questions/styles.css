@@ -17,6 +17,12 @@
   /* margin-right: 10px; */
 }
 
+.clickedButton {
+  background: none;
+  border: none;
+  font-size: x-small;
+}
+
 .button {
   text-decoration: underline;
   cursor: pointer;
