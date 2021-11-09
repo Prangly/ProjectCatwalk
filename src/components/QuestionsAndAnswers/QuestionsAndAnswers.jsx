@@ -32,7 +32,6 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
         filterQuestion(data.results)
       ))
       .then((data) => {
-        console.log(data);
         setCurrentProductQuestions(data);
       });
   };
