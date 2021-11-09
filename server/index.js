@@ -117,6 +117,18 @@ app.put('/updateAnswerHelpfulness/:id', (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
+app.post('/writeReview/', (req, res) => {
+  const addReviewURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/';
+  axios({
+    method: 'post',
+    url: addReviewURL,
+    data: req.body,
+    headers,
+  })
+    .then(() => res.sendStatus(201))
+    .catch(() => res.sendStatus(400));
+});
+
 app.put('/updateReportAnswer/:id', (req, res) => {
   const { id } = req.params;
   const updateReportAnswerURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/qa/answers/${id}/report`;
