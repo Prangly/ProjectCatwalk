@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
@@ -23,7 +24,6 @@ const App = () => {
       newOutfit.push(product.productID);
       setCurrentOutfit(newOutfit);
     }
-    console.log(currentOutfit);
   };
 
   const removeFromOutfit = (productToDiscard) => {

@@ -7,7 +7,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-// import Modal from 'react-modal';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 
@@ -20,18 +19,9 @@ const sampleStyles = {
   }],
 };
 
-// Modal.setAppElement('#root');
-function OutfitCard({ card, action, setCurrentProductID }) {
-  // const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [productSelected, selectProduct] = useState();
-
+function OutfitCard({ card, action, removeFromOutfit }) {
   const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
-
-  if (productSelected) {
-    setCurrentProductID(productSelected);
-    selectProduct(false);
-  }
 
   const stylesAPI = (id) => {
     axios.get(`${productURL}styles/${id}`)
@@ -57,9 +47,9 @@ function OutfitCard({ card, action, setCurrentProductID }) {
 
   return (
     <div data-testid="card" className={styles.card}>
-      {/* <button onClick={() => setModalIsOpen(true)}>
+      <button onClick={() => removeFromOutfit(card)}>
         {action}
-      </button> */}
+      </button>
       <h4>{outfitProduct.category}</h4>
       <h4>{outfitProduct.name}</h4>
       <h4>

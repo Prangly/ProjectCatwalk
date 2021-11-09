@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import OutfitCard from '../OutfitCard/OutfitCard';
 
-// const productURL = 'http://127.0.0.1:3000/products/';
-// const outfitIDs = [
-//   61577, 61578,
-// ];
 function Outfit({ removeFromOutfit, currentOutfit }) {
-  console.log('Array received in Outfit: ', currentOutfit);
   const action = 'Delete';
   // eslint-disable-next-line max-len
   const cardList = currentOutfit.map((card) => <OutfitCard key={card.id} card={card} action={action} removeFromOutfit={removeFromOutfit} />);
