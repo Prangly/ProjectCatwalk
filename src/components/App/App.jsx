@@ -20,13 +20,14 @@ const App = () => {
   const addToOutfit = (product) => {
     if (!currentOutfit.includes(product)) {
       const newOutfit = [...currentOutfit];
-      newOutfit.push(product);
+      newOutfit.push(product.productID);
       setCurrentOutfit(newOutfit);
     }
     console.log(currentOutfit);
   };
 
   const removeFromOutfit = (productToDiscard) => {
+    // eslint-disable-next-line max-len
     const revisedOutfit = currentOutfit.filter((item) => item.toString() !== productToDiscard.toString());
     setCurrentOutfit(revisedOutfit);
   };
@@ -45,8 +46,7 @@ const App = () => {
     <div id="app">
       <Navbar />
       <ProductDetail addToOutfit={addToOutfit} currentProduct={currentProduct} />
-   
-      <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} removeFromOutfit={removeFromOutfit} />
+      <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} currentOutfit={currentOutfit} removeFromOutfit={removeFromOutfit} />
       <QandA currentProduct={currentProduct} />
       <RatAndRev currentProduct={currentProduct} />
     </div>
