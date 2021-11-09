@@ -9,32 +9,46 @@ import QuestionsAndAnswersModal from './QuestionsAndAnswersModal/QuestionsAndAns
 
 const QuestionsAndAnswers = ({ currentProduct }) => {
   const [currentProductQuestions, setCurrentProductQuestions] = useState([]);
-  const getQuestions = () => {
-    axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/100`)
-      .then(({ data }) => {
-        setCurrentProductQuestions(data.results);
-      });
-  };
-  useEffect(() => {
-    getQuestions();
-  }, [currentProduct]);
-
   const [questionHelpfulness, setQuestionHelpfulness] = useState(0);
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
+  const [reportAnswer, setReportAnswer] = useState(0);
   const [modalClose, setModalClose] = useState(0);
-
-  useEffect(() => {
-    getQuestions();
-  }, [questionHelpfulness, answerHelpfulness, modalClose]);
-
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
   const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
+  const [searchInput, changeSearchInput] = useState('');
+
+  const filterQuestion = (questionsFromAPI) => {
+    if (searchInput.length > 2) {
+      return questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
+    }
+    return questionsFromAPI;
+  };
+
+  // const getQuestions = (source) => {
+  const getQuestions = () => {
+    // axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/50`, { cancelToken: source.token })
+    axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/50`)
+      .then(({ data }) => (
+        filterQuestion(data.results)
+      ))
+      .then((data) => {
+        console.log(data);
+        setCurrentProductQuestions(data);
+      });
+  };
+
+  useEffect(() => {
+    // const cancelToken = axios.CancelToken;
+    // const source = cancelToken.source();
+    // getQuestions(source);
+    getQuestions();
+  }, [currentProduct, questionHelpfulness, answerHelpfulness, modalClose, reportAnswer, searchInput]);
 
   return (
     <div id={styles.qAndA}>
       <h1>Questions and Answers</h1>
-      <QuestionsSearchInput />
-      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} />
+      <QuestionsSearchInput changeSearchInput={changeSearchInput} />
+      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
       {loadOrCollapse && currentProductQuestions.length > 4 ? <input type="button" value="More Answered Questions" onClick={() => { setLoadOrCollapse(false); }} />
         : null}
       {loadOrCollapse ? null

@@ -5,7 +5,7 @@ import IconGallery from './ExpandedViewIcons/IconGallery';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ExpandedView({
-  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage
+  productStyles, currentStyle, setExpanded, currentImage, setCurrentImage,
 }) {
   const [zoomed, setZoomed] = useState(false);
   const sampleStyle = productStyles.results[currentStyle];
@@ -49,9 +49,8 @@ export default function ExpandedView({
   const onMouseMove = (e) => {
     if (zoomed) {
       const image = document.getElementById('expandedCarouselImage');
-
-      image.style.left = `${-120 - e.screenX / 12}%`;
-      image.style.top = `${100 - e.screenY / 8}%`;
+      image.style.left = `${-(e.screenX * 60) / screen.width}%`;
+      image.style.top = `${-(e.screenY * 50) / screen.height}%`;
     }
   };
   return (
