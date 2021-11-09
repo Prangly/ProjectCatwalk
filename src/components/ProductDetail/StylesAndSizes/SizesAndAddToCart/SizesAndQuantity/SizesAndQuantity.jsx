@@ -35,7 +35,7 @@ export default SizesAndQuantity;
 
 SizesAndQuantity.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.string.isRequired,
+  currentQuantity: PropTypes.number.isRequired,
   setCurrentQuantity: PropTypes.func.isRequired,
   setCurrentSize: PropTypes.func.isRequired,
   skus: PropTypes.shape({}).isRequired,

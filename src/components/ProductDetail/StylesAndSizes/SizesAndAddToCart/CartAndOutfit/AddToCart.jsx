@@ -43,6 +43,6 @@ export default AddToCart;
 
 AddToCart.propTypes = {
   currentSize: PropTypes.string.isRequired,
-  currentQuantity: PropTypes.string.isRequired,
+  currentQuantity: PropTypes.number.isRequired,
   currentSkuId: PropTypes.string.isRequired,
 };
