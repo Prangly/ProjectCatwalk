@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable react/self-closing-comp */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
@@ -12,6 +13,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
+  const [characteristics, setCharacteristics] = useState(null);
   console.log('open modal', openModal);
 
   const metaURL = 'http://127.0.0.1:3000/meta';
@@ -59,7 +61,6 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   }, [currentProductId]);
 
   const postReview = () => {
-    console.log('reviews meta characteristics object', reviewsMeta.characteristics);
     axios.post('/writeReview', submittedReview)
       .then(() => console.log('review added'));
   };
@@ -85,7 +86,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         </span>
         <br />
         <br />
-        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} />
+        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} setCharacteristics={setCharacteristics} />
         <br />
         <br />
         <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
