@@ -8,16 +8,33 @@ import styles from './styles.css';
 const QuestionsAndAnswersModal = ({
   type, openModal, currentProductName, questionId, questionBody, setOpenModal, currentProductId, setModalClose,
 }) => {
-  const [answerBodyInfo, setAnswerBodyInfo] = useState('');
-  const [answerNicknameInfo, setAnswerNickNameInfo] = useState('');
-  const [answerEmailInfo, setAnswerEmailInfo] = useState('');
+  const [answerBodyInfo, setAnswerBodyInfo] = useState(null);
+  const [answerNicknameInfo, setAnswerNickNameInfo] = useState(null);
+  const [answerEmailInfo, setAnswerEmailInfo] = useState(null);
   const answerInfo = {
     body: answerBodyInfo, name: answerNicknameInfo, email: answerEmailInfo, photos: [],
   };
+  const [answerBodyRequired, setAnswerBodyRequired] = useState(false);
+  const [answerNicknameRequired, setAnswerNicknameRequired] = useState(false);
+  const [answerEmailRequired, setAnswerEmailRequired] = useState(false);
 
   const postAnswer = () => {
+    setAnswerBodyRequired(false);
+    setAnswerNicknameRequired(false);
+    setAnswerEmailRequired(false);
     axios.post(`/postAnswer/${questionId}`, answerInfo)
-      .then(() => setModalClose((modalClose) => modalClose + 1));
+      .then(() => setModalClose((modalClose) => modalClose + 1))
+      .catch(() => {
+        if (answerInfo.body === null) {
+          setAnswerBodyRequired(true);
+        }
+        if (answerInfo.name === null) {
+          setAnswerNicknameRequired(true);
+        }
+        if (answerInfo.email === null || !answerInfo.email.includes('@')) {
+          setAnswerEmailRequired(true);
+        }
+      });
   };
 
   const [questionBodyInfo, setQuestionBodyInfo] = useState(null);
@@ -26,10 +43,6 @@ const QuestionsAndAnswersModal = ({
   const questionInfo = {
     body: questionBodyInfo, name: questionNicknameInfo, email: questionEmailInfo, product_id: currentProductId,
   };
-  // const [formData, setFormData] = useState({
-  //   answer: '',
-  //   name: '',
-  // })
   const [questionBodyRequired, setQuestionBodyRequired] = useState(false);
   const [questionNicknameRequired, setQuestionNicknameRequired] = useState(false);
   const [questionEmailRequired, setQuestionEmailRequired] = useState(false);
@@ -57,6 +70,10 @@ const QuestionsAndAnswersModal = ({
   }, [questionBodyRequired, questionNicknameRequired, questionEmailRequired]);
 
   // const onChange = (e) => {
+  // const [formData, setFormData] = useState({
+  //   answer: '',
+  //   name: '',
+  // })
   //   let newFormData = { ...formData}
   //   newFormData[e.target.name] = e.target.value;
   //   setFormData(newFormData)
@@ -89,7 +106,7 @@ const QuestionsAndAnswersModal = ({
               {' '}
               <span className={styles.required}>*</span>
               {'  '}
-              <span id={styles.answerBodyRequired}>You must enter this field.</span>
+              {answerBodyRequired ? <div className={styles.required}>You must enter this field.</div> : null}
             </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setAnswerBodyInfo(event.target.value)} />
             <h3>
@@ -98,7 +115,7 @@ const QuestionsAndAnswersModal = ({
               {' '}
               <span className={styles.required}>*</span>
               {'  '}
-              <span id={styles.answerNicknameRequired}>You must enter this field.</span>
+              {answerNicknameRequired ? <div className={styles.required}>You must enter this field.</div> : null}
             </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerNickNameInfo(event.target.value)} />
             <br />
@@ -109,7 +126,7 @@ const QuestionsAndAnswersModal = ({
               {' '}
               <span className={styles.required}>*</span>
               {'  '}
-              <span id={styles.answerEmailRequired}>You must enter this field.</span>
+              {answerEmailRequired ? <div className={styles.required}>You must enter this field.</div> : null}
             </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerEmailInfo(event.target.value)} />
             <br />
