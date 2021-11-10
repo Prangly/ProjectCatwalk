@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 
-const productURL = 'http://127.0.0.1:3000/';
+const productURL = '/';
 const sampleStyles = {
   results: [{
     photos: [{

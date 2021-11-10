@@ -9,7 +9,7 @@ import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAn
 const Questions = ({
   question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose, setReportAnswer,
 }) => {
-  const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/20`;
+  const apiURL = `/answers/${question.question_id}/20`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
     axios.get(apiURL)

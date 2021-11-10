@@ -7,7 +7,9 @@ const process = require('process');
 
 const app = express();
 const port = 3000;
-const API_KEY = require('../config');
+// const API_KEY = require('../config');
+
+require('dotenv').config();
 
 app.use(express.static('dist'));
 app.use(cors());
@@ -16,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const headers = {
-  Authorization: API_KEY,
+  Authorization: process.env.API_KEY,
 };
 
 app.get('/product/*', (req, res) => {

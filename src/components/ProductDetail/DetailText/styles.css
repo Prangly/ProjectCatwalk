@@ -24,10 +24,20 @@
 
 #productFeatures {
 flex-grow: 2;
+width: 30%;
 display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   margin: 0.2em;
-  font-size: 0.7em;
+  text-align: center;
 }
+
+#productFeatures > * {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.7);
+
+ }
+
+ #productFeatures> *:last-child{
+  border-bottom: none
+ }
