@@ -6,6 +6,7 @@ import styles from './styles.css';
 import SizesAndAddToCart from './SizesAndAddToCart/SizesAndAddToCart';
 import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import ShareProduct from './ShareProduct';
 
 const StylesAndSizes = ({
   productStyles, name, setCurrentStyle, currentStyle, addToOutfit,
@@ -37,28 +38,45 @@ const StylesAndSizes = ({
       currentStyle={currentStyle}
     />
   ));
+  const numberOfReviews = 3;
+  const reviewPlural = numberOfReviews === 1 ? 'review' : 'reviews';
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
       <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
         <ReviewStarRating rating={currentProductAvgRating} />
+        <a href="#ratAndRev" id={styles.goToReviews}>{`See all ${numberOfReviews} ${reviewPlural}`}</a>
+        <ShareProduct />
         <div id={styles.price}>
-          <span
+          <div
             data-testid="productPrice"
+            className={styles.price}
             id={styles.productPrice}
             style={saleStyle}
           >
+            <span className={styles.dollarSign}>$</span>
             {price}
-          </span>
-          <div data-testid="salePrice" id={styles.salePrice}>{salePrice}</div>
+          </div>
+          <div
+            data-testid="salePrice"
+            className={styles.price}
+            id={styles.salePrice}
+            style={{
+              visibility: salePrice ? 'visible' : 'hidden',
+            }}
+          >
+            <span className={styles.dollarSign}>$</span>
+
+            {salePrice}
+          </div>
         </div>
       </div>
 
       <div data-testid="styleContainer" id={styles.styleContainer}>
         <div data-testid="styleLine1" className={styles.styleLine} />
         <span data-testid="styleName" id={styles.styleName}>
-          {`Style: ${styleName}`}
+          {`${styleName}`}
         </span>
         <div id={styles.styleIconContainer} data-testid="styleIconContainer">
           {styleIcons}
