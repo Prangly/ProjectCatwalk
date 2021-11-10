@@ -85,6 +85,7 @@ position: relative;
   transform: translateX(-50%);
   font-size: 0.3em;
   transform: rotate(-10deg);
+  opacity: 0.5;
 }
 
 .dollarSign {
@@ -92,4 +93,9 @@ position: relative;
   position: absolute;
   bottom: 25%;
   right: 100%;
+}
+
+#goToReviews {
+  font-size: 0.3em;
+  color: rgba(50, 50, 50,0.4)
 }

@@ -38,12 +38,15 @@ const StylesAndSizes = ({
       currentStyle={currentStyle}
     />
   ));
+  const numberOfReviews = 3;
+  const reviewPlural = numberOfReviews === 1 ? 'review' : 'reviews';
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
       <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
         <ReviewStarRating rating={currentProductAvgRating} />
+        <a href="#ratAndRev" id={styles.goToReviews}>{`See all ${numberOfReviews} ${reviewPlural}`}</a>
         <ShareProduct />
         <div id={styles.price}>
           <div

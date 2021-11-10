@@ -26,7 +26,7 @@ const RatAndRev = ({ currentProduct }) => {
   const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
 
   return (
-    <div data-testid="ratAndRev" id={styles.ratingsAndReviews}>
+    <div data-testid="ratAndRev" id="ratAndRev" className={styles.ratingsAndReviews}>
       <h1>Ratings and Reviews</h1>
       <ReviewsList
         currentRevs={currentRevs}

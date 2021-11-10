@@ -22,10 +22,9 @@ const App = () => {
   const [currentOutfit, setCurrentOutfit] = useState([]);
 
   const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
-
   const { id } = useParams();
-
   useEffect(() => {
+    setLoading(true);
     if (id) {
       setCurrentProductID(id);
     } else {
@@ -63,7 +62,6 @@ const App = () => {
   useEffect(() => {
     productAPI(currentProductID);
   }, [currentProductID]);
-
   if (loading) { return (<h1>loading</h1>); }
   return (
     <div id="app">
