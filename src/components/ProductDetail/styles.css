@@ -1,9 +1,14 @@
-#productDetail {
-  /* border: 1px solid black; */
+.productDetail {
   display: flex;
   flex-direction: column;
   position: relative;
-  /* height: 100% */
+  height: 90vh;
+}
+
+.loading {
+  border: 1px solid black;
+  height: 90vh;
+  align-items: center;
 
 }
 
