@@ -17,29 +17,31 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
   const [searchInput, changeSearchInput] = useState('');
 
-  const filterQuestion = (questionsFromAPI) => {
-    if (searchInput.length > 2) {
-      return questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
-    }
-    return questionsFromAPI;
-  };
+  const filterQuestion = (questionsFromAPI) => questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
 
   // const getQuestions = (source) => {
   const getQuestions = () => {
-    // axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/50`, { cancelToken: source.token })
-    axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/${loadMoreQuestions}`)
-      .then(({ data }) => (
-        filterQuestion(data.results)
-      ))
-      .then((data) => {
-        setCurrentProductQuestions(data);
-      });
+    if (searchInput.length > 2) {
+      const { CancelToken } = axios;
+      const source = CancelToken.source();
+      axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/20`, {
+        cancelToken: source.token,
+      })
+        .then(({ data }) => (
+          filterQuestion(data.results)
+        ))
+        .then((data) => {
+          setCurrentProductQuestions(data);
+        });
+    } else {
+      axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/${loadMoreQuestions}`)
+        .then(({ data }) => {
+          setCurrentProductQuestions(data.results);
+        });
+    }
   };
 
   useEffect(() => {
-    // const cancelToken = axios.CancelToken;
-    // const source = cancelToken.source();
-    // getQuestions(source);
     getQuestions();
   }, [currentProduct, questionHelpfulness, answerHelpfulness, modalClose, reportAnswer, searchInput, loadMoreQuestions]);
 
