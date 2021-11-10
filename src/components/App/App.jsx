@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
@@ -43,6 +44,13 @@ const App = () => {
     }
   };
 
+  const removeFromOutfit = (productToDiscard) => {
+    // eslint-disable-next-line max-len
+    const revisedOutfit = currentOutfit.filter((item) => item !== productToDiscard);
+    setCurrentOutfit(revisedOutfit);
+  };
+
+
   const productAPI = (prodId) => {
     if (prodId) {
       axios.get(productURL + prodId)
@@ -66,7 +74,7 @@ const App = () => {
       }}
       >
         <ProductDetail addToOutfit={addToOutfit} />
-        <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
+        <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} currentOutfit={currentOutfit} removeFromOutfit={removeFromOutfit} />
         <QandA currentProduct={currentProduct} />
         <RatAndRev currentProduct={currentProduct} />
       </ProductContext.Provider>
