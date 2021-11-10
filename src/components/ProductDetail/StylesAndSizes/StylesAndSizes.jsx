@@ -20,6 +20,7 @@ const StylesAndSizes = ({
   const purchasePrice = salePrice || price;
   const { skus } = currentStyleDetails;
   const { currentProductAvgRating } = useContext(ProductContext);
+  const { numberOfReviews } = useContext(ProductContext);
   const saleStyle = salePrice
     ? {
       textDecoration: 'line-through red',
@@ -38,7 +39,6 @@ const StylesAndSizes = ({
       currentStyle={currentStyle}
     />
   ));
-  const numberOfReviews = 3;
   const reviewPlural = numberOfReviews === 1 ? 'review' : 'reviews';
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
@@ -46,7 +46,7 @@ const StylesAndSizes = ({
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
         <ReviewStarRating rating={currentProductAvgRating} />
-        <a href="#ratAndRev" id={styles.goToReviews}>{`See all ${numberOfReviews} ${reviewPlural}`}</a>
+        <a href="#ratAndRev" id={styles.goToReviews}>{`Read all ${numberOfReviews} ${reviewPlural}`}</a>
         <ShareProduct />
         <div id={styles.price}>
           <div
