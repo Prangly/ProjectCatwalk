@@ -50,8 +50,6 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
       <QuestionsList currentProductQuestions={currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < loadMoreQuestions - 1)} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
       {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" value="More Answered Questions" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
         : null}
-      {/* {loadMoreQuestions ? null
-        : <input type="button" value="Collapse" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />} */}
       <div id={styles.addAQuestion}>
         <input type="button" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
         <QuestionsAndAnswersModal type="question" openModal={openQuestionsModal} currentProductId={currentProduct.id} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} setModalClose={setModalClose} />

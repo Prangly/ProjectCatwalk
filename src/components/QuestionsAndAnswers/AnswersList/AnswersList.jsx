@@ -9,7 +9,9 @@ const AnswersList = ({ answers, setAnswerHelpfulness, setReportAnswer }) => (
     <span id={styles.answer}>
       A:
     </span>
-    {answers.map((answer) => <Answers answer={answer} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />)}
+    <div id={styles.answersList}>
+      {answers.map((answer) => <Answers answer={answer} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />)}
+    </div>
   </div>
 );
 
