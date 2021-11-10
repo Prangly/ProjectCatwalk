@@ -37,20 +37,14 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
       });
   };
 
-  // if (starterCards) {
   // eslint-disable-next-line max-len
   const cardList = relatedItems.map((card) => <RelatedCard key={card} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
-  // } else {
-  //   const cardList = [];
-  // }
 
   if (currentProduct) {
     useEffect(() => {
       relatedAPI(currentProduct.id);
     }, [currentProduct.id]);
   }
-
-  // console.log('relatedItems: ', relatedItems);
 
   if (cardList) {
     return (

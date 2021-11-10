@@ -58,41 +58,43 @@ function RelatedCard({ card, action, setCurrentProductID }) {
 
   return (
     <div className={styles.cardContainer}>
-        <button className={styles.actionButton} onClick={(e) => {
+      <button
+        className={styles.actionButton}
+        onClick={(e) => {
           e.stopPropagation();
           setModalIsOpen(true);
         }}
-        >
-          {action}
-        </button>
-    <Link to={`/${card}`}>
-      <div data-testid="card" className={styles.card}>
-        <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-          <h3>Comparison Table</h3>
-          <h4>Product Detail for One Item</h4>
-          <h4>Product Detail for the Other Item</h4>
-          <h4>Characteristics to Compare</h4>
-          <div>
-            <button onClick={(e) => {
-              e.stopPropagation();
-              setModalIsOpen(false);
-            }}
-            >
-              Close
-            </button>
-          </div>
-        </Modal>
-        <h4>{relatedProduct.category}</h4>
-        <h4>{relatedProduct.name}</h4>
-        <h4>
-          $
-          {' '}
-          {relatedProduct.default_price}
-        </h4>
-        {/* <h4>{card.starRating}</h4> */}
-        <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
-      </div>
-    </Link>
+      >
+        {action}
+      </button>
+      <Link to={`/product/${card}`}>
+        <div data-testid="card" className={styles.card}>
+          <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+            <h3>Comparison Table</h3>
+            <h4>Product Detail for One Item</h4>
+            <h4>Product Detail for the Other Item</h4>
+            <h4>Characteristics to Compare</h4>
+            <div>
+              <button onClick={(e) => {
+                e.stopPropagation();
+                setModalIsOpen(false);
+              }}
+              >
+                Close
+              </button>
+            </div>
+          </Modal>
+          <h4>{relatedProduct.category}</h4>
+          <h4>{relatedProduct.name}</h4>
+          <h4>
+            $
+            {' '}
+            {relatedProduct.default_price}
+          </h4>
+          {/* <h4>{card.starRating}</h4> */}
+          <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
+        </div>
+      </Link>
     </div>
   );
 }
