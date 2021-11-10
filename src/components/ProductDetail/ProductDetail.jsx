@@ -20,14 +20,13 @@ const ProductDetail = ({ addToOutfit }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const { currentProduct } = useContext(ProductContext);
-  const { id, name } = currentProduct;
+  const { id, name, category } = currentProduct;
   const stylesAPI = (currentProductID, source) => {
     axios.get(stylesURL + currentProductID, { cancelToken: source.token })
       .then((data) => {
         setProductStyles(data.data);
       });
   };
-
   useEffect(() => {
     const source = axios.CancelToken.source();
     stylesAPI(id, source);
@@ -64,6 +63,7 @@ const ProductDetail = ({ addToOutfit }) => {
           currentStyle={currentStyle}
           setCurrentStyle={setCurrentStyle}
           addToOutfit={addToOutfit}
+          category={category}
         />
       </div>
       <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />

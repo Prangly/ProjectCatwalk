@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import {
   render, screen,
@@ -17,7 +17,7 @@ const contextRender = (ui) => render(
   >
     {ui}
   </ProductContext.Provider>,
-)
+);
 
 describe('Styles and Sizes tests', () => {
   it('should render style icons', () => {
