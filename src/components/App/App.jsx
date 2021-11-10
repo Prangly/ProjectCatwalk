@@ -38,17 +38,16 @@ const App = () => {
   }, [id]);
 
   const addToOutfit = (product) => {
-    console.log('Product: ', product);
     if (!currentOutfit.includes(product)) {
       const newOutfit = [...currentOutfit];
-      newOutfit.push(product.productID);
-      setCurrentOutfit(newOutfit, console.log('currentOutfit: ', currentOutfit));
+      newOutfit.push(product);
+      setCurrentOutfit(newOutfit);
     }
   };
 
   const removeFromOutfit = (productToDiscard) => {
     // eslint-disable-next-line max-len
-    const revisedOutfit = currentOutfit.filter((item) => item.toString() !== productToDiscard.toString());
+    const revisedOutfit = currentOutfit.filter((item) => item !== productToDiscard);
     setCurrentOutfit(revisedOutfit);
   };
 
@@ -68,8 +67,6 @@ const App = () => {
   if (loading) { return (<h1>loading</h1>); }
   return (
     <div id="app">
-      {/* <Link to="/61577">61577</Link> */}
-      {/* <Link to="/61579"> 61579</Link> */}
       <Navbar />
       <ProductContext.Provider value={{
         currentProduct,

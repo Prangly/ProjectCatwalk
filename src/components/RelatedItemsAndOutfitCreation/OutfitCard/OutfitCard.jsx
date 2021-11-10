@@ -23,13 +23,6 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
 
-  const stylesAPI = (id) => {
-    axios.get(`${productURL}styles/${id}`)
-      .then((data) => {
-        setOutfitStyles(data.data);
-      });
-  };
-
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
@@ -37,13 +30,22 @@ function OutfitCard({ card, action, removeFromOutfit }) {
       });
   };
 
-  useEffect(() => {
-    productAPI(card);
-  }, [card]);
+  const stylesAPI = (id) => {
+    axios.get(`${productURL}styles/${id}`)
+      .then((data) => {
+        setOutfitStyles(data.data);
+      });
+  };
 
-  useEffect(() => {
-    stylesAPI(card);
-  }, [card]);
+  if (card) {
+    useEffect(() => {
+      productAPI(card);
+    }, [card]);
+
+    useEffect(() => {
+      stylesAPI(card);
+    }, [card]);
+  }
 
   return (
     <div data-testid="card" className={styles.card}>

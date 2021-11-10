@@ -39,7 +39,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
 
   // if (starterCards) {
   // eslint-disable-next-line max-len
-  const cardList = relatedItems.map((card) => <RelatedCard key={card.id} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
+  const cardList = relatedItems.map((card) => <RelatedCard key={card} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
   // } else {
   //   const cardList = [];
   // }
@@ -62,17 +62,15 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   }
 }
 
-RelatedItems.propTypes = {
-  currentProduct: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-  setCurrentProductID: PropTypes.func,
-};
+// RelatedItems.propTypes = {
+//   currentProduct: PropTypes.shape({
+//     id: PropTypes.string,
+//   }),
+//   setCurrentProductID: PropTypes.func,
+// };
 
 RelatedItems.propTypes = {
-  currentProduct: PropTypes.shape({
-    id: PropTypes.string,
-  }),
+  currentProduct: PropTypes.number,
   setCurrentProductID: PropTypes.func,
 }.isRequired;
 

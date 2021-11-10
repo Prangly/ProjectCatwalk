@@ -15,9 +15,6 @@ import OutfitCard from './OutfitCard/OutfitCard';
 import products from './SampleData/products';
 
 describe('RelatedItemsAndOutfitCreation test', () => {
-  it('should recognize react testing library methods', () => {
-    expect('trainwreck').toBe('trainwreck');
-  });
   // it('should recognize react testing library methods', () => {
   //   render(<RandOC />);
   //   expect(screen.getByText('Related Items and Outfit Creation')).toBeInTheDocument();
@@ -39,4 +36,7 @@ describe('RelatedItemsAndOutfitCreation test', () => {
   //   userEvent.click(screen.getAllByText('Compare')[0]);
   //   expect(screen.getAllByTestId('card')[0]).toBeInTheDocument();
   // });
+  it('should recognize react testing library methods', () => {
+    expect('trainwreck').toBe('trainwreck');
+  });
 });
