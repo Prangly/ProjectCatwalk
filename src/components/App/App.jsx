@@ -24,12 +24,13 @@ const App = () => {
 
   const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
   const { id } = useParams();
+
   useEffect(() => {
     setLoading(true);
     if (id) {
       setCurrentProductID(id);
     } else {
-      setCurrentProductID(61577, setLoading(false));
+      setCurrentProductID(61575, setLoading(false));
     }
   }, []);
 

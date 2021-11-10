@@ -43,6 +43,7 @@
 }
 
 #price {
+  margin-left: 0.4em;
   display: flex;
   flex-direction: row;
 }
@@ -96,6 +97,17 @@ position: relative;
 }
 
 #goToReviews {
+  margin-bottom:0.4em;
+  text-decoration: underline;
   font-size: 0.3em;
-  color: rgba(50, 50, 50,0.4)
+  color: rgba(50, 50, 50,0.4);
+  width: 20%;
+}
+#goToReviews:hover {
+  color: lightgrey;
+}
+
+#productCategory {
+  font-size: 0.3em;
+  margin-top: none;
 }

@@ -9,8 +9,9 @@ import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRatin
 import ShareProduct from './ShareProduct';
 
 const StylesAndSizes = ({
-  productStyles, name, setCurrentStyle, currentStyle, addToOutfit,
+  productStyles, name, setCurrentStyle, currentStyle, addToOutfit, category,
 }) => {
+  console.log(category)
   const { results, product_id: productID } = productStyles;
   const currentStyleDetails = results[currentStyle];
   const { style_id: styleID } = currentStyleDetails;
@@ -45,6 +46,7 @@ const StylesAndSizes = ({
       <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>
         <h1 data-testid="productName" id={styles.productName}>{name}</h1>
 
+        <div id={styles.productCategory}>{category}</div>
         <ReviewStarRating rating={currentProductAvgRating} />
         <a href="#ratAndRev" id={styles.goToReviews}>{`Read all ${numberOfReviews} ${reviewPlural}`}</a>
         <ShareProduct />
@@ -106,5 +108,6 @@ StylesAndSizes.propTypes = {
   setCurrentStyle: PropTypes.func.isRequired,
   currentStyle: PropTypes.number.isRequired,
   addToOutfit: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
 
 };
