@@ -15,7 +15,7 @@ const stylesURL = 'http://127.0.0.1:3000/styles/';
 
 const ProductDetail = ({ addToOutfit }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
-  const [productStyles, setProductStyles] = useState(sampleStyles);
+  const [productStyles, setProductStyles] = useState(null);
   const [expanded, setExpanded] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -44,9 +44,15 @@ const ProductDetail = ({ addToOutfit }) => {
 
       />
     ) : '';
-
+  if (!productStyles) {
+    return (
+      <div data-testid="productDetail" className={`${styles.productDetail} ${styles.loading}`}>
+        <h1>...</h1>
+      </div>
+    );
+  }
   return (
-    <div data-testid="productDetail" id={styles.productDetail}>
+    <div data-testid="productDetail" className={styles.productDetail}>
       <div id={styles.upperContainer} data-testid="upperContainer">
         <ImageCarousel
           id={styles.imageCarousel}
@@ -68,7 +74,7 @@ const ProductDetail = ({ addToOutfit }) => {
       </div>
       <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />
       {expandedView}
-    </div>
+    </div >
   );
 };
 
