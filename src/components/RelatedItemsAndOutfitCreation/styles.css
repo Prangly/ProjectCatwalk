@@ -22,11 +22,20 @@
 }
 
 .cardImage {
-  height: 2em;
+  /* height: 2em;
   height: 60%;
   width: 60%;
   border-radius: 10px;
-  flex-grow: 3;
+  flex-grow: 3; */
+
+  height: 5vh;
+  width: 5vh;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px white;
+  transition: box-shadow 100ms;
+  cursor: pointer;
+
 }
 
 a {
