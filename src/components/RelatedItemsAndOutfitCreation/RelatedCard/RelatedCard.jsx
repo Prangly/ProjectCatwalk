@@ -22,7 +22,9 @@ const sampleStyles = {
 };
 
 // Modal.setAppElement('#root');
-function RelatedCard({ card, action, setCurrentProductID }) {
+function RelatedCard({
+  card, currentProduct, action, setCurrentProductID,
+}) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
@@ -70,10 +72,63 @@ function RelatedCard({ card, action, setCurrentProductID }) {
       <Link to={`/product/${card}`}>
         <div data-testid="card" className={styles.card}>
           <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-            <h3>Comparison Table</h3>
-            <h4>Product Detail for One Item</h4>
-            <h4>Product Detail for the Other Item</h4>
-            <h4>Characteristics to Compare</h4>
+            <div className={styles.table}>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+                  <div>
+                    <h4>{currentProduct.name}</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4>Name</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4>{relatedProduct.name}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+                  <div>
+                    <h4>{currentProduct.slogan}</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4>Slogan</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4>{relatedProduct.slogan}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+                  <div>
+                    <h4>{currentProduct.description}</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4>Description</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4>{relatedProduct.description}</h4>
+                  </div>
+                </div>
+              </div>
+
+            </div>
             <div>
               <button onClick={(e) => {
                 e.stopPropagation();

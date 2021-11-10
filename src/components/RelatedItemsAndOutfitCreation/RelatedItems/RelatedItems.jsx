@@ -38,7 +38,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   };
 
   // eslint-disable-next-line max-len
-  const cardList = relatedItems.map((card) => <RelatedCard key={card} card={card} action={action} setCurrentProductID={setCurrentProductID} />);
+  const cardList = relatedItems.map((card) => <RelatedCard key={card} card={card} currentProduct={currentProduct} action={action} setCurrentProductID={setCurrentProductID} />);
 
   if (currentProduct) {
     useEffect(() => {

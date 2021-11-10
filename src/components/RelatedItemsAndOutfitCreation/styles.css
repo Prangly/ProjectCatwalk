@@ -45,3 +45,25 @@ a {
   position: absolute;
   top: 5%;
 }
+
+.table {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  padding: 1em;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
