@@ -9,6 +9,10 @@
   font-size: x-small;
 }
 
+#seller {
+  font-weight: bold;
+}
+
 .clickedButton {
   background: none;
   border: none;
