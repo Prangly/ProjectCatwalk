@@ -73,6 +73,7 @@ function RelatedCard({
         <div data-testid="card" className={styles.card}>
           <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className={styles.table}>
+
               <div className={styles.row}>
                 <div className={styles.column}>
                   <div>
@@ -90,6 +91,7 @@ function RelatedCard({
                   </div>
                 </div>
               </div>
+
               <div className={styles.row}>
                 <div className={styles.column}>
                   <div>
@@ -107,6 +109,7 @@ function RelatedCard({
                   </div>
                 </div>
               </div>
+
               <div className={styles.row}>
                 <div className={styles.column}>
                   <div>
@@ -124,6 +127,7 @@ function RelatedCard({
                   </div>
                 </div>
               </div>
+
             </div>
             <div>
               <button onClick={(e) => {
