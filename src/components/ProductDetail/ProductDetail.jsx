@@ -29,12 +29,8 @@ const ProductDetail = ({ addToOutfit }) => {
   };
 
   useEffect(() => {
-    const cancelToken = axios.CancelToken;
-    const source = cancelToken.source();
-
+    const source = axios.CancelToken.source();
     stylesAPI(id, source);
-
-    // return () => source.cancel('Styles Request Canceled')
   }, [currentProduct]);
 
   const expandedView = expanded

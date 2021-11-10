@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 import React from 'react';
@@ -16,9 +17,8 @@ const customRender = (ui) => render(
       <Route path="/" element={ui} />
 
     </Routes>
-  </BrowserRouter>,
-)
-
+  </BrowserRouter>
+);
 
 describe('App tests', () => {
   it('should run  a test', () => {

@@ -4,7 +4,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProductDetail from '../ProductDetail/ProductDetail.jsx';
 import QandA from '../QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
@@ -20,6 +20,7 @@ const App = () => {
   const [currentProductID, setCurrentProductID] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(sampleProduct);
   const [currentOutfit, setCurrentOutfit] = useState([]);
+  const [numberOfReviews, setNumberOfReviews] = useState(0);
 
   const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
   const { id } = useParams();
@@ -49,8 +50,6 @@ const App = () => {
     const revisedOutfit = currentOutfit.filter((item) => item !== productToDiscard);
     setCurrentOutfit(revisedOutfit);
   };
-
-
   const productAPI = (prodId) => {
     if (prodId) {
       axios.get(productURL + prodId)
@@ -71,6 +70,8 @@ const App = () => {
         setCurrentProductID,
         currentProductAvgRating,
         setCurrentProductAvgRating,
+        numberOfReviews,
+        setNumberOfReviews,
       }}
       >
         <ProductDetail addToOutfit={addToOutfit} />

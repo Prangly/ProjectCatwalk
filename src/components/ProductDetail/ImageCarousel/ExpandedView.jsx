@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-restricted-globals */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
