@@ -5,11 +5,10 @@ import RelatedItems from './RelatedItems/RelatedItems';
 import Outfit from './Outfit/Outfit';
 
 // eslint-disable-next-line react/prop-types
-const RandOC = ({ currentProduct, setCurrentProductID }) => (
+const RandOC = ({ currentProduct, setCurrentProductID, currentOutfit, removeFromOutfit }) => (
   <div data-testid="rAndOC" id={styles.rAndOC}>
-    <h1>Related Items and Outfit Creation</h1>
     <RelatedItems currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
-    {/* <Outfit /> */}
+    <Outfit currentOutfit={currentOutfit} removeFromOutfit={removeFromOutfit} />
   </div>
 );
 

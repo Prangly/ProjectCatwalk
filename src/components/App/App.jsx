@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
@@ -21,10 +22,9 @@ const App = () => {
   const [currentOutfit, setCurrentOutfit] = useState([]);
 
   const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
-
   const { id } = useParams();
-
   useEffect(() => {
+    setLoading(true);
     if (id) {
       setCurrentProductID(id);
     } else {
@@ -44,6 +44,13 @@ const App = () => {
     }
   };
 
+  const removeFromOutfit = (productToDiscard) => {
+    // eslint-disable-next-line max-len
+    const revisedOutfit = currentOutfit.filter((item) => item !== productToDiscard);
+    setCurrentOutfit(revisedOutfit);
+  };
+
+
   const productAPI = (prodId) => {
     if (prodId) {
       axios.get(productURL + prodId)
@@ -55,12 +62,9 @@ const App = () => {
   useEffect(() => {
     productAPI(currentProductID);
   }, [currentProductID]);
-
   if (loading) { return (<h1>loading</h1>); }
   return (
     <div id="app">
-      {/* <Link to="/61577">61577</Link> */}
-      {/* <Link to="/61579"> 61579</Link> */}
       <Navbar />
       <ProductContext.Provider value={{
         currentProduct,
@@ -70,7 +74,7 @@ const App = () => {
       }}
       >
         <ProductDetail addToOutfit={addToOutfit} />
-        <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} />
+        <RandOC currentProduct={currentProduct} setCurrentProductID={setCurrentProductID} currentOutfit={currentOutfit} removeFromOutfit={removeFromOutfit} />
         <QandA currentProduct={currentProduct} />
         <RatAndRev currentProduct={currentProduct} />
       </ProductContext.Provider>

@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 
@@ -21,14 +22,12 @@ const sampleStyles = {
 };
 
 // Modal.setAppElement('#root');
-function Card({ card, action, setCurrentProductID }) {
+function RelatedCard({ card, action, setCurrentProductID }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
-
-  // const dummyProduct = card;
 
   if (productSelected) {
     setCurrentProductID(productSelected);
@@ -50,47 +49,57 @@ function Card({ card, action, setCurrentProductID }) {
   };
 
   useEffect(() => {
-    if (typeof card === 'number') {
-      productAPI(card);
-    }
+    productAPI(card);
   }, [card]);
 
   useEffect(() => {
-    if (typeof card === 'number') {
-      stylesAPI(card);
-    }
+    stylesAPI(card);
   }, [card]);
 
   return (
-    <div data-testid="card" className={styles.card}>
-      <button onClick={() => setModalIsOpen(true)}>
+    <div className={styles.cardContainer}>
+      <button
+        className={styles.actionButton}
+        onClick={(e) => {
+          e.stopPropagation();
+          setModalIsOpen(true);
+        }}
+      >
         {action}
       </button>
-      <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <h3>Comparison Table</h3>
-        <h4>Product Detail for One Item</h4>
-        <h4>Product Detail for the Other Item</h4>
-        <h4>Characteristics to Compare</h4>
-        <div>
-          <button onClick={() => setModalIsOpen(false)}>
-            Close
-          </button>
+      <Link to={`/product/${card}`}>
+        <div data-testid="card" className={styles.card}>
+          <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+            <h3>Comparison Table</h3>
+            <h4>Product Detail for One Item</h4>
+            <h4>Product Detail for the Other Item</h4>
+            <h4>Characteristics to Compare</h4>
+            <div>
+              <button onClick={(e) => {
+                e.stopPropagation();
+                setModalIsOpen(false);
+              }}
+              >
+                Close
+              </button>
+            </div>
+          </Modal>
+          <h4>{relatedProduct.category}</h4>
+          <h4>{relatedProduct.name}</h4>
+          <h4>
+            $
+            {' '}
+            {relatedProduct.default_price}
+          </h4>
+          {/* <h4>{card.starRating}</h4> */}
+          <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
         </div>
-      </Modal>
-      <h4>{relatedProduct.category}</h4>
-      <h4>{relatedProduct.name}</h4>
-      <h4>
-        $
-        {' '}
-        {relatedProduct.default_price}
-      </h4>
-      {/* <h4>{card.starRating}</h4> */}
-      <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
+      </Link>
     </div>
   );
 }
 
-Card.propTypes = {
+RelatedCard.propTypes = {
   card: PropTypes.shape({
     category: PropTypes.string,
     name: PropTypes.string,
@@ -101,4 +110,4 @@ Card.propTypes = {
   }).isRequired,
 };
 
-export default Card;
+export default RelatedCard;

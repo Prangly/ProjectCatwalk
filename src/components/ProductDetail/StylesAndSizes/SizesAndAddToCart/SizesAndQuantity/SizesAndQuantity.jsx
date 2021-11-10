@@ -26,6 +26,7 @@ function SizesAndQuantity({
         currentSize={currentSize}
         currentQuantity={currentQuantity}
         setCurrentQuantity={setCurrentQuantity}
+        setCurrentSize={setCurrentSize}
       />
     </div>
   );

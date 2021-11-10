@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles.css';
+import ProductContext from '../../../../../../ProductContext';
 
 function Quantity({
-  skusArray, currentSize, currentQuantity, setCurrentQuantity,
+  skusArray, currentSize, currentQuantity, setCurrentQuantity, setCurrentSize,
 }) {
+  const { currentProduct } = useContext(ProductContext);
+  useEffect(() => {
+    setCurrentSize('size');
+  }, [currentProduct]);
   let totalQuantity;
   let disabledStyle;
   let defaultOption = '';
   if (currentSize === 'size') {
     defaultOption = <option value="quantity">-</option>;
-
     totalQuantity = 'Quantity';
     disabledStyle = true;
   } else {
@@ -49,5 +53,6 @@ Quantity.propTypes = {
   currentSize: PropTypes.string.isRequired,
   currentQuantity: PropTypes.string.isRequired,
   setCurrentQuantity: PropTypes.func.isRequired,
+  setCurrentSize: PropTypes.func.isRequired,
   skusArray: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

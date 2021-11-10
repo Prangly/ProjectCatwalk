@@ -17,6 +17,9 @@
 
 #styleName {
   margin-left: 5%;
+  font-size: 0.5em;;
+  font-style: italic;
+  margin-top: 0.5em;
 }
 .styleLine {
   align-self: center;
@@ -52,7 +55,47 @@
   justify-content: space-between;
 }
 
+.price {
+  margin-right: 0.5em;
+}
 
+#shareOnSocialContainer {
+  height: 10%;
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+#shareOnSocialContainer > * {
+  margin: 0.2em;
+  margin-left: 0;
+}
 
+#salePrice, #productPrice {
+position: relative;
+}
 
+#salePrice:after{
+  content: 'SALE';
+  color: red;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.3em;
+  transform: rotate(-10deg);
+  opacity: 0.5;
+}
+
+.dollarSign {
+  font-size: 0.6em;
+  position: absolute;
+  bottom: 25%;
+  right: 100%;
+}
+
+#goToReviews {
+  font-size: 0.3em;
+  color: rgba(50, 50, 50,0.4)
+}

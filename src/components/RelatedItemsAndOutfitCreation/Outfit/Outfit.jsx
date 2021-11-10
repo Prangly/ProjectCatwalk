@@ -1,35 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles.css';
-import Card from '../Card/Card';
+import OutfitCard from '../OutfitCard/OutfitCard';
 
-const cards = [
-  {
-    id: '61577',
-    category: 'Pants',
-    name: 'Morning Joggers',
-    default_price: '40.00',
-    starRating: 'Outfit 1 Star Rating',
-    image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-  },
-  {
-    id: '61578',
-    category: 'Pants',
-    name: "Slacker's Slacks",
-    default_price: '65.00',
-    starRating: 'Outfit 2 Star Rating',
-    image: 'https://images.unsplash.com/photo-1554260570-9140fd3b7614?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-  },
-];
-const action = 'Delete';
-const cardList = cards.map((card) => <Card key={card.id} card={card} action={action} />);
+function Outfit({ removeFromOutfit, currentOutfit }) {
+  const action = 'Delete';
 
-function Outfit() {
+  // eslint-disable-next-line max-len
+  const cardList = currentOutfit.map((card) => <OutfitCard key={card} card={card} action={action} removeFromOutfit={removeFromOutfit} />);
   return (
     <ul data-testid="outfit" id={styles.outfit}>
-      Outfit
+      Your Outfit
       {cardList}
+      {currentOutfit.length === 0
+        && (
+        <h4>
+          There are no items in Your Outfit.
+        </h4>
+        )}
     </ul>
   );
 }
+Outfit.propTypes = {
+  currentOutfit: PropTypes.shape({
+  }),
+  removeFromOutfit: PropTypes.func.isRequired,
+}.isRequired;
 
 export default Outfit;
