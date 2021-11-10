@@ -16,7 +16,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [characteristics, setCharacteristics] = useState(null);
   console.log('open modal', openModal);
 
-  const metaURL = 'http://127.0.0.1:3000/meta';
+  const metaURL = '/meta';
 
   const sampleReview = {
     product_id: 61579,

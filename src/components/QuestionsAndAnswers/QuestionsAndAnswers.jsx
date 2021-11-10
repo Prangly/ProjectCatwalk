@@ -27,7 +27,7 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   // const getQuestions = (source) => {
   const getQuestions = () => {
     // axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/50`, { cancelToken: source.token })
-    axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/${loadMoreQuestions}`)
+    axios.get(`/questions/${currentProduct.id}/${loadMoreQuestions}`)
       .then(({ data }) => (
         filterQuestion(data.results)
       ))
