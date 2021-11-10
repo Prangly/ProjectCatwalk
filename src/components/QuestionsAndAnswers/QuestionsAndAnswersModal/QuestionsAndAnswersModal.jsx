@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
@@ -20,9 +20,9 @@ const QuestionsAndAnswersModal = ({
       .then(() => setModalClose((modalClose) => modalClose + 1));
   };
 
-  const [questionBodyInfo, setQuestionBodyInfo] = useState('');
-  const [questionNicknameInfo, setQuestionNicknameInfo] = useState('');
-  const [questionEmailInfo, setQuestionEmailInfo] = useState('');
+  const [questionBodyInfo, setQuestionBodyInfo] = useState(null);
+  const [questionNicknameInfo, setQuestionNicknameInfo] = useState(null);
+  const [questionEmailInfo, setQuestionEmailInfo] = useState(null);
   const questionInfo = {
     body: questionBodyInfo, name: questionNicknameInfo, email: questionEmailInfo, product_id: currentProductId,
   };
@@ -30,10 +30,31 @@ const QuestionsAndAnswersModal = ({
   //   answer: '',
   //   name: '',
   // })
+  const [questionBodyRequired, setQuestionBodyRequired] = useState(false);
+  const [questionNicknameRequired, setQuestionNicknameRequired] = useState(false);
+  const [questionEmailRequired, setQuestionEmailRequired] = useState(false);
+
   const postQuestion = () => {
+    setQuestionBodyRequired(false);
+    setQuestionNicknameRequired(false);
+    setQuestionEmailRequired(false);
     axios.post('/postQuestion', questionInfo)
-      .then(() => setModalClose((modalClose) => modalClose + 1));
+      .then(() => setModalClose((modalClose) => modalClose + 1))
+      .catch(() => {
+        if (questionInfo.body === null) {
+          setQuestionBodyRequired(true);
+        }
+        if (questionInfo.name === null) {
+          setQuestionNicknameRequired(true);
+        }
+        if (questionInfo.email === null || !questionInfo.email.includes('@')) {
+          setQuestionEmailRequired(true);
+        }
+      });
   };
+
+  useEffect(() => {
+  }, [questionBodyRequired, questionNicknameRequired, questionEmailRequired]);
 
   // const onChange = (e) => {
   //   let newFormData = { ...formData}
@@ -67,6 +88,8 @@ const QuestionsAndAnswersModal = ({
               Your Answer:
               {' '}
               <span className={styles.required}>*</span>
+              {'  '}
+              <span id={styles.answerBodyRequired}>You must enter this field.</span>
             </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setAnswerBodyInfo(event.target.value)} />
             <h3>
@@ -74,6 +97,8 @@ const QuestionsAndAnswersModal = ({
               What is your nickname:
               {' '}
               <span className={styles.required}>*</span>
+              {'  '}
+              <span id={styles.answerNicknameRequired}>You must enter this field.</span>
             </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerNickNameInfo(event.target.value)} />
             <br />
@@ -83,6 +108,8 @@ const QuestionsAndAnswersModal = ({
               Your email:
               {' '}
               <span className={styles.required}>*</span>
+              {'  '}
+              <span id={styles.answerEmailRequired}>You must enter this field.</span>
             </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerEmailInfo(event.target.value)} />
             <br />
@@ -112,6 +139,8 @@ const QuestionsAndAnswersModal = ({
               Your Questions
               {' '}
               <span className={styles.required}>*</span>
+              {'  '}
+              {questionBodyRequired ? <div className={styles.required}>You must enter this field.</div> : null}
             </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setQuestionBodyInfo(event.target.value)} />
             <h3>
@@ -119,6 +148,8 @@ const QuestionsAndAnswersModal = ({
               What is your nickname:
               {' '}
               <span className={styles.required}>*</span>
+              {'  '}
+              {questionNicknameRequired ? <div className={styles.required}>You must enter this field.</div> : null}
             </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionNicknameInfo(event.target.value)} />
             <br />
@@ -128,6 +159,8 @@ const QuestionsAndAnswersModal = ({
               Your email:
               {' '}
               <span className={styles.required}>*</span>
+              {'  '}
+              {questionEmailRequired ? <div className={styles.required}>You must enter this field.</div> : null}
             </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionEmailInfo(event.target.value)} />
             <br />
