@@ -35,7 +35,7 @@ describe('Image Carousel tests', () => {
 
   it('should change the image on button click', async () => {
     contextRender(<ProductDetail currentProduct={{}} />);
-
+    await waitFor(() => screen.getByTestId('carouselImage'));
     const image = screen.getByTestId('carouselImage');
     const button = screen.getByTestId('nextImageButton');
     fireEvent.click(button);

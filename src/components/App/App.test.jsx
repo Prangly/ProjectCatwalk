@@ -4,7 +4,7 @@
 import React from 'react';
 
 import {
-  render, screen,
+  render, screen, waitFor
 } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
@@ -25,9 +25,9 @@ describe('App tests', () => {
     expect(2).toBe(2);
   });
 
-  it('should recognize react testing library methods', () => {
+  it('should recognize react testing library methods', async () => {
     customRender(<App />);
-    expect(screen.getByText('Catwalk')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('Catwalk')).toBeInTheDocument());
     expect(screen.queryByText('Hello World')).not.toBeInTheDocument();
   });
 });

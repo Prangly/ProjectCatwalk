@@ -38,7 +38,7 @@ describe('Product Detail tests', () => {
       addToOutfit={() => { }}
       currentProduct={sampleProduct}
     />);
-    await expect(screen.getByTestId('imageCarousel')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId('imageCarousel')).toBeInTheDocument());
     expect(screen.getByTestId('imageCarousel')).toBeInTheDocument();
   });
 
@@ -47,7 +47,7 @@ describe('Product Detail tests', () => {
       addToOutfit={() => { }}
       currentProduct={sampleProduct}
     />);
-    await expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument());
     expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument();
   });
 
@@ -56,7 +56,7 @@ describe('Product Detail tests', () => {
       addToOutfit={() => { }}
       currentProduct={sampleProduct}
     />);
-    await expect(screen.getByTestId('detailText')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByTestId('detailText')).toBeInTheDocument());
     expect(screen.getByTestId('detailText')).toBeInTheDocument();
   });
 
@@ -65,6 +65,7 @@ describe('Product Detail tests', () => {
       addToOutfit={() => { }}
       currentProduct={sampleProduct}
     />);
+    await waitFor(() => screen.getByTestId('carouselImage'));
     const image = screen.getByTestId('carouselImage');
     expect(image.src).toContain('1501');
     const button = screen.getAllByTestId('styleIcon')[1];
