@@ -10,6 +10,7 @@ import {
 import '@testing-library/jest-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
+import SampleProduct from '../../SampleData/SampleProduct';
 
 const customRender = (ui) => render(
   <BrowserRouter>
