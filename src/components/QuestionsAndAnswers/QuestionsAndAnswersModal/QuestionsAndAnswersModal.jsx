@@ -62,13 +62,28 @@ const QuestionsAndAnswersModal = ({
               {questionBody}
               {' '}
             </h2>
-            <h3> Your Answer: </h3>
+            <h3>
+              {' '}
+              Your Answer:
+              {' '}
+              <span className={styles.required}>*</span>
+            </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setAnswerBodyInfo(event.target.value)} />
-            <h3> What is your nickname: </h3>
+            <h3>
+              {' '}
+              What is your nickname:
+              {' '}
+              <span className={styles.required}>*</span>
+            </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerNickNameInfo(event.target.value)} />
             <br />
             For privary reasons, do not use your full name or email address.
-            <h3> Your email: </h3>
+            <h3>
+              {' '}
+              Your email:
+              {' '}
+              <span className={styles.required}>*</span>
+            </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerEmailInfo(event.target.value)} />
             <br />
             For authentication reasons,you will not be emailed.
@@ -93,13 +108,27 @@ const QuestionsAndAnswersModal = ({
               {currentProductName}
               {' '}
             </h2>
-            <h3>Your Questions</h3>
+            <h3>
+              Your Questions
+              {' '}
+              <span className={styles.required}>*</span>
+            </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setQuestionBodyInfo(event.target.value)} />
-            <h3> What is your nickname: </h3>
+            <h3>
+              {' '}
+              What is your nickname:
+              {' '}
+              <span className={styles.required}>*</span>
+            </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionNicknameInfo(event.target.value)} />
             <br />
             For privary reasons, do not use your full name or email address.
-            <h3> Your email: </h3>
+            <h3>
+              {' '}
+              Your email:
+              {' '}
+              <span className={styles.required}>*</span>
+            </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionEmailInfo(event.target.value)} />
             <br />
             For authentication reasons,you will not be emailed.
