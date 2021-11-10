@@ -14,7 +14,7 @@ import Navbar from '../Navbar/Navbar.jsx';
 import ProductContext from '../../ProductContext.jsx';
 import 'babel-polyfill';
 
-const productURL = 'http://127.0.0.1:3000/products/';
+const productURL = '/products/';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
