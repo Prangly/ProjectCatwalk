@@ -7,7 +7,18 @@ import {
 } from '@testing-library/react';
 
 import '@testing-library/jest-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
+
+const customRender = (ui) => render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={ui} />
+
+    </Routes>
+  </BrowserRouter>,
+)
+
 
 describe('App tests', () => {
   it('should run  a test', () => {
@@ -15,7 +26,7 @@ describe('App tests', () => {
   });
 
   it('should recognize react testing library methods', () => {
-    render(<App />);
+    customRender(<App />);
     expect(screen.getByText('Catwalk')).toBeInTheDocument();
     expect(screen.queryByText('Hello World')).not.toBeInTheDocument();
   });
