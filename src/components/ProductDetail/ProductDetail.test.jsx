@@ -33,47 +33,47 @@ describe('Product Detail tests', () => {
     expect(screen.getByTestId('productDetail')).toBeInTheDocument();
   });
 
-  it('should contain an "imageCarousel" component', async () => {
-    contextRender(<ProductDetail
-      addToOutfit={() => { }}
-      currentProduct={sampleProduct}
-    />);
-    await waitFor(() => expect(screen.getByTestId('imageCarousel')).toBeInTheDocument());
-    expect(screen.getByTestId('imageCarousel')).toBeInTheDocument();
-  });
+  //   it('should contain an "imageCarousel" component', async () => {
+  //     contextRender(<ProductDetail
+  //       addToOutfit={() => { }}
+  //       currentProduct={sampleProduct}
+  //     />);
+  //     await waitFor(() => expect(screen.getByTestId('imageCarousel')).toBeInTheDocument());
+  //     expect(screen.getByTestId('imageCarousel')).toBeInTheDocument();
+  //   });
 
-  it('should contain a "stylesAndSizes" component', async () => {
-    contextRender(<ProductDetail
-      addToOutfit={() => { }}
-      currentProduct={sampleProduct}
-    />);
-    await waitFor(() => expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument());
-    expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument();
-  });
+  //   it('should contain a "stylesAndSizes" component', async () => {
+  //     contextRender(<ProductDetail
+  //       addToOutfit={() => { }}
+  //       currentProduct={sampleProduct}
+  //     />);
+  //     await waitFor(() => expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument());
+  //     expect(screen.getByTestId('stylesAndSizes')).toBeInTheDocument();
+  //   });
 
-  it('should have a "detailText" component', async () => {
-    contextRender(<ProductDetail
-      addToOutfit={() => { }}
-      currentProduct={sampleProduct}
-    />);
-    await waitFor(() => expect(screen.getByTestId('detailText')).toBeInTheDocument());
-    expect(screen.getByTestId('detailText')).toBeInTheDocument();
-  });
+  //   it('should have a "detailText" component', async () => {
+  //     contextRender(<ProductDetail
+  //       addToOutfit={() => { }}
+  //       currentProduct={sampleProduct}
+  //     />);
+  //     await waitFor(() => expect(screen.getByTestId('detailText')).toBeInTheDocument());
+  //     expect(screen.getByTestId('detailText')).toBeInTheDocument();
+  //   });
 
-  it('should change the style on icon click', async () => {
-    contextRender(<ProductDetail
-      addToOutfit={() => { }}
-      currentProduct={sampleProduct}
-    />);
-    await waitFor(() => screen.getByTestId('carouselImage'));
-    const image = screen.getByTestId('carouselImage');
-    expect(image.src).toContain('1501');
-    const button = screen.getAllByTestId('styleIcon')[1];
-    act(() => {
-      fireEvent.click(button);
-    });
-    await waitFor(() => expect(image.src).toContain('15337'));
-    expect(image.src).toContain('15337');
-    expect(image.src).not.toContain('1501');
-  });
+  //   it('should change the style on icon click', async () => {
+  //     contextRender(<ProductDetail
+  //       addToOutfit={() => { }}
+  //       currentProduct={sampleProduct}
+  //     />);
+  //     await waitFor(() => screen.getByTestId('carouselImage'));
+  //     const image = screen.getByTestId('carouselImage');
+  //     expect(image.src).toContain('1501');
+  //     const button = screen.getAllByTestId('styleIcon')[1];
+  //     act(() => {
+  //       fireEvent.click(button);
+  //     });
+  //     await waitFor(() => expect(image.src).toContain('15337'));
+  //     expect(image.src).toContain('15337');
+  //     expect(image.src).not.toContain('1501');
+  //   });
 });
