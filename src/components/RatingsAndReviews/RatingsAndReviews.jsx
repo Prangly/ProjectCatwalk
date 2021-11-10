@@ -8,7 +8,7 @@ import ReviewsList from './ReviewsList/ReviewsList';
 import ProductContext from '../../ProductContext';
 
 const RatAndRev = ({ currentProduct }) => {
-  const reviewURL = 'http://127.0.0.1:3000/reviews';
+  const reviewURL = '/reviews';
   const [currentRevs, setCurrentRev] = useState([]);
   const { currentProductAvgRating, setCurrentProductAvgRating } = useContext(ProductContext);
 
