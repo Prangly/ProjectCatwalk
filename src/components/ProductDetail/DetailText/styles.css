@@ -1,18 +1,20 @@
 #detailTextContainer {
   display: flex;
   flex-direction: row;
+  align-items: center;;
   border: 1px solid black;
   border-top: none;
+  max-height: 50%
 }
 
 
 #productSlogan {
 
-
+font-size: 1em;
 }
 
 #productDescription {
-  font-size: 0.5em;
+  font-size: 0.8em;
 }
 
 #productDetailText {
@@ -20,6 +22,7 @@
   margin: 0.2em;
   padding: 1em;
   flex-grow: 3;
+  height: 50%;
 }
 
 #productFeatures {
@@ -34,10 +37,11 @@ display: flex;
 }
 
 #productFeatures > * {
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.7);
-
+  border: 1px dashed rgba(0, 0, 0, 0.7);
+  border-bottom: none
  }
 
  #productFeatures> *:last-child{
-  border-bottom: none
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.7);
+
  }

@@ -73,7 +73,7 @@ const ProductDetail = ({ addToOutfit }) => {
       </div>
       <DetailText data-testid="detailText" id={styles.detailText} product={currentProduct} />
       {expandedView}
-    </div >
+    </div>
   );
 };
 
