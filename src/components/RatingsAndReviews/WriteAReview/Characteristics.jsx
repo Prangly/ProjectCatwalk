@@ -61,27 +61,27 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
       <td>
         {characteristicsDefs[name]['1']}
         <br />
-        <input type="radio" name="pick" />
+        <input type="radio" name={`${name}pick`} />
       </td>
       <td>
         {characteristicsDefs[name]['2']}
         <br />
-        <input type="radio" name="pick" />
+        <input type="radio" name={`${name}pick`} />
       </td>
       <td>
         {characteristicsDefs[name]['3']}
         <br />
-        <input type="radio" name="pick" />
+        <input type="radio" name={`${name}pick`} />
       </td>
       <td>
         {characteristicsDefs[name]['4']}
         <br />
-        <input type="radio" name="pick" />
+        <input type="radio" name={`${name}pick`} />
       </td>
       <td>
         {characteristicsDefs[name]['5']}
         <br />
-        <input type="radio" name="pick" />
+        <input type="radio" name={`${name}pick`} />
       </td>
     </tr>
   ));
