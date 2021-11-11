@@ -31,7 +31,7 @@ const App = () => {
     } else {
       setCurrentProductID('61575');
     }
-  }, []);
+  }, [id]);
 
   const productAPI = (prodId) => {
     if (prodId) {
