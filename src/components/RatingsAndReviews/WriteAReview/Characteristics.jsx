@@ -52,6 +52,10 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
     },
   };
   const namesOfChars = Object.keys(characteristics);
+
+  const selectCharValue = (event) => {
+    console.log(event);
+  };
   const charsRows = namesOfChars.map((name) => (
     <tr>
       <td>
@@ -61,30 +65,31 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
       <td>
         {characteristicsDefs[name]['1']}
         <br />
-        <input type="radio" name={`${name}pick`} />
+        <input type="radio" name={`${name}`} onClick={(event) => selectCharValue(event)} />
       </td>
       <td>
         {characteristicsDefs[name]['2']}
         <br />
-        <input type="radio" name={`${name}pick`} />
+        <input type="radio" name={`${name}`} />
       </td>
       <td>
         {characteristicsDefs[name]['3']}
         <br />
-        <input type="radio" name={`${name}pick`} />
+        <input type="radio" name={`${name}`} />
       </td>
       <td>
         {characteristicsDefs[name]['4']}
         <br />
-        <input type="radio" name={`${name}pick`} />
+        <input type="radio" name={`${name}`} />
       </td>
       <td>
         {characteristicsDefs[name]['5']}
         <br />
-        <input type="radio" name={`${name}pick`} />
+        <input type="radio" name={`${name}`} />
       </td>
     </tr>
   ));
+
   return (
     <>
       <h2>This is where characteristics will be entered.</h2>
