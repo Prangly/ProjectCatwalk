@@ -65,7 +65,7 @@ function RelatedCard({
 
   return (
     <div className={styles.cardContainer}>
-      <button style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }} 
+      <button style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
         className={styles.actionButton}
         onClick={(e) => {
           e.stopPropagation();
