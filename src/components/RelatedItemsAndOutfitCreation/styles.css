@@ -19,7 +19,8 @@
   margin: 1em;
   min-width: 20%;
   padding: 1em;
-  height: 
+  height: 25vh;
+  width: 10vw;
 }
 
 .cardImage {
@@ -54,6 +55,8 @@ a {
 .actionButton {
   position: absolute;
   top: 5%;
+  align-items: right;
+
 }
 
 .table {

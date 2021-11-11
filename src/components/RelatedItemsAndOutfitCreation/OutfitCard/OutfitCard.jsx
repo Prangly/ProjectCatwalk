@@ -52,7 +52,7 @@ function OutfitCard({ card, action, removeFromOutfit }) {
       <button onClick={() => removeFromOutfit(card)}>
         {action}
       </button>
-      <h4>{outfitProduct.category}</h4>
+      <h6>{outfitProduct.category}</h6>
       <h4>{outfitProduct.name}</h4>
       <h4>
         $

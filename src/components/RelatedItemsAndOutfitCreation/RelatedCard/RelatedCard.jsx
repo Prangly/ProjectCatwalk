@@ -4,13 +4,16 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import styles from '../styles.css';
+// import styles2 from '../../ProductDetail/StylesAndSizes/styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
+// import ProductContext from '../../../ProductContext';
+// import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 
 const productURL = 'http://127.0.0.1:3000/';
 const sampleStyles = {
@@ -30,6 +33,8 @@ function RelatedCard({
 
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
+
+  // const { currentProductAvgRating } = useContext(ProductContext);
 
   if (productSelected) {
     setCurrentProductID(productSelected);

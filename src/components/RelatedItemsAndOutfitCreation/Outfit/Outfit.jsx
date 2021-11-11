@@ -14,7 +14,7 @@ function Outfit({ removeFromOutfit, currentOutfit }) {
       {cardList}
       {currentOutfit.length === 0
         && (
-        <h4>
+        <h4 className={styles.card}>
           There are no items in Your Outfit.
         </h4>
         )}
