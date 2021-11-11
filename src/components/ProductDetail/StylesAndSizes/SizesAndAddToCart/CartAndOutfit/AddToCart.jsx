@@ -31,6 +31,7 @@ function AddToCart({
       <button
         type="button"
         id={styles.addToCartButton}
+        className="ourButton"
         onClick={() => {
           onClick(currentSkuId, currentQuantity);
         }}

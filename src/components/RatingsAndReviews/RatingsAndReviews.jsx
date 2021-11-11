@@ -12,7 +12,6 @@ const RatAndRev = ({ currentProduct }) => {
   const [currentRevs, setCurrentRev] = useState([]);
   const { currentProductAvgRating, setCurrentProductAvgRating } = useContext(ProductContext);
 
-  console.log('HERE IT IS', currentProductAvgRating);
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
@@ -26,15 +25,19 @@ const RatAndRev = ({ currentProduct }) => {
   const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
 
   return (
-    <div data-testid="ratAndRev" id="ratAndRev" className={styles.ratingsAndReviews}>
+    <div data-testid="ratAndRev" id="ratAndRev" className="ourContainer">
       <h1>Ratings and Reviews</h1>
       <ReviewsList
         currentRevs={currentRevs}
         reviews={currentRevs}
       />
       <div>
-        <input type="button" value="Write A Review" onClick={() => setOpenWriteReviewModal(true)} />
-        <WriteAReview openModal={openWriteReviewModal} setOpenModal={setOpenWriteReviewModal} currentProductId={currentProduct.id} />
+        <input type="button" className="ourButton" value="Write A Review" onClick={() => setOpenWriteReviewModal(true)} />
+        <WriteAReview
+          openModal={openWriteReviewModal}
+          setOpenModal={setOpenWriteReviewModal}
+          currentProductId={currentProduct.id}
+        />
       </div>
     </div>
   );

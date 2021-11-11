@@ -16,6 +16,7 @@ function AddToOutfit({
       <button
         type="button"
         id={styles.addToOutfitButton}
+        className="ourButton"
         onClick={onClick}
       >
         <FontAwesomeIcon icon={faStar} />

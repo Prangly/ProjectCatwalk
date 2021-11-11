@@ -33,3 +33,29 @@ body {
   width: 100%
 }
 }
+
+
+.ourButton {
+  border: none;
+  background: #212a2f;
+  color: whitesmoke;
+  box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
+.ourButton:hover{
+  background: #3a3f41;
+}
+
+.ourButton:active {
+  background: #3a3e3f;
+  box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
+}
+
+
+.ourContainer {
+  margin: 3% 0%;
+  box-shadow: inset 2px 2px 6px rgba( 0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 2%;
+}
