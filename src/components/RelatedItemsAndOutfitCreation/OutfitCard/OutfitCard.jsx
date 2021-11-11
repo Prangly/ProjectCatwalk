@@ -49,12 +49,22 @@ function OutfitCard({ card, action, removeFromOutfit }) {
 
   return (
     <div data-testid="card" className={styles.card}>
-      <button onClick={() => removeFromOutfit(card)}>
+      <button style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }} onClick={() => removeFromOutfit(card)}>
         {action}
       </button>
-      <h6>{outfitProduct.category}</h6>
-      <h4>{outfitProduct.name}</h4>
+      <h6>
+        {/* className=
+        {styles.cardLineItem} */}
+        {outfitProduct.category}
+      </h6>
       <h4>
+        {/* className=
+        {styles.cardLineItem} */}
+        {outfitProduct.name}
+      </h4>
+      <h4>
+        {/* className=
+        {styles.cardLineItem} */}
         $
         {' '}
         {outfitProduct.default_price}
