@@ -6,10 +6,83 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
   console.log(characteristics);
   console.log(Object.entries(characteristics));
   console.log(Object.keys(characteristics));
+
+  const characteristicsDefs = {
+    Size: {
+      1: 'A size too small',
+      2: '½ a size too small',
+      3: 'Perfect',
+      4: '½ a size too big',
+      5: 'A size too wide',
+    },
+    Width: {
+      1: 'Too narrow',
+      2: 'Slightly narrow',
+      3: 'Perfect',
+      4: 'Slightly wide',
+      5: 'Too wide',
+    },
+    Comfort: {
+      1: 'Uncomfortable',
+      2: 'Slightly uncomfortable',
+      3: 'Ok',
+      4: 'Comfortable',
+      5: 'Perfect',
+    },
+    Quality: {
+      1: 'Poor',
+      2: 'Below average',
+      3: 'What I expected',
+      4: 'Pretty great',
+      5: 'Perfect',
+    },
+    Length: {
+      1: 'Runs short',
+      2: 'Runs slightly short',
+      3: 'Perfect',
+      4: 'Runs slightly long',
+      5: 'Runs long',
+    },
+    Fit: {
+      1: 'Too tight',
+      2: 'Slightly tight',
+      3: 'Perfect',
+      4: 'Slightly too big',
+      5: 'Too big',
+    },
+  };
   const namesOfChars = Object.keys(characteristics);
-  const namesRows = namesOfChars.map((name) => (
+  const charsRows = namesOfChars.map((name) => (
     <tr>
-      <td>{name}</td>
+      <td>
+        {name}
+        <br />
+      </td>
+      <td>
+        {characteristicsDefs[name]['1']}
+        <br />
+        <input type="radio" name="pick" />
+      </td>
+      <td>
+        {characteristicsDefs[name]['2']}
+        <br />
+        <input type="radio" name="pick" />
+      </td>
+      <td>
+        {characteristicsDefs[name]['3']}
+        <br />
+        <input type="radio" name="pick" />
+      </td>
+      <td>
+        {characteristicsDefs[name]['4']}
+        <br />
+        <input type="radio" name="pick" />
+      </td>
+      <td>
+        {characteristicsDefs[name]['5']}
+        <br />
+        <input type="radio" name="pick" />
+      </td>
     </tr>
   ));
   return (
@@ -24,7 +97,7 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
           <td>4</td>
           <td>5</td>
         </thead>
-        {namesRows}
+        {charsRows}
       </table>
     </>
   );
