@@ -45,13 +45,13 @@ const ProductDetail = ({ addToOutfit }) => {
     ) : '';
   if (!productStyles) {
     return (
-      <div data-testid="productDetail" className={`${styles.productDetail} ${styles.loading}`}>
+      <div data-testid="productDetail" className={`${styles.productDetail} ${styles.loading} ourContainer`}>
         <h1>...</h1>
       </div>
     );
   }
   return (
-    <div data-testid="productDetail" className={styles.productDetail}>
+    <div data-testid="productDetail" className="ourContainer">
       <div id={styles.upperContainer} data-testid="upperContainer">
         <ImageCarousel
           id={styles.imageCarousel}

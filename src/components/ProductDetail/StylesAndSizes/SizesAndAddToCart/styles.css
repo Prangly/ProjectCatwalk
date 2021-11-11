@@ -53,30 +53,9 @@ width: 10%;
 #addToCartButton, #addToOutfitButton {
   width: 100%;
   height: 100%;
-  border: none;
-  background: #212a2f;
-  color: whitesmoke;
-  box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
-}
-
-#addToCartButton:hover{
-  background: #3a3f41;
 
 }
-#addToOutfitButton:hover {
-  background: #3a3f41;
-}
 
-#addToCartButton:active{
-  background: #3a3e3f;
-  box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
-
-}
-#addToOutfitButton:active {
-  background: #3a3e3f;
-  box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
-
-}
 
 #alertMessage {
   font-size: 0.3em;

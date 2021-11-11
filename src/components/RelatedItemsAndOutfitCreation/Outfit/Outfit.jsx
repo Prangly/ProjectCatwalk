@@ -9,14 +9,14 @@ function Outfit({ removeFromOutfit, currentOutfit }) {
   // eslint-disable-next-line max-len
   const cardList = currentOutfit.map((card) => <OutfitCard key={card} card={card} action={action} removeFromOutfit={removeFromOutfit} />);
   return (
-    <ul data-testid="outfit" id={styles.outfit}>
+    <ul data-testid="outfit" className="ourContainer" id={styles.outfit}>
       Your Outfit
       {cardList}
       {currentOutfit.length === 0
         && (
-        <h4>
-          There are no items in Your Outfit.
-        </h4>
+          <h4>
+            There are no items in Your Outfit.
+          </h4>
         )}
     </ul>
   );
