@@ -139,7 +139,7 @@ function RelatedCard({
               </button>
             </div>
           </Modal>
-          <h4>{relatedProduct.category}</h4>
+          <h6>{relatedProduct.category}</h6>
           <h4>{relatedProduct.name}</h4>
           <h4>
             $
