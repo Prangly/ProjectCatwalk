@@ -46,14 +46,14 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   }, [currentProduct, questionHelpfulness, answerHelpfulness, modalClose, reportAnswer, searchInput, loadMoreQuestions]);
 
   return (
-    <div id={styles.qAndA}>
+    <div id={styles.qAndA} className="ourContainer">
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput changeSearchInput={changeSearchInput} />
       <QuestionsList currentProductQuestions={currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < loadMoreQuestions - 1)} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
       {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" value="More Answered Questions" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
         : null}
       <div id={styles.addAQuestion}>
-        <input type="button" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
+        <input type="button" className="ourButton" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
         <QuestionsAndAnswersModal type="question" openModal={openQuestionsModal} currentProductId={currentProduct.id} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} setModalClose={setModalClose} />
       </div>
     </div>

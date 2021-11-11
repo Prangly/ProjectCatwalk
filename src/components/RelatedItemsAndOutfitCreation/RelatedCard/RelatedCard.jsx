@@ -61,7 +61,7 @@ function RelatedCard({
   return (
     <div className={styles.cardContainer}>
       <button
-        className={styles.actionButton}
+        className={`${styles.actionButton} ourButton`}
         onClick={(e) => {
           e.stopPropagation();
           setModalIsOpen(true);

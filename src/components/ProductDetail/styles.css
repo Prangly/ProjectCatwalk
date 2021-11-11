@@ -2,20 +2,21 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 90vh;
+  height: 60%;
 }
 
 .loading {
-  border: 1px solid black;
-  height: 90vh;
+
+  height: 70vh;
   align-items: center;
+  justify-content: center;
 
 }
 
 
 #upperContainer {
   /* height: 70vh; */
-  height:100%;
+  height:75%;
   display:flex;
   flex-direction: row;
   border-right: 1px solid black;
