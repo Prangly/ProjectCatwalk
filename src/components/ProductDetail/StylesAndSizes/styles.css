@@ -46,6 +46,7 @@
   margin-left: 0.4em;
   display: flex;
   flex-direction: row;
+  font-size: 1.5em;
 }
 
 #nameRatingPrice{
@@ -108,6 +109,6 @@ position: relative;
 }
 
 #productCategory {
-  font-size: 0.3em;
+  font-size: 1em;
   margin-top: none;
 }
