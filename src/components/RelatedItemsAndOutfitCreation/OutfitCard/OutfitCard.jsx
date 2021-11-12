@@ -21,7 +21,6 @@ const sampleStyles = {
 };
 
 function OutfitCard({ card, action, removeFromOutfit }) {
-  // const [loading, setLoading] = useState(true);
   const [productLoading, setProductLoading] = useState(true);
   const [stylesLoading, setStylesLoading] = useState(true);
   const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
@@ -65,7 +64,11 @@ function OutfitCard({ card, action, removeFromOutfit }) {
     }, [card]);
   }
 
-  if (productLoading || stylesLoading) { return (<h5>loading</h5>); }
+  if (productLoading || stylesLoading) {
+    return (
+      <div className={styles.card}>loading</div>
+    );
+  }
 
   return (
     <div data-testid="card" className={styles.card}>
