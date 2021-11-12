@@ -15,7 +15,8 @@ const productURL = '/';
 const sampleStyles = {
   results: [{
     photos: [{
-      url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+      url: '',
+      //  'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
     }],
   }],
 };
@@ -23,7 +24,7 @@ const sampleStyles = {
 function OutfitCard({ card, action, removeFromOutfit }) {
   const [productLoading, setProductLoading] = useState(true);
   const [stylesLoading, setStylesLoading] = useState(true);
-const [outfitProduct, setOutfitProduct] = useState({});
+  const [outfitProduct, setOutfitProduct] = useState({});
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
   const { setErrorCode, setIsError } = useContext(ProductContext);
   const productAPI = (id) => {
