@@ -9,6 +9,10 @@
   font-size: x-small;
 }
 
+#seller {
+  font-weight: bold;
+}
+
 .clickedButton {
   background: none;
   border: none;
@@ -21,4 +25,8 @@
   background: none;
   border: none;
   font-size: x-small;
+}
+
+.button:hover {
+  color: grey;
 }

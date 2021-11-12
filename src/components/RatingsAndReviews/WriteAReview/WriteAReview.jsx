@@ -14,9 +14,8 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
   const [characteristics, setCharacteristics] = useState(null);
-  console.log('open modal', openModal);
 
-  const metaURL = 'http://127.0.0.1:3000/meta';
+  const metaURL = '/meta';
 
   const sampleReview = {
     product_id: 61579,
@@ -92,7 +91,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
         <br />
         <br />
-        <button type="submit" onClick={postReview}>
+        <button type="submit" className="ourButton" onClick={postReview}>
           Submit
         </button>
       </div>

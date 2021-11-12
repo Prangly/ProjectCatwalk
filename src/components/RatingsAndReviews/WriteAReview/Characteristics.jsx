@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './styles.css';
 
 const Characteristics = ({ characteristics, setCharacteristics }) => {
-  console.log('characteristics', characteristics);
+console.log('characteristics', characteristics);
   console.log(Object.entries(characteristics));
   console.log(Object.keys(characteristics));
 

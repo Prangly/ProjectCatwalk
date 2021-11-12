@@ -5,11 +5,13 @@ import styles from './styles.css';
 import Answers from '../Answers/Answers';
 
 const AnswersList = ({ answers, setAnswerHelpfulness, setReportAnswer }) => (
-  <div>
+  <div id={styles.answersList}>
     <span id={styles.answer}>
       A:
     </span>
-    {answers.map((answer) => <Answers answer={answer} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />)}
+    <span>
+      {answers.map((answer) => <Answers answer={answer} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} index={answers.indexOf(answer)} />)}
+    </span>
   </div>
 );
 

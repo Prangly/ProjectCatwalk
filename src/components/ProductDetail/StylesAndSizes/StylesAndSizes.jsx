@@ -11,7 +11,6 @@ import ShareProduct from './ShareProduct';
 const StylesAndSizes = ({
   productStyles, name, setCurrentStyle, currentStyle, addToOutfit, category,
 }) => {
-  console.log(category)
   const { results, product_id: productID } = productStyles;
   const currentStyleDetails = results[currentStyle];
   const { style_id: styleID } = currentStyleDetails;

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 /* eslint-disable no-useless-constructor */
@@ -10,33 +11,40 @@ import QandA from '../QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
-import sampleProduct from '../../SampleData/SampleProduct.js';
 import ProductContext from '../../ProductContext.jsx';
+import 'babel-polyfill';
 
-const productURL = 'http://127.0.0.1:3000/products/';
+const productURL = '/products/';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const [currentProductID, setCurrentProductID] = useState(null);
-  const [currentProduct, setCurrentProduct] = useState(sampleProduct);
+  const [currentProduct, setCurrentProduct] = useState(null);
   const [currentOutfit, setCurrentOutfit] = useState([]);
   const [numberOfReviews, setNumberOfReviews] = useState(0);
-
   const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
   const { id } = useParams();
 
   useEffect(() => {
-    setLoading(true);
     if (id) {
       setCurrentProductID(id);
     } else {
-      setCurrentProductID(61575, setLoading(false));
+      setCurrentProductID('61575');
     }
-  }, []);
-
-  useEffect(() => {
-    setCurrentProductID(id);
   }, [id]);
+
+  const productAPI = (prodId) => {
+    if (prodId) {
+      axios.get(productURL + prodId)
+        .then((data) => {
+          setCurrentProduct(data.data, setLoading(false));
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+  useEffect(async () => {
+    productAPI(currentProductID);
+  }, [currentProductID]);
 
   const addToOutfit = (product) => {
     if (!currentOutfit.includes(product)) {
@@ -51,18 +59,10 @@ const App = () => {
     const revisedOutfit = currentOutfit.filter((item) => item !== productToDiscard);
     setCurrentOutfit(revisedOutfit);
   };
-  const productAPI = (prodId) => {
-    if (prodId) {
-      axios.get(productURL + prodId)
-        .then((data) => {
-          setCurrentProduct(data.data, setLoading(false));
-        });
-    }
-  };
-  useEffect(() => {
-    productAPI(currentProductID);
-  }, [currentProductID]);
-  if (loading) { return (<h1>loading</h1>); }
+
+
+
+  if (loading || !currentProduct) { return (<h1>loading</h1>); }
   return (
     <div id="app">
       <Navbar />

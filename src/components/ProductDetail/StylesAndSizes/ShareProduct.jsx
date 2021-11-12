@@ -9,13 +9,13 @@ function ShareProduct() {
   return (
     <div data-testid="shareOnSocialContainer" id={styles.shareOnSocialContainer}>
       <FacebookShareButton url={window.location.href}>
-        <FacebookIcon round size={15} />
+        <FacebookIcon round size={25} />
       </FacebookShareButton>
       <PinterestShareButton url={window.location.href}>
-        <PinterestIcon round size={15} />
+        <PinterestIcon round size={25} />
       </PinterestShareButton>
       <TwitterShareButton url={window.location.href}>
-        <TwitterIcon round size={15} />
+        <TwitterIcon round size={25} />
       </TwitterShareButton>
     </div>
   )

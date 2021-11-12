@@ -1,3 +1,27 @@
+@media only screen and (min-device-width: 600px) {
+  #app {
+    width: 60%;
+  }
+  .ourButton {
+    padding: 0.5em;
+    margin: 0.2em;
+  }
+
+}
+
+@media only screen and (max-device-width: 600px) {
+
+  #app {
+    width: 100%;
+    font-size: 0.5em;
+  }
+
+  .ourButton {
+    font-size: 0.5em;
+  }
+}
+
+
 html {
   width: 100vw;
   scroll-behavior: smooth;;
@@ -20,16 +44,30 @@ body {
 
 }
 
+.ourButton {
+  border: none;
+  background: #212a2f;
+  color: whitesmoke;
+  box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
+  cursor: pointer;
+  border-radius: 3px;
 
-@media only screen and (min-device-width: 600px) {
-  #app {
-    width: 60%;
-  }
 }
 
-@media only screen and (max-device-width: 600px) {
-
-#app {
-  width: 100%
+.ourButton:hover{
+  background: #3a3f41;
+  color:white;
 }
+
+.ourButton:active {
+  background: #3a3e3f;
+  box-shadow: inset 1px 1px 5px rgba(255, 255, 255, 0.4);
+}
+
+
+.ourContainer {
+  margin: 3% 0%;
+  box-shadow: inset 2px 2px 6px rgba( 0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 2%;
 }

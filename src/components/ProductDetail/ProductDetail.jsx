@@ -6,16 +6,15 @@ import ImageCarousel from './ImageCarousel/ImageCarousel';
 import DetailText from './DetailText/DetailText';
 import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
 // import SampleProduct from '../../SampleData/SampleProduct';
-import sampleStyles from '../../SampleData/SampleStyles';
 import ExpandedView from './ImageCarousel/ExpandedView';
 import ProductContext from '../../ProductContext';
 
 // const currentProduct = SampleProduct;
-const stylesURL = 'http://127.0.0.1:3000/styles/';
+const stylesURL = '/styles/';
 
 const ProductDetail = ({ addToOutfit }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
-  const [productStyles, setProductStyles] = useState(sampleStyles);
+  const [productStyles, setProductStyles] = useState(null);
   const [expanded, setExpanded] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -44,9 +43,15 @@ const ProductDetail = ({ addToOutfit }) => {
 
       />
     ) : '';
-
+  if (!productStyles) {
+    return (
+      <div data-testid="productDetail" className={`${styles.productDetail} ${styles.loading} ourContainer`}>
+        <h1>...</h1>
+      </div>
+    );
+  }
   return (
-    <div data-testid="productDetail" id={styles.productDetail}>
+    <div data-testid="productDetail" className={`${styles.productDetail} ourContainer`}>
       <div id={styles.upperContainer} data-testid="upperContainer">
         <ImageCarousel
           id={styles.imageCarousel}

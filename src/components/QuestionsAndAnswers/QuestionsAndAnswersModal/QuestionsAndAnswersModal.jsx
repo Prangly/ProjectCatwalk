@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
@@ -8,34 +8,72 @@ import styles from './styles.css';
 const QuestionsAndAnswersModal = ({
   type, openModal, currentProductName, questionId, questionBody, setOpenModal, currentProductId, setModalClose,
 }) => {
-  const [answerBodyInfo, setAnswerBodyInfo] = useState('');
-  const [answerNicknameInfo, setAnswerNickNameInfo] = useState('');
-  const [answerEmailInfo, setAnswerEmailInfo] = useState('');
+  const [answerBodyInfo, setAnswerBodyInfo] = useState(null);
+  const [answerNicknameInfo, setAnswerNickNameInfo] = useState(null);
+  const [answerEmailInfo, setAnswerEmailInfo] = useState(null);
   const answerInfo = {
     body: answerBodyInfo, name: answerNicknameInfo, email: answerEmailInfo, photos: [],
   };
+  const [answerBodyRequired, setAnswerBodyRequired] = useState(false);
+  const [answerNicknameRequired, setAnswerNicknameRequired] = useState(false);
+  const [answerEmailRequired, setAnswerEmailRequired] = useState(false);
 
   const postAnswer = () => {
+    setAnswerBodyRequired(false);
+    setAnswerNicknameRequired(false);
+    setAnswerEmailRequired(false);
     axios.post(`/postAnswer/${questionId}`, answerInfo)
-      .then(() => setModalClose((modalClose) => modalClose + 1));
+      .then(() => setModalClose((modalClose) => modalClose + 1))
+      .catch(() => {
+        if (answerInfo.body === null) {
+          setAnswerBodyRequired(true);
+        }
+        if (answerInfo.name === null) {
+          setAnswerNicknameRequired(true);
+        }
+        if (answerInfo.email === null || !answerInfo.email.includes('@')) {
+          setAnswerEmailRequired(true);
+        }
+      });
   };
 
-  const [questionBodyInfo, setQuestionBodyInfo] = useState('');
-  const [questionNicknameInfo, setQuestionNicknameInfo] = useState('');
-  const [questionEmailInfo, setQuestionEmailInfo] = useState('');
+  const [questionBodyInfo, setQuestionBodyInfo] = useState(null);
+  const [questionNicknameInfo, setQuestionNicknameInfo] = useState(null);
+  const [questionEmailInfo, setQuestionEmailInfo] = useState(null);
   const questionInfo = {
     body: questionBodyInfo, name: questionNicknameInfo, email: questionEmailInfo, product_id: currentProductId,
   };
+  const [questionBodyRequired, setQuestionBodyRequired] = useState(false);
+  const [questionNicknameRequired, setQuestionNicknameRequired] = useState(false);
+  const [questionEmailRequired, setQuestionEmailRequired] = useState(false);
+
+  const postQuestion = () => {
+    setQuestionBodyRequired(false);
+    setQuestionNicknameRequired(false);
+    setQuestionEmailRequired(false);
+    axios.post('/postQuestion', questionInfo)
+      .then(() => setModalClose((modalClose) => modalClose + 1))
+      .catch(() => {
+        if (questionInfo.body === null) {
+          setQuestionBodyRequired(true);
+        }
+        if (questionInfo.name === null) {
+          setQuestionNicknameRequired(true);
+        }
+        if (questionInfo.email === null || !questionInfo.email.includes('@')) {
+          setQuestionEmailRequired(true);
+        }
+      });
+  };
+
+  useEffect(() => {
+  }, [questionBodyRequired, questionNicknameRequired, questionEmailRequired]);
+
+  // const onChange = (e) => {
   // const [formData, setFormData] = useState({
   //   answer: '',
   //   name: '',
   // })
-  const postQuestion = () => {
-    axios.post('/postQuestion', questionInfo)
-      .then(() => setModalClose((modalClose) => modalClose + 1));
-  };
-
-  // const onChange = (e) => {
   //   let newFormData = { ...formData}
   //   newFormData[e.target.name] = e.target.value;
   //   setFormData(newFormData)
@@ -62,13 +100,34 @@ const QuestionsAndAnswersModal = ({
               {questionBody}
               {' '}
             </h2>
-            <h3> Your Answer: </h3>
+            <h3>
+              {' '}
+              Your Answer:
+              {' '}
+              <span className={styles.required}>*</span>
+              {'  '}
+              {answerBodyRequired ? <div className={styles.required}>You must enter this field.</div> : null}
+            </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setAnswerBodyInfo(event.target.value)} />
-            <h3> What is your nickname: </h3>
+            <h3>
+              {' '}
+              What is your nickname:
+              {' '}
+              <span className={styles.required}>*</span>
+              {'  '}
+              {answerNicknameRequired ? <div className={styles.required}>You must enter this field.</div> : null}
+            </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerNickNameInfo(event.target.value)} />
             <br />
             For privary reasons, do not use your full name or email address.
-            <h3> Your email: </h3>
+            <h3>
+              {' '}
+              Your email:
+              {' '}
+              <span className={styles.required}>*</span>
+              {'  '}
+              {answerEmailRequired ? <div className={styles.required}>You must enter this field.</div> : null}
+            </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerEmailInfo(event.target.value)} />
             <br />
             For authentication reasons,you will not be emailed.
@@ -78,7 +137,7 @@ const QuestionsAndAnswersModal = ({
               Upload Photos
             </button>
             <br />
-            <button className={styles.submit} type="button" onClick={() => postAnswer()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postAnswer()}>
               Submit
             </button>
           </div>
@@ -93,18 +152,38 @@ const QuestionsAndAnswersModal = ({
               {currentProductName}
               {' '}
             </h2>
-            <h3>Your Questions</h3>
+            <h3>
+              Your Questions
+              {' '}
+              <span className={styles.required}>*</span>
+              {'  '}
+              {questionBodyRequired ? <div className={styles.required}>You must enter this field.</div> : null}
+            </h3>
             <textarea type="text" cols="100" rows="10" maxLength="1000" required onChange={(event) => setQuestionBodyInfo(event.target.value)} />
-            <h3> What is your nickname: </h3>
+            <h3>
+              {' '}
+              What is your nickname:
+              {' '}
+              <span className={styles.required}>*</span>
+              {'  '}
+              {questionNicknameRequired ? <div className={styles.required}>You must enter this field.</div> : null}
+            </h3>
             <textarea type="text" placeholder="Example: jack543!" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionNicknameInfo(event.target.value)} />
             <br />
             For privary reasons, do not use your full name or email address.
-            <h3> Your email: </h3>
+            <h3>
+              {' '}
+              Your email:
+              {' '}
+              <span className={styles.required}>*</span>
+              {'  '}
+              {questionEmailRequired ? <div className={styles.required}>You must enter this field.</div> : null}
+            </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionEmailInfo(event.target.value)} />
             <br />
             For authentication reasons,you will not be emailed.
             <br />
-            <button className={styles.submit} type="button" onClick={() => postQuestion()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postQuestion()}>
               Submit
             </button>
           </div>

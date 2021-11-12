@@ -13,49 +13,50 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   const [answerHelpfulness, setAnswerHelpfulness] = useState(0);
   const [reportAnswer, setReportAnswer] = useState(0);
   const [modalClose, setModalClose] = useState(0);
-  const [loadOrCollapse, setLoadOrCollapse] = useState(true);
+  const [loadMoreQuestions, setloadMoreQuestions] = useState(3);
   const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
   const [searchInput, changeSearchInput] = useState('');
 
-  const filterQuestion = (questionsFromAPI) => {
-    if (searchInput.length > 2) {
-      return questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
-    }
-    return questionsFromAPI;
-  };
+  const filterQuestion = (questionsFromAPI) => questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
 
-  // const getQuestions = (source) => {
   const getQuestions = () => {
-    // axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/50`, { cancelToken: source.token })
-    axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/50`)
-      .then(({ data }) => (
-        filterQuestion(data.results)
-      ))
-      .then((data) => {
-        setCurrentProductQuestions(data);
-      });
+    if (searchInput.length > 2) {
+      const { CancelToken } = axios;
+      const source = CancelToken.source();
+      axios.get(`/questions/${currentProduct.id}/20`, {
+        cancelToken: source.token,
+      })
+        .then(({ data }) => (
+          filterQuestion(data.results)
+        ))
+        .then((data) => {
+          setCurrentProductQuestions(data);
+        });
+    } else {
+      axios.get(`/questions/${currentProduct.id}/${loadMoreQuestions}`)
+        .then(({ data }) => {
+          setCurrentProductQuestions(data.results);
+        });
+    }
   };
 
   useEffect(() => {
-    // const cancelToken = axios.CancelToken;
-    // const source = cancelToken.source();
-    // getQuestions(source);
     getQuestions();
-  }, [currentProduct, questionHelpfulness, answerHelpfulness, modalClose, reportAnswer, searchInput]);
+  }, [currentProduct, questionHelpfulness, answerHelpfulness, modalClose, reportAnswer, searchInput, loadMoreQuestions]);
 
   return (
-    <div id={styles.qAndA}>
+    <div id={styles.qAndA} className="ourContainer">
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput changeSearchInput={changeSearchInput} />
-      <QuestionsList currentProductQuestions={loadOrCollapse ? currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < 4) : currentProductQuestions} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
-      {loadOrCollapse && currentProductQuestions.length > 4 ? <input type="button" value="More Answered Questions" onClick={() => { setLoadOrCollapse(false); }} />
+      <QuestionsList currentProductQuestions={currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < loadMoreQuestions - 1)} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
+      {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" className="ourButton" id={styles.loadMoreQuestions} value="More Answered Questions" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
+
+
         : null}
-      {loadOrCollapse ? null
-        : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
-      <div id={styles.addAQuestion}>
-        <input type="button" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
+      <span>
+        <input type="button" className="ourButton" id={styles.addAQuestion} value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
         <QuestionsAndAnswersModal type="question" openModal={openQuestionsModal} currentProductId={currentProduct.id} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} setModalClose={setModalClose} />
-      </div>
+      </span>
     </div>
   );
 };

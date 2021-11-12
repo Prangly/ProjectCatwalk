@@ -24,7 +24,7 @@ export default function StyleIcon({
         alt={alt}
         style={{
           boxSizing: 'border-box',
-          background: `url(${src})`,
+          backgroundImage: `url(${src})`,
           backgroundSize: '150%',
           backgroundPosition: 'center',
           objectFit: 'contain',

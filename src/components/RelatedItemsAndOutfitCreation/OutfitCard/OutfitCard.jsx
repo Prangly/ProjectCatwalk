@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 
-const productURL = 'http://127.0.0.1:3000/';
+const productURL = '/';
 const sampleStyles = {
   results: [{
     photos: [{
@@ -49,18 +49,26 @@ function OutfitCard({ card, action, removeFromOutfit }) {
 
   return (
     <div data-testid="card" className={styles.card}>
-      <button onClick={() => removeFromOutfit(card)}>
+      <button
+        className="ourButton"
+        onClick={() => removeFromOutfit(card)}
+      >
         {action}
       </button>
-      <h4>{outfitProduct.category}</h4>
-      <h4>{outfitProduct.name}</h4>
-      <h4>
-        $
-        {' '}
-        {outfitProduct.default_price}
-      </h4>
-      {/* <h4>{card.starRating}</h4> */}
-      <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="" />
+      <div data-testid="card">
+        <h6>
+          {outfitProduct.category}
+        </h6>
+        <h4>
+          {outfitProduct.name}
+        </h4>
+        <h4>
+          $
+          {' '}
+          {outfitProduct.default_price}
+        </h4>
+        <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="" />
+      </div>
     </div>
   );
 }

@@ -1,12 +1,15 @@
 #navbar {
   width: 100%;
   background: #212a2f;
-  height: 3em;
+  height: 3.6em;
   color: whitesmoke;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding-left: 1em;
-  box-sizing: border-box
+  font-size: 2em;
+  box-sizing: border-box;
+  /* border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; */
 }
 
