@@ -134,6 +134,7 @@ function RelatedCard({
                 e.stopPropagation();
                 setModalIsOpen(false);
               }}
+                className="ourButton"
               >
                 Close
               </button>
