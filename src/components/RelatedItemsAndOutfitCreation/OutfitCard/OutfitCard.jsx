@@ -21,14 +21,19 @@ const sampleStyles = {
 };
 
 function OutfitCard({ card, action, removeFromOutfit }) {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const [productLoading, setProductLoading] = useState(true);
+  const [stylesLoading, setStylesLoading] = useState(true);
   const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
   const { setErrorCode, setIsError } = useContext(ProductContext);
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
-        setOutfitProduct(data.data);
+        setOutfitProduct(
+          data.data,
+          setProductLoading(false),
+        );
       })
       .catch((err) => {
         setErrorCode(err.response.status);
@@ -39,7 +44,10 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   const stylesAPI = (id) => {
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
-        setOutfitStyles(data.data);
+        setOutfitStyles(
+          data.data,
+          setStylesLoading(false),
+        );
       })
       .catch((err) => {
         setErrorCode(err.response.status);
@@ -57,7 +65,7 @@ function OutfitCard({ card, action, removeFromOutfit }) {
     }, [card]);
   }
 
-  if (loading) { return (<h5>loading</h5>); }
+  if (productLoading || stylesLoading) { return (<h5>loading</h5>); }
 
   return (
     <div data-testid="card" className={styles.card}>
