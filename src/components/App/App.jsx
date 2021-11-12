@@ -14,6 +14,7 @@ import Navbar from '../Navbar/Navbar.jsx';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import ProductContext from '../../ProductContext.jsx';
 import 'babel-polyfill';
+import averageStarRating from '../../../Helpers/averageStarRating.jsx';
 
 const productURL = '/products/';
 
@@ -25,7 +26,7 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [currentOutfit, setCurrentOutfit] = useState([]);
   const [numberOfReviews, setNumberOfReviews] = useState(0);
-  const [currentProductAvgRating, setCurrentProductAvgRating] = useState(3);
+  const [currentProductAvgRating, setCurrentProductAvgRating] = useState(0);
   const { id } = useParams();
 
   useEffect(() => {
@@ -48,8 +49,11 @@ const App = () => {
         });
     }
   };
+
   useEffect(async () => {
     productAPI(currentProductID);
+    averageStarRating(currentProductID)
+      .then((average) => setCurrentProductAvgRating(Math.round(average)));
   }, [currentProductID]);
 
   const addToOutfit = (product) => {
