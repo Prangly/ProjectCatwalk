@@ -63,10 +63,11 @@ const Questions = ({
       </div>
       <div className={styles.answers}>
         <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />
-        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" className="ourButton" onClick={() => { setLoadOrCollapse(false); }} />
+        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" className={styles.moreAnswersOrCollapse} value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
+
           : null}
         {loadOrCollapse ? null
-          : <input type="button" className="ourButton" value="Collapse Answers" onClick={() => { setLoadOrCollapse(true); }} />}
+          : <input type="button" className={styles.moreAnswersOrCollapse} value="Collapse Answers" onClick={() => { setLoadOrCollapse(true); }} />}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
+#answersList {
+  height: 90px;
+  width: 50%;
+  overflow-x: scroll;
+}
+
 #answer {
   font-weight: bold;
 }
 
-#answersList {
-  height: 85px;
-  width: 380px;
-  overflow-x: scroll;
-}

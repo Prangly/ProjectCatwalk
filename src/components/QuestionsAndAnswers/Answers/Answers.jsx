@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 
-const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
+const Answers = ({
+  answer, setAnswerHelpfulness, setReportAnswer, index,
+}) => {
   const months = {
     '01': 'January',
     '02': 'February',
@@ -36,15 +38,23 @@ const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
   };
 
   return (
-    <div>
-      <div id={styles.answerBody}>
-        {'  '}
-        {answer.body}
-      </div>
+    <span>
+      { index === 0 ? (
+        <span>
+          {'  '}
+          {answer.body}
+        </span>
+      )
+        : (
+          <span id={styles.answerBody}>
+            {'  '}
+            {answer.body}
+          </span>
+        )}
       <div id={styles.answersAuthor}>
         by
         {' '}
-        {answer.answerer_name}
+        {answer.answerer_name.toLowerCase() === 'seller' ? <span id={styles.seller}>Seller</span> : <span>{answer.answerer_name}</span>}
         ,
         {' '}
         {months[answer.date.slice(5, 7)]}
@@ -80,7 +90,7 @@ const Answers = ({ answer, setAnswerHelpfulness, setReportAnswer }) => {
           </button>
         ) }
       </div>
-    </div>
+    </span>
   );
 };
 
@@ -94,6 +104,7 @@ Answers.propTypes = {
   }).isRequired,
   setAnswerHelpfulness: PropTypes.func.isRequired,
   setReportAnswer: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default Answers;

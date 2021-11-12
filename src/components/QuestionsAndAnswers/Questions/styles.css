@@ -4,6 +4,8 @@
 
 .question {
   font-weight: bold;
+  /* display: flex;
+  justify-content: left; */
 }
 .answers {
   margin-top: 10px;
@@ -11,10 +13,12 @@
 }
 
 .buttons {
+  font-weight: normal;
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   font-size: x-small;
   /* margin-right: 10px; */
+
 }
 
 .clickedButton {
@@ -29,4 +33,21 @@
   background: none;
   border: none;
   font-size: x-small;
+}
+
+.button:hover {
+  color: grey;
+}
+
+.moreAnswersOrCollapse {
+  color: #3a3e3f;
+  font-weight: bold;
+  margin-left: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.moreAnswersOrCollapse:hover {
+  color: grey;
 }
