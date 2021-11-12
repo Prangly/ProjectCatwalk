@@ -48,15 +48,15 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   }
 
   return (
-    <div className={styles.cardContainer}>
+    <div className={styles.card}>
       <button
         style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
-        className={styles.actionButton}
+        // className={styles.actionButton}
         onClick={() => removeFromOutfit(card)}
       >
         {action}
       </button>
-      <div data-testid="card" className={styles.card}>
+      <div data-testid="card">
         <h6>
           {outfitProduct.category}
         </h6>

@@ -64,10 +64,10 @@ function RelatedCard({
   }, [card]);
 
   return (
-    <div className={styles.cardContainer}>
+    <div className={styles.card}>
       <button
         style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
-        className={styles.actionButton}
+        // className={styles.actionButton}
         onClick={(e) => {
           e.stopPropagation();
           setModalIsOpen(true);
@@ -76,7 +76,7 @@ function RelatedCard({
         {action}
       </button>
       <Link to={`/product/${card}`}>
-        <div data-testid="card" className={styles.card}>
+        <div data-testid="card">
           <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className={styles.table}>
 

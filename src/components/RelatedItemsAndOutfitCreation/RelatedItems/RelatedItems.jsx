@@ -33,19 +33,16 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   if (cardList) {
     return (
       <ul data-testid="relatedItems" id={styles.relatedItems}>
-        Related Items
-        {cardList}
+        <div>Related Items
+
+        {/* </div>
+        <div> */}
+
+          {cardList}</div>
       </ul>
     );
   }
 }
-
-// RelatedItems.propTypes = {
-//   currentProduct: PropTypes.shape({
-//     id: PropTypes.string,
-//   }),
-//   setCurrentProductID: PropTypes.func,
-// };
 
 RelatedItems.propTypes = {
   currentProduct: PropTypes.number,
