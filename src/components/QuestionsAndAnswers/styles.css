@@ -1,7 +1,4 @@
 #qAndA {
-  box-shadow: inset 2px 2px 10px rgba( 0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 1em;
   margin-top: 2%;
   margin-bottom: 2%;
   padding: 2%;
@@ -10,4 +7,13 @@
 
 #addAQuestion {
   margin-top: 2%;
+  margin-left: 2%;
+  height: 50px;
+  width: 30%;
+}
+
+#loadMoreQuestions {
+  margin-top: 2%;
+  height: 50px;
+  width: 30%;
 }

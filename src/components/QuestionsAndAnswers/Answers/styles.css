@@ -26,3 +26,7 @@
   border: none;
   font-size: x-small;
 }
+
+.button:hover {
+  color: grey;
+}
