@@ -60,8 +60,9 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   }, [currentProductId]);
 
   const postReview = () => {
-    axios.post('/writeReview', submittedReview)
-      .then(() => console.log('review added'));
+    setOpenModal(false);
+    // axios.post('/writeReview', submittedReview)
+    //   .then(() => setOpenModal(false));
   };
 
   return (
