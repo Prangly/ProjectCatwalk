@@ -33,12 +33,8 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
   if (cardList) {
     return (
       <ul data-testid="relatedItems" id={styles.relatedItems}>
-        <div>Related Items
-
-        {/* </div>
-        <div> */}
-
-          {cardList}</div>
+        Related Items
+        {cardList}
       </ul>
     );
   }

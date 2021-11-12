@@ -10,8 +10,8 @@ function Outfit({ removeFromOutfit, currentOutfit }) {
   const cardList = currentOutfit.map((card) => <OutfitCard key={card} card={card} action={action} removeFromOutfit={removeFromOutfit} />);
   return (
     <ul data-testid="outfit" id={styles.outfit}>
-      <div>Your Outfit</div>
-      <div>{cardList}</div>
+      Your Outfit
+      {cardList}
       {currentOutfit.length === 0
         && (
         <h4 className={styles.card}>
