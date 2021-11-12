@@ -36,7 +36,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
     }, [currentProduct.id]);
   }
 
-  if (loading) { return (<h5>loading</h5>); }
+  if (loading) { return (<div className="ourContainer" id={styles.relatedItems}>loading</div>); }
 
   if (cardList) {
     return (
