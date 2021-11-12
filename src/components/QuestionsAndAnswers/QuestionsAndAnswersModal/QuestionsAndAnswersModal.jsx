@@ -80,8 +80,8 @@ const QuestionsAndAnswersModal = ({
   // }
 
   return (
-    <Modal isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
-      <input className={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
+    <Modal className={styles.modalSize} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
+      {/* <input className={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} /> */}
       {type === 'answer'
         ? (
           <div>
