@@ -10,8 +10,8 @@ function AddToCart({
   const [alertMessage, setAlertMessage] = useState('');
 
   const cartAPI = (skuId, count) => axios.post(cartUrl, { skuId, count })
-    .then((data) => {
-      console.log(data);
+    .then(() => {
+      setAlertMessage('Added to Cart!');
     })
     .catch(() => setAlertMessage('There was an error adding to cart...'));
 

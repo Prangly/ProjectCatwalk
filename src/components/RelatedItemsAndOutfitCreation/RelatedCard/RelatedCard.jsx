@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 import styles from '../styles.css';
 // import styles2 from '../../ProductDetail/StylesAndSizes/styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
-// import ProductContext from '../../../ProductContext';
+import ProductContext from '../../../ProductContext';
 // import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 
 const productURL = '/';
@@ -34,7 +34,7 @@ function RelatedCard({
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
 
-  // const { currentProductAvgRating } = useContext(ProductContext);
+  const { setErrorCode, setIsError } = useContext(ProductContext);
 
   if (productSelected) {
     setCurrentProductID(productSelected);
@@ -45,6 +45,10 @@ function RelatedCard({
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
         setRelatedStyles(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -52,6 +56,10 @@ function RelatedCard({
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
         setRelatedProduct(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -86,35 +94,17 @@ function RelatedCard({
               <div className={styles.row}>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>{currentProduct.name}</h4>
+                  <h4 className={styles.cell}>{currentProduct.name}</h4>
 
                 </div>
                 <div className={styles.column}>
 
-                    <h4> </h4>
+                  <h4> </h4>
 
                 </div>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>{relatedProduct.name}</h4>
-
-                </div>
-              </div>
-
-              <div className={styles.row}>
-                <div className={styles.column}>
-
-                    <h4 className={styles.cell}>{currentProduct.slogan}</h4>
-
-                </div>
-                <div className={styles.column}>
-
-                    <h4 className={styles.cell}>Slogan</h4>
-
-                </div>
-                <div className={styles.column}>
-
-                    <h4 className={styles.cell}>{relatedProduct.slogan}</h4>
+                  <h4 className={styles.cell}>{relatedProduct.name}</h4>
 
                 </div>
               </div>
@@ -122,17 +112,17 @@ function RelatedCard({
               <div className={styles.row}>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>{currentProduct.description}</h4>
+                  <h4 className={styles.cell}>{currentProduct.slogan}</h4>
 
                 </div>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>Description</h4>
+                  <h4 className={styles.cell}>Slogan</h4>
 
                 </div>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>{relatedProduct.description}</h4>
+                  <h4 className={styles.cell}>{relatedProduct.slogan}</h4>
 
                 </div>
               </div>
@@ -140,35 +130,54 @@ function RelatedCard({
               <div className={styles.row}>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>
-                      $
-                      {' '}
-                      {currentProduct.default_price}
-                    </h4>
+                  <h4 className={styles.cell}>{currentProduct.description}</h4>
 
                 </div>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>Price</h4>
+                  <h4 className={styles.cell}>Description</h4>
 
                 </div>
                 <div className={styles.column}>
 
-                    <h4 className={styles.cell}>
-                      $
-                      {' '}
-                      {relatedProduct.default_price}
-                    </h4>
+                  <h4 className={styles.cell}>{relatedProduct.description}</h4>
+
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+
+                  <h4 className={styles.cell}>
+                    $
+                    {' '}
+                    {currentProduct.default_price}
+                  </h4>
+
+                </div>
+                <div className={styles.column}>
+
+                  <h4 className={styles.cell}>Price</h4>
+
+                </div>
+                <div className={styles.column}>
+
+                  <h4 className={styles.cell}>
+                    $
+                    {' '}
+                    {relatedProduct.default_price}
+                  </h4>
 
                 </div>
               </div>
 
             </div>
             <div>
-              <button onClick={(e) => {
-                e.stopPropagation();
-                setModalIsOpen(false);
-              }}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setModalIsOpen(false);
+                }}
                 className="ourButton"
               >
                 Close

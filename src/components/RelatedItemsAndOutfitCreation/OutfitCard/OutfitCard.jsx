@@ -4,11 +4,12 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
+import ProductContext from '../../../ProductContext';
 
 const productURL = '/';
 const sampleStyles = {
@@ -22,11 +23,15 @@ const sampleStyles = {
 function OutfitCard({ card, action, removeFromOutfit }) {
   const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
-
+  const { setErrorCode, setIsError } = useContext(ProductContext);
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
         setOutfitProduct(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -34,6 +39,10 @@ function OutfitCard({ card, action, removeFromOutfit }) {
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
         setOutfitStyles(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 

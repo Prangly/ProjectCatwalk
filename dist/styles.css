@@ -7,6 +7,9 @@
     margin: 0.2em;
   }
 
+  .ourContainer {
+    margin: 3% 0%;
+  }
 }
 
 @media only screen and (max-device-width: 600px) {
@@ -18,6 +21,10 @@
 
   .ourButton {
     font-size: 0.5em;
+  }
+
+  .ourContainer {
+    margin: 3% 1%;
   }
 }
 
@@ -50,7 +57,7 @@ body {
   color: whitesmoke;
   box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 5%;
 
 }
 
@@ -66,7 +73,6 @@ body {
 
 
 .ourContainer {
-  margin: 3% 0%;
   box-shadow: inset 2px 2px 6px rgba( 0, 0, 0, 0.3);
   border-radius: 10px;
   padding: 2%;

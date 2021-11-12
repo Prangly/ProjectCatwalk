@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable react/self-closing-comp */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating';
 import Characteristics from './Characteristics';
+import ProductContext from '../../../ProductContext';
 
 const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [isRecommended, setIsRecommended] = useState(false);
@@ -14,6 +15,8 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
   const [characteristics, setCharacteristics] = useState(null);
+  const { setIsError, setErrorCode } = useContext(ProductContext);
+
 
   const metaURL = '/meta';
 
@@ -52,6 +55,10 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
     axios.get(`${metaURL}/${id}`)
       .then(({ data }) => {
         setReviewsMeta(data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -61,8 +68,13 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
 
   const postReview = () => {
     setOpenModal(false);
-    // axios.post('/writeReview', submittedReview)
-    //   .then(() => setOpenModal(false));
+   // axios.post('/writeReview', submittedReview)
+     // .then(() => console.log('review added'))
+      //.catch((err) => {
+       // setErrorCode(err.response.status);
+       // setIsError(true);
+      // });
+  
   };
 
   return (
