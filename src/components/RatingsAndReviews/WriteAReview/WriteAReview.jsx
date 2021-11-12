@@ -68,13 +68,12 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
 
   const postReview = () => {
     setOpenModal(false);
-   // axios.post('/writeReview', submittedReview)
-     // .then(() => console.log('review added'))
-      //.catch((err) => {
-       // setErrorCode(err.response.status);
-       // setIsError(true);
-      // });
-  
+    // axios.post('/writeReview', submittedReview)
+    // .then(() => console.log('review added'))
+    // .catch((err) => {
+    // setErrorCode(err.response.status);
+    // setIsError(true);
+    // });
   };
 
   return (
