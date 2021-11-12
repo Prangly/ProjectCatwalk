@@ -15,6 +15,7 @@ const RatAndRev = ({ currentProduct }) => {
     setCurrentProductAvgRating,
     setErrorCode,
     setIsError,
+    setNumberOfReviews,
   } = useContext(ProductContext);
   const [numRevsToGet, setNumRevsToGet] = useState(2);
   const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
@@ -24,7 +25,7 @@ const RatAndRev = ({ currentProduct }) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
         setCurrentRev(data.results);
-        setNumRevsGotten(data.results.length);
+        setNumberOfReviews(data.results.length);
       })
       .catch((err) => {
         setErrorCode(err.response.status);

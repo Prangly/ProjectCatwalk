@@ -8,26 +8,30 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
-import sampleProduct from '../../../SampleData/SampleProduct.js';
 import ProductContext from '../../../ProductContext';
 
 const productURL = '/';
-const sampleStyles = {
+const stylesShape = {
   results: [{
     photos: [{
-      url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+      url: '',
     }],
   }],
 };
 
 function OutfitCard({ card, action, removeFromOutfit }) {
-  const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
-  const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
+  const [productLoading, setProductLoading] = useState(true);
+  const [stylesLoading, setStylesLoading] = useState(true);
+  const [outfitProduct, setOutfitProduct] = useState({});
+  const [outfitStyles, setOutfitStyles] = useState(stylesShape);
   const { setErrorCode, setIsError } = useContext(ProductContext);
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
-        setOutfitProduct(data.data);
+        setOutfitProduct(
+          data.data,
+          setProductLoading(false),
+        );
       })
       .catch((err) => {
         setErrorCode(err.response.status);
@@ -38,7 +42,10 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   const stylesAPI = (id) => {
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
-        setOutfitStyles(data.data);
+        setOutfitStyles(
+          data.data,
+          setStylesLoading(false),
+        );
       })
       .catch((err) => {
         setErrorCode(err.response.status);
@@ -54,6 +61,12 @@ function OutfitCard({ card, action, removeFromOutfit }) {
     useEffect(() => {
       stylesAPI(card);
     }, [card]);
+  }
+
+  if (productLoading || stylesLoading) {
+    return (
+      <div className={styles.card}>loading</div>
+    );
   }
 
   return (
