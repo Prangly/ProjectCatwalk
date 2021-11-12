@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
 /* eslint-disable react/self-closing-comp */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
 import StarRating from '../StarRating/StarRating';
 import Characteristics from './Characteristics';
+import ProductContext from '../../../ProductContext';
 
 const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [isRecommended, setIsRecommended] = useState(false);
@@ -14,7 +15,8 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
   const [characteristics, setCharacteristics] = useState(null);
-  console.log('open modal', openModal);
+  const { setIsError, setErrorCode } = useContext(ProductContext);
+
 
   const metaURL = '/meta';
 
@@ -53,6 +55,10 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
     axios.get(`${metaURL}/${id}`)
       .then(({ data }) => {
         setReviewsMeta(data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -61,8 +67,14 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   }, [currentProductId]);
 
   const postReview = () => {
-    axios.post('/writeReview', submittedReview)
-      .then(() => console.log('review added'));
+    setOpenModal(false);
+   // axios.post('/writeReview', submittedReview)
+     // .then(() => console.log('review added'))
+      //.catch((err) => {
+       // setErrorCode(err.response.status);
+       // setIsError(true);
+      // });
+  
   };
 
   return (
@@ -92,7 +104,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
         <br />
         <br />
-        <button type="submit" onClick={postReview}>
+        <button type="submit" className="ourButton" onClick={postReview}>
           Submit
         </button>
       </div>

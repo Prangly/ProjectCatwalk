@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
 import styles from './styles.css';
+import ProductContext from '../../../ProductContext';
 
 const QuestionsAndAnswersModal = ({
   type, openModal, currentProductName, questionId, questionBody, setOpenModal, currentProductId, setModalClose,
@@ -17,24 +18,28 @@ const QuestionsAndAnswersModal = ({
   const [answerBodyRequired, setAnswerBodyRequired] = useState(false);
   const [answerNicknameRequired, setAnswerNicknameRequired] = useState(false);
   const [answerEmailRequired, setAnswerEmailRequired] = useState(false);
+  const { setIsError, setErrorCode } = useContext(ProductContext);
 
   const postAnswer = () => {
     setAnswerBodyRequired(false);
     setAnswerNicknameRequired(false);
     setAnswerEmailRequired(false);
-    axios.post(`/postAnswer/${questionId}`, answerInfo)
-      .then(() => setModalClose((modalClose) => modalClose + 1))
-      .catch(() => {
-        if (answerInfo.body === null) {
-          setAnswerBodyRequired(true);
-        }
-        if (answerInfo.name === null) {
-          setAnswerNicknameRequired(true);
-        }
-        if (answerInfo.email === null || !answerInfo.email.includes('@')) {
-          setAnswerEmailRequired(true);
-        }
-      });
+    if (answerInfo.body === null) {
+      setAnswerBodyRequired(true);
+    }
+    if (answerInfo.name === null) {
+      setAnswerNicknameRequired(true);
+    }
+    if (answerInfo.email === null || !answerInfo.email.includes('@')) {
+      setAnswerEmailRequired(true);
+    } else {
+      axios.post(`/postAnswer/${questionId}`, answerInfo)
+        .then(() => setModalClose((modalClose) => modalClose + 1))
+        .catch((err) => {
+          setErrorCode(err.response.status);
+          setIsError(true);
+        });
+    }
   };
 
   const [questionBodyInfo, setQuestionBodyInfo] = useState(null);
@@ -137,7 +142,7 @@ const QuestionsAndAnswersModal = ({
               Upload Photos
             </button>
             <br />
-            <button className={styles.submit} type="button" onClick={() => postAnswer()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postAnswer()}>
               Submit
             </button>
           </div>
@@ -183,7 +188,7 @@ const QuestionsAndAnswersModal = ({
             <br />
             For authentication reasons,you will not be emailed.
             <br />
-            <button className={styles.submit} type="button" onClick={() => postQuestion()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postQuestion()}>
               Submit
             </button>
           </div>

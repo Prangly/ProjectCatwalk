@@ -11,6 +11,7 @@ import QandA from '../QuestionsAndAnswers/QuestionsAndAnswers.jsx';
 import RandOC from '../RelatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 import RatAndRev from '../RatingsAndReviews/RatingsAndReviews.jsx';
 import Navbar from '../Navbar/Navbar.jsx';
+import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import ProductContext from '../../ProductContext.jsx';
 import 'babel-polyfill';
 
@@ -18,6 +19,8 @@ const productURL = '/products/';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [errorCode, setErrorCode] = useState(null);
+  const [isError, setIsError] = useState(false);
   const [currentProductID, setCurrentProductID] = useState(null);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [currentOutfit, setCurrentOutfit] = useState([]);
@@ -39,7 +42,10 @@ const App = () => {
         .then((data) => {
           setCurrentProduct(data.data, setLoading(false));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setErrorCode(err.response.status);
+          setIsError(true);
+        });
     }
   };
   useEffect(async () => {
@@ -60,12 +66,8 @@ const App = () => {
     setCurrentOutfit(revisedOutfit);
   };
 
-  // useEffect(() => {
-  //   console.log('about to call api', currentProductID)
-
-  // }, [currentProductID]);
-
   if (loading || !currentProduct) { return (<h1>loading</h1>); }
+  if (isError) { return (<ErrorMessage errorCode={errorCode} />); }
   return (
     <div id="app">
       <Navbar />
@@ -76,6 +78,8 @@ const App = () => {
         setCurrentProductAvgRating,
         numberOfReviews,
         setNumberOfReviews,
+        setIsError,
+        setErrorCode,
       }}
       >
         <ProductDetail addToOutfit={addToOutfit} />

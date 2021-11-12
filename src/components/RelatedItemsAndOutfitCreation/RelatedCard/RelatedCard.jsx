@@ -4,13 +4,16 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import styles from '../styles.css';
+// import styles2 from '../../ProductDetail/StylesAndSizes/styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
+import ProductContext from '../../../ProductContext';
+// import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 
 const productURL = '/';
 const sampleStyles = {
@@ -31,6 +34,8 @@ function RelatedCard({
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
 
+  const { setErrorCode, setIsError } = useContext(ProductContext);
+
   if (productSelected) {
     setCurrentProductID(productSelected);
     selectProduct(false);
@@ -40,6 +45,10 @@ function RelatedCard({
     axios.get(`${productURL}styles/${id}`)
       .then((data) => {
         setRelatedStyles(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -47,6 +56,10 @@ function RelatedCard({
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
         setRelatedProduct(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -58,9 +71,13 @@ function RelatedCard({
     stylesAPI(card);
   }, [card]);
 
+  // console.log('Current product: ', currentProduct);
+  // console.log('Related product: ', relatedProduct);
+
   return (
-    <div className={styles.cardContainer}>
+    <div className={styles.card}>
       <button
+        style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
         className={`${styles.actionButton} ourButton`}
         onClick={(e) => {
           e.stopPropagation();
@@ -70,76 +87,104 @@ function RelatedCard({
         {action}
       </button>
       <Link to={`/product/${card}`}>
-        <div data-testid="card" className={styles.card}>
-          <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+        <div data-testid="card">
+          <Modal data-testid="modal" id={styles.modal} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className={styles.table}>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
-                    <h4>{currentProduct.name}</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>{currentProduct.name}</h4>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
-                    <h4>Name</h4>
-                  </div>
+
+                  <h4> </h4>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
-                    <h4>{relatedProduct.name}</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>{relatedProduct.name}</h4>
+
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
-                    <h4>{currentProduct.slogan}</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>{currentProduct.slogan}</h4>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
-                    <h4>Slogan</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>Slogan</h4>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
-                    <h4>{relatedProduct.slogan}</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>{relatedProduct.slogan}</h4>
+
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
-                    <h4>{currentProduct.description}</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>{currentProduct.description}</h4>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
-                    <h4>Description</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>Description</h4>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
-                    <h4>{relatedProduct.description}</h4>
-                  </div>
+
+                  <h4 className={styles.cell}>{relatedProduct.description}</h4>
+
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+
+                  <h4 className={styles.cell}>
+                    $
+                    {' '}
+                    {currentProduct.default_price}
+                  </h4>
+
+                </div>
+                <div className={styles.column}>
+
+                  <h4 className={styles.cell}>Price</h4>
+
+                </div>
+                <div className={styles.column}>
+
+                  <h4 className={styles.cell}>
+                    $
+                    {' '}
+                    {relatedProduct.default_price}
+                  </h4>
+
                 </div>
               </div>
 
             </div>
             <div>
-              <button onClick={(e) => {
-                e.stopPropagation();
-                setModalIsOpen(false);
-              }}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setModalIsOpen(false);
+                }}
+                className="ourButton"
               >
                 Close
               </button>
             </div>
           </Modal>
-          <h4>{relatedProduct.category}</h4>
+          <h6>{relatedProduct.category}</h6>
           <h4>{relatedProduct.name}</h4>
           <h4>
             $

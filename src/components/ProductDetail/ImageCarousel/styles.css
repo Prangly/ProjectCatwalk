@@ -1,29 +1,67 @@
+
+@media only screen and (min-device-width: 600px) {
+  #imageCarousel {
+    max-width: 18vw;
+    min-width: 18vw;
+    min-height: 100%;
+    max-height:100%;
+  }
+
+  .scrollBar {
+    width: 10%;
+  }
+
+  .thumbnailImage{
+    height: 5vh;
+    width: 5vh;
+  }
+}
+
+@media only screen and (max-device-width: 600px) {
+
+  #imageCarousel {
+    max-width: 35vw;
+    min-width: 35vw;
+  }
+
+  .scrollBar {
+    width: 20%;
+  }
+
+  .thumbnailImage{
+    height: 3vh;
+    width: 3vh;
+  }
+}
+
+
 #imageCarousel {
 flex-grow: 2;
 position: relative;
-max-width: 18vw;
-min-width: 18vw;
-min-height: 100%;
-max-height:100%;
-border-top-left-radius: 10px;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+border-bottom-right-radius: 3px;
+
 }
+
 
 .bigImage {
   object-fit: cover;
   min-height: 100%;
-max-height:100%;
+  max-height:100%;
   cursor:zoom-in;
   overflow: hidden;
   max-width: 100%;
+  min-width: 100%;
   z-index: -1;
-  border-top-left-radius: 10px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 
 }
 
 .scrollBar {
-  width: 10%;
   opacity: 0.5;
-
 }
 
 .scrollBar, .expandedScrollBar {
@@ -37,13 +75,9 @@ max-height:100%;
   border: none;
   transition: background-color 100ms, color 100ms;
   position:absolute;
+
 }
 
-.expandedScrollBar {
-  height:100%;
-  width: 15%;
-  opacity: 1;
-}
 .scrollBar:hover, .expandedScrollBar:hover{
   background-color: lightgray;
   cursor: pointer;
@@ -55,15 +89,18 @@ max-height:100%;
 }
 
 #leftBar{
-position: absolute;
-top: 0px;
-border-top-left-radius: 10px;
+  position: absolute;
+  top: 0px;
+  border-top-left-radius: 3px;
 
 }
 #rightBar{
   position: absolute;
   top: 0px;
-  right: 0px
+  right: 0px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+
 }
 
 #picture{
@@ -89,9 +126,14 @@ border-top-left-radius: 10px;
 
 #scrollButtonLeft{
   left:0;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
 #scrollButtonRight{
   right:0;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+
 }
 
 .scrollButton{
@@ -127,8 +169,7 @@ border-top-left-radius: 10px;
 }
 
 .thumbnailImage {
-  height: 5vh;
-  width: 5vh;
+
   border: none;
   border-radius: 5px;
   box-shadow: 0px 0px 3px white;
@@ -173,11 +214,14 @@ border-top-left-radius: 10px;
 #closeExpandedView {
   position: absolute;
   top: 3%;
-  right: 15%;
+  right: 10%;
   opacity: 0.5;
   border: none;
   border-radius: 10%;
   cursor: pointer;
+  width: 2em;
+  height: 2em;
+  text-align: center;
 }
 
 #closeExpandedView:hover {
@@ -185,11 +229,13 @@ border-top-left-radius: 10px;
 }
 
 .expandedCarouselImage {
-object-fit: cover;
-position: absolute;
-height: 100%;
-width: 100%;
-z-index: inherit;
+  object-fit: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: inherit;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #viewPort {
@@ -203,18 +249,21 @@ z-index: inherit;
   justify-content: center;
 }
 
-
 .expandedScrollBar {
-  width: 10%;
+  width: 7%;
   z-index: 2;
-  opacity: 0.5;
+  opacity: 0.7;
+  height:100%;
 }
+
 #expandedLeftBar{
   left:0;
+  border-bottom-left-radius: 5px;
 }
 
 #expandedRightBar{
   right:0;
+  border-bottom-right-radius: 5px;
 }
 
 #iconGallery {

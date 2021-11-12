@@ -1,11 +1,12 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
 import QuestionsSearchInput from './QuestionsSearchInput/QuestionsSearchInput';
 import QuestionsList from './QuestionsList/QuestionsList';
 import QuestionsAndAnswersModal from './QuestionsAndAnswersModal/QuestionsAndAnswersModal';
+import ProductContext from '../../ProductContext';
 
 const QuestionsAndAnswers = ({ currentProduct }) => {
   const [currentProductQuestions, setCurrentProductQuestions] = useState([]);
@@ -16,14 +17,14 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   const [loadMoreQuestions, setloadMoreQuestions] = useState(3);
   const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
   const [searchInput, changeSearchInput] = useState('');
-
+  const { setIsError, setErrorCode } = useContext(ProductContext);
   const filterQuestion = (questionsFromAPI) => questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
 
   const getQuestions = () => {
     if (searchInput.length > 2) {
       const { CancelToken } = axios;
       const source = CancelToken.source();
-      axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/20`, {
+      axios.get(`/questions/${currentProduct.id}/20`, {
         cancelToken: source.token,
       })
         .then(({ data }) => (
@@ -31,11 +32,19 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
         ))
         .then((data) => {
           setCurrentProductQuestions(data);
+        })
+        .catch((err) => {
+          setErrorCode(err.response.status);
+          setIsError(true);
         });
     } else {
-      axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/${loadMoreQuestions}`)
+      axios.get(`/questions/${currentProduct.id}/${loadMoreQuestions}`)
         .then(({ data }) => {
           setCurrentProductQuestions(data.results);
+        })
+        .catch((err) => {
+          setErrorCode(err.response.status);
+          setIsError(true);
         });
     }
   };
@@ -50,6 +59,8 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
       <QuestionsSearchInput changeSearchInput={changeSearchInput} />
       <QuestionsList currentProductQuestions={currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < loadMoreQuestions - 1)} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
       {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" className="ourButton" id={styles.loadMoreQuestions} value="More Answered Questions" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
+
+
         : null}
       <span>
         <input type="button" className="ourButton" id={styles.addAQuestion} value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
