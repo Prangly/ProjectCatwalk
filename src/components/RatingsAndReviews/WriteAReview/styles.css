@@ -1,22 +1,18 @@
 #charsTable {
-  font-family:Arial, Helvetica, sans-serif;
-	color:#666;
-	font-size:12px;
-	text-shadow: 1px 1px 0px #fff;
-	background:#eaebec;
-	margin:20px;
-	border:#ccc 1px solid;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-#charsTableHead {
-  padding:21px 25px 22px 25px;
-	border-top:1px solid #fafafa;
-	border-bottom:1px solid #e0e0e0;
+#charsHead {
+  background-color: #8AC7DB;
+  color: #ffffff;
+  text-align: left;
 }
 
 td {
-  padding:18px;
-	border-top: 1px solid #ffffff;
-	border-bottom:1px solid #e0e0e0;
-	border-left: 1px solid #e0e0e0;
+  padding: 12px 15px;
 }
