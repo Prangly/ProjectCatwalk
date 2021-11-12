@@ -8,7 +8,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
-import sampleProduct from '../../../SampleData/SampleProduct.js';
+// import sampleProduct from '../../../SampleData/SampleProduct.js';
 import ProductContext from '../../../ProductContext';
 
 const productURL = '/';
@@ -23,7 +23,7 @@ const sampleStyles = {
 function OutfitCard({ card, action, removeFromOutfit }) {
   const [productLoading, setProductLoading] = useState(true);
   const [stylesLoading, setStylesLoading] = useState(true);
-  const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
+const [outfitProduct, setOutfitProduct] = useState({});
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
   const { setErrorCode, setIsError } = useContext(ProductContext);
   const productAPI = (id) => {
