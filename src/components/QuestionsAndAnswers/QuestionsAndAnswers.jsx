@@ -23,7 +23,7 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
     if (searchInput.length > 2) {
       const { CancelToken } = axios;
       const source = CancelToken.source();
-      axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/20`, {
+      axios.get(`/questions/${currentProduct.id}/20`, {
         cancelToken: source.token,
       })
         .then(({ data }) => (
@@ -33,7 +33,7 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
           setCurrentProductQuestions(data);
         });
     } else {
-      axios.get(`http://127.0.0.1:3000/questions/${currentProduct.id}/${loadMoreQuestions}`)
+      axios.get(`/questions/${currentProduct.id}/${loadMoreQuestions}`)
         .then(({ data }) => {
           setCurrentProductQuestions(data.results);
         });
