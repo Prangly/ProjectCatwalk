@@ -14,7 +14,6 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
   const [characteristics, setCharacteristics] = useState(null);
-  console.log('open modal', openModal);
 
   const metaURL = '/meta';
 
