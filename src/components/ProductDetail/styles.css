@@ -3,6 +3,9 @@
   flex-direction: column;
   position: relative;
   height: 60%;
+  margin-top: 0px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .loading {
