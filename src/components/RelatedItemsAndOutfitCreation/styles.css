@@ -20,7 +20,7 @@
   border-radius: 10px;
   align-items: center;
   align-content: space-between;
-  justify-content: flex-end;
+  justify-content: center;
   margin: 1em;
   max-height: 35vh;
   min-height: 35vh;
@@ -50,7 +50,16 @@ a {
   text-decoration: none
 }
 
-
+.cell {
+  border: 1px solid black;
+  justify-items: center;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  max-height: 6em;
+  min-height: 6em;
+  /* line-height: 4em; */
+}
 
 .actionButton {
   position: absolute;
@@ -62,7 +71,7 @@ a {
 .table {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .row {
@@ -70,8 +79,8 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around;
-  padding: 1em;
+  /* justify-content: space-between; */
+  /* padding: 0em; */
 }
 
 .column {

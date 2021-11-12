@@ -63,6 +63,9 @@ function RelatedCard({
     stylesAPI(card);
   }, [card]);
 
+  // console.log('Current product: ', currentProduct);
+  // console.log('Related product: ', relatedProduct);
+
   return (
     <div className={styles.card}>
       <button
@@ -83,35 +86,17 @@ function RelatedCard({
               <div className={styles.row}>
                 <div className={styles.column}>
                   <div>
-                    <h4>{currentProduct.name}</h4>
+                    <h4 className={styles.cell}>{currentProduct.name}</h4>
                   </div>
                 </div>
                 <div className={styles.column}>
                   <div>
-                    <h4>Name</h4>
+                    <h4> </h4>
                   </div>
                 </div>
                 <div className={styles.column}>
                   <div>
-                    <h4>{relatedProduct.name}</h4>
-                  </div>
-                </div>
-              </div>
-
-              <div className={styles.row}>
-                <div className={styles.column}>
-                  <div>
-                    <h4>{currentProduct.slogan}</h4>
-                  </div>
-                </div>
-                <div className={styles.column}>
-                  <div>
-                    <h4>Slogan</h4>
-                  </div>
-                </div>
-                <div className={styles.column}>
-                  <div>
-                    <h4>{relatedProduct.slogan}</h4>
+                    <h4 className={styles.cell}>{relatedProduct.name}</h4>
                   </div>
                 </div>
               </div>
@@ -119,17 +104,61 @@ function RelatedCard({
               <div className={styles.row}>
                 <div className={styles.column}>
                   <div>
-                    <h4>{currentProduct.description}</h4>
+                    <h4 className={styles.cell}>{currentProduct.slogan}</h4>
                   </div>
                 </div>
                 <div className={styles.column}>
                   <div>
-                    <h4>Description</h4>
+                    <h4 className={styles.cell}>Slogan</h4>
                   </div>
                 </div>
                 <div className={styles.column}>
                   <div>
-                    <h4>{relatedProduct.description}</h4>
+                    <h4 className={styles.cell}>{relatedProduct.slogan}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+                  <div>
+                    <h4 className={styles.cell}>{currentProduct.description}</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4 className={styles.cell}>Description</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4 className={styles.cell}>{relatedProduct.description}</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.row}>
+                <div className={styles.column}>
+                  <div>
+                    <h4 className={styles.cell}>
+                      $
+                      {' '}
+                      {currentProduct.default_price}
+                    </h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4 className={styles.cell}>Price</h4>
+                  </div>
+                </div>
+                <div className={styles.column}>
+                  <div>
+                    <h4 className={styles.cell}>
+                      $
+                      {' '}
+                      {relatedProduct.default_price}
+                    </h4>
                   </div>
                 </div>
               </div>
