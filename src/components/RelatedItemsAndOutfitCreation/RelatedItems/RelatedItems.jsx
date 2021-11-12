@@ -6,19 +6,20 @@ import RelatedCard from '../RelatedCard/RelatedCard';
 import ProductContext from '../../../ProductContext';
 
 const productURL = '/products/';
-const starterCards = [
-  61581, 61583,
-];
-
 function RelatedItems({ currentProduct, setCurrentProductID }) {
   const action = 'Compare';
 
-  const [relatedItems, setRelatedItems] = useState(starterCards);
+  const [loading, setLoading] = useState(true);
+  const [relatedItems, setRelatedItems] = useState([]);
   const { setErrorCode, setIsError } = useContext(ProductContext);
+
   const relatedAPI = (id) => {
     axios.get(`${productURL + id}/related`)
       .then((data) => {
-        setRelatedItems(data.data);
+        setRelatedItems(
+          data.data,
+          setLoading(false),
+        );
       })
       .catch((err) => {
         setErrorCode(err.response.status);
@@ -34,6 +35,8 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
       relatedAPI(currentProduct.id);
     }, [currentProduct.id]);
   }
+
+  if (loading) { return (<div className="ourContainer" id={styles.relatedItems}>loading</div>); }
 
   if (cardList) {
     return (
