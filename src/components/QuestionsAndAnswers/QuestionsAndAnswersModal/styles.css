@@ -7,8 +7,10 @@
 } */
 
 #modalSize {
-  margin-left: 40%;
+  /* margin-left: 40%;
   margin-top: 20%;
+  border: 1px;
+  padding: 1%; */
 }
 
 .close {
