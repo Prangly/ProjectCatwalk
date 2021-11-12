@@ -15,12 +15,14 @@ const RatAndRev = ({ currentProduct }) => {
     setCurrentProductAvgRating,
     setErrorCode,
     setIsError,
+    setNumberOfReviews,
   } = useContext(ProductContext);
 
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
         setCurrentRev(data.results);
+        setNumberOfReviews(data.results.length);
       })
       .catch((err) => {
         setErrorCode(err.response.status);
