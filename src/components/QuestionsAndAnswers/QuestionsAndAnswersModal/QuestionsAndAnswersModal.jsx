@@ -56,19 +56,22 @@ const QuestionsAndAnswersModal = ({
     setQuestionBodyRequired(false);
     setQuestionNicknameRequired(false);
     setQuestionEmailRequired(false);
-    axios.post('/postQuestion', questionInfo)
-      .then(() => setModalClose((modalClose) => modalClose + 1))
-      .catch(() => {
-        if (questionInfo.body === null) {
-          setQuestionBodyRequired(true);
-        }
-        if (questionInfo.name === null) {
-          setQuestionNicknameRequired(true);
-        }
-        if (questionInfo.email === null || !questionInfo.email.includes('@')) {
-          setQuestionEmailRequired(true);
-        }
-      });
+    if (questionInfo.body === null) {
+      setQuestionBodyRequired(true);
+    }
+    if (questionInfo.name === null) {
+      setQuestionNicknameRequired(true);
+    }
+    if (questionInfo.email === null || !questionInfo.email.includes('@')) {
+      setQuestionEmailRequired(true);
+    } else {
+      axios.post('/postQuestion', questionInfo)
+        .then(() => setModalClose((modalClose) => modalClose + 1))
+        .catch((err) => {
+          setErrorCode(err.response.status);
+          setIsError(true);
+        });
+    }
   };
 
   useEffect(() => {
