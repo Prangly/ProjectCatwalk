@@ -137,7 +137,7 @@ const QuestionsAndAnswersModal = ({
               Upload Photos
             </button>
             <br />
-            <button className={styles.submit} type="button" onClick={() => postAnswer()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postAnswer()}>
               Submit
             </button>
           </div>
@@ -183,7 +183,7 @@ const QuestionsAndAnswersModal = ({
             <br />
             For authentication reasons,you will not be emailed.
             <br />
-            <button className={styles.submit} type="button" onClick={() => postQuestion()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postQuestion()}>
               Submit
             </button>
           </div>

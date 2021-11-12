@@ -48,7 +48,7 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput changeSearchInput={changeSearchInput} />
       <QuestionsList currentProductQuestions={currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < loadMoreQuestions - 1)} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
-      {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" value="More Answered Questions" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
+      {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" value="More Answered Questions" className="ourButton" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
         : null}
       <div id={styles.addAQuestion}>
         <input type="button" className="ourButton" value="Add a question" onClick={() => setOpenQuestionsModal(true)} />

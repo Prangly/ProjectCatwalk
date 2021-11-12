@@ -1,13 +1,28 @@
+
+
+@media only screen and (min-device-width: 600px) {
+  .styleIcon {
+    height: 7vh;
+    width: 7vh;
+  }
+}
+
+@media only screen and (max-device-width: 600px) {
+  .styleIcon {
+    height: 4vh;
+    width: 4vh;
+  }
+
+}
+
 .styleIcon {
   object-fit: cover;
-  height: 7vh;
-  width: 7vh;
   overflow: hidden;
   border-radius: 50%;
   box-shadow:  1px 1px 3px rgba(0, 0, 0, 0.5);
   border:none;
+  margin: 0.1em;
 }
-
 
 
 .styleIcon:hover {
@@ -36,7 +51,7 @@ box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3);
   align-items: center;
   justify-content: center;
   position: relative;
-  height:100%;
+  max-height:100%;
 }
 
 .tooltip {
