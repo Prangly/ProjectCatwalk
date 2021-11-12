@@ -7,7 +7,9 @@ const process = require('process');
 
 const app = express();
 const port = 3000;
-const API_KEY = require('../config');
+// const API_KEY = require('../config');
+
+require('dotenv').config();
 
 app.use(express.static('dist'));
 app.use(cors());
@@ -16,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const headers = {
-  Authorization: API_KEY,
+  Authorization: process.env.API_KEY,
 };
 
 app.get('/product/*', (req, res) => {
@@ -166,4 +168,12 @@ app.post('/cart/', (req, res) => {
   axios.post(cartURL, { sku_id: skuId, count }, { headers })
     .then(() => res.status(201).send())
     .catch((err) => res.status(err.response.status).send());
+});
+
+app.get('/meta/:id', (req, res) => {
+  const { id } = req.params;
+  const reviewsMetaURL = `https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo/reviews/meta?product_id=${id}`;
+  axios.get(reviewsMetaURL, { headers })
+    .then(({ data }) => res.send(data))
+    .catch(() => res.status(500).end());
 });

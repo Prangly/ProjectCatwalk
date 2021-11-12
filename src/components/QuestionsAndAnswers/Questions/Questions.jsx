@@ -9,7 +9,7 @@ import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAn
 const Questions = ({
   question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose, setReportAnswer,
 }) => {
-  const apiURL = `http://127.0.0.1:3000/answers/${question.question_id}/20`;
+  const apiURL = `/answers/${question.question_id}/20`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const getAnswers = () => {
     axios.get(apiURL)
@@ -63,10 +63,10 @@ const Questions = ({
       </div>
       <div className={styles.answers}>
         <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />
-        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
+        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" value="More Answers" className="ourButton" onClick={() => { setLoadOrCollapse(false); }} />
           : null}
         {loadOrCollapse ? null
-          : <input type="button" value="Collapse" onClick={() => { setLoadOrCollapse(true); }} />}
+          : <input type="button" className="ourButton" value="Collapse Answers" onClick={() => { setLoadOrCollapse(true); }} />}
       </div>
     </div>
   );

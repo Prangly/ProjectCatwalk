@@ -4,3 +4,4 @@ dist/bundle.js
 coverage-final.json
 coverage
 .vscode
+.env

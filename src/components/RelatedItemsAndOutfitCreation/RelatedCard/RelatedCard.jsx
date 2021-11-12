@@ -15,7 +15,7 @@ import sampleProduct from '../../../SampleData/SampleProduct.js';
 // import ProductContext from '../../../ProductContext';
 // import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 
-const productURL = 'http://127.0.0.1:3000/';
+const productURL = '/';
 const sampleStyles = {
   results: [{
     photos: [{
@@ -70,7 +70,7 @@ function RelatedCard({
     <div className={styles.card}>
       <button
         style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
-        // className={styles.actionButton}
+        className={`${styles.actionButton} ourButton`}
         onClick={(e) => {
           e.stopPropagation();
           setModalIsOpen(true);
@@ -80,86 +80,86 @@ function RelatedCard({
       </button>
       <Link to={`/product/${card}`}>
         <div data-testid="card">
-          <Modal data-testid="modal" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <Modal data-testid="modal" id={styles.modal} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className={styles.table}>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>{currentProduct.name}</h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4> </h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>{relatedProduct.name}</h4>
-                  </div>
+
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>{currentProduct.slogan}</h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>Slogan</h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>{relatedProduct.slogan}</h4>
-                  </div>
+
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>{currentProduct.description}</h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>Description</h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>{relatedProduct.description}</h4>
-                  </div>
+
                 </div>
               </div>
 
               <div className={styles.row}>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>
                       $
                       {' '}
                       {currentProduct.default_price}
                     </h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>Price</h4>
-                  </div>
+
                 </div>
                 <div className={styles.column}>
-                  <div>
+
                     <h4 className={styles.cell}>
                       $
                       {' '}
                       {relatedProduct.default_price}
                     </h4>
-                  </div>
+
                 </div>
               </div>
 

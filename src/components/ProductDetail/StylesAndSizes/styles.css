@@ -4,22 +4,24 @@
   flex-grow: 1;
   padding: 1em;
   justify-content: space-between;
+
 }
 
+
 #styleContainer {
-  height: 50%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-around;
-  padding: 5%;
+  padding: 2%;
 }
 
 #styleName {
   margin-left: 5%;
-  font-size: 0.5em;;
+  font-size: 1em;;
   font-style: italic;
-  margin-top: 0.5em;
+  margin-top: 1em;
 }
 .styleLine {
   align-self: center;
@@ -40,17 +42,19 @@
 #productName {
   color:rgba(10, 10, 10, 0.9);
   margin-bottom: 0px;
+  font-size: 3em;
 }
 
 #price {
   margin-left: 0.4em;
   display: flex;
   flex-direction: row;
+  font-size: 1.8em;
 }
 
 #nameRatingPrice{
   margin-left: 5%;
-  height: 50%;
+  height: 45%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -99,7 +103,7 @@ position: relative;
 #goToReviews {
   margin-bottom:0.4em;
   text-decoration: underline;
-  font-size: 0.3em;
+  font-size: 1em;
   color: rgba(50, 50, 50,0.4);
   width: 20%;
 }
@@ -108,6 +112,6 @@ position: relative;
 }
 
 #productCategory {
-  font-size: 0.3em;
+  font-size: 1em;
   margin-top: none;
 }

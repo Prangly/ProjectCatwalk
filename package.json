@@ -29,6 +29,7 @@
     "babel-jest": "^27.3.1",
     "babel-plugin-react-css-modules": "^5.2.6",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "jest": "^27.3.1",
     "jest-css-modules-transform": "^4.3.0",

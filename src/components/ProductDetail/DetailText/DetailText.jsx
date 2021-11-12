@@ -10,8 +10,8 @@ export default function DetailText({ product }) {
   );
 
   return (
-    <div id={styles.detailTextContainer} data-testid="detailText">
-      <div id={styles.productDetailText}>
+    <div id={styles.detailTextContainer} data-testid="detailTextContainer">
+      <div id={styles.productDetailText} data-testid="detailText">
         <div id={styles.productSlogan}>
           {product.slogan}
         </div>

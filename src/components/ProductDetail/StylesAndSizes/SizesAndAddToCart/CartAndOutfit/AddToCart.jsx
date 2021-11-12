@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styles from '../styles.css';
 
-const cartUrl = 'http://127.0.0.1:3000/cart';
+const cartUrl = '/cart';
 function AddToCart({
   currentSize, currentQuantity, currentSkuId,
 }) {
@@ -31,6 +31,7 @@ function AddToCart({
       <button
         type="button"
         id={styles.addToCartButton}
+        className="ourButton"
         onClick={() => {
           onClick(currentSkuId, currentQuantity);
         }}

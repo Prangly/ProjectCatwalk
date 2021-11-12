@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import RelatedCard from '../RelatedCard/RelatedCard';
 
-const productURL = 'http://127.0.0.1:3000/products/';
+const productURL = '/products/';
 const starterCards = [
   61581, 61583,
 ];
@@ -32,7 +32,7 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
 
   if (cardList) {
     return (
-      <ul data-testid="relatedItems" id={styles.relatedItems}>
+      <ul data-testid="relatedItems" className="ourContainer" id={styles.relatedItems}>
         Related Items
         {cardList}
       </ul>
