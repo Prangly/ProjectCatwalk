@@ -10,12 +10,23 @@ import ProductContext from '../../ProductContext';
 const RatAndRev = ({ currentProduct }) => {
   const reviewURL = '/reviews';
   const [currentRevs, setCurrentRev] = useState([]);
-  const { currentProductAvgRating, setCurrentProductAvgRating } = useContext(ProductContext);
+  const {
+    currentProductAvgRating,
+    setCurrentProductAvgRating,
+    setErrorCode,
+    setIsError,
+    setNumberOfReviews,
+  } = useContext(ProductContext);
 
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
         setCurrentRev(data.results);
+        setNumberOfReviews(data.results.length);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
   useEffect(() => {

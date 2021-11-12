@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import RelatedCard from '../RelatedCard/RelatedCard';
+import ProductContext from '../../../ProductContext';
 
 const productURL = '/products/';
 function RelatedItems({ currentProduct, setCurrentProductID }) {
   const action = 'Compare';
 
+<<<<<<< HEAD
   const [loading, setLoading] = useState(true);
   const [relatedItems, setRelatedItems] = useState([]);
 
@@ -18,6 +20,18 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
           data.data,
           setLoading(false),
         );
+=======
+  const [relatedItems, setRelatedItems] = useState(starterCards);
+  const { setErrorCode, setIsError } = useContext(ProductContext);
+  const relatedAPI = (id) => {
+    axios.get(`${productURL + id}/related`)
+      .then((data) => {
+        setRelatedItems(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+>>>>>>> main
       });
   };
 

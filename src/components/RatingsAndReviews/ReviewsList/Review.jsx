@@ -31,24 +31,28 @@ const Review = ({ review }) => {
 
   const reviewDate = `${reviewDateMonth} ${reviewDateDay}, ${reviewDateYear}`;
   return (
-    <span data-testid="review" id={styles.review}>
+    <div data-testid="review" id={styles.review}>
       <ReviewStarRating rating={review.rating} />
-      {reviewDate}
+      <text id={styles.date}>{reviewDate}</text>
       <br />
-      {review.summary}
+      <text id={styles.summary}>{review.summary}</text>
       <br />
-      {review.body}
+      <div id={styles.body}>{review.body}</div>
       <br />
       {review.recommend}
       <br />
-      {review.reviewer_name}
+      <text id={styles.reviewername}>
+        by
+        {' '}
+        {review.reviewer_name}
+      </text>
       <br />
       {review.response}
       <br />
-      {review.helpfulness}
+      {/* {review.helpfulness}
+      <br /> */}
       <br />
-      <br />
-    </span>
+    </div>
   );
 };
 
