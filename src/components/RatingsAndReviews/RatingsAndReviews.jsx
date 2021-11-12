@@ -16,11 +16,15 @@ const RatAndRev = ({ currentProduct }) => {
     setErrorCode,
     setIsError,
   } = useContext(ProductContext);
+  const [numRevsToGet, setNumRevsToGet] = useState(2);
+  const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
+  const [numRevsGotten, setNumRevsGotten] = useState(2);
 
   const getReviews = (id, number) => {
     axios.get(`${reviewURL}/${id}/${number}`)
       .then(({ data }) => {
         setCurrentRev(data.results);
+        setNumRevsGotten(data.results.length);
       })
       .catch((err) => {
         setErrorCode(err.response.status);
@@ -28,10 +32,12 @@ const RatAndRev = ({ currentProduct }) => {
       });
   };
   useEffect(() => {
-    getReviews(currentProduct.id, 2);
+    getReviews(currentProduct.id, numRevsToGet);
   }, [currentProduct]);
 
-  const [openWriteReviewModal, setOpenWriteReviewModal] = useState(false);
+  const loadMoreReviews = (num) => {
+    getReviews(currentProduct.id, num);
+  };
 
   return (
     <div data-testid="ratAndRev" id="ratAndRev" className="ourContainer">
@@ -41,6 +47,7 @@ const RatAndRev = ({ currentProduct }) => {
         reviews={currentRevs}
       />
       <div>
+        {numRevsGotten >= 2 ? <input type="button" className="ourButton" value="Load More Reviews" onClick={() => loadMoreReviews(numRevsToGet + 2)} /> : null}
         <input type="button" className="ourButton" value="Write A Review" onClick={() => setOpenWriteReviewModal(true)} />
         <WriteAReview
           openModal={openWriteReviewModal}
