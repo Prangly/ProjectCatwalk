@@ -21,6 +21,7 @@ const sampleStyles = {
 };
 
 function OutfitCard({ card, action, removeFromOutfit }) {
+  const [loading, setLoading] = useState(true);
   const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
   const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
   const { setErrorCode, setIsError } = useContext(ProductContext);
@@ -55,6 +56,8 @@ function OutfitCard({ card, action, removeFromOutfit }) {
       stylesAPI(card);
     }, [card]);
   }
+
+  if (loading) { return (<h5>loading</h5>); }
 
   return (
     <div data-testid="card" className={styles.card}>
