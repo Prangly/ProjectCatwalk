@@ -92,7 +92,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
         <br />
         <br />
-        <button type="submit" onClick={postReview}>
+        <button type="submit" className="ourButton" onClick={postReview}>
           Submit
         </button>
       </div>
