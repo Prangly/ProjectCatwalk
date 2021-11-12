@@ -60,10 +60,7 @@ const App = () => {
     setCurrentOutfit(revisedOutfit);
   };
 
-  // useEffect(() => {
-  //   console.log('about to call api', currentProductID)
 
-  // }, [currentProductID]);
 
   if (loading || !currentProduct) { return (<h1>loading</h1>); }
   return (

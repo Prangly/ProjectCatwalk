@@ -49,7 +49,10 @@ function OutfitCard({ card, action, removeFromOutfit }) {
 
   return (
     <div data-testid="card" className={styles.card}>
-      <button onClick={() => removeFromOutfit(card)}>
+      <button
+        className="ourButton"
+        onClick={() => removeFromOutfit(card)}
+      >
         {action}
       </button>
       <h4>{outfitProduct.category}</h4>

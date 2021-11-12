@@ -1,3 +1,27 @@
+@media only screen and (min-device-width: 600px) {
+  #app {
+    width: 60%;
+  }
+  .ourButton {
+    padding: 0.5em;
+    margin: 0.2em;
+  }
+
+}
+
+@media only screen and (max-device-width: 600px) {
+
+  #app {
+    width: 100%;
+    font-size: 0.5em;
+  }
+
+  .ourButton {
+    font-size: 0.5em;
+  }
+}
+
+
 html {
   width: 100vw;
   scroll-behavior: smooth;;
@@ -20,31 +44,19 @@ body {
 
 }
 
-
-@media only screen and (min-device-width: 600px) {
-  #app {
-    width: 60%;
-  }
-}
-
-@media only screen and (max-device-width: 600px) {
-
-#app {
-  width: 100%
-}
-}
-
-
 .ourButton {
   border: none;
   background: #212a2f;
   color: whitesmoke;
   box-shadow:  1px 1px 5px rgba(0,0,0,0.3);
   cursor: pointer;
+  border-radius: 3px;
+
 }
 
 .ourButton:hover{
   background: #3a3f41;
+  color:white;
 }
 
 .ourButton:active {
