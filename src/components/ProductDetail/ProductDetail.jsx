@@ -18,12 +18,16 @@ const ProductDetail = ({ addToOutfit }) => {
   const [expanded, setExpanded] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
-  const { currentProduct } = useContext(ProductContext);
+  const { currentProduct, setIsError, setErrorCode } = useContext(ProductContext);
   const { id, name, category } = currentProduct;
   const stylesAPI = (currentProductID, source) => {
     axios.get(stylesURL + currentProductID, { cancelToken: source.token })
       .then((data) => {
         setProductStyles(data.data);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
   useEffect(() => {

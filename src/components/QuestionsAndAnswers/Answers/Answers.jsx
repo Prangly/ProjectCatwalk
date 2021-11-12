@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
+import ProductContext from '../../../ProductContext';
 
 const Answers = ({
   answer, setAnswerHelpfulness, setReportAnswer, index,
@@ -24,22 +25,30 @@ const Answers = ({
   const answerId = answer.answer_id;
   const helpfulId = `${answerId}/helpful`;
   const reportId = `${answerId}/reported`;
-
+  const { setErrorCode, setIsError } = useContext(ProductContext);
   const updateAnswerHelpfulness = () => {
     axios.put(`/updateAnswerHelpfulness/${answerId}`)
       .then(window.localStorage[helpfulId] = 'clicked')
-      .then(() => setAnswerHelpfulness((answerHelpfulness) => answerHelpfulness + 1));
+      .then(() => setAnswerHelpfulness((answerHelpfulness) => answerHelpfulness + 1))
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+      });
   };
 
   const updateReportAnswer = () => {
     axios.put(`updateReportAnswer/${answerId}`)
       .then(window.localStorage[reportId] = 'clicked')
-      .then(() => setReportAnswer((reportAnswer) => reportAnswer + 1));
+      .then(() => setReportAnswer((reportAnswer) => reportAnswer + 1))
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+      });
   };
 
   return (
     <span>
-      { index === 0 ? (
+      {index === 0 ? (
         <span>
           {'  '}
           {answer.body}
@@ -88,7 +97,7 @@ const Answers = ({
           <button type="button" className={styles.button} onClick={() => updateReportAnswer()}>
             Report
           </button>
-        ) }
+        )}
       </div>
     </span>
   );

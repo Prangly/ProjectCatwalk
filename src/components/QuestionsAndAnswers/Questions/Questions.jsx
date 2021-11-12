@@ -1,20 +1,26 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import AnswersList from '../AnswersList/AnswersList';
 import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAnswersModal';
+import ProductContext from '../../../ProductContext';
 
 const Questions = ({
   question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose, setReportAnswer,
 }) => {
   const apiURL = `/answers/${question.question_id}/20`;
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
+  const { setIsError, setErrorCode } = useContext(ProductContext);
   const getAnswers = () => {
     axios.get(apiURL)
       .then(({ data }) => {
         setCurrentQuestionAnswers(data.results);
+      })
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
       });
   };
 
@@ -25,7 +31,11 @@ const Questions = ({
   const updateQuestionHelpfulness = () => {
     axios.put(`/updateQuestionHelpfulness/${question.question_id}`)
       .then(window.localStorage[question.question_id] = 'clicked')
-      .then(() => setQuestionHelpfulness((questionHelpfulness) => questionHelpfulness + 1));
+      .then(() => setQuestionHelpfulness((questionHelpfulness) => questionHelpfulness + 1))
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+      });
   };
 
   const [loadOrCollapse, setLoadOrCollapse] = useState(true);
