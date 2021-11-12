@@ -42,7 +42,10 @@ const App = () => {
         .then((data) => {
           setCurrentProduct(data.data, setLoading(false));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setErrorCode(err.response.status);
+          setIsError(true);
+        });
     }
   };
   useEffect(async () => {
