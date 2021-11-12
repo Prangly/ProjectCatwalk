@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
@@ -8,6 +9,8 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
   console.log(Object.keys(characteristics));
 
   const [charsObject, setCharsObject] = useState({});
+  const [characteristicProps, setCharacteristicProps] = useState(Object.entries(characteristics));
+  const [charsKeysAndValuesList, setCharsKeysAndValuesList] = useState([]);
 
   const characteristicsDefs = {
     Size: {
@@ -53,74 +56,76 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
       5: 'Too big',
     },
   };
-  const namesOfChars = Object.keys(characteristics);
+  // const characteristicProps = Object.entries(characteristics);
+  const characteristicsNamesAndIdsList = characteristicProps.map((property) => [property[0], property[1].id]);
 
-  const selectCharValue = (num) => {
-    console.log(charsObject);
+  const selectCharValue = (event) => {
+    console.log(event.target.value);
+    const charsPropsList = event.target.value.split(',');
+    console.log(charsPropsList);
+    console.log('char props', characteristicProps);
+    const characteristicKeyValuePair = [charsPropsList[1], charsPropsList[2]];
+    console.log('key value pair', characteristicKeyValuePair);
+    setCharsKeysAndValuesList([...characteristicKeyValuePair]);
+    console.log('chars keys and values', charsKeysAndValuesList);
+    // setCharsObject(Object.fromEntries(characteristicKeyValuePairs));
+    // console.log(charsObject);
   };
 
   useEffect(() => {
-    const characteristicProps = Object.entries(characteristics);
+    console.log('characteristic props', characteristicProps);
     const characteristicsIdsList = characteristicProps.map((property) => [property[1].id, 0]);
-    console.log(characteristicsIdsList);
-    console.log(Object.fromEntries(characteristicsIdsList));
     const characteristicNameIds = Object.fromEntries(characteristicsIdsList);
+    console.log('characteristic name Ids', characteristicNameIds);
     setCharsObject(characteristicNameIds);
-    // for (let i = 0; i < characteristicsIdsList.length; i += 1) {
-    //   const characteristicId = characteristicsIdsList[i];
-    //   setCharacteristics({ characteristicId: 0 });
-    // }
   }, [characteristics]);
 
-  const charsRows = namesOfChars.map((name) => (
+  const charsRows = characteristicsNamesAndIdsList.map((nameAndId) => (
     <tr>
       <td>
-        {name}
+        {nameAndId[0]}
         <br />
       </td>
       <td>
-        {characteristicsDefs[name]['1']}
+        {characteristicsDefs[nameAndId[0]]['1']}
         <br />
-        <input type="radio" name={`${name}`} onClick={(event) => selectCharValue(1)} value={1} />
+        <input type="radio" name={`${nameAndId[0]}`} onClick={(event) => selectCharValue(event)} value={`${nameAndId},1`} />
       </td>
       <td>
-        {characteristicsDefs[name]['2']}
+        {characteristicsDefs[nameAndId[0]]['2']}
         <br />
-        <input type="radio" name={`${name}`} onClick={(event) => selectCharValue(2)} value={2} />
+        <input type="radio" name={`${nameAndId[0]}`} onClick={(event) => selectCharValue(event)} value={`${nameAndId},2`} />
       </td>
       <td>
-        {characteristicsDefs[name]['3']}
+        {characteristicsDefs[nameAndId[0]]['3']}
         <br />
-        <input type="radio" name={`${name}`} />
+        <input type="radio" name={`${nameAndId[0]}`} onClick={(event) => selectCharValue(event)} value={`${nameAndId},3`} />
       </td>
       <td>
-        {characteristicsDefs[name]['4']}
+        {characteristicsDefs[nameAndId[0]]['4']}
         <br />
-        <input type="radio" name={`${name}`} />
+        <input type="radio" name={`${nameAndId[0]}`} onClick={(event) => selectCharValue(event)} value={`${nameAndId},4`} />
       </td>
       <td>
-        {characteristicsDefs[name]['5']}
+        {characteristicsDefs[nameAndId[0]]['5']}
         <br />
-        <input type="radio" name={`${name}`} />
+        <input type="radio" name={`${nameAndId[0]}`} onClick={(event) => selectCharValue(event)} value={`${nameAndId},5`} />
       </td>
     </tr>
   ));
 
   return (
-    <>
-      <h2>This is where characteristics will be entered.</h2>
-      <table id={styles.charsTable}>
-        <thead id={styles.charsHead}>
-          <td />
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-        </thead>
-        {charsRows}
-      </table>
-    </>
+    <table id={styles.charsTable}>
+      <thead id={styles.charsHead}>
+        <td />
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+      </thead>
+      {charsRows}
+    </table>
   );
 };
 
