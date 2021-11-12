@@ -8,20 +8,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
-import sampleProduct from '../../../SampleData/SampleProduct.js';
 
 const productURL = '/';
-const sampleStyles = {
-  results: [{
-    photos: [{
-      url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
-    }],
-  }],
-};
-
 function OutfitCard({ card, action, removeFromOutfit }) {
-  const [outfitProduct, setOutfitProduct] = useState(sampleProduct);
-  const [outfitStyles, setOutfitStyles] = useState(sampleStyles);
+  const [loading, setLoading] = useState(true);
+  const [outfitProduct, setOutfitProduct] = useState({});
+  const [outfitStyles, setOutfitStyles] = useState({});
 
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
@@ -46,6 +38,12 @@ function OutfitCard({ card, action, removeFromOutfit }) {
       stylesAPI(card);
     }, [card]);
   }
+
+  if (outfitProduct && outfitStyles) {
+    setLoading(false);
+  }
+
+  if (loading) { return (<h5>loading</h5>); }
 
   return (
     <div data-testid="card" className={styles.card}>
