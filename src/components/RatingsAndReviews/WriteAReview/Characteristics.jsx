@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './styles.css';
 
 const Characteristics = ({ characteristics, setCharacteristics }) => {
-  console.log(characteristics);
+  console.log('characteristics', characteristics);
   console.log(Object.entries(characteristics));
   console.log(Object.keys(characteristics));
+
+  const [charsObject, setCharsObject] = useState({});
 
   const characteristicsDefs = {
     Size: {
@@ -53,9 +55,23 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
   };
   const namesOfChars = Object.keys(characteristics);
 
-  const selectCharValue = (event) => {
-    console.log(event);
+  const selectCharValue = (num) => {
+    console.log(charsObject);
   };
+
+  useEffect(() => {
+    const characteristicProps = Object.entries(characteristics);
+    const characteristicsIdsList = characteristicProps.map((property) => [property[1].id, 0]);
+    console.log(characteristicsIdsList);
+    console.log(Object.fromEntries(characteristicsIdsList));
+    const characteristicNameIds = Object.fromEntries(characteristicsIdsList);
+    setCharsObject(characteristicNameIds);
+    // for (let i = 0; i < characteristicsIdsList.length; i += 1) {
+    //   const characteristicId = characteristicsIdsList[i];
+    //   setCharacteristics({ characteristicId: 0 });
+    // }
+  }, [characteristics]);
+
   const charsRows = namesOfChars.map((name) => (
     <tr>
       <td>
@@ -65,12 +81,12 @@ const Characteristics = ({ characteristics, setCharacteristics }) => {
       <td>
         {characteristicsDefs[name]['1']}
         <br />
-        <input type="radio" name={`${name}`} onClick={(event) => selectCharValue(event)} />
+        <input type="radio" name={`${name}`} onClick={(event) => selectCharValue(1)} value={1} />
       </td>
       <td>
         {characteristicsDefs[name]['2']}
         <br />
-        <input type="radio" name={`${name}`} />
+        <input type="radio" name={`${name}`} onClick={(event) => selectCharValue(2)} value={2} />
       </td>
       <td>
         {characteristicsDefs[name]['3']}
