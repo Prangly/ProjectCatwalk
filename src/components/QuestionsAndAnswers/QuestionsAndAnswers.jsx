@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import styles from './styles.css';
-import QuestionsSearchInput from './QuestionsSearchInput/QuestionsSearchInput';
 import QuestionsList from './QuestionsList/QuestionsList';
 import QuestionsAndAnswersModal from './QuestionsAndAnswersModal/QuestionsAndAnswersModal';
 import ProductContext from '../../ProductContext';
@@ -68,7 +67,16 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   return (
     <div id={styles.qAndA} className="ourContainer">
       <h1>Questions and Answers</h1>
-      <QuestionsSearchInput changeSearchInput={changeSearchInput} />
+      {/* <QuestionsSearchInput changeSearchInput={changeSearchInput} /> */}
+      <div>
+        <input
+          data-testid="questionsSearchInput"
+          type="text"
+          placeholder="Have a question? Search for answers..."
+          className={styles.searchInput}
+          onChange={(event) => changeSearchInput(event.target.value)}
+        />
+      </div>
       <QuestionsList
         currentProductQuestions={filteredQuestions}
         currentProductName={currentProduct.name}
