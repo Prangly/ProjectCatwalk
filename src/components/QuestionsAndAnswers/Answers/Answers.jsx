@@ -63,7 +63,9 @@ const Answers = ({
       <div id={styles.answersAuthor}>
         by
         {' '}
-        {answer.answerer_name.toLowerCase() === 'seller' ? <span id={styles.seller}>Seller</span> : <span>{answer.answerer_name}</span>}
+        {answer.answerer_name.toLowerCase() === 'seller'
+          ? <span id={styles.seller}>Seller</span>
+          : <span>{answer.answerer_name}</span>}
         ,
         {' '}
         {months[answer.date.slice(5, 7)]}

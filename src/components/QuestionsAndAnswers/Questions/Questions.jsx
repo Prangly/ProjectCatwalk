@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
@@ -8,11 +7,18 @@ import QuestionsAndAnswersModal from '../QuestionsAndAnswersModal/QuestionsAndAn
 import ProductContext from '../../../ProductContext';
 
 const Questions = ({
-  question, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose, setReportAnswer,
+  question,
+  currentProductName,
+  setQuestionHelpfulness,
+  setAnswerHelpfulness,
+  setModalClose,
+  setReportAnswer,
 }) => {
-  const apiURL = `/answers/${question.question_id}/20`;
+  const [loadOrCollapse, setLoadOrCollapse] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [currentQuestionAnswers, setCurrentQuestionAnswers] = useState([]);
   const { setIsError, setErrorCode } = useContext(ProductContext);
+  const apiURL = `/answers/${question.question_id}/20`;
   const getAnswers = () => {
     axios.get(apiURL)
       .then(({ data }) => {
@@ -24,10 +30,6 @@ const Questions = ({
       });
   };
 
-  useEffect(() => {
-    getAnswers();
-  }, [question]);
-
   const updateQuestionHelpfulness = () => {
     axios.put(`/updateQuestionHelpfulness/${question.question_id}`)
       .then(window.localStorage[question.question_id] = 'clicked')
@@ -38,8 +40,12 @@ const Questions = ({
       });
   };
 
-  const [loadOrCollapse, setLoadOrCollapse] = useState(true);
-  const [openModal, setOpenModal] = useState(false);
+  const filterCurrentQuestionAnswers = currentQuestionAnswers.filter((answer) => (
+    currentQuestionAnswers.indexOf(answer) < 2));
+
+  useEffect(() => {
+    getAnswers();
+  }, [question]);
 
   return (
     <div className={styles.questionsAndAnswers}>
@@ -68,16 +74,43 @@ const Questions = ({
           <button type="button" className={styles.button} onClick={() => setOpenModal(true)}>
             Add Answer
           </button>
-          <QuestionsAndAnswersModal type="answer" openModal={openModal} currentProductName={currentProductName} questionId={question.question_id} questionBody={question.question_body} setOpenModal={setOpenModal} setModalClose={setModalClose} />
+          <QuestionsAndAnswersModal
+            type="answer"
+            openModal={openModal}
+            currentProductName={currentProductName}
+            questionId={question.question_id}
+            questionBody={question.question_body}
+            setOpenModal={setOpenModal}
+            setModalClose={setModalClose}
+          />
         </span>
       </div>
       <div className={styles.answers}>
-        <AnswersList answers={loadOrCollapse ? currentQuestionAnswers.filter((answer) => currentQuestionAnswers.indexOf(answer) < 2) : currentQuestionAnswers} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} />
-        {loadOrCollapse && currentQuestionAnswers.length > 2 ? <input type="button" className={styles.moreAnswersOrCollapse} value="More Answers" onClick={() => { setLoadOrCollapse(false); }} />
-
+        <AnswersList
+          answers={loadOrCollapse ? filterCurrentQuestionAnswers : currentQuestionAnswers}
+          setAnswerHelpfulness={setAnswerHelpfulness}
+          setReportAnswer={setReportAnswer}
+        />
+        {loadOrCollapse && currentQuestionAnswers.length > 2
+          ? (
+            <input
+              type="button"
+              className={styles.moreAnswersOrCollapse}
+              value="More Answers"
+              onClick={() => { setLoadOrCollapse(false); }}
+            />
+          )
           : null}
-        {loadOrCollapse ? null
-          : <input type="button" className={styles.moreAnswersOrCollapse} value="Collapse Answers" onClick={() => { setLoadOrCollapse(true); }} />}
+        {loadOrCollapse
+          ? null
+          : (
+            <input
+              type="button"
+              className={styles.moreAnswersOrCollapse}
+              value="Collapse Answers"
+              onClick={() => { setLoadOrCollapse(true); }}
+            />
+          )}
       </div>
     </div>
   );

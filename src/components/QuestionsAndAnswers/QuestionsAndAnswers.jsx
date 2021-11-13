@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -18,7 +17,9 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   const [openQuestionsModal, setOpenQuestionsModal] = useState(false);
   const [searchInput, changeSearchInput] = useState('');
   const { setIsError, setErrorCode } = useContext(ProductContext);
-  const filterQuestion = (questionsFromAPI) => questionsFromAPI.filter((question) => question.question_body.toLowerCase().includes(searchInput));
+
+  const filterQuestion = (questionsFromAPI) => questionsFromAPI.filter((question) => (
+    question.question_body.toLowerCase().includes(searchInput)));
 
   const getQuestions = () => {
     if (searchInput.length > 2) {
@@ -49,22 +50,60 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
     }
   };
 
+  const filteredQuestions = currentProductQuestions.filter((question) => (
+    currentProductQuestions.indexOf(question) < loadMoreQuestions - 1));
+
   useEffect(() => {
     getQuestions();
-  }, [currentProduct, questionHelpfulness, answerHelpfulness, modalClose, reportAnswer, searchInput, loadMoreQuestions]);
+  }, [
+    currentProduct,
+    questionHelpfulness,
+    answerHelpfulness,
+    modalClose,
+    reportAnswer,
+    searchInput,
+    loadMoreQuestions,
+  ]);
 
   return (
     <div id={styles.qAndA} className="ourContainer">
       <h1>Questions and Answers</h1>
       <QuestionsSearchInput changeSearchInput={changeSearchInput} />
-      <QuestionsList currentProductQuestions={currentProductQuestions.filter((question) => currentProductQuestions.indexOf(question) < loadMoreQuestions - 1)} currentProductName={currentProduct.name} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />
-      {currentProductQuestions[loadMoreQuestions - 1] !== undefined ? <input type="button" className="ourButton" id={styles.loadMoreQuestions} value="More Answered Questions" onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }} />
-
-
+      <QuestionsList
+        currentProductQuestions={filteredQuestions}
+        currentProductName={currentProduct.name}
+        setQuestionHelpfulness={setQuestionHelpfulness}
+        setAnswerHelpfulness={setAnswerHelpfulness}
+        setModalClose={setModalClose}
+        setReportAnswer={setReportAnswer}
+      />
+      {currentProductQuestions[loadMoreQuestions - 1] !== undefined
+        ? (
+          <input
+            type="button"
+            className="ourButton"
+            id={styles.loadMoreQuestions}
+            value="More Answered Questions"
+            onClick={() => { setloadMoreQuestions(loadMoreQuestions + 2); }}
+          />
+        )
         : null}
       <span>
-        <input type="button" className="ourButton" id={styles.addAQuestion} value="Add a question" onClick={() => setOpenQuestionsModal(true)} />
-        <QuestionsAndAnswersModal type="question" openModal={openQuestionsModal} currentProductId={currentProduct.id} currentProductName={currentProduct.name} setOpenModal={setOpenQuestionsModal} setModalClose={setModalClose} />
+        <input
+          type="button"
+          className="ourButton"
+          id={styles.addAQuestion}
+          value="Add a question"
+          onClick={() => setOpenQuestionsModal(true)}
+        />
+        <QuestionsAndAnswersModal
+          type="question"
+          openModal={openQuestionsModal}
+          currentProductId={currentProduct.id}
+          currentProductName={currentProduct.name}
+          setOpenModal={setOpenQuestionsModal}
+          setModalClose={setModalClose}
+        />
       </span>
     </div>
   );
