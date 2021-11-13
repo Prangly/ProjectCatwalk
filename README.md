@@ -33,7 +33,7 @@ This section initializes with a short list of reviews, associated with the main 
 ### Installing
 
 * The 'package.json' file contains a complete list of required scripts.
-* To accessing the API, a user must attach a GitHub API Token as an "Authorization" header. To accomplish this, create a 'config.js' file in the root directory, which assigns a token to an 'API_KEY' variable, and exports it.
+* To accessing the API, a user must attach a GitHub API Token as an "Authorization" header. To accomplish this, create a '.env' file in the root directory, which assigns a token to an 'API_KEY' variable, and exports it.
 
 ### Executing program
 

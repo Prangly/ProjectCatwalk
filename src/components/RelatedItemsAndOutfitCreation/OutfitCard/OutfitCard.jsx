@@ -101,7 +101,7 @@ function OutfitCard({ card, action, removeFromOutfit }) {
           {outfitProduct.default_price}
         </h4>
         <ReviewStarRating rating={rating} />
-        <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="" />
+        <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="Not Found" />
       </div>
     </div>
   );

@@ -196,7 +196,7 @@ function RelatedCard({
             {relatedProduct.default_price}
           </h4>
           <ReviewStarRating rating={rating} />
-          <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
+          <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="Not Found" />
         </div>
       </Link>
     </div>
