@@ -5,8 +5,8 @@ import styles from '../styles.css';
 import RelatedCard from '../RelatedCard/RelatedCard';
 import ProductContext from '../../../ProductContext';
 
-const productURL = '/products/';
 function RelatedItems({ currentProduct, setCurrentProductID }) {
+  const productURL = '/products/';
   const action = 'Compare';
 
   const [loading, setLoading] = useState(true);
@@ -40,10 +40,12 @@ function RelatedItems({ currentProduct, setCurrentProductID }) {
 
   if (cardList) {
     return (
-      <ul data-testid="relatedItems" className="ourContainer" id={styles.relatedItems}>
+      <div className="ourContainer" id={styles.relatedItemsContainer}>
         Related Items
-        {cardList}
-      </ul>
+        <ul data-testid="relatedItems" id={styles.relatedItems}>
+          {cardList}
+        </ul>
+      </div>
     );
   }
 }

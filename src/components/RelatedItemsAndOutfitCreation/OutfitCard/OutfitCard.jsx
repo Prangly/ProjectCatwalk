@@ -12,23 +12,22 @@ import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 import averageStarRating from '../../../../Helpers/averageStarRating';
 
-const productURL = '/';
-const stylesShape = {
-  results: [{
-    photos: [{
-      url: '',
-    }],
-  }],
-};
-
 function OutfitCard({ card, action, removeFromOutfit }) {
+  const productURL = '/';
+  const initialStyles = {
+    results: [{
+      photos: [{
+        url: '',
+      }],
+    }],
+  };
   const [productLoading, setProductLoading] = useState(true);
   const [stylesLoading, setStylesLoading] = useState(true);
   const [outfitProduct, setOutfitProduct] = useState({});
-  const [outfitStyles, setOutfitStyles] = useState(stylesShape);
+  const [outfitStyles, setOutfitStyles] = useState(initialStyles);
   const [rating, setRating] = useState(0);
-
   const { setErrorCode, setIsError } = useContext(ProductContext);
+
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
@@ -60,9 +59,6 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   if (card) {
     useEffect(() => {
       productAPI(card);
-    }, [card]);
-
-    useEffect(() => {
       stylesAPI(card);
     }, [card]);
 
@@ -86,25 +82,24 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   return (
     <div data-testid="card" className={styles.card}>
       <button
-        className="ourButton"
+        style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
+        className={`${styles.actionButton} ourButton`}
         onClick={() => removeFromOutfit(card)}
       >
         {action}
       </button>
       <div data-testid="card">
-        <h6>
-          {outfitProduct.category}
-        </h6>
-        <h4>
-          {outfitProduct.name}
-        </h4>
-        <h4>
-          $
-          {' '}
-          {outfitProduct.default_price}
-        </h4>
-        <ReviewStarRating rating={rating} />
-        <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="" />
+        <div className={styles.cardText}>
+          <div className={styles.productCategory}>{outfitProduct.category}</div>
+          <div className={styles.productName}>{outfitProduct.name}</div>
+          <div>
+            $
+            {' '}
+            {outfitProduct.default_price}
+          </div>
+          <ReviewStarRating rating={rating} />
+        </div>
+        <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="Not Found" />
       </div>
     </div>
   );

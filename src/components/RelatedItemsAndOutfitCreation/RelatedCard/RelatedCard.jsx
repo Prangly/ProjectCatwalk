@@ -14,26 +14,23 @@ import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 import averageStarRating from '../../../../Helpers/averageStarRating';
 
-const productURL = '/';
-
-const stylesShape = {
-  results: [{
-    photos: [{
-      url: '',
-    }],
-  }],
-};
-
 function RelatedCard({
   card, currentProduct, action, setCurrentProductID,
 }) {
+  const productURL = '/';
+  const initialStyles = {
+    results: [{
+      photos: [{
+        url: '',
+      }],
+    }],
+  };
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
-
   const [relatedProduct, setRelatedProduct] = useState({});
-  const [relatedStyles, setRelatedStyles] = useState(stylesShape);
+  const [relatedStyles, setRelatedStyles] = useState(initialStyles);
   const [rating, setRating] = useState(0);
-
   const { setErrorCode, setIsError } = useContext(ProductContext);
 
   if (productSelected) {
@@ -65,9 +62,6 @@ function RelatedCard({
 
   useEffect(() => {
     productAPI(card);
-  }, [card]);
-
-  useEffect(() => {
     stylesAPI(card);
   }, [card]);
 
@@ -191,15 +185,17 @@ function RelatedCard({
               </button>
             </div>
           </Modal>
-          <h6>{relatedProduct.category}</h6>
-          <h4>{relatedProduct.name}</h4>
-          <h4>
-            $
-            {' '}
-            {relatedProduct.default_price}
-          </h4>
-          <ReviewStarRating rating={rating} />
-          <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
+          <div className={styles.cardText}>
+            <div className={styles.productCategory}>{relatedProduct.category}</div>
+            <div className={styles.productName}>{relatedProduct.name}</div>
+            <div>
+              $
+              {' '}
+              {relatedProduct.default_price}
+            </div>
+            <ReviewStarRating rating={rating} />
+          </div>
+          <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="Not Found" />
         </div>
       </Link>
     </div>

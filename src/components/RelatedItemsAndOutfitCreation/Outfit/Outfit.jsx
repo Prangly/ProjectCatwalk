@@ -5,20 +5,21 @@ import OutfitCard from '../OutfitCard/OutfitCard';
 
 function Outfit({ removeFromOutfit, currentOutfit }) {
   const action = 'Delete';
-
   // eslint-disable-next-line max-len
   const cardList = currentOutfit.map((card) => <OutfitCard key={card} card={card} action={action} removeFromOutfit={removeFromOutfit} />);
   return (
-    <ul data-testid="outfit" className="ourContainer" id={styles.outfit}>
+    <div className="ourContainer" id={styles.outfitContainer}>
       Your Outfit
-      {cardList}
-      {currentOutfit.length === 0
-        && (
-        <h4 className={styles.card}>
-          There are no items in Your Outfit.
-        </h4>
-        )}
-    </ul>
+      <ul data-testid="outfit" id={styles.outfit}>
+        {cardList}
+        {currentOutfit.length === 0
+          && (
+          <h4 className={styles.card}>
+            There are no items in Your Outfit.
+          </h4>
+          )}
+      </ul>
+    </div>
   );
 }
 Outfit.propTypes = {
