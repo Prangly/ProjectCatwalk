@@ -10,10 +10,10 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import styles from '../styles.css';
-// import styles2 from '../../ProductDetail/StylesAndSizes/styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 import ProductContext from '../../../ProductContext';
-// import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import averageStarRating from '../../../../Helpers/averageStarRating';
 
 const productURL = '/';
 const sampleStyles = {
@@ -24,7 +24,6 @@ const sampleStyles = {
   }],
 };
 
-// Modal.setAppElement('#root');
 function RelatedCard({
   card, currentProduct, action, setCurrentProductID,
 }) {
@@ -33,6 +32,7 @@ function RelatedCard({
 
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
+  const [rating, setRating] = useState(0);
 
   const { setErrorCode, setIsError } = useContext(ProductContext);
 
@@ -71,8 +71,12 @@ function RelatedCard({
     stylesAPI(card);
   }, [card]);
 
-  // console.log('Current product: ', currentProduct);
-  // console.log('Related product: ', relatedProduct);
+  useEffect(() => {
+    averageStarRating(card)
+      .then((average) => {
+        setRating(Math.round(average));
+      });
+  }, []);
 
   return (
     <div className={styles.card}>
@@ -191,7 +195,7 @@ function RelatedCard({
             {' '}
             {relatedProduct.default_price}
           </h4>
-          {/* <h4>{card.starRating}</h4> */}
+          <ReviewStarRating rating={rating} />
           <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
         </div>
       </Link>
