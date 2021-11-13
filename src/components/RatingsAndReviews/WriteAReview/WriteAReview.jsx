@@ -74,24 +74,24 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         <StarRating setRating={setRating} rating={rating} />
         <h4>What did you think of this product?</h4>
         <span>
-          <textarea type="text" placeholder="Example: Best purchase ever!" cols="100" rows="1" maxLength="250" onChange={(event) => setSummary(event.target.value)}></textarea>
+          <textarea type="text" placeholder="Example: Best purchase ever!" cols="100" rows="1" maxLength="250" required onChange={(event) => setSummary(event.target.value)}></textarea>
         </span>
         <br />
         <br />
         <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} setCharacteristicsList={setCharacteristicsList} />
         <br />
         <br />
-        <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
+        <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" required onChange={(event) => setBody(event.target.value)}></textarea>
         <br />
         <br />
         <h4>What is your nickname?</h4>
-        <textarea type="text" placeholder="Example: jackson11!" cols="100" rows="1" maxLength="250" onChange={(event) => setName(event.target.value)}></textarea>
+        <textarea type="text" placeholder="Example: jackson11!" cols="100" rows="1" maxLength="250" required onChange={(event) => setName(event.target.value)}></textarea>
         <br />
         <text id={styles.nameAndEmailText}>For privacy reasons, do not use your full name or email address</text>
         <br />
         <br />
         <h4>Your email</h4>
-        <textarea type="text" placeholder="Example: jackson11@email.com" cols="100" rows="1" maxLength="250" onChange={(event) => setEmail(event.target.value)}></textarea>
+        <textarea type="text" placeholder="Example: jackson11@email.com" cols="100" rows="1" maxLength="250" required onChange={(event) => setEmail(event.target.value)}></textarea>
         <br />
         <text id={styles.nameAndEmailText}>For authentication reasons, you will not be emailed</text>
         <br />
