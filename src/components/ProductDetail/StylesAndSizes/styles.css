@@ -3,6 +3,7 @@
   flex-direction: column;
   flex-grow: 1;
   padding: 1em;
+  max-height: 45%;
   justify-content: space-between;
 }
 
