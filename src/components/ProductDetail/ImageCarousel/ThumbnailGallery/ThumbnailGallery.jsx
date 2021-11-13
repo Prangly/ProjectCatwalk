@@ -6,22 +6,21 @@ import Thumbnail from './Thumbnail';
 function ThumbnailGallery({ urls, currentImage, setCurrentImage }) {
   const [scroll, setScroll] = useState(25);
   const onScroll = (direction) => {
-    if (direction === 'right' && scroll >= 0) {
-      setScroll(scroll - 50);
-    } else if (direction === 'left' && scroll < 25) {
-      setScroll(scroll + 50);
+    if (direction === 'right' && scroll >= -100 && urls.length > 3) {
+      setScroll(scroll - 75);
+    } else if (direction === 'left' && scroll < 25 && urls.length > 3) {
+      setScroll(scroll + 75);
+      if (scroll > 60) setScroll(60);
     }
   };
 
   useEffect(() => {
-    if (currentImage < 3) {
-      setScroll(25);
-    }
-    if (currentImage >= 3) {
-      setScroll(-25);
-    }
+    setScroll(50 + ((-180 * currentImage) / urls.length));
   }, [currentImage]);
 
+  useEffect(() => {
+    setScroll(50);
+  }, []);
   const thumbnails = urls.map((url, i) => (
     <Thumbnail
       url={url}
