@@ -20,8 +20,8 @@
 
 @media only screen and (max-device-width: 600px) {
   .styleIcon {
-    height: 4vh;
-    width: 4vh;
+    height: 3.3vh;
+    width: 3.3vh;
   }
 
   .tooltip {
