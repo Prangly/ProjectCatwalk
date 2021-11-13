@@ -4,7 +4,7 @@ Project Catwalk
 
 ## Overview
 
-* Our outdated client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers.   Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
+* Our client-facing retail web-portal has become significantly outdated and has been proven to be hurting sales numbers.   Project Catwalk comprises a complete redesign of the retail portal designed to address this concern and modernize the site.
 
 * The initial release will focus on providing the minimum viable product for our retail application. Features implemented will be constrained to the client experience which enables customers to search, browse, add to cart, and checkout. Maintenance of the catalog and internal systems are not in scope for this project. Improvements other than those to the client user interface are out of scope for this project.
 
