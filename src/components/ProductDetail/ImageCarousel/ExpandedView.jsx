@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 import IconGallery from './ExpandedViewIcons/IconGallery';
+import customIncrement from './customIncrement';
 
 const imageNotFound = 'https://clients.cylindo.com/viewer/3.x/v3.0/documentation/img/not_found.gif';
 export default function ExpandedView({
@@ -14,11 +15,7 @@ export default function ExpandedView({
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => (result.url ? result.url : imageNotFound));
   const onIncrement = (direction) => {
-    if (direction === 'up' && currentImage < urls.length - 1) {
-      setCurrentImage(currentImage + 1);
-    } else if (direction === 'down' && currentImage > 0) {
-      setCurrentImage(currentImage - 1);
-    }
+    customIncrement(direction, setCurrentImage, urls, currentImage)
   };
 
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
