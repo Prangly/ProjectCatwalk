@@ -88,8 +88,8 @@ const QuestionsAndAnswersModal = ({
   // }
 
   return (
-    <Modal className={styles.modalSize} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
-      {/* <input className={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} /> */}
+    <Modal id={styles.modalSize} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
+      {/* <input id={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} /> */}
       {type === 'answer'
         ? (
           <div>
@@ -138,7 +138,7 @@ const QuestionsAndAnswersModal = ({
             </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setAnswerEmailInfo(event.target.value)} />
             <br />
-            For authentication reasons,you will not be emailed.
+            For authentication reasons, you will not be emailed.
             <br />
             <h3>Upload your photos</h3>
             <button id={styles.addPhotos} type="button">
@@ -189,7 +189,7 @@ const QuestionsAndAnswersModal = ({
             </h3>
             <textarea type="text" placeholder="Example: jack@email.com" cols="100" rows="1" maxLength="60" required onChange={(event) => setQuestionEmailInfo(event.target.value)} />
             <br />
-            For authentication reasons,you will not be emailed.
+            For authentication reasons, you will not be emailed.
             <br />
             <button className={`${styles.submit} ourButton`} type="button" onClick={() => postQuestion()}>
               Submit
