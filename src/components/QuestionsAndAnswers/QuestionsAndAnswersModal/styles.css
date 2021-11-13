@@ -1,7 +1,9 @@
-.close {
+#close {
   position: relative;
   float: right;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 #addPhotos {

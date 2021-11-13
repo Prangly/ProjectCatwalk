@@ -67,7 +67,6 @@ const QuestionsAndAnswers = ({ currentProduct }) => {
   return (
     <div id={styles.qAndA} className="ourContainer">
       <h1>Questions and Answers</h1>
-      {/* <QuestionsSearchInput changeSearchInput={changeSearchInput} /> */}
       <div>
         <input
           data-testid="questionsSearchInput"

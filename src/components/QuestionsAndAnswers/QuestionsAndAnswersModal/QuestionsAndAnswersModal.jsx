@@ -96,9 +96,20 @@ const QuestionsAndAnswersModal = ({
   //   setFormData(newFormData)
   // }
 
+  const modalStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
   return (
-    <Modal isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
-      <input className={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
+    <Modal style={modalStyles} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
+      <input id={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
       {type === 'answer'
         ? (
           <div>
@@ -176,7 +187,7 @@ const QuestionsAndAnswersModal = ({
               onChange={(event) => setAnswerEmailInfo(event.target.value)}
             />
             <br />
-            For authentication reasons,you will not be emailed.
+            For authentication reasons, you will not be emailed.
             <br />
             <h3>Upload your photos</h3>
             <button id={styles.addPhotos} type="button">
@@ -256,7 +267,7 @@ const QuestionsAndAnswersModal = ({
               onChange={(event) => setQuestionEmailInfo(event.target.value)}
             />
             <br />
-            For authentication reasons,you will not be emailed.
+            For authentication reasons, you will not be emailed.
             <br />
             <button className={`${styles.submit} ourButton`} type="button" onClick={() => postQuestion()}>
               Submit
