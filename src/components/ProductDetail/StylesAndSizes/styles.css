@@ -4,15 +4,12 @@
   flex-grow: 1;
   padding: 1em;
   justify-content: space-between;
-
 }
 
-
 #styleContainer {
-  height: 20%;
+  max-height: 20%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-around;
   padding: 2%;
 }
@@ -35,7 +32,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  /* border: 1px solid black; */
   padding: 0.5em;
 }
 
@@ -50,18 +46,14 @@
   display: flex;
   flex-direction: row;
   font-size: 1.8em;
+  margin-right: 0.5em;
 }
 
 #nameRatingPrice{
   margin-left: 5%;
-  height: 45%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.price {
-  margin-right: 0.5em;
 }
 
 #shareOnSocialContainer {
@@ -104,8 +96,9 @@ position: relative;
   margin-bottom:0.4em;
   text-decoration: underline;
   font-size: 1em;
-  color: rgba(50, 50, 50,0.4);
-  width: 20%;
+  color: rgba(50,50, 50, 0.4);
+  width: fit-content;
+  display: block;
 }
 #goToReviews:hover {
   color: lightgrey;
