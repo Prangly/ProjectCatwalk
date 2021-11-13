@@ -83,24 +83,23 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   return (
     <div data-testid="card" className={styles.card}>
       <button
-        className="ourButton"
+        style={{ justifyContent: 'flexEnd', alignItems: 'flexEnd' }}
+        className={`${styles.actionButton} ourButton`}
         onClick={() => removeFromOutfit(card)}
       >
         {action}
       </button>
       <div data-testid="card">
-        <h6>
-          {outfitProduct.category}
-        </h6>
-        <h4>
-          {outfitProduct.name}
-        </h4>
-        <h4>
-          $
-          {' '}
-          {outfitProduct.default_price}
-        </h4>
-        <ReviewStarRating rating={rating} />
+        <div className={styles.cardText}>
+          <div className={styles.productCategory}>{outfitProduct.category}</div>
+          <div className={styles.productName}>{outfitProduct.name}</div>
+          <div>
+            $
+            {' '}
+            {outfitProduct.default_price}
+          </div>
+          <ReviewStarRating rating={rating} />
+        </div>
         <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="Not Found" />
       </div>
     </div>
