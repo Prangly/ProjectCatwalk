@@ -3,7 +3,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProductDetail from '../ProductDetail/ProductDetail.jsx';
@@ -15,8 +14,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import ProductContext from '../../ProductContext.jsx';
 import 'babel-polyfill';
 import averageStarRating from '../../../Helpers/averageStarRating.jsx';
-
-const productURL = '/products/';
+import { productAPI } from '../api/index';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -37,21 +35,13 @@ const App = () => {
     }
   }, [id]);
 
-  const productAPI = (prodId) => {
-    if (prodId) {
-      axios.get(productURL + prodId)
-        .then((data) => {
-          setCurrentProduct(data.data, setLoading(false));
-        })
-        .catch((err) => {
-          setErrorCode(err.response.status);
-          setIsError(true);
-        });
-    }
-  };
-
   useEffect(async () => {
-    productAPI(currentProductID);
+    productAPI(currentProductID,
+      (data) => { setCurrentProduct(data.data, setLoading(false)); },
+      (err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+      });
     averageStarRating(currentProductID)
       .then((average) => setCurrentProductAvgRating(Math.round(average)));
   }, [currentProductID]);
