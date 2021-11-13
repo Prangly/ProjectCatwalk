@@ -5,8 +5,8 @@ import styles from '../styles.css';
 import RelatedCard from '../RelatedCard/RelatedCard';
 import ProductContext from '../../../ProductContext';
 
-const productURL = '/products/';
 function RelatedItems({ currentProduct, setCurrentProductID }) {
+  const productURL = '/products/';
   const action = 'Compare';
 
   const [loading, setLoading] = useState(true);

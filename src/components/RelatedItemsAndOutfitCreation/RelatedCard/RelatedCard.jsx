@@ -14,26 +14,23 @@ import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 import averageStarRating from '../../../../Helpers/averageStarRating';
 
-const productURL = '/';
-
-const stylesShape = {
-  results: [{
-    photos: [{
-      url: '',
-    }],
-  }],
-};
-
 function RelatedCard({
   card, currentProduct, action, setCurrentProductID,
 }) {
+  const productURL = '/';
+  const initialStyles = {
+    results: [{
+      photos: [{
+        url: '',
+      }],
+    }],
+  };
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
-
   const [relatedProduct, setRelatedProduct] = useState({});
-  const [relatedStyles, setRelatedStyles] = useState(stylesShape);
+  const [relatedStyles, setRelatedStyles] = useState(initialStyles);
   const [rating, setRating] = useState(0);
-
   const { setErrorCode, setIsError } = useContext(ProductContext);
 
   if (productSelected) {

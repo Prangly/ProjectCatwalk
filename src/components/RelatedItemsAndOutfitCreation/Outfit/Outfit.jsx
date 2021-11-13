@@ -5,7 +5,6 @@ import OutfitCard from '../OutfitCard/OutfitCard';
 
 function Outfit({ removeFromOutfit, currentOutfit }) {
   const action = 'Delete';
-
   // eslint-disable-next-line max-len
   const cardList = currentOutfit.map((card) => <OutfitCard key={card} card={card} action={action} removeFromOutfit={removeFromOutfit} />);
   return (

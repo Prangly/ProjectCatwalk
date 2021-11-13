@@ -12,23 +12,22 @@ import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 import averageStarRating from '../../../../Helpers/averageStarRating';
 
-const productURL = '/';
-const stylesShape = {
-  results: [{
-    photos: [{
-      url: '',
-    }],
-  }],
-};
-
 function OutfitCard({ card, action, removeFromOutfit }) {
+  const productURL = '/';
+  const initialStyles = {
+    results: [{
+      photos: [{
+        url: '',
+      }],
+    }],
+  };
   const [productLoading, setProductLoading] = useState(true);
   const [stylesLoading, setStylesLoading] = useState(true);
   const [outfitProduct, setOutfitProduct] = useState({});
-  const [outfitStyles, setOutfitStyles] = useState(stylesShape);
+  const [outfitStyles, setOutfitStyles] = useState(initialStyles);
   const [rating, setRating] = useState(0);
-
   const { setErrorCode, setIsError } = useContext(ProductContext);
+
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
       .then((data) => {
