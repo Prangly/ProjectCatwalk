@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { useContext } from 'react';
+import ProductContext from '../src/ProductContext';
 
-export default (id) => {
+
+export default (id, errorCB) => {
   if (id) {
     return axios.get(`/meta/${id}`)
       .then((data) => {
@@ -13,7 +16,8 @@ export default (id) => {
           return totalStars / numRatings;
         }
         return 0;
-      });
+      })
+      .catch(errorCB);
   }
   return new Promise(() => 0);
 };
