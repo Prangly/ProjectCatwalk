@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import styles from './styles.css';
 import ProductContext from '../../../ProductContext';
+import ModalStyle from '../../ModalStyle/ModalStyle';
 
 const QuestionsAndAnswersModal = ({
   type,
@@ -96,19 +97,8 @@ const QuestionsAndAnswersModal = ({
   //   setFormData(newFormData)
   // }
 
-  const modalStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
-
   return (
-    <Modal style={modalStyles} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
+    <Modal style={ModalStyle} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
       <input id={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
       {type === 'answer'
         ? (
@@ -194,7 +184,7 @@ const QuestionsAndAnswersModal = ({
               Upload Photos
             </button>
             <br />
-            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postAnswer()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => { postAnswer(); setOpenModal(false); }}>
               Submit
             </button>
           </div>
@@ -269,7 +259,7 @@ const QuestionsAndAnswersModal = ({
             <br />
             For authentication reasons, you will not be emailed.
             <br />
-            <button className={`${styles.submit} ourButton`} type="button" onClick={() => postQuestion()}>
+            <button className={`${styles.submit} ourButton`} type="button" onClick={() => { postQuestion(); setOpenModal(false); }}>
               Submit
             </button>
           </div>
