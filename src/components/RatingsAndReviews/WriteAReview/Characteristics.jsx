@@ -10,7 +10,7 @@ console.log('characteristics', characteristics);
 
   const [charsObject, setCharsObject] = useState({});
   const [characteristicProps, setCharacteristicProps] = useState(Object.entries(characteristics));
-  const [charsKeysAndValuesList, setCharsKeysAndValuesList] = useState([]);
+  const [charsKeysAndValuesList, setCharsAndValuesList] = useState([]);
 
   const characteristicsDefs = {
     Size: {
@@ -56,9 +56,7 @@ console.log('characteristics', characteristics);
       5: 'Too big',
     },
   };
-  // const characteristicProps = Object.entries(characteristics);
   const characteristicsNamesAndIdsList = characteristicProps.map((property) => [property[0], property[1].id]);
-
   const selectCharValue = (event) => {
     console.log(event.target.value);
     const charsPropsList = event.target.value.split(',');
@@ -66,11 +64,14 @@ console.log('characteristics', characteristics);
     console.log('char props', characteristicProps);
     const characteristicKeyValuePair = [charsPropsList[1], charsPropsList[2]];
     console.log('key value pair', characteristicKeyValuePair);
-    setCharsKeysAndValuesList([...characteristicKeyValuePair]);
-    console.log('chars keys and values', charsKeysAndValuesList);
+    setCharsAndValuesList((prevCharsAndValuesList) => [...prevCharsAndValuesList, characteristicKeyValuePair]);
     // setCharsObject(Object.fromEntries(characteristicKeyValuePairs));
     // console.log(charsObject);
   };
+
+  useEffect(() => {
+    console.log(charsKeysAndValuesList);
+  }, [charsKeysAndValuesList]);
 
   useEffect(() => {
     console.log('characteristic props', characteristicProps);
