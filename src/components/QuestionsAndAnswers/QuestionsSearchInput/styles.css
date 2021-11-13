@@ -1,9 +1,0 @@
-.searchInput {
-  height: 40px;
-  width: 60%;
-}
-
-.searchInput ::placeholder {
-  font-weight: bolder;
-  font-size: large;
-}
