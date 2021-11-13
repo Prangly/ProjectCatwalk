@@ -10,16 +10,16 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import styles from '../styles.css';
-import sampleProduct from '../../../SampleData/SampleProduct.js';
 import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 import averageStarRating from '../../../../Helpers/averageStarRating';
 
 const productURL = '/';
-const sampleStyles = {
+
+const stylesShape = {
   results: [{
     photos: [{
-      url: 'https://images.unsplash.com/photo-1561861422-a549073e547a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80',
+      url: '',
     }],
   }],
 };
@@ -30,8 +30,8 @@ function RelatedCard({
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productSelected, selectProduct] = useState();
 
-  const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
-  const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
+  const [relatedProduct, setRelatedProduct] = useState({});
+  const [relatedStyles, setRelatedStyles] = useState(stylesShape);
   const [rating, setRating] = useState(0);
 
   const { setErrorCode, setIsError } = useContext(ProductContext);
