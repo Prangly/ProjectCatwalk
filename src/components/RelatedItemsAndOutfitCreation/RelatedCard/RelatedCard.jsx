@@ -72,7 +72,10 @@ function RelatedCard({
   }, [card]);
 
   useEffect(() => {
-    averageStarRating(card)
+    averageStarRating(card, (err) => {
+      setErrorCode(err.response.status);
+      setIsError(true);
+    })
       .then((average) => {
         setRating(Math.round(average));
       });

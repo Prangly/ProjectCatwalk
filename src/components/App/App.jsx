@@ -42,7 +42,10 @@ const App = () => {
         setErrorCode(err.response.status);
         setIsError(true);
       });
-    averageStarRating(currentProductID)
+    averageStarRating(currentProductID, (err) => {
+      setErrorCode(err.response.status);
+      setIsError(true);
+    })
       .then((average) => setCurrentProductAvgRating(Math.round(average)));
   }, [currentProductID]);
 
