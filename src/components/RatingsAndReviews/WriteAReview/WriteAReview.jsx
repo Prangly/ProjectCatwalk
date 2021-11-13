@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/self-closing-comp */
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
@@ -14,9 +14,8 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
-  const [characteristics, setCharacteristics] = useState(null);
+  const [characteristicsList, setCharacteristicsList] = useState([]);
   const { setIsError, setErrorCode } = useContext(ProductContext);
-
 
   const metaURL = '/meta';
 
@@ -45,9 +44,10 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
     rating,
     summary,
     body,
+    recommend: isRecommended,
     name: sampleReview.name,
     email: sampleReview.email,
-    characteristics: {},
+    characteristics: Object.fromEntries(characteristicsList),
     photos: sampleReview.photos,
   };
 
@@ -67,13 +67,12 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   }, [currentProductId]);
 
   const postReview = () => {
-    setOpenModal(false);
-    // axios.post('/writeReview', submittedReview)
-    // .then(() => console.log('review added'))
-    // .catch((err) => {
-    // setErrorCode(err.response.status);
-    // setIsError(true);
-    // });
+    axios.post('/writeReview', submittedReview)
+      .then(() => setOpenModal(false))
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+      });
   };
 
   return (
@@ -97,7 +96,7 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         </span>
         <br />
         <br />
-        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} setCharacteristics={setCharacteristics} />
+        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} setCharacteristicsList={setCharacteristicsList} />
         <br />
         <br />
         <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
