@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import styles from './styles.css';
 import ImageCarousel from './ImageCarousel/ImageCarousel';
 import DetailText from './DetailText/DetailText';
 import StylesAndSizes from './StylesAndSizes/StylesAndSizes';
-// import SampleProduct from '../../SampleData/SampleProduct';
 import ExpandedView from './ImageCarousel/ExpandedView';
 import ProductContext from '../../ProductContext';
-
-// const currentProduct = SampleProduct;
-const stylesURL = '/styles/';
+import { stylesAPI } from '../api';
 
 const ProductDetail = ({ addToOutfit }) => {
   const [currentStyle, setCurrentStyle] = useState(0);
@@ -23,20 +19,16 @@ const ProductDetail = ({ addToOutfit }) => {
     setIsError,
     setErrorCode,
   } = useContext(ProductContext);
+
   const { id, name, category } = currentProduct;
-  const stylesAPI = (currentProductID, source) => {
-    axios.get(stylesURL + currentProductID, { cancelToken: source.token })
-      .then((data) => {
-        setProductStyles(data.data);
-      })
-      .catch((err) => {
-        setErrorCode(err.response.status);
-        setIsError(true);
-      });
-  };
+
   useEffect(() => {
-    const source = axios.CancelToken.source();
-    stylesAPI(id, source);
+    stylesAPI(id, (data) => {
+      setProductStyles(data.data);
+    }, (err) => {
+      setErrorCode(err.response.status);
+      setIsError(true);
+    });
   }, [currentProduct]);
 
   const expandedView = expanded
@@ -48,9 +40,9 @@ const ProductDetail = ({ addToOutfit }) => {
         setExpanded={setExpanded}
         currentImage={currentImage}
         setCurrentImage={setCurrentImage}
-
       />
     ) : '';
+
   if (!productStyles) {
     return (
       <div data-testid="productDetail" className={`${styles.productDetail} ${styles.loading} ourContainer`}>
