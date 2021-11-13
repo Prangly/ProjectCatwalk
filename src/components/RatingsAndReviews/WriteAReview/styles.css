@@ -13,6 +13,10 @@
   text-align: left;
 }
 
+#nameAndEmailText {
+  font-size: small;
+}
+
 td {
   padding: 12px 15px;
 }
