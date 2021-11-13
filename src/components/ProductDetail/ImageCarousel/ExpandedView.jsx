@@ -15,7 +15,7 @@ export default function ExpandedView({
   const { name } = sampleStyle;
   const urls = sampleStyle.photos.map((result) => (result.url ? result.url : imageNotFound));
   const onIncrement = (direction) => {
-    customIncrement(direction, setCurrentImage, urls, currentImage)
+    customIncrement(direction, setCurrentImage, urls, currentImage);
   };
 
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
