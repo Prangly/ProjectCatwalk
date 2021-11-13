@@ -9,6 +9,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from '../styles.css';
 import ProductContext from '../../../ProductContext';
+import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import averageStarRating from '../../../../Helpers/averageStarRating';
 
 const productURL = '/';
 const stylesShape = {
@@ -24,6 +26,8 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   const [stylesLoading, setStylesLoading] = useState(true);
   const [outfitProduct, setOutfitProduct] = useState({});
   const [outfitStyles, setOutfitStyles] = useState(stylesShape);
+  const [rating, setRating] = useState(0);
+
   const { setErrorCode, setIsError } = useContext(ProductContext);
   const productAPI = (id) => {
     axios.get(`${productURL}products/${id}`)
@@ -61,6 +65,13 @@ function OutfitCard({ card, action, removeFromOutfit }) {
     useEffect(() => {
       stylesAPI(card);
     }, [card]);
+
+    useEffect(() => {
+      averageStarRating(card)
+        .then((average) => {
+          setRating(Math.round(average));
+        });
+    }, []);
   }
 
   if (productLoading || stylesLoading) {
@@ -89,6 +100,7 @@ function OutfitCard({ card, action, removeFromOutfit }) {
           {' '}
           {outfitProduct.default_price}
         </h4>
+        <ReviewStarRating rating={rating} />
         <img className={styles.cardImage} src={outfitStyles.results[0].photos[0].url} alt="" />
       </div>
     </div>

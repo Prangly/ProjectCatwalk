@@ -40,6 +40,7 @@ const StylesAndSizes = ({
     />
   ));
   const reviewPlural = numberOfReviews === 1 ? 'review' : 'reviews';
+
   return (
     <div id={styles.stylesAndSizes} data-testid="stylesAndSizes">
       <div data-testid="nameRatingPrice" id={styles.nameRatingPrice}>

@@ -22,7 +22,9 @@ export default function ImageCarousel({
   const alt = urls[currentStyle] === imageNotFound ? 'Image Not Found' : name;
   const leftVis = currentImage === 0 ? 'hidden' : 'visible';
   const rightVis = currentImage === urls.length - 1 ? 'hidden' : 'visible';
-
+  if (currentImage >= urls.length) {
+    setCurrentImage(urls.length - 1);
+  }
   return (
     <div id={styles.imageCarousel} data-testid="imageCarousel">
       <button
