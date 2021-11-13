@@ -13,7 +13,8 @@ import styles from '../styles.css';
 // import styles2 from '../../ProductDetail/StylesAndSizes/styles.css';
 import sampleProduct from '../../../SampleData/SampleProduct.js';
 import ProductContext from '../../../ProductContext';
-// import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
+import averageStarRating from '../../../../Helpers/averageStarRating';
 
 const productURL = '/';
 const sampleStyles = {
@@ -33,6 +34,7 @@ function RelatedCard({
 
   const [relatedProduct, setRelatedProduct] = useState(sampleProduct);
   const [relatedStyles, setRelatedStyles] = useState(sampleStyles);
+  const [rating, setRating] = useState(0);
 
   const { setErrorCode, setIsError } = useContext(ProductContext);
 
@@ -70,6 +72,13 @@ function RelatedCard({
   useEffect(() => {
     stylesAPI(card);
   }, [card]);
+
+  useEffect(() => {
+    averageStarRating(card)
+      .then(average => {
+        setRating(Math.round(average)),
+      })
+  }, []);
 
   // console.log('Current product: ', currentProduct);
   // console.log('Related product: ', relatedProduct);
@@ -191,6 +200,7 @@ function RelatedCard({
             {' '}
             {relatedProduct.default_price}
           </h4>
+          <ReviewStarRating rating={rating} />
           {/* <h4>{card.starRating}</h4> */}
           <img onClick={() => selectProduct(relatedProduct.id)} className={styles.cardImage} src={relatedStyles.results[0].photos[0].url} alt="" />
         </div>
