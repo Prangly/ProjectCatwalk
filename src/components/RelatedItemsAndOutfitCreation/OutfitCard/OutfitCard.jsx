@@ -60,9 +60,6 @@ function OutfitCard({ card, action, removeFromOutfit }) {
   if (card) {
     useEffect(() => {
       productAPI(card);
-    }, [card]);
-
-    useEffect(() => {
       stylesAPI(card);
     }, [card]);
 
