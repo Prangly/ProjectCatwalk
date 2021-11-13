@@ -5,10 +5,24 @@ import Questions from '../Questions/Questions';
 import styles from './styles.css';
 
 const QuestionsList = ({
-  currentProductQuestions, currentProductName, setQuestionHelpfulness, setAnswerHelpfulness, setModalClose, setReportAnswer,
+  currentProductQuestions,
+  currentProductName,
+  setQuestionHelpfulness,
+  setAnswerHelpfulness,
+  setModalClose,
+  setReportAnswer,
 }) => (
   <div className={styles.questionsList}>
-    {currentProductQuestions.map((question) => <Questions question={question} currentProductName={currentProductName} setQuestionHelpfulness={setQuestionHelpfulness} setAnswerHelpfulness={setAnswerHelpfulness} setModalClose={setModalClose} setReportAnswer={setReportAnswer} />)}
+    {currentProductQuestions.map((question) => (
+      <Questions
+        question={question}
+        currentProductName={currentProductName}
+        setQuestionHelpfulness={setQuestionHelpfulness}
+        setAnswerHelpfulness={setAnswerHelpfulness}
+        setModalClose={setModalClose}
+        setReportAnswer={setReportAnswer}
+      />
+    ))}
   </div>
 );
 
