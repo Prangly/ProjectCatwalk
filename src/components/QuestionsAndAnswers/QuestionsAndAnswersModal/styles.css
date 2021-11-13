@@ -1,29 +1,9 @@
-/* .modalSize {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: grey;
-  margin: 30%;
-} */
-
-#modalSize {
-  /* margin-top: 10%;
-  margin-bottom: 10%;
-  margin-left: 10%;
-  margin-right: 10%; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70%;
-  width: 50%;
-  border: 1px;
-  padding: 1%;
-}
-
 #close {
-  /* position: relative;
-  float: right; */
+  position: relative;
+  float: right;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 #addPhotos {

@@ -87,9 +87,20 @@ const QuestionsAndAnswersModal = ({
   //   setFormData(newFormData)
   // }
 
+  const modalStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
+
   return (
-    <Modal id={styles.modalSize} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
-      {/* <input id={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} /> */}
+    <Modal style={modalStyles} isOpen={openModal} onRequestClose={() => setOpenModal(false)}>
+      <input id={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
       {type === 'answer'
         ? (
           <div>
