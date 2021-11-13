@@ -7,9 +7,9 @@ function ThumbnailGallery({ urls, currentImage, setCurrentImage }) {
   const [scroll, setScroll] = useState(25);
   const onScroll = (direction) => {
     if (direction === 'right' && scroll >= -100 && urls.length > 3) {
-      setScroll(scroll - 75);
+      setScroll((prevScroll) => prevScroll - 75);
     } else if (direction === 'left' && scroll < 25 && urls.length > 3) {
-      setScroll(scroll + 75);
+      setScroll((prevScroll) => prevScroll + 75);
       if (scroll > 60) setScroll(60);
     }
   };
