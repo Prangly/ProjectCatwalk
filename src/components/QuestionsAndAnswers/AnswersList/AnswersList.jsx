@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
@@ -10,7 +9,14 @@ const AnswersList = ({ answers, setAnswerHelpfulness, setReportAnswer }) => (
       A:
     </span>
     <span>
-      {answers.map((answer) => <Answers answer={answer} setAnswerHelpfulness={setAnswerHelpfulness} setReportAnswer={setReportAnswer} index={answers.indexOf(answer)} />)}
+      {answers.map((answer) => (
+        <Answers
+          answer={answer}
+          setAnswerHelpfulness={setAnswerHelpfulness}
+          setReportAnswer={setReportAnswer}
+          index={answers.indexOf(answer)}
+        />
+      ))}
     </span>
   </div>
 );

@@ -17,3 +17,13 @@
   height: 50px;
   width: 30%;
 }
+
+.searchInput {
+  height: 40px;
+  width: 60%;
+}
+
+.searchInput ::placeholder {
+  font-weight: bolder;
+  font-size: large;
+}
