@@ -1,54 +1,36 @@
 /* eslint-disable max-len */
 /* eslint-disable react/self-closing-comp */
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import axios from 'axios';
+import styles from './styles.css';
 import StarRating from '../StarRating/StarRating';
 import Characteristics from './Characteristics';
 import ProductContext from '../../../ProductContext';
 
 const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
-  const [isRecommended, setIsRecommended] = useState(false);
   const [rating, setRating] = useState(0);
   const [summary, setSummary] = useState('');
   const [body, setBody] = useState('');
+  const [isRecommended, setIsRecommended] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [reviewsMeta, setReviewsMeta] = useState(null);
-  const [characteristics, setCharacteristics] = useState(null);
+  const [characteristicsList, setCharacteristicsList] = useState([]);
   const { setIsError, setErrorCode } = useContext(ProductContext);
 
-
   const metaURL = '/meta';
-
-  const sampleReview = {
-    product_id: 61579,
-    rating,
-    summary: 'Example small review of product',
-    recommend: isRecommended,
-    body: 'Example long review of product',
-    name: 'person',
-    email: 'email@email.com',
-    characteristics: {
-      206686: 5,
-      206687: 4,
-      206688: 3,
-      206689: 2,
-    },
-    photos: [
-      'https://i.imgur.com/xCeFAHu.jpeg',
-      'https://i.imgur.com/wl1S7do.jpeg',
-    ],
-  };
 
   const submittedReview = {
     product_id: currentProductId,
     rating,
     summary,
     body,
-    name: sampleReview.name,
-    email: sampleReview.email,
-    characteristics: {},
-    photos: sampleReview.photos,
+    recommend: isRecommended,
+    name,
+    email,
+    characteristics: Object.fromEntries(characteristicsList),
   };
 
   const getReviewsMeta = (id) => {
@@ -67,13 +49,12 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
   }, [currentProductId]);
 
   const postReview = () => {
-    setOpenModal(false);
-    // axios.post('/writeReview', submittedReview)
-    // .then(() => console.log('review added'))
-    // .catch((err) => {
-    // setErrorCode(err.response.status);
-    // setIsError(true);
-    // });
+    axios.post('/writeReview', submittedReview)
+      .then(() => setOpenModal(false))
+      .catch((err) => {
+        setErrorCode(err.response.status);
+        setIsError(true);
+      });
   };
 
   return (
@@ -93,14 +74,26 @@ const WriteAReview = ({ openModal, setOpenModal, currentProductId }) => {
         <StarRating setRating={setRating} rating={rating} />
         <h4>What did you think of this product?</h4>
         <span>
-          <textarea type="text" placeholder="Example: Best purchase ever!" cols="100" rows="1" maxLength="250" onChange={(event) => setSummary(event.target.value)}></textarea>
+          <textarea type="text" placeholder="Example: Best purchase ever!" cols="100" rows="1" maxLength="250" required onChange={(event) => setSummary(event.target.value)}></textarea>
         </span>
         <br />
         <br />
-        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} setCharacteristics={setCharacteristics} />
+        <Characteristics characteristics={!openModal ? {} : reviewsMeta.characteristics} setCharacteristicsList={setCharacteristicsList} />
         <br />
         <br />
-        <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" onChange={(event) => setBody(event.target.value)}></textarea>
+        <textarea type="text" placeholder="Why did you like the product or not?" cols="100" rows="10" maxLength="1000" required onChange={(event) => setBody(event.target.value)}></textarea>
+        <br />
+        <br />
+        <h4>What is your nickname?</h4>
+        <textarea type="text" placeholder="Example: jackson11!" cols="100" rows="1" maxLength="250" required onChange={(event) => setName(event.target.value)}></textarea>
+        <br />
+        <text id={styles.nameAndEmailText}>For privacy reasons, do not use your full name or email address</text>
+        <br />
+        <br />
+        <h4>Your email</h4>
+        <textarea type="text" placeholder="Example: jackson11@email.com" cols="100" rows="1" maxLength="250" required onChange={(event) => setEmail(event.target.value)}></textarea>
+        <br />
+        <text id={styles.nameAndEmailText}>For authentication reasons, you will not be emailed</text>
         <br />
         <br />
         <button type="submit" className="ourButton" onClick={postReview}>

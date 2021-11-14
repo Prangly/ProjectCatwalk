@@ -1,17 +1,10 @@
+/* eslint-disable radix */
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 
-const Characteristics = ({ characteristics, setCharacteristics }) => {
-console.log('characteristics', characteristics);
-  console.log(Object.entries(characteristics));
-  console.log(Object.keys(characteristics));
-
-  const [charsObject, setCharsObject] = useState({});
-  const [characteristicProps, setCharacteristicProps] = useState(Object.entries(characteristics));
-  const [charsKeysAndValuesList, setCharsKeysAndValuesList] = useState([]);
-
+const Characteristics = ({ characteristics, setCharacteristicsList }) => {
   const characteristicsDefs = {
     Size: {
       1: 'A size too small',
@@ -56,29 +49,15 @@ console.log('characteristics', characteristics);
       5: 'Too big',
     },
   };
-  // const characteristicProps = Object.entries(characteristics);
-  const characteristicsNamesAndIdsList = characteristicProps.map((property) => [property[0], property[1].id]);
 
   const selectCharValue = (event) => {
-    console.log(event.target.value);
     const charsPropsList = event.target.value.split(',');
-    console.log(charsPropsList);
-    console.log('char props', characteristicProps);
-    const characteristicKeyValuePair = [charsPropsList[1], charsPropsList[2]];
-    console.log('key value pair', characteristicKeyValuePair);
-    setCharsKeysAndValuesList([...characteristicKeyValuePair]);
-    console.log('chars keys and values', charsKeysAndValuesList);
-    // setCharsObject(Object.fromEntries(characteristicKeyValuePairs));
-    // console.log(charsObject);
+    const characteristicKeyValuePair = [charsPropsList[1], parseInt(charsPropsList[2])];
+    setCharacteristicsList((prevCharacteristicsList) => [...prevCharacteristicsList, characteristicKeyValuePair]);
   };
 
-  useEffect(() => {
-    console.log('characteristic props', characteristicProps);
-    const characteristicsIdsList = characteristicProps.map((property) => [property[1].id, 0]);
-    const characteristicNameIds = Object.fromEntries(characteristicsIdsList);
-    console.log('characteristic name Ids', characteristicNameIds);
-    setCharsObject(characteristicNameIds);
-  }, [characteristics]);
+  const characteristicProps = Object.entries(characteristics);
+  const characteristicsNamesAndIdsList = characteristicProps.map((property) => [property[0], property[1].id]);
 
   const charsRows = characteristicsNamesAndIdsList.map((nameAndId) => (
     <tr>
@@ -132,7 +111,7 @@ console.log('characteristics', characteristics);
 Characteristics.propTypes = {
   characteristics: PropTypes.shape({})
     .isRequired,
-  setCharacteristics: PropTypes.shape({})
+  setCharacteristicsList: PropTypes.shape([])
     .isRequired,
 };
 
