@@ -19,3 +19,12 @@
   color: red;
   font-size: x-small;
 }
+
+.modal {
+  width: 50vw;
+  height: 60vh;
+}
+
+.textInput {
+  width: 100%;
+}

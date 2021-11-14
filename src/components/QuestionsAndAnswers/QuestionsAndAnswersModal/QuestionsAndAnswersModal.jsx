@@ -102,7 +102,7 @@ const QuestionsAndAnswersModal = ({
       <input id={styles.close} type="button" value="X" onClick={() => setOpenModal(false)} />
       {type === 'answer'
         ? (
-          <div>
+          <div className={styles.modal}>
             <h1>Submit your Answer</h1>
             <h2>
               {' '}
@@ -129,6 +129,7 @@ const QuestionsAndAnswersModal = ({
                 : null}
             </h3>
             <textarea
+              className={styles.textInput}
               type="text"
               cols="100"
               rows="10"
@@ -147,6 +148,7 @@ const QuestionsAndAnswersModal = ({
                 : null}
             </h3>
             <textarea
+              className={styles.textInput}
               type="text"
               placeholder="Example: jack543!"
               cols="100"
@@ -168,6 +170,7 @@ const QuestionsAndAnswersModal = ({
                 : null}
             </h3>
             <textarea
+              className={styles.textInput}
               type="text"
               placeholder="Example: jack@email.com"
               cols="100"
@@ -190,7 +193,7 @@ const QuestionsAndAnswersModal = ({
           </div>
         )
         : (
-          <div>
+          <div className={styles.modal}>
             <h1>Ask your Question</h1>
             <h2>
               {' '}
@@ -209,6 +212,7 @@ const QuestionsAndAnswersModal = ({
                 : null}
             </h3>
             <textarea
+              className={styles.textInput}
               type="text"
               cols="100"
               rows="10"
@@ -227,6 +231,7 @@ const QuestionsAndAnswersModal = ({
                 : null}
             </h3>
             <textarea
+              className={styles.textInput}
               type="text"
               placeholder="Example: jack543!"
               cols="100"
@@ -248,6 +253,7 @@ const QuestionsAndAnswersModal = ({
                 : null}
             </h3>
             <textarea
+              className={styles.textInput}
               type="text"
               placeholder="Example: jack@email.com"
               cols="100"
