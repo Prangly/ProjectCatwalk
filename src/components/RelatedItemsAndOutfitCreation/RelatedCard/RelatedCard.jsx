@@ -13,6 +13,7 @@ import styles from '../styles.css';
 import ProductContext from '../../../ProductContext';
 import ReviewStarRating from '../../RatingsAndReviews/StarRating/ReviewStarRating';
 import averageStarRating from '../../../../Helpers/averageStarRating';
+import ModalStyle from '../../ModalStyle/ModalStyle';
 
 function RelatedCard({
   card, currentProduct, action, setCurrentProductID,
@@ -89,7 +90,7 @@ function RelatedCard({
       </button>
       <Link to={`/product/${card}`}>
         <div data-testid="card">
-          <Modal data-testid="modal" id={styles.modal} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+          <Modal style={ModalStyle} data-testid="modal" id={styles.modal} isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
             <div className={styles.table}>
 
               <div className={styles.row}>
